@@ -24,9 +24,9 @@ export function getPhaseTreeLayout(
   if (n === 4 && phaseIndex === 1) {
     return [
       { id: ids[0], x: 400, y: 0 },
-      { id: ids[1], x: 400, y: 140 },
-      { id: ids[2], x: 200, y: 280 },
-      { id: ids[3], x: 600, y: 280 },
+      { id: ids[1], x: 400, y: 180 },
+      { id: ids[2], x: 200, y: 400 },
+      { id: ids[3], x: 600, y: 400 },
     ];
   }
 

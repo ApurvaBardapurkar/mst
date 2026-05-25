@@ -6,7 +6,8 @@ import * as fs from "fs";
 import * as path from "path";
 import * as cheerio from "cheerio";
 
-const ACADEMY_ROOT = path.resolve(__dirname, "..", "..");
+const ACADEMY_ROOT = path.resolve(__dirname, "..");
+const CONTENT_SOURCE = path.resolve(ACADEMY_ROOT, "content", "modules");
 const OUT_CONTENT = path.resolve(__dirname, "..", "content", "modules");
 const OUT_DATA = path.resolve(__dirname, "..", "src", "data");
 
@@ -338,7 +339,7 @@ function main() {
   }[] = [];
 
   for (let n = 1; n <= 21; n++) {
-    const moduleDir = path.join(ACADEMY_ROOT, `Module ${n}`);
+    const moduleDir = path.join(CONTENT_SOURCE, String(n));
     const files = listModuleFiles(moduleDir);
     const phase = PHASES.find((p) => p.modules.includes(n))!;
     const submodules: (typeof modules)[0]["submodules"] = [];
