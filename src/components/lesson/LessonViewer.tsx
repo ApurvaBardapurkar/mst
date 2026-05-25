@@ -123,10 +123,20 @@ export function LessonViewer({
 
   const scrollToHeading = (id: string) => {
     const container = articleRef.current;
-    if (!container) return;
-    const target = container.querySelector(`#${id}`) as HTMLElement | null;
+    const escapedId = typeof CSS !== "undefined" && CSS.escape ? CSS.escape(id) : id;
+    const target = (container?.querySelector(`#${escapedId}`) as HTMLElement | null) ?? document.getElementById(id);
     if (!target) return;
-    target.scrollIntoView({ behavior: "smooth", block: "start" });
+
+    if (container) {
+      const offsetTop = target.offsetTop;
+      container.scrollTo({ top: Math.max(0, offsetTop - 24), behavior: "smooth" });
+    } else {
+      target.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+
+    if (typeof window !== "undefined" && window.history?.replaceState) {
+      window.history.replaceState(null, "", `#${id}`);
+    }
   };
 
   useEffect(() => {
@@ -135,7 +145,7 @@ export function LessonViewer({
   }, [moduleId, submodule.slug]);
 
   useEffect(() => {
-    const content = document.querySelector(".lesson-content");
+    const content = articleRef.current?.querySelector(".lesson-content") ?? document.querySelector(".lesson-content");
     if (!content) return;
 
     const headings = Array.from(
@@ -150,14 +160,19 @@ export function LessonViewer({
       heading.style.borderRadius = "0.5rem";
     });
 
+    const normalizeHeading = (value: string) =>
+      normalizeText(value.replace(/[\s\n]+/g, " ").replace(/^[^a-z0-9]+|[^a-z0-9]+$/gi, ""));
+
     const matchedItems = submodule.toc.filter((item) => {
-      const normalizedItem = normalizeText(item.title);
+      const normalizedItem = normalizeHeading(item.title);
       const match = headings.find((heading) => {
-        const headingText = normalizeText(heading.textContent || "");
+        const headingText = normalizeHeading(heading.textContent || "");
         return (
           headingText === normalizedItem ||
           headingText.startsWith(normalizedItem) ||
-          normalizedItem.startsWith(headingText)
+          normalizedItem.startsWith(headingText) ||
+          headingText.includes(normalizedItem) ||
+          normalizedItem.includes(headingText)
         );
       });
       if (match) {
@@ -179,6 +194,7 @@ export function LessonViewer({
         }
       },
       {
+        root: articleRef.current,
         rootMargin: "-50% 0px -40% 0px",
         threshold: 0.1,
       }
@@ -194,7 +210,7 @@ export function LessonViewer({
   }, [submodule.toc, html]);
 
   useEffect(() => {
-    const content = document.querySelector(".lesson-content");
+    const content = articleRef.current?.querySelector(".lesson-content") ?? document.querySelector(".lesson-content");
     if (!content) return;
 
     const headings = Array.from(
