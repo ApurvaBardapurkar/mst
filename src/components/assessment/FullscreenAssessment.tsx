@@ -221,53 +221,11 @@ export function FullscreenAssessment({
     router.push(`/module/${moduleId}/${subSlug}`);
   }
 
-  const getLiveScore = useCallback(() => {
-    let score = 0;
-    questions.forEach((q) => {
-      const ans = answers[q.id];
-      if (!ans) return;
-      if (q.type === "mcq") {
-        const correct = (q.correctAnswer || "").toUpperCase().charAt(0);
-        const selected = (ans.selectedKey || ans.value || "").toUpperCase().charAt(0);
-        if (selected === correct && !!selected) score += q.marks;
-      } else if (q.type === "true_false" || q.type === "true_false_justification") {
-        const val = ans.value || "";
-        const verdict = val.trim().toUpperCase().split("\n")[0];
-        const correct = (q.correctAnswer || q.tfVerdict || "").trim().toUpperCase();
-        if (verdict === correct && !!verdict) {
-          if (q.type === "true_false_justification") {
-            const hasJustification = val.split("\n").slice(1).join("").trim().length > 40;
-            score += hasJustification ? q.marks : Math.floor(q.marks / 2);
-          } else {
-            score += q.marks;
-          }
-        }
-      } else if (isCodingQuestion(q)) {
-        const codingResults = ans.codingResults;
-        if (codingResults && (codingResults.passed + codingResults.failed) > 0) {
-          const totalTests = codingResults.passed + codingResults.failed;
-          score += Math.round((codingResults.passed / totalTests) * q.marks);
-        } else if (ans.value.trim().length > 30) {
-          score += q.marks;
-        }
-      } else if (q.type === "descriptive") {
-        const wordCount = ans.value.trim().split(/\s+/).filter(Boolean).length;
-        if (wordCount >= 40) score += q.marks;
-        else if (wordCount >= 20) score += Math.ceil(q.marks * 0.6);
-        else if (wordCount >= 8) score += Math.ceil(q.marks * 0.3);
-      } else {
-        if (ans.value) score += Math.ceil(q.marks * 0.5);
-      }
-    });
-    return score;
-  }, [answers, questions]);
-
   if (!current) return null;
 
   const currentAnswer = answers[current.id];
   const hasCodingSubmission = codingQuestionActive && !!currentAnswer?.codingResults;
   const progress = ((index + 1) / questions.length) * 100;
-  const showScore = (assessment as any).showScore !== false;
   const totalMaxMarks = questions.reduce((s, q) => s + q.marks, 0);
 
   return (
@@ -283,14 +241,6 @@ export function FullscreenAssessment({
           </h1>
         </div>
         <div className="flex items-center gap-6">
-          {showScore && (
-            <div className="text-right hidden sm:block">
-              <p className="text-[10px] uppercase text-[var(--text-muted)] font-bold">Live Score</p>
-              <p className="text-sm font-black text-mst-red">
-                {getLiveScore()} <span className="text-[10px] text-[var(--text-muted)] font-normal">/ {totalMaxMarks}</span>
-              </p>
-            </div>
-          )}
           <div className="text-right">
             <p className="text-[10px] uppercase text-[var(--text-muted)] font-bold">Time Remaining</p>
             <p className={`flex items-center gap-1 font-mono text-sm font-black ${

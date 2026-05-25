@@ -127,17 +127,11 @@ export function LessonViewer({
     normalizeText(value).replace(/\s+/g, "-");
 
   const scrollToHeading = (id: string) => {
-    const container = articleRef.current;
     const escapedId = typeof CSS !== "undefined" && CSS.escape ? CSS.escape(id) : id;
-    const target = (container?.querySelector(`#${escapedId}`) as HTMLElement | null) ?? document.getElementById(id);
+    const target = (articleRef.current?.querySelector(`#${escapedId}`) as HTMLElement | null) ?? document.getElementById(id);
     if (!target) return;
 
-    if (container) {
-      const offsetTop = target.offsetTop;
-      container.scrollTo({ top: Math.max(0, offsetTop - 24), behavior: "smooth" });
-    } else {
-      target.scrollIntoView({ behavior: "smooth", block: "start" });
-    }
+    target.scrollIntoView({ behavior: "smooth", block: "start" });
 
     if (typeof window !== "undefined" && window.history?.replaceState) {
       window.history.replaceState(null, "", `#${id}`);
