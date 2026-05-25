@@ -1,11 +1,10 @@
 "use client";
 
 import Link from "next/link";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import { oneDark } from "react-syntax-highlighter/dist/esm/styles/prism";
 import { Copy, Check, ChevronLeft, ChevronRight } from "lucide-react";
-import { useState } from "react";
 import type { ModuleMeta, SubmoduleMeta } from "@/lib/types";
 import { markLessonComplete } from "@/lib/progress";
 import { getLessonDisplayTitle } from "@/lib/display-titles";
@@ -111,6 +110,16 @@ export function LessonViewer({
   prevSlug,
   nextSlug,
 }: LessonViewerProps) {
+  const [activeHeading, setActiveHeading] = useState<string | null>(null);
+  const [validToc, setValidToc] = useState(submodule.toc);
+
+  const normalizeText = (value: string) =>
+    value
+      .trim()
+      .toLowerCase()
+      .replace(/[“”"']/g, "")
+      .replace(/\s+/g, " ");
+
   useEffect(() => {
     const t = setTimeout(() => markLessonComplete(moduleId, submodule.slug), 3000);
     return () => clearTimeout(t);
@@ -126,19 +135,74 @@ export function LessonViewer({
 
     headings.forEach((heading) => {
       heading.style.scrollMarginTop = "5rem";
+      heading.style.padding = "0.5rem 0";
+      heading.style.transition = "border-color 0.2s ease, background-color 0.2s ease";
+      heading.style.borderLeft = "4px solid transparent";
+      heading.style.borderRadius = "0.5rem";
     });
 
-    submodule.toc.forEach((item) => {
-      const match = headings.find(
-        (heading) =>
-          heading.textContent?.trim().toLowerCase() ===
-          item.title.trim().toLowerCase()
-      );
-      if (match && !match.id) {
+    const matchedItems = submodule.toc.filter((item) => {
+      const normalizedItem = normalizeText(item.title);
+      const match = headings.find((heading) => {
+        const headingText = normalizeText(heading.textContent || "");
+        return (
+          headingText === normalizedItem ||
+          headingText.startsWith(normalizedItem) ||
+          normalizedItem.startsWith(headingText)
+        );
+      });
+      if (match) {
         match.id = item.id;
+        return true;
+      }
+      return false;
+    });
+
+    setValidToc(matchedItems);
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const visible = entries
+          .filter((entry) => entry.isIntersecting)
+          .sort((a, b) => (b.intersectionRatio ?? 0) - (a.intersectionRatio ?? 0))[0];
+        if (visible?.target.id) {
+          setActiveHeading(visible.target.id);
+        }
+      },
+      {
+        rootMargin: "-50% 0px -40% 0px",
+        threshold: 0.1,
+      }
+    );
+
+    headings.forEach((heading) => {
+      if (heading.id) {
+        observer.observe(heading);
       }
     });
+
+    return () => observer.disconnect();
   }, [submodule.toc, html]);
+
+  useEffect(() => {
+    const content = document.querySelector(".lesson-content");
+    if (!content) return;
+
+    const headings = Array.from(
+      content.querySelectorAll("h1, h2, h3, h4, h5, h6")
+    ) as HTMLElement[];
+
+    headings.forEach((heading) => {
+      if (!heading.id) return;
+      if (heading.id === activeHeading) {
+        heading.style.borderLeftColor = "rgb(249 115 22)";
+        heading.style.backgroundColor = "rgba(249, 115, 22, 0.08)";
+      } else {
+        heading.style.borderLeftColor = "transparent";
+        heading.style.backgroundColor = "transparent";
+      }
+    });
+  }, [activeHeading]);
 
   const lessonTitle = getLessonDisplayTitle(submodule.title, submodule.id);
 
@@ -167,11 +231,15 @@ export function LessonViewer({
             Table of Contents
           </p>
           <ul className="space-y-2">
-            {submodule.toc.map((item) => (
+            {validToc.map((item) => (
               <li key={item.id}>
                 <a
                   href={`#${item.id}`}
-                  className="block rounded-2xl border border-transparent px-3 py-2 text-sm text-[var(--sidebar-text)]/80 transition hover:border-white/10 hover:bg-white/5 hover:text-[var(--text)]"
+                  className={`block rounded-2xl border px-3 py-2 text-sm transition ${
+                    activeHeading === item.id
+                      ? "border-white/20 bg-white/10 text-[var(--text)]"
+                      : "border-transparent text-[var(--sidebar-text)]/80 hover:border-white/10 hover:bg-white/5 hover:text-[var(--text)]"
+                  }`}
                 >
                   {item.title}
                 </a>
