@@ -1,0 +1,172 @@
+@import "tailwindcss";
+
+:root,
+[data-theme="light"] {
+  --mst-black: #000000;
+  --mst-red: #e31e24;
+  --mst-red-dark: #b9151a;
+  --mst-white: #ffffff;
+  --mst-gray: #6b7280;
+
+  --bg: #ffffff;
+  --bg-elevated: #f9fafb;
+  --bg-muted: #f3f4f6;
+  --surface: #ffffff;
+  --surface-2: #f9fafb;
+  --text: #111827;
+  --text-muted: #6b7280;
+  --border: #e5e7eb;
+  --border-strong: #d1d5db;
+  --tree-bg: #f5f5f5;
+  --tree-grid: rgba(0, 0, 0, 0.06);
+  --card-bg: #ffffff;
+  --card-border: #e5e7eb;
+  --sidebar-bg: #0a0a0a;
+  --sidebar-text: #ffffff;
+  --nav-bg: rgba(0, 0, 0, 0.92);
+  --nav-text: #ffffff;
+  --flow-edge: #cbd5e1;
+  --flow-node-header: #111827;
+  --lesson-heading: #111827;
+  --lesson-body: #374151;
+  --lesson-code-bg: #f3f4f6;
+}
+
+[data-theme="dark"] {
+  --bg: #050505;
+  --bg-elevated: #0d0d0d;
+  --bg-muted: #111111;
+  --surface: #111111;
+  --surface-2: #1a1a1a;
+  --text: #f9fafb;
+  --text-muted: #9ca3af;
+  --border: rgba(255, 255, 255, 0.1);
+  --border-strong: rgba(255, 255, 255, 0.2);
+  --tree-bg: #050505;
+  --tree-grid: rgba(255, 255, 255, 0.04);
+  --card-bg: #0d0d0d;
+  --card-border: rgba(255, 255, 255, 0.1);
+  --sidebar-bg: #000000;
+  --sidebar-text: #ffffff;
+  --nav-bg: rgba(0, 0, 0, 0.92);
+  --nav-text: #ffffff;
+  --flow-edge: #444444;
+  --flow-node-header: #111111;
+  --lesson-heading: #f9fafb;
+  --lesson-body: #d1d5db;
+  --lesson-code-bg: #1a1a2e;
+}
+
+@theme inline {
+  --color-mst-black: var(--mst-black);
+  --color-mst-red: var(--mst-red);
+  --color-mst-red-dark: var(--mst-red-dark);
+  --color-mst-white: var(--mst-white);
+  --color-mst-gray: var(--mst-gray);
+  --font-sans: var(--font-inter);
+  --font-mono: var(--font-jetbrains);
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  transition: background-color 0.25s ease, color 0.25s ease;
+}
+
+.bg-grid {
+  background-image:
+    radial-gradient(circle at 20% 30%, rgba(227, 30, 36, 0.06) 0%, transparent 40%),
+    linear-gradient(var(--tree-grid) 1px, transparent 1px),
+    linear-gradient(90deg, var(--tree-grid) 1px, transparent 1px);
+  background-size: 100% 100%, 40px 40px, 40px 40px;
+}
+
+.bg-grid-dark {
+  background-image:
+    radial-gradient(circle at 20% 30%, rgba(227, 30, 36, 0.08) 0%, transparent 40%),
+    linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+  background-size: 100% 100%, 40px 40px, 40px 40px;
+}
+
+.lesson-content h2,
+.lesson-content .section-title {
+  font-size: 1.5rem;
+  font-weight: 800;
+  margin: 2rem 0 1rem;
+  color: var(--lesson-heading);
+  border-bottom: 1px solid var(--border);
+  padding-bottom: 0.5rem;
+}
+
+.lesson-content h3,
+.lesson-content .sub-title {
+  font-size: 1.15rem;
+  font-weight: 700;
+  margin: 1.5rem 0 0.75rem;
+  color: var(--lesson-heading);
+}
+
+.lesson-content p {
+  margin-bottom: 1rem;
+  color: var(--lesson-body);
+  line-height: 1.75;
+}
+
+.lesson-content strong {
+  color: var(--lesson-heading);
+  font-weight: 700;
+}
+
+.lesson-content code:not(pre code) {
+  font-family: var(--font-jetbrains), monospace;
+  background: var(--lesson-code-bg);
+  padding: 0.15rem 0.4rem;
+  border-radius: 4px;
+  font-size: 0.88em;
+}
+
+.lesson-content .callout,
+.lesson-content .feature-item {
+  border-radius: 12px;
+  padding: 1rem 1.25rem;
+  margin: 1.25rem 0;
+  border-left: 4px solid var(--mst-red);
+  background: var(--bg-muted);
+}
+
+.lesson-content table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1rem 0;
+}
+
+.lesson-content th,
+.lesson-content td {
+  border: 1px solid var(--border);
+  padding: 0.6rem 0.8rem;
+  color: var(--lesson-body);
+}
+
+[data-theme="dark"] .react-flow__background {
+  background: var(--tree-bg) !important;
+}
+
+[data-theme="light"] .react-flow__background {
+  background: var(--tree-bg) !important;
+}
+
+@keyframes phase-fade-in {
+  from {
+    opacity: 0;
+    transform: scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.phase-enter {
+  animation: phase-fade-in 0.45s ease-out;
+}

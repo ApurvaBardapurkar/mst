@@ -1,0 +1,360 @@
+
+
+<!-- ═══════════════════════════════ HEADER ═══════════════ -->
+<div class="module-badge">🏅 Module 21 · Sub‑Module 21.5 of 5 — FINAL</div>
+<h1 class="module-title">Credentialing — Your <span class="highlight">On‑Chain Certificate</span></h1>
+<p class="module-subtitle">
+  You've built, audited, deployed, and presented. Now the final step: claiming your MST Certified Blockchain Developer credential — a soul‑bound NFT minted permanently on MST mainnet. This is your proof, forever.
+</p>
+
+<div class="meta-bar">
+  <div class="meta-chip">⏱ 30 Minutes</div>
+  <div class="meta-chip gold">🏅 10 Marks</div>
+  <div class="meta-chip">📋 3 MCQ · 2 T/F · 1 T/F+Just · 1 Desc</div>
+  <div class="meta-chip green">Chain ID 4646 · SBT</div>
+</div>
+
+<div class="confetti-bar"></div>
+
+<!-- ═══════════════════════════════ OBJECTIVES ═══════════════ -->
+<div class="section-label">01 · Learning Objectives</div>
+<h2 class="section-title">By the end of this sub‑module, you will be able to…</h2>
+<div class="obj-grid">
+  <div class="obj-card">
+    <div class="obj-icon">🔗</div>
+    <div class="obj-text"><strong>Understand soul‑bound tokens (SBTs)</strong> and why they are the gold standard for verifiable credentials on blockchain.</div>
+  </div>
+  <div class="obj-card">
+    <div class="obj-icon">🪪</div>
+    <div class="obj-text"><strong>Claim your MST Developer Certificate</strong> by connecting BridgeKey and signing the claim transaction on MST mainnet.</div>
+  </div>
+  <div class="obj-card">
+    <div class="obj-icon">🔍</div>
+    <div class="obj-text"><strong>Verify any MST certificate</strong> on MST Explorer — and teach employers how to verify yours.</div>
+  </div>
+  <div class="obj-card">
+    <div class="obj-icon">🌐</div>
+    <div class="obj-text"><strong>Showcase your credential</strong> on LinkedIn, GitHub, and your portfolio to unlock job opportunities and grant eligibility.</div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════ STORY ═══════════════ -->
+<div class="section-label">02 · Real‑World Story</div>
+<h2 class="section-title">The Engineer Who Lost His Job Offer — And The One Who Didn't</h2>
+<div class="callout story">
+  <div class="callout-label">📖 Story</div>
+  <p>
+    Rahul and Anjali both graduated from a Web3 bootcamp in Bangalore in 2024. Both applied for the same smart‑contract engineer role at a leading DeFi protocol. The recruiter asked both for proof of their blockchain certification.
+  </p>
+  <br>
+  <p>
+    Rahul sent a PDF certificate. The recruiter had no way to verify it — anyone can forge a PDF. The hiring manager spent three days emailing the bootcamp to confirm Rahul's credentials. By the time verification came through, the role was filled.
+  </p>
+  <br>
+  <p>
+    Anjali sent a link to MST Explorer showing her soul‑bound NFT — <strong>MST Certified Blockchain Developer, Cohort 1, minted on Chain ID 4646</strong>. The recruiter clicked the link, saw the verified badge on‑chain in seconds, and moved Anjali to the final interview. She got the job.
+  </p>
+  <br>
+  <p>
+    In Web3, <strong>on‑chain credentials are the only credentials that matter</strong>. A soul‑bound NFT cannot be forged, transferred, or faked. When you claim your MST certificate, you join a global, verifiable registry of proven blockchain developers. This sub‑module shows you how.
+  </p>
+</div>
+
+<!-- ═══════════════════════════════ WHAT IS SBT ═══════════════ -->
+<div class="section-label">03 · What Is a Soul‑Bound Token (SBT)?</div>
+<h2 class="section-title">The Technology Behind Your Permanent Credential</h2>
+<p>
+  A <strong>Soul‑Bound Token (SBT)</strong> is a special type of NFT that cannot be transferred to another wallet once minted. It is permanently bound to the wallet address that receives it — your "soul." The concept was proposed in 2022 by Vitalik Buterin, Puja Ohlhaver, and E. Glen Weyl in their paper <em>"Decentralized Society: Finding Web3's Soul."</em>
+</p>
+
+<div class="diagram-wrap">
+  <div class="diagram-title">Fig. 21.5‑A · SBT vs Regular NFT — The Key Difference</div>
+  <pre>  ┌─────────────────────────────────────────────────────────────┐
+  │                    REGULAR NFT (ERC‑721)                     │
+  │  ┌──────────┐     transfer()     ┌──────────┐              │
+  │  │  Wallet A │ ────────────────▶ │  Wallet B │              │
+  │  │  owns NFT │                   │  owns NFT │              │
+  │  └──────────┘                   └──────────┘              │
+  │  ✅ Transferable — can be sold, gifted, or stolen            │
+  └─────────────────────────────────────────────────────────────┘
+
+  ┌─────────────────────────────────────────────────────────────┐
+  │                 SOUL‑BOUND TOKEN (SBT)                       │
+  │  ┌──────────┐     transfer()     ┌──────────┐              │
+  │  │  Wallet A │ ──────── ✗ ─────▶ │  Wallet B │              │
+  │  │  owns SBT │   REVERTED!       │  cannot   │              │
+  │  └──────────┘                   └──────────┘              │
+  │  ❌ Non‑transferable — permanently linked to the original    │
+  │     recipient. Represents identity, achievements, membership.│
+  └─────────────────────────────────────────────────────────────┘
+  </pre>
+  <div class="diagram-caption">An SBT is like a degree certificate that is stapled to your identity forever. You cannot sell your B.Tech degree to someone else — and you cannot transfer your MST Developer Certificate either.</div>
+</div>
+
+<div class="callout gold">
+  <div class="callout-label">🏅 Why MST Uses SBTs for Certificates</div>
+  <p>
+    MST chose SBTs because a credential must be <strong>non‑transferable</strong> to have value. If certificates were regular NFTs, people could buy and sell them, destroying trust. An SBT proves that <em>you specifically</em> — the wallet holder — completed the program. Employers can verify this on‑chain without contacting any central authority.
+  </p>
+</div>
+
+<!-- ═══════════════════════════════ THE CERTIFICATE ═══════════════ -->
+<div class="section-label">04 · The MST Certified Blockchain Developer Certificate</div>
+<h2 class="section-title">What Your On‑Chain Badge Contains</h2>
+
+<div class="certificate-visual">
+  <div class="cert-icon">🏅</div>
+  <div class="cert-name">[Your Name]</div>
+  <div class="cert-title">MST Certified Blockchain Developer</div>
+  <div class="cert-detail">
+    This certifies that the holder has successfully completed the<br>
+    <strong>22‑Module Professional Blockchain Developer Program</strong><br>
+    including a mainnet‑deployed capstone project, security audit,<br>
+    and live Demo Day presentation.
+  </div>
+  <div class="cert-chain">
+    🔗 MST Mainnet · Chain ID 4646 · Soul‑Bound Token
+  </div>
+</div>
+
+<p>
+  The certificate NFT contains rich metadata stored on IPFS, including:
+</p>
+<div class="feature-list">
+  <div class="feature-item">
+    <div class="feature-num">1</div>
+    <div class="feature-content">
+      <div class="feature-title">Your Name &amp; Cohort</div>
+      <div class="feature-desc">As registered during enrolment. Immutably linked to your wallet address.</div>
+    </div>
+  </div>
+  <div class="feature-item">
+    <div class="feature-num">2</div>
+    <div class="feature-content">
+      <div class="feature-title">Capstone Project Reference</div>
+      <div class="feature-desc">A link to your deployed contract address on MST mainnet — proving you built a real dApp.</div>
+    </div>
+  </div>
+  <div class="feature-item">
+    <div class="feature-num">3</div>
+    <div class="feature-content">
+      <div class="feature-title">Completion Date &amp; Program Hash</div>
+      <div class="feature-desc">Timestamped on‑chain. The program curriculum hash ensures the certificate corresponds to a specific, audited version of the course.</div>
+    </div>
+  </div>
+  <div class="feature-item">
+    <div class="feature-num">4</div>
+    <div class="feature-content">
+      <div class="feature-title">Issuer Signature</div>
+      <div class="feature-desc">Cryptographically signed by the MST Academy's authorised issuer wallet — verifiable via <code>ecrecover</code>.</div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════ HOW TO CLAIM ═══════════════ -->
+<div class="section-label">05 · How to Claim Your Certificate</div>
+<h2 class="section-title">Step‑by‑Step Claim Process on MST Mainnet</h2>
+
+<div class="feature-list">
+  <div class="feature-item">
+    <div class="feature-num" style="background:var(--blue);">1</div>
+    <div class="feature-content">
+      <div class="feature-title">Receive the Claim Email</div>
+      <div class="feature-desc">After Demo Day, you'll receive an email from <strong>academy@mstblockchain.com</strong> with a unique, one‑time claim link. This link is tied to your registered wallet address.</div>
+    </div>
+  </div>
+  <div class="feature-item">
+    <div class="feature-num" style="background:var(--teal);">2</div>
+    <div class="feature-content">
+      <div class="feature-title">Connect BridgeKey Wallet</div>
+      <div class="feature-desc">Open the claim page in a browser with BridgeKey installed. Ensure you're on <strong>MST Mainnet (Chain ID 4646)</strong>. The page will prompt you to connect.</div>
+    </div>
+  </div>
+  <div class="feature-item">
+    <div class="feature-num" style="background:var(--orange);">3</div>
+    <div class="feature-content">
+      <div class="feature-title">Sign the Claim Transaction</div>
+      <div class="feature-desc">A small gas fee (approximately 0.0001 MST) is required to mint the SBT. Confirm the transaction in BridgeKey. The certificate is minted directly to your connected wallet.</div>
+    </div>
+  </div>
+  <div class="feature-item">
+    <div class="feature-num" style="background:var(--green);">4</div>
+    <div class="feature-content">
+      <div class="feature-title">Verify on MST Explorer</div>
+      <div class="feature-desc">Immediately after minting, you'll receive a link to view your certificate on <strong>mstscan.com</strong>. The SBT will appear under your address's token holdings with a special "SBT" badge.</div>
+    </div>
+  </div>
+</div>
+
+<div class="callout warning">
+  <div class="callout-label">⚠️ Important Notes</div>
+  <p>
+    • The claim link is <strong>one‑time use only</strong>. If you lose it, contact support immediately.<br>
+    • The SBT is minted to the wallet you connect — make sure it's the wallet you want associated with your professional identity.<br>
+    • You need a small amount of MST for gas. If your balance is zero, use the MST Bridge or contact the academy for a gas stipend.<br>
+    • Once minted, the SBT <strong>cannot be transferred</strong> to another wallet. Choose your wallet wisely.
+  </p>
+</div>
+
+<!-- ═══════════════════════════════ VERIFICATION ═══════════════ -->
+<div class="section-label">06 · How Employers Verify Your Certificate</div>
+<h2 class="section-title">One Click — Instant Trust</h2>
+<p>
+  When you share your certificate with an employer, you don't send a PDF. You send a link to MST Explorer — or better, you embed it in your portfolio. Here's what the verification flow looks like from the employer's perspective:
+</p>
+
+<div class="diagram-wrap">
+  <div class="diagram-title">Fig. 21.5‑B · Certificate Verification Flow (Employer Side)</div>
+  <pre>  Employer clicks your badge link
+           │
+           ▼
+  ┌─────────────────────────────────────────┐
+  │  MST Explorer — Token Details Page      │
+  │  ┌───────────────────────────────────┐  │
+  │  │ 🏅 MST Certified Blockchain Dev   │  │
+  │  │ Token ID: 1234                    │  │
+  │  │ Type: Soul‑Bound Token (SBT)      │  │
+  │  │ Holder: 0xYourAddress...          │  │
+  │  │ Issuer: 0xMSTAcademy...           │  │
+  │  │ Issued: 15 June 2026              │  │
+  │  │ IPFS Metadata: ipfs://Qm...       │  │
+  │  │ ✅ Verified — Non‑transferable    │  │
+  │  └───────────────────────────────────┘  │
+  └─────────────────────────────────────────┘
+           │
+           ▼
+  Employer confirms:
+  ✅ Token exists on MST Mainnet (Chain ID 4646)
+  ✅ Issuer address matches MST Academy's official wallet
+  ✅ SBT — cannot be transferred (not bought/sold)
+  ✅ Matches candidate's claimed wallet address
+
+  Result: INSTANT VERIFICATION — no email, no phone call, no delay.
+  </pre>
+  <div class="diagram-caption">The entire verification process takes under 10 seconds. Compare this to traditional credential verification, which can take days or weeks.</div>
+</div>
+
+<!-- ═══════════════════════════════ SHOWCASING ═══════════════ -->
+<div class="section-label">07 · Showcasing Your Credential</div>
+<h2 class="section-title">Making Your Certificate Work for Your Career</h2>
+<p>
+  Your SBT is more than a trophy — it's a career asset. Here's how to use it effectively across platforms.
+</p>
+
+<div class="two-col">
+  <div class="col-card gold">
+    <div class="col-card-title">🏅 Where to Showcase</div>
+    <ul>
+      <li><strong>LinkedIn:</strong> Add to "Licenses &amp; Certifications" with the MST Explorer link</li>
+      <li><strong>GitHub:</strong> Pin the verification link in your profile README</li>
+      <li><strong>Portfolio:</strong> Embed the MST Explorer badge on your personal website</li>
+      <li><strong>Twitter/X Bio:</strong> "🏅 MST Certified Blockchain Dev | Chain ID 4646"</li>
+      <li><strong>Resume/CV:</strong> Include the certificate ID and verification link</li>
+      <li><strong>MST Dev Forum:</strong> Your badge appears automatically under your username</li>
+    </ul>
+  </div>
+  <div class="col-card red">
+    <div class="col-card-title">❌ Don't Do This</div>
+    <ul>
+      <li>Screenshot the certificate and share as an image — it's unverifiable</li>
+      <li>Claim the SBT to a temporary or exchange wallet — you'll lose access</li>
+      <li>Forget to back up your wallet's seed phrase — the SBT is permanently linked to it</li>
+      <li>Share your private key to "prove" ownership — never share private keys</li>
+    </ul>
+  </div>
+</div>
+
+<div class="callout insight">
+  <div class="callout-label">💡 Pro Tip — MST Alumni Network</div>
+  <p>
+    Once you hold the SBT, you gain access to the <strong>MST Alumni Network</strong> — a gated Discord channel and job board visible only to verified certificate holders. Connect your wallet to the alumni portal; the portal checks your SBT on‑chain and grants access automatically. No passwords. No applications. Just proof.
+  </p>
+</div>
+
+<!-- ═══════════════════════════════ THE BIGGER PICTURE ═══════════════ -->
+<div class="section-label">08 · The Bigger Picture — Decentralised Identity</div>
+<h2 class="section-title">Your SBT Is the Beginning, Not the End</h2>
+<p>
+  The MST Developer Certificate is your first soul‑bound token — but it won't be your last. The Web3 industry is rapidly moving toward <strong>Decentralised Identity (DID)</strong> systems where your education, work history, skills, and memberships are all represented as SBTs in your wallet.
+</p>
+
+<div class="w5-grid">
+  <div class="w5-row">
+    <div class="w5-label-cell"><div class="w5-letter">W</div><div class="w5-word">WHY</div></div>
+    <div class="w5-content">
+      <div class="w5-q">Why does decentralised identity matter?</div>
+      <div class="w5-a">Today, your credentials are scattered across universities, employers, and platforms — each with their own verification process. SBTs unify them in one place: your wallet. You control access. Employers verify instantly. No middleman.</div>
+    </div>
+  </div>
+  <div class="w5-row">
+    <div class="w5-label-cell"><div class="w5-letter">H</div><div class="w5-word">HOW</div></div>
+    <div class="w5-content">
+      <div class="w5-q">How does MST enable this?</div>
+      <div class="w5-a">MST's low fees make SBT minting affordable at scale. SARAL enables non‑custodial key management so users don't lose their identity. ZK‑proofs allow selective disclosure — prove you're certified without revealing your entire wallet history.</div>
+    </div>
+  </div>
+  <div class="w5-row">
+    <div class="w5-label-cell"><div class="w5-letter">F</div><div class="w5-word">FUTURE</div></div>
+    <div class="w5-content">
+      <div class="w5-q">What's next after this certificate?</div>
+      <div class="w5-a">MST is building a full DID ecosystem. Future SBTs may include: MST BuildGrant recipient badge, hackathon winner credentials, contributor recognition, and even KYC‑verified identity attestations — all linked to your MST wallet.</div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════ COURSE COMPLETION ═══════════════ -->
+<div class="section-label">09 · The Journey Ends — And Begins</div>
+<h2 class="section-title">What You've Achieved in 21 Modules</h2>
+<p>
+  Take a moment to reflect on what you've built. You started with the history of the internet and the problem of centralisation. You learned cryptographic hashing, consensus mechanisms, and Solidity. You deployed to testnet, then mainnet. You built a React dApp. You wrote an audit report and a README. You pitched on Demo Day. And now — you're claiming an on‑chain credential that proves all of it.
+</p>
+
+<div class="stat-row">
+  <div class="stat-card"><div class="stat-value">21</div><div class="stat-label">Modules Completed</div></div>
+  <div class="stat-card"><div class="stat-value">140+</div><div class="stat-label">Sub‑Modules Mastered</div></div>
+  <div class="stat-card"><div class="stat-value">2100</div><div class="stat-label">Total Marks Possible</div></div>
+</div>
+
+<div class="callout gold">
+  <div class="callout-label">🏅 Congratulations — You Are Now an MST Certified Blockchain Developer</div>
+  <p>
+    From everyone at MasterStroke Academy and the MST Foundation: <strong>welcome to the ecosystem.</strong> You are now part of a global community of builders who are shaping the future of decentralised technology. Go build something that matters. And when you do — come back and tell us about it. Your SBT will always be here, verifiable forever on Chain ID 4646.
+  </p>
+</div>
+
+<div class="confetti-bar"></div>
+
+<!-- ═══════════════════════════════ ASSESSMENT PREP ═══════════════ -->
+<div class="section-label">10 · Assessment Preparation</div>
+<h2 class="section-title">Key Facts — Know These Before the Test</h2>
+<div class="feature-list">
+  <div class="feature-item"><div class="feature-num" style="background:var(--ink-3);font-size:11px;">A</div><div class="feature-content"><div class="feature-title">SBT Definition</div><div class="feature-desc">A Soul‑Bound Token is a non‑transferable NFT permanently linked to the wallet that receives it. Used for credentials, identity, and achievements.</div></div></div>
+  <div class="feature-item"><div class="feature-num" style="background:var(--ink-3);font-size:11px;">B</div><div class="feature-content"><div class="feature-title">MST Certificate Chain</div><div class="feature-desc">Minted on MST Mainnet — <strong>Chain ID 4646</strong>. Viewable on <code>mstscan.com</code> under the holder's address.</div></div></div>
+  <div class="feature-item"><div class="feature-num" style="background:var(--ink-3);font-size:11px;">C</div><div class="feature-content"><div class="feature-title">Verification Method</div><div class="feature-desc">Employers verify by checking the token on MST Explorer — confirming the issuer address, SBT status, and holder address match.</div></div></div>
+  <div class="feature-item"><div class="feature-num" style="background:var(--ink-3);font-size:11px;">D</div><div class="feature-content"><div class="feature-title">Gas Requirement</div><div class="feature-desc">Claiming the SBT requires a small amount of MST for gas (~0.0001 MST). The claim link is one‑time use only.</div></div></div>
+</div>
+
+<!-- ═══════════════════════════════ ASSESSMENT ═══════════════ -->
+
+
+<!-- ═══════════════════════════════ GLOSSARY ═══════════════ -->
+<div class="section-label" style="margin-top:52px;">11 · Glossary</div>
+<h2 class="section-title">Key Terms — Sub‑Module 21.5</h2>
+<div class="glossary-grid">
+  <div class="glossary-item"><div class="glossary-term">Soul‑Bound Token (SBT)</div><div class="glossary-def">A non‑transferable NFT that represents identity, credentials, or achievements — permanently linked to a specific wallet address.</div></div>
+  <div class="glossary-item"><div class="glossary-term">Chain ID 4646</div><div class="glossary-def">The unique identifier for MST mainnet, where all MST certificates are minted and permanently stored.</div></div>
+  <div class="glossary-item"><div class="glossary-term">MST Explorer</div><div class="glossary-def">The block explorer at mstscan.com where SBTs can be viewed, verified, and shared with employers.</div></div>
+  <div class="glossary-item"><div class="glossary-term">Issuer Address</div><div class="glossary-def">The authorised MST Academy wallet that cryptographically signs and mints the certificate SBT.</div></div>
+  <div class="glossary-item"><div class="glossary-term">IPFS Metadata</div><div class="glossary-def">Decentralised storage containing your certificate details (name, cohort, capstone link) referenced by the SBT.</div></div>
+  <div class="glossary-item"><div class="glossary-term">MST Alumni Network</div><div class="glossary-def">A gated community accessible only to SBT holders, providing job boards, mentorship, and exclusive events.</div></div>
+</div>
+
+<div class="confetti-bar"></div>
+
+<div class="page-footer">
+  <p>MasterStroke Academy — Professional Blockchain Developer Program</p>
+  <p>Module 21 · Sub‑Module <strong>21.5</strong> of 5 · 🎓 <strong>END OF COURSE</strong> — Congratulations, MST Certified Blockchain Developer!</p>
+  <p style="margin-top:8px;">🔗 Verify your certificate: <strong>mstscan.com</strong> · Chain ID <strong>4646</strong></p>
+</div>
+
+
