@@ -98,6 +98,7 @@ export function CodingWorkspace({
   const [customInput, setCustomInput] = useState("");
   const [activeTab, setActiveTab] = useState<"testCases" | "customInput" | "output">("testCases");
   const [isFullscreen, setIsFullscreen] = useState(false);
+  const [codeSubmitted, setCodeSubmitted] = useState(false);
   const editorRef = useRef<any>(null);
   
   // Compilation & Output results
@@ -151,7 +152,12 @@ export function CodingWorkspace({
     });
 
     editor.onKeyDown((event: any) => {
-      if ((event.ctrlKey || event.metaKey) && [monaco.KeyCode.KeyC, monaco.KeyCode.KeyX, monaco.KeyCode.KeyA].includes(event.keyCode)) {
+      if ((event.ctrlKey || event.metaKey) && [
+        monaco.KeyCode.KeyC,
+        monaco.KeyCode.KeyX,
+        monaco.KeyCode.KeyA,
+        monaco.KeyCode.KeyV,
+      ].includes(event.keyCode)) {
         event.preventDefault();
       }
     });
@@ -160,6 +166,7 @@ export function CodingWorkspace({
     if (dom) {
       dom.addEventListener("copy", (e: Event) => e.preventDefault());
       dom.addEventListener("cut", (e: Event) => e.preventDefault());
+      dom.addEventListener("paste", (e: Event) => e.preventDefault());
       dom.addEventListener("contextmenu", (e: Event) => e.preventDefault());
     }
   }
@@ -197,6 +204,7 @@ export function CodingWorkspace({
       
       const results = data.testResults || [];
       setTestResults(results);
+      setCodeSubmitted(true);
 
       // Save the results into UserAnswer for final assessment submission
       const passedCount = results.filter((t: any) => t.pass).length;
@@ -228,6 +236,7 @@ export function CodingWorkspace({
     setTestResults([]);
     setExecTime("");
     setExecMemory("");
+    setCodeSubmitted(false);
   }
 
   return (
@@ -310,7 +319,7 @@ export function CodingWorkspace({
               disabled={running}
               className="inline-flex items-center gap-1.5 rounded-full bg-mst-red px-4 py-1.5 text-xs font-bold text-white hover:bg-mst-red-dark disabled:opacity-50 transition"
             >
-              <Play size={12} fill="white" /> {running ? "Running…" : "Run Code"}
+              <Play size={12} fill="white" /> {running ? "Submitting…" : "Submit Code"}
             </button>
 
             <button
@@ -559,8 +568,8 @@ export function CodingWorkspace({
                 {compileSuccess === null && !running && (
                   <div className="flex flex-col items-center justify-center py-6 text-center text-[var(--text-muted)]">
                     <Terminal size={24} className="mb-2 opacity-40 animate-pulse" />
-                    <p className="text-xs">No code has been run yet.</p>
-                    <p className="text-[10px] mt-1">Click "Run Code" above to build and verify your solution.</p>
+                    <p className="text-xs">No code has been submitted yet.</p>
+                    <p className="text-[10px] mt-1">Click "Submit Code" above to compile and verify your solution.</p>
                   </div>
                 )}
 

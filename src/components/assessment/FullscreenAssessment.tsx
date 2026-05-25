@@ -265,6 +265,7 @@ export function FullscreenAssessment({
   if (!current) return null;
 
   const currentAnswer = answers[current.id];
+  const hasCodingSubmission = codingQuestionActive && !!currentAnswer?.codingResults;
   const progress = ((index + 1) / questions.length) * 100;
   const showScore = (assessment as any).showScore !== false;
   const totalMaxMarks = questions.reduce((s, q) => s + q.marks, 0);
@@ -490,10 +491,10 @@ export function FullscreenAssessment({
         {index < questions.length - 1 ? (
           <button
             type="button"
-            disabled={codingQuestionActive}
+            disabled={codingQuestionActive && !hasCodingSubmission}
             onClick={() => setIndex((i) => i + 1)}
             className="inline-flex items-center gap-1.5 rounded-full bg-mst-red hover:bg-mst-red-dark px-6 py-2.5 text-sm font-bold text-white transition disabled:opacity-30"
-            title={codingQuestionActive ? "Cannot navigate away during coding question" : undefined}
+            title={codingQuestionActive && !hasCodingSubmission ? "Submit code before continuing" : undefined}
           >
             Continue <ChevronRight size={16} />
           </button>
@@ -501,7 +502,9 @@ export function FullscreenAssessment({
           <button
             type="button"
             onClick={handleSubmit}
-            className="rounded-full bg-mst-red hover:bg-mst-red-dark px-8 py-2.5 text-sm font-bold text-white transition"
+            disabled={codingQuestionActive && !hasCodingSubmission}
+            className="rounded-full bg-mst-red hover:bg-mst-red-dark px-8 py-2.5 text-sm font-bold text-white transition disabled:opacity-30"
+            title={codingQuestionActive && !hasCodingSubmission ? "Submit code before finishing assessment" : undefined}
           >
             Submit Assessment
           </button>
