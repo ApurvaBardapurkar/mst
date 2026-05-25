@@ -127,7 +127,7 @@ export function RegisterForm() {
   return (
     <AuthShell
       title="Create Account"
-      subtitle="Choose your path. Fees shown are demo values until payment integration is live."
+      subtitle="Choose your path."
     >
       <div className="mb-4 space-y-4">
         <DemoFeeNote />
@@ -171,7 +171,7 @@ export function RegisterForm() {
               resetErrors();
             }}
           >
-            Non Validator
+            General User
           </TabButton>
         </div>
       )}

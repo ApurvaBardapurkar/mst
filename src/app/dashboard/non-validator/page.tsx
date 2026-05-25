@@ -4,7 +4,7 @@ import { DashboardShell } from "@/components/dashboard/DashboardShell";
 
 export default function NonValidatorDashboardPage() {
   return (
-    <DashboardShell role="non-validator" title="Non Validator Hub">
+    <DashboardShell role="non-validator" title="General User Hub">
       <section className="rounded-2xl border border-[var(--border)] bg-[var(--surface)] p-6">
         <h2 className="text-lg font-bold text-[var(--text)]">Developer Program</h2>
         <p className="mt-2 text-sm text-[var(--text-muted)]">

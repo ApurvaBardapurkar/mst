@@ -21,7 +21,7 @@ import {
 const LOGIN_ROLES: { id: UserRole; label: string }[] = [
   { id: "student", label: "Student" },
   { id: "validator", label: "Validator" },
-  { id: "non-validator", label: "Non Validator" },
+  { id: "non-validator", label: "General User" },
 ];
 
 export function LoginForm({ initialRole = "student" }: { initialRole?: UserRole }) {

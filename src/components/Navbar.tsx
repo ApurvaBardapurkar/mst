@@ -54,7 +54,7 @@ export function Navbar() {
                 href="/dashboard/non-validator"
                 className="transition hover:text-[var(--nav-text)]"
               >
-                Non Validator
+                General User
               </Link>
             </>
           )}

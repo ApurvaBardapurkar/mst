@@ -18,6 +18,6 @@ export function formatUiLabel(label: string): string {
   return label
     .replace(/\bSub-Modules\b/gi, "Submodules")
     .replace(/\bSub-Module\b/gi, "Submodule")
-    .replace(/\bNon-Validator\b/gi, "Non Validator")
+    .replace(/\bNon-Validator\b/gi, "General User")
     .replace(/\bUser\/Developer\b/gi, "User / Developer");
 }

@@ -14,7 +14,7 @@ import { ThemeToggle } from "@/components/ThemeToggle";
 const DASHBOARD_LINKS: { role: UserRole; href: string; label: string }[] = [
   { role: "student", href: "/dashboard/student", label: "Student" },
   { role: "validator", href: "/dashboard/validator", label: "Validator" },
-  { role: "non-validator", href: "/dashboard/non-validator", label: "Non Validator" },
+  { role: "non-validator", href: "/dashboard/non-validator", label: "General User" },
 ];
 
 export function DashboardShell({

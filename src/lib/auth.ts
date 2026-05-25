@@ -232,7 +232,7 @@ export function roleLabel(role: UserRole): string {
     case "validator":
       return "Validator";
     case "non-validator":
-      return "Non Validator";
+      return "General User";
     case "admin":
       return "Admin";
   }

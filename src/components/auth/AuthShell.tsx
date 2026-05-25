@@ -31,7 +31,7 @@ export function AuthShell({
 export function DemoFeeNote() {
   return (
     <p className="rounded-lg border border-amber-500/30 bg-amber-500/10 px-4 py-3 text-sm text-amber-800 dark:text-amber-200">
-      Demo Fee Display Only. Payment Gateway Integration Pending.
+      Fee display only. Payment gateway integration pending.
     </p>
   );
 }
@@ -48,7 +48,7 @@ export function DemoFee({ amount }: { amount: number }) {
   return (
     <div className="rounded-xl border border-[var(--border)] bg-[var(--bg-muted)] px-4 py-3">
       <p className="text-xs font-bold uppercase tracking-wider text-[var(--text-muted)]">
-        Demo Fee
+        Fee
       </p>
       <p className="mt-1 text-2xl font-black text-mst-red">
         ₹{amount.toLocaleString("en-IN")}
