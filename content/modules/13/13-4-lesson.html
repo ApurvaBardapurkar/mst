@@ -2,12 +2,12 @@
 
 <div class="module-badge">🎓 Module 13 &nbsp;·&nbsp; Sub-Module 13.4 of 5</div>
 <h1 class="module-title">Designing a <span class="highlight">WASMify Feed</span></h1>
-<p class="module-subtitle">How do you transform a real‑world data requirement into a trustless, on‑chain oracle? This is the architect's guide to structuring off‑chain computation with MST's WASMify — from writing the Rust module to verifying zero‑knowledge proofs, with end‑to‑end design patterns for supply chain, identity, and AI.</p>
+<p class="module-subtitle">How do you transform a real-world data requirement into a trustless, on-chain oracle? This is the architect's guide to structuring off-chain computation with MST's WASMify - from writing the Rust module to verifying zero-knowledge proofs, with end-to-end design patterns for supply chain, identity, and AI.</p>
 
 <div class="meta-bar">
   <div class="meta-chip">⏱ 30 Minutes</div>
   <div class="meta-chip purple">🎯 15 Marks</div>
-  <div class="meta-chip">📋 Code‑Completion (Pseudocode for off‑chain module)</div>
+  <div class="meta-chip">📋 Code-Completion (Pseudocode for off-chain module)</div>
   <div class="meta-chip green">Phase 4 · Oracles &amp; WASMify</div>
 </div>
 
@@ -19,56 +19,56 @@
     <div class="obj-icon">📐</div>
     <div class="obj-text">
       <strong>Architect a complete WASMify feed from scratch</strong>
-      Break down a real‑world problem into on‑chain and off‑chain components, define the WASM module interface, and map the data flow from external API to smart contract.
+      Break down a real-world problem into on-chain and off-chain components, define the WASM module interface, and map the data flow from external API to smart contract.
     </div>
   </div>
   <div class="obj-card">
     <div class="obj-icon">🧩</div>
     <div class="obj-text">
-      <strong>Write pseudocode for off‑chain modules in Rust and Solidity</strong>
-      Express computation logic in a portable way, understand how to structure a module for ZK‑proof generation, and write the corresponding on‑chain verification consumer.
+      <strong>Write pseudocode for off-chain modules in Rust and Solidity</strong>
+      Express computation logic in a portable way, understand how to structure a module for ZK-proof generation, and write the corresponding on-chain verification consumer.
     </div>
   </div>
   <div class="obj-card">
     <div class="obj-icon">⚖️</div>
     <div class="obj-text">
-      <strong>Evaluate trade‑offs in feed design</strong>
-      Decide what data to keep private, what to reveal on‑chain, how often to update, and whether to use single or batched proofs — all while balancing cost and trustlessness.
+      <strong>Evaluate trade-offs in feed design</strong>
+      Decide what data to keep private, what to reveal on-chain, how often to update, and whether to use single or batched proofs - all while balancing cost and trustlessness.
     </div>
   </div>
   <div class="obj-card">
     <div class="obj-icon">⚡</div>
     <div class="obj-text">
-      <strong>Leverage MST's low fees to build high‑frequency oracles</strong>
-      Calculate the exact gas costs of a WASMify feed and design it for economic viability — something impossible on expensive chains.
+      <strong>Leverage MST's low fees to build high-frequency oracles</strong>
+      Calculate the exact gas costs of a WASMify feed and design it for economic viability - something impossible on expensive chains.
     </div>
   </div>
 </div>
 
 <!-- 02 STORY -->
-<div class="section-label">02 &nbsp; Real‑World Introduction Story</div>
+<div class="section-label">02 &nbsp; Real-World Introduction Story</div>
 <h2 class="section-title">The Logistics Company That Replaced Auditors with Code</h2>
 <div class="callout story">
   <div class="callout-label">📖 Story</div>
-  <p>For years, a global logistics company had relied on third‑party auditors to certify that temperature‑sensitive pharmaceutical shipments had remained within safe ranges during transit. The auditors charged ₹20,000 per shipment, took three days to produce a report, and required access to the company's sensitive data. The company dreamed of a system where compliance was proven automatically, instantly, and without revealing the full temperature log to anyone.</p>
+  <p>For years, a global logistics company had relied on third-party auditors to certify that temperature-sensitive pharmaceutical shipments had remained within safe ranges during transit. The auditors charged ₹20,000 per shipment, took three days to produce a report, and required access to the company's sensitive data. The company dreamed of a system where compliance was proven automatically, instantly, and without revealing the full temperature log to anyone.</p>
   <br>
-  <p>An engineer on the team learned about MST's WASMify. She designed a feed: a small Rust program that would read the temperature log, check every data point against the 8°C threshold, and output a simple <strong>true</strong> or <strong>false</strong>. This program was compiled to WebAssembly. An off‑chain server executed it against the real shipment data, and a zero‑knowledge proof of correct execution was generated. The proof — just 200 bytes — was submitted to an MST smart contract. The contract verified the proof in milliseconds and released payment. The entire pipeline cost ₹0.024 in gas and ran in under a minute (excluding proof generation). No auditor, no data leak, no trust required. The company saved ₹2 crore annually in audit costs.</p>
+  <p>An engineer on the team learned about MST's WASMify. She designed a feed: a small Rust program that would read the temperature log, check every data point against the 8°C threshold, and output a simple <strong>true</strong> or <strong>false</strong>. This program was compiled to WebAssembly. An off-chain server executed it against the real shipment data, and a zero-knowledge proof of correct execution was generated. The proof - just 200 bytes - was submitted to an MST smart contract. The contract verified the proof in milliseconds and released payment. The entire pipeline cost ₹0.024 in gas and ran in under a minute (excluding proof generation). No auditor, no data leak, no trust required. The company saved ₹2 crore annually in audit costs.</p>
 </div>
 
 <!-- 03 BACKGROUND & HISTORY -->
 <div class="section-label">03 &nbsp; Background &amp; History</div>
-<h2 class="section-title">The Evolution of Oracle Feed Design — From Push to Prove</h2>
-<p>Traditional oracle feeds follow a "push" model: an operator fetches data and pushes it on‑chain via a transaction. The design is simple: a cron job calls an API, signs a transaction, and updates a storage variable. But this model bakes in trust assumptions. What if the API lies? What if the server is compromised? What if the operator's private key is stolen?</p>
-<p>The Chainlink model improved on this by distributing trust across a committee of nodes, using economic incentives to discourage dishonesty. But it still involves multiple parties submitting data on‑chain — which is expensive for large datasets and exposes data to multiple operators.</p>
-<p>WASMify introduces a fundamentally different design paradigm: <strong>prove, don't trust</strong>. Instead of a trusted operator or a committee, a WASMify feed has one executor that runs a computation and produces a ZK proof. The smart contract verifies the proof. This shifts the trust from people to mathematics. But it also shifts the design: you no longer design a "data feed", you design a <strong>computation feed</strong>. The output is not the data itself, but a <strong>truth claim</strong> about the data — certified by a proof.</p>
-<p>This sub‑module teaches you how to think like a WASMify architect. You'll learn to decompose real‑world problems into verifiable computations, design the off‑chain module, and wire it up to MST contracts.</p>
+<h2 class="section-title">The Evolution of Oracle Feed Design - From Push to Prove</h2>
+<p>Traditional oracle feeds follow a "push" model: an operator fetches data and pushes it on-chain via a transaction. The design is simple: a cron job calls an API, signs a transaction, and updates a storage variable. But this model bakes in trust assumptions. What if the API lies? What if the server is compromised? What if the operator's private key is stolen?</p>
+<p>The Chainlink model improved on this by distributing trust across a committee of nodes, using economic incentives to discourage dishonesty. But it still involves multiple parties submitting data on-chain - which is expensive for large datasets and exposes data to multiple operators.</p>
+<p>WASMify introduces a fundamentally different design paradigm: <strong>prove, don't trust</strong>. Instead of a trusted operator or a committee, a WASMify feed has one executor that runs a computation and produces a ZK proof. The smart contract verifies the proof. This shifts the trust from people to mathematics. But it also shifts the design: you no longer design a "data feed", you design a <strong>computation feed</strong>. The output is not the data itself, but a <strong>truth claim</strong> about the data - certified by a proof.</p>
+<p>This sub-module teaches you how to think like a WASMify architect. You'll learn to decompose real-world problems into verifiable computations, design the off-chain module, and wire it up to MST contracts.</p>
 
 <div class="highlight-strip">
-  <strong>Key insight:</strong> In a WASMify feed, you're not asking "What data do I need on‑chain?" You're asking "What computation on external data can I prove, such that the result is sufficient for my smart contract?"
+  <strong>Key insight:</strong> In a WASMify feed, you're not asking "What data do I need on-chain?" You're asking "What computation on external data can I prove, such that the result is sufficient for my smart contract?"
 </div>
 
 <!-- 04 BEGINNER‑FRIENDLY EXPLANATION -->
-<div class="section-label">04 &nbsp; Beginner‑Friendly Explanation</div>
+<div class="section-label">04 &nbsp; Beginner-Friendly Explanation</div>
 <h2 class="section-title">The Recipe for a Trustless Data Meal</h2>
 <div class="callout analogy">
   <div class="callout-label">👨‍🍳 The Analogy</div>
@@ -80,14 +80,14 @@
     <div class="w5-label-cell"><div class="w5-letter">①</div><div class="w5-word">INPUT</div></div>
     <div class="w5-content">
       <div class="w5-q">What external data does the feed need, and where does it come from?</div>
-      <div class="w5-a">Identify the data sources (IoT sensors, APIs, databases) and the format. The data may be private (only the prover sees it) or public (submitted alongside the proof). For privacy, the data stays off‑chain and the ZK proof hides it. For public verifiability, the data or a hash of it can be included in the proof's public inputs.</div>
+      <div class="w5-a">Identify the data sources (IoT sensors, APIs, databases) and the format. The data may be private (only the prover sees it) or public (submitted alongside the proof). For privacy, the data stays off-chain and the ZK proof hides it. For public verifiability, the data or a hash of it can be included in the proof's public inputs.</div>
     </div>
   </div>
   <div class="w5-row">
     <div class="w5-label-cell"><div class="w5-letter">②</div><div class="w5-word">COMPUTE</div></div>
     <div class="w5-content">
       <div class="w5-q">What computation does the module perform, and what is the output?</div>
-      <div class="w5-a">Define the WASM module's logic. It should be <strong>deterministic</strong> and produce a simple output (boolean, integer, hash). The computation can be as complex as needed (machine learning inference, data stream processing) because it runs off‑chain. The output is what the smart contract will consume.</div>
+      <div class="w5-a">Define the WASM module's logic. It should be <strong>deterministic</strong> and produce a simple output (boolean, integer, hash). The computation can be as complex as needed (machine learning inference, data stream processing) because it runs off-chain. The output is what the smart contract will consume.</div>
     </div>
   </div>
   <div class="w5-row">
@@ -107,19 +107,19 @@
   <div class="w5-row">
     <div class="w5-label-cell"><div class="w5-letter">⑤</div><div class="w5-word">TRIGGER</div></div>
     <div class="w5-content">
-      <div class="w5-q">What triggers the off‑chain execution and proof submission?</div>
-      <div class="w5-a">Define the automation: a cron job, an event listener on the contract, or a manual user action. The off‑chain executor watches for requests, runs the module, generates the proof, and submits it. Ensure the system can handle failures gracefully (e.g., retry on proof generation failure).</div>
+      <div class="w5-q">What triggers the off-chain execution and proof submission?</div>
+      <div class="w5-a">Define the automation: a cron job, an event listener on the contract, or a manual user action. The off-chain executor watches for requests, runs the module, generates the proof, and submits it. Ensure the system can handle failures gracefully (e.g., retry on proof generation failure).</div>
     </div>
   </div>
 </div>
 
 <!-- 05 TECHNICAL DEEP DIVE: DESIGNING A FEED FROM SCRATCH -->
-<div class="section-label">05 &nbsp; Technical Deep Dive — Designing a WASMify Feed</div>
+<div class="section-label">05 &nbsp; Technical Deep Dive - Designing a WASMify Feed</div>
 <h2 class="section-title">A Complete Walkthrough: Age Verification for Web3 Delivery</h2>
-<p>Let's design a feed that proves a user is over 18 without revealing their birthdate. This is a classic privacy‑preserving oracle use case.</p>
+<p>Let's design a feed that proves a user is over 18 without revealing their birthdate. This is a classic privacy-preserving oracle use case.</p>
 
 <h3 style="font-size:18px; font-weight:700; margin:20px 0 8px; color:var(--ink);">Step 1: Define the Computation and Interfaces</h3>
-<p>The WASM module will accept a government‑issued digital ID (e.g., a signed XML document) as input. It will parse the birthdate, compute the age, and output a boolean: <code>1</code> if age ≥ 18, <code>0</code> otherwise. The input must be kept private — only the prover sees it. The output and the proof are public.</p>
+<p>The WASM module will accept a government-issued digital ID (e.g., a signed XML document) as input. It will parse the birthdate, compute the age, and output a boolean: <code>1</code> if age ≥ 18, <code>0</code> otherwise. The input must be kept private - only the prover sees it. The output and the proof are public.</p>
 
 <p><strong>WASM module interface (pseudocode in Rust):</strong></p>
 <pre style="background:var(--surface); border:1px solid var(--border); border-radius:var(--radius-sm); padding:12px 16px; font-family:var(--mono); font-size:13px; color:var(--ink-2); line-height:1.7; margin:12px 0;">// age_verify.rs
@@ -139,7 +139,7 @@ pub extern "C" fn verify_age(id_data_ptr: *const u8, id_len: usize) -&gt; u32 {
 <h3 style="font-size:18px; font-weight:700; margin:20px 0 8px; color:var(--ink);">Step 2: Generate the ZK Proof</h3>
 <p>Compile the Rust code to WASM. Use RISC Zero's <code>cargo risczero</code> tooling to create a prover program that executes the WASM binary and generates a proof. The prover outputs a proof file and the public output (1 or 0).</p>
 
-<p><strong>Pseudocode for the off‑chain executor:</strong></p>
+<p><strong>Pseudocode for the off-chain executor:</strong></p>
 <pre style="background:var(--surface); border:1px solid var(--border); border-radius:var(--radius-sm); padding:12px 16px; font-family:var(--mono); font-size:13px; color:var(--ink-2); line-height:1.7; margin:12px 0;">// offchain_executor.js (Node.js pseudocode)
 const { exec } = require('child_process');
 const fs = require('fs');
@@ -162,7 +162,7 @@ async function processRequest(userIdDataBase64) {
 }
 </pre>
 
-<h3 style="font-size:18px; font-weight:700; margin:20px 0 8px; color:var(--ink);">Step 3: On‑Chain Consumer Contract</h3>
+<h3 style="font-size:18px; font-weight:700; margin:20px 0 8px; color:var(--ink);">Step 3: On-Chain Consumer Contract</h3>
 <pre style="background:var(--surface); border:1px solid var(--border); border-radius:var(--radius-sm); padding:12px 16px; font-family:var(--mono); font-size:13px; color:var(--ink-2); line-height:1.7; margin:12px 0;">// AgeVerificationConsumer.sol
 interface IWASMifyVerifier {
     function verify(bytes calldata proof, uint256 output) external view returns (bool);
@@ -189,10 +189,10 @@ contract AgeVerification {
 <p>The contract is simple: it verifies the proof and stores the result. A delivery dApp can then read <code>isVerifiedAdult</code> to gate access.</p>
 
 <h3 style="font-size:18px; font-weight:700; margin:20px 0 8px; color:var(--ink);">Step 4: Automation and Scalability</h3>
-<p>For a high‑volume dApp, you'd run a lightweight service that listens for on‑chain events (e.g., <code>VerificationRequested</code>) and automatically triggers the prover. The service can be hosted on a small cloud VM. Because MST gas is cheap, each verification costs ₹0.024 — easily covered by a small dApp fee.</p>
+<p>For a high-volume dApp, you'd run a lightweight service that listens for on-chain events (e.g., <code>VerificationRequested</code>) and automatically triggers the prover. The service can be hosted on a small cloud VM. Because MST gas is cheap, each verification costs ₹0.024 - easily covered by a small dApp fee.</p>
 
 <div class="diagram-wrap">
-  <div class="diagram-title">FIGURE 13.4‑A · WASMify Feed Architecture for Age Verification</div>
+  <div class="diagram-title">FIGURE 13.4-A · WASMify Feed Architecture for Age Verification</div>
   <pre>  ┌────────────────┐      ┌─────────────────┐      ┌──────────────────┐
   │  User App      │─────▶│  Off‑Chain       │─────▶│  MST Blockchain   │
   │ (submits ID)   │      │  Executor        │      │                  │
@@ -209,7 +209,7 @@ contract AgeVerification {
                                                    │  store adult=true │
                                                    └──────────────────┘
   </pre>
-  <div class="diagram-caption">The user's ID never leaves the off‑chain executor. Only the ZK proof and the boolean result are broadcast.</div>
+  <div class="diagram-caption">The user's ID never leaves the off-chain executor. Only the ZK proof and the boolean result are broadcast.</div>
 </div>
 
 <!-- 06 DESIGN PATTERNS FOR DIFFERENT USE CASES -->
@@ -235,10 +235,10 @@ contract AgeVerification {
     risk_score // 0‑100
 }
 </pre>
-<p>The model weights are compiled into the WASM binary (or loaded from a private source). The proof guarantees the model ran correctly on the given input. The contract receives the risk score and decides loan terms. The model's intellectual property is protected because the weights are never revealed on‑chain.</p>
+<p>The model weights are compiled into the WASM binary (or loaded from a private source). The proof guarantees the model ran correctly on the given input. The contract receives the risk score and decides loan terms. The model's intellectual property is protected because the weights are never revealed on-chain.</p>
 
 <h3 style="font-size:18px; font-weight:700; margin:20px 0 8px; color:var(--ink);">Pattern 3: Periodic Price Feed with Historical Average</h3>
-<p><strong>Problem:</strong> Provide a trustless 24‑hour TWAP (time‑weighted average price) of MSTC/USD, updating every hour.</p>
+<p><strong>Problem:</strong> Provide a trustless 24-hour TWAP (time-weighted average price) of MSTC/USD, updating every hour.</p>
 <p><strong>WASM module:</strong> Fetches price data from multiple exchange APIs over the last 24 hours, computes the TWAP, and outputs the result. The input data (the price history) can be public, included alongside the proof for transparency.</p>
 <pre style="background:var(--surface); border:1px solid var(--border); border-radius:var(--radius-sm); padding:12px 16px; font-family:var(--mono); font-size:13px; color:var(--ink-2); line-height:1.7; margin:12px 0;">pub fn compute_twap(prices: &amp;[(u64, f64)]) -&gt; f64 {
     // prices: array of (timestamp, price)
@@ -262,23 +262,23 @@ contract AgeVerification {
     <tr><td>Verification gas</td><td>250,000</td><td>250,000</td></tr>
     <tr><td><strong>Total cost per verification</strong></td><td class="bad"><strong>₹2,925</strong></td><td class="good"><strong>₹0.024</strong></td></tr>
     <tr><td>Feasibility for hourly feed</td><td class="bad">Prohibitively expensive (₹2.5 crore/year)</td><td class="good">Trivially affordable (₹210/year)</td></tr>
-    <tr><td>Feasibility for per‑shipment use</td><td class="bad">Not viable</td><td class="good">Fully viable</td></tr>
+    <tr><td>Feasibility for per-shipment use</td><td class="bad">Not viable</td><td class="good">Fully viable</td></tr>
   </tbody>
 </table>
 
 <div class="highlight-strip">
-  <strong>MST makes WASMify economically feasible.</strong> On Ethereum, a ZK verification for a single shipment would cost more than the shipment's insurance. On MST, it costs less than a text message. This is the key enabler for real‑world adoption.
+  <strong>MST makes WASMify economically feasible.</strong> On Ethereum, a ZK verification for a single shipment would cost more than the shipment's insurance. On MST, it costs less than a text message. This is the key enabler for real-world adoption.
 </div>
 
 <!-- 08 INTERACTIVE DESIGN TOOLKIT -->
 <div class="section-label">08 &nbsp; Interactive Design Toolkit</div>
-<h2 class="section-title">Step‑by‑Step: Build Your First WASMify Feed (Pseudocode)</h2>
+<h2 class="section-title">Step-by-Step: Build Your First WASMify Feed (Pseudocode)</h2>
 <p>Follow along with this interactive walkthrough. Click each step to reveal the design decisions and pseudocode.</p>
 
 <details>
   <summary>🧩 Step 1: Choose a use case and define the module interface</summary>
   <div class="content">
-    <p><strong>Example:</strong> Crop insurance — payout if rainfall in a district is below 500mm during monsoon.</p>
+    <p><strong>Example:</strong> Crop insurance - payout if rainfall in a district is below 500mm during monsoon.</p>
     <p><strong>Module input:</strong> Array of daily rainfall measurements from a trusted meteorological API.</p>
     <p><strong>Output:</strong> <code>1</code> if total rainfall &lt; 500mm, <code>0</code> otherwise.</p>
     <p><strong>Pseudocode:</strong></p>
@@ -343,47 +343,47 @@ let proof_hex = hex::encode(proof);
     <div class="feature-num" style="background: var(--red);">⚠️</div>
     <div class="feature-content">
       <div class="feature-title">Forgetting input authenticity</div>
-      <div class="feature-desc">A ZK proof proves correct computation, but if the input data is fake, the output is meaningless. Always sign inputs at the source (e.g., a hardware root of trust for IoT, a government‑signed ID). The proof should include verification of these signatures.</div>
+      <div class="feature-desc">A ZK proof proves correct computation, but if the input data is fake, the output is meaningless. Always sign inputs at the source (e.g., a hardware root of trust for IoT, a government-signed ID). The proof should include verification of these signatures.</div>
     </div>
   </div>
   <div class="feature-item">
     <div class="feature-num" style="background: var(--red);">⚠️</div>
     <div class="feature-content">
       <div class="feature-title">Neglecting to pin the WASM binary's hash</div>
-      <div class="feature-desc">The verifier contract must know exactly which WASM module was executed. If the module can be swapped out, the proof is meaningless. The contract should either contain the hash of the approved WASM binary or verify the proof against a known commitment. In practice, the ZK proving key itself encodes the binary; publishing the verification key on‑chain solves this.</div>
+      <div class="feature-desc">The verifier contract must know exactly which WASM module was executed. If the module can be swapped out, the proof is meaningless. The contract should either contain the hash of the approved WASM binary or verify the proof against a known commitment. In practice, the ZK proving key itself encodes the binary; publishing the verification key on-chain solves this.</div>
     </div>
   </div>
   <div class="feature-item">
     <div class="feature-num" style="background: var(--red);">⚠️</div>
     <div class="feature-content">
       <div class="feature-title">Ignoring proof generation time</div>
-      <div class="feature-desc">Complex WASM modules can take minutes to prove. For time‑sensitive applications (e.g., real‑time trading), you may need to batch proofs or use a faster proving backend. Design your feed with the expected latency in mind.</div>
+      <div class="feature-desc">Complex WASM modules can take minutes to prove. For time-sensitive applications (e.g., real-time trading), you may need to batch proofs or use a faster proving backend. Design your feed with the expected latency in mind.</div>
     </div>
   </div>
 </div>
 
 <!-- 10 ASSESSMENT PREP -->
 <div class="section-label">10 &nbsp; Assessment Preparation</div>
-<h2 class="section-title">Top Facts — Know These for the Code‑Completion Task</h2>
+<h2 class="section-title">Top Facts - Know These for the Code-Completion Task</h2>
 <div class="feature-list">
   <div class="feature-item">
     <div class="feature-num" style="background: var(--ink-3); font-size:11px;">01</div>
     <div class="feature-content">
       <div class="feature-title">A WASMify feed has five components: input, computation (WASM), proof, verification, and trigger.</div>
-      <div class="feature-desc">You design the data flow, not just the contract. The off‑chain module is as important as the on‑chain consumer.</div>
+      <div class="feature-desc">You design the data flow, not just the contract. The off-chain module is as important as the on-chain consumer.</div>
     </div>
   </div>
   <div class="feature-item">
     <div class="feature-num" style="background: var(--ink-3); font-size:11px;">02</div>
     <div class="feature-content">
       <div class="feature-title">The WASM module must be deterministic. Given the same inputs, it must produce the same output.</div>
-      <div class="feature-desc">No random numbers, no API calls inside the module — all external data must be passed as input. This ensures provability.</div>
+      <div class="feature-desc">No random numbers, no API calls inside the module - all external data must be passed as input. This ensures provability.</div>
     </div>
   </div>
   <div class="feature-item">
     <div class="feature-num" style="background: var(--ink-3); font-size:11px;">03</div>
     <div class="feature-content">
-      <div class="feature-title">MST's sub‑paisa verification cost makes high‑frequency ZK oracle updates economically viable.</div>
+      <div class="feature-title">MST's sub-paisa verification cost makes high-frequency ZK oracle updates economically viable.</div>
       <div class="feature-desc">On Ethereum, ZK verification costs thousands of rupees. On MST, it costs ₹0.024. This opens entirely new use cases.</div>
     </div>
   </div>
@@ -394,19 +394,19 @@ let proof_hex = hex::encode(proof);
 
 <!-- GLOSSARY -->
 <div class="section-label" style="margin-top:52px;">11 &nbsp; Glossary</div>
-<h2 class="section-title">Key Terms — Sub-Module 13.4</h2>
+<h2 class="section-title">Key Terms - Sub-Module 13.4</h2>
 <div class="glossary-grid">
-  <div class="glossary-item"><div class="glossary-term">WASMify Feed</div><div class="glossary-def">A trustless oracle feed using off‑chain WebAssembly computation and on‑chain ZK proof verification to provide smart contracts with real‑world data.</div></div>
-  <div class="glossary-item"><div class="glossary-term">Off‑Chain Executor</div><div class="glossary-def">The server or service that runs the WASM module, generates the ZK proof, and submits it to the blockchain.</div></div>
-  <div class="glossary-item"><div class="glossary-term">ZK Prover</div><div class="glossary-def">Software that takes a computation trace and produces a zero‑knowledge proof. Runs off‑chain and is computationally heavy.</div></div>
-  <div class="glossary-item"><div class="glossary-term">WASMify Verifier</div><div class="glossary-def">A pre‑deployed MST smart contract that cryptographically verifies ZK proofs generated by WASMify feeds.</div></div>
+  <div class="glossary-item"><div class="glossary-term">WASMify Feed</div><div class="glossary-def">A trustless oracle feed using off-chain WebAssembly computation and on-chain ZK proof verification to provide smart contracts with real-world data.</div></div>
+  <div class="glossary-item"><div class="glossary-term">Off-Chain Executor</div><div class="glossary-def">The server or service that runs the WASM module, generates the ZK proof, and submits it to the blockchain.</div></div>
+  <div class="glossary-item"><div class="glossary-term">ZK Prover</div><div class="glossary-def">Software that takes a computation trace and produces a zero-knowledge proof. Runs off-chain and is computationally heavy.</div></div>
+  <div class="glossary-item"><div class="glossary-term">WASMify Verifier</div><div class="glossary-def">A pre-deployed MST smart contract that cryptographically verifies ZK proofs generated by WASMify feeds.</div></div>
   <div class="glossary-item"><div class="glossary-term">Deterministic Module</div><div class="glossary-def">A WASM module that always produces the same output for the same input, a requirement for ZK proving.</div></div>
   <div class="glossary-item"><div class="glossary-term">Consumer Contract</div><div class="glossary-def">The smart contract that uses the verified data from a WASMify feed to execute business logic (e.g., release payment).</div></div>
 </div>
 
 <div class="page-footer">
-  <p>MasterStroke Academy — Professional Blockchain Developer Program</p>
-  <p>Module 13 · Sub-Module <strong>13.4</strong> of 5 &nbsp;·&nbsp; Next: Sub-Module 13.5 — Mini‑Project: Build a Weather Oracle →</p>
+  <p>MasterStroke Academy - Professional Blockchain Developer Program</p>
+  <p>Module 13 · Sub-Module <strong>13.4</strong> of 5 &nbsp;·&nbsp; Next: Sub-Module 13.5 - Mini-Project: Build a Weather Oracle →</p>
 </div>
 
 

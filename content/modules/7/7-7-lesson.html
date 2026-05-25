@@ -1,11 +1,12 @@
 
 
+
 <!-- ═══════════════════════════════════════════════════
      HEADER
 ════════════════════════════════════════════════════ -->
 <div class="module-badge">🔐 Module 7 &nbsp;·&nbsp; Sub-Module 7.7 of 8</div>
-<h1 class="module-title"><span class="highlight">Post‑Quantum Security</span> Layer</h1>
-<p class="module-subtitle">How MST is preparing for the quantum era — when Shor's algorithm breaks elliptic curve cryptography, and every blockchain wallet becomes vulnerable. The NIST standards, the hybrid migration strategy, and why MST is building quantum‑resistance now, not later.</p>
+<h1 class="module-title"><span class="highlight">Post-Quantum Security</span> Layer</h1>
+<p class="module-subtitle">How MST is preparing for the quantum era - when Shor's algorithm breaks elliptic curve cryptography, and every blockchain wallet becomes vulnerable. The NIST standards, the hybrid migration strategy, and why MST is building quantum-resistance now, not later.</p>
 
 <div class="meta-bar">
     <div class="meta-chip">⏱ 20 Minutes</div>
@@ -26,28 +27,28 @@
         <div class="obj-icon">⚛️</div>
         <div class="obj-text">
             <strong>Understand the quantum threat to blockchain</strong>
-            Explain how Shor's algorithm breaks ECDSA and why Grover's algorithm weakens hash‑based security, with concrete timelines.
+            Explain how Shor's algorithm breaks ECDSA and why Grover's algorithm weakens hash-based security, with concrete timelines.
         </div>
     </div>
     <div class="obj-card">
         <div class="obj-icon">📋</div>
         <div class="obj-text">
-            <strong>Know the NIST post‑quantum standards</strong>
-            Identify CRYSTALS‑Kyber (KEM), CRYSTALS‑Dilithium (signatures), Falcon, and SPHINCS+, and their roles.
+            <strong>Know the NIST post-quantum standards</strong>
+            Identify CRYSTALS-Kyber (KEM), CRYSTALS-Dilithium (signatures), Falcon, and SPHINCS+, and their roles.
         </div>
     </div>
     <div class="obj-card">
         <div class="obj-icon">🔀</div>
         <div class="obj-text">
             <strong>Describe MST's hybrid migration plan</strong>
-            Explain how MST will support both classical and post‑quantum signatures during a transition period, and how SARAL wallets migrate.
+            Explain how MST will support both classical and post-quantum signatures during a transition period, and how SARAL wallets migrate.
         </div>
     </div>
     <div class="obj-card">
         <div class="obj-icon">🛡️</div>
         <div class="obj-text">
             <strong>Evaluate the urgency of quantum readiness</strong>
-            Assess the "harvest now, decrypt later" threat and why long‑term data integrity matters for enterprise blockchains.
+            Assess the "harvest now, decrypt later" threat and why long-term data integrity matters for enterprise blockchains.
         </div>
     </div>
 </div>
@@ -61,13 +62,13 @@
 
 <div class="callout story">
     <div class="callout-label">📖 Story</div>
-    <p>It is January 3, 2036 — the 27th anniversary of Bitcoin's genesis block. In a research lab in Shenzhen, a team of cryptographers powers on a 10,000‑qubit error‑corrected quantum computer. Within hours, they run Shor's algorithm against an old Bitcoin address containing 50 BTC from the first mining era — coins that have never moved. The private key, which has guarded those coins since 2009, is mathematically derived in minutes. The coins are transferred. The blockchain is still "secure" in the sense that its consensus rules are intact, but the cryptographic foundation — elliptic curve cryptography — has been shattered.</p>
+    <p>It is January 3, 2036 - the 27th anniversary of Bitcoin's genesis block. In a research lab in Shenzhen, a team of cryptographers powers on a 10,000-qubit error-corrected quantum computer. Within hours, they run Shor's algorithm against an old Bitcoin address containing 50 BTC from the first mining era - coins that have never moved. The private key, which has guarded those coins since 2009, is mathematically derived in minutes. The coins are transferred. The blockchain is still "secure" in the sense that its consensus rules are intact, but the cryptographic foundation - elliptic curve cryptography - has been shattered.</p>
     <br>
-    <p>This is not science fiction. The question is not <em>if</em> quantum computers will break ECDSA, but <em>when</em>. Conservative estimates from the National Institute of Standards and Technology (NIST) and major quantum labs place a cryptographically relevant quantum computer (CRQC) within the 2030–2040 window. Some experts believe it could happen sooner.</p>
+    <p>This is not science fiction. The question is not <em>if</em> quantum computers will break ECDSA, but <em>when</em>. Conservative estimates from the National Institute of Standards and Technology (NIST) and major quantum labs place a cryptographically relevant quantum computer (CRQC) within the 2030 - 2040 window. Some experts believe it could happen sooner.</p>
     <br>
-    <p>For a blockchain like MST, which may secure billions of dollars in CBDCs, supply‑chain records, and digital identities, the risk is existential. Every transaction signed with ECDSA today — every wallet creation, every SARAL biometric key, every Trika POSA validator attestation — could be retroactively broken by a future quantum adversary. This is the "harvest now, decrypt later" threat: an attacker stores all blockchain data today, waiting for a quantum computer to extract private keys and steal funds, forge identities, or rewrite history.</p>
+    <p>For a blockchain like MST, which may secure billions of dollars in CBDCs, supply-chain records, and digital identities, the risk is existential. Every transaction signed with ECDSA today - every wallet creation, every SARAL biometric key, every Trika POSA validator attestation - could be retroactively broken by a future quantum adversary. This is the "harvest now, decrypt later" threat: an attacker stores all blockchain data today, waiting for a quantum computer to extract private keys and steal funds, forge identities, or rewrite history.</p>
     <br>
-    <p>MST's post‑quantum security layer is designed to eliminate this risk before the quantum era arrives, by migrating the entire network to NIST‑standardized post‑quantum cryptography while maintaining backward compatibility.</p>
+    <p>MST's post-quantum security layer is designed to eliminate this risk before the quantum era arrives, by migrating the entire network to NIST-standardized post-quantum cryptography while maintaining backward compatibility.</p>
 </div>
 
 <p>The quantum threat is not a theoretical exercise. It's an engineering challenge with a clear timeline, and MST is building the solution into the protocol from the ground up.</p>
@@ -77,56 +78,56 @@
      SECTION 3: BACKGROUND / HISTORY
 ════════════════════════════════════════════════════ -->
 <div class="section-label">03 &nbsp; Background &amp; History</div>
-<h2 class="section-title">From Shor's Algorithm to NIST Standards — The Race Against Quantum</h2>
+<h2 class="section-title">From Shor's Algorithm to NIST Standards - The Race Against Quantum</h2>
 
 <div class="timeline">
     <div class="tl-item">
         <div class="tl-left"><div class="tl-dot"></div><div class="tl-line"></div></div>
         <div class="tl-right">
             <div class="tl-year">1994</div>
-            <div class="tl-body"><strong>Shor's Algorithm.</strong> Peter Shor at Bell Labs publishes a quantum algorithm that can factor large integers and compute discrete logarithms in polynomial time. This algorithm, if run on a sufficiently powerful quantum computer, would break RSA, DSA, and all elliptic curve cryptography — including the ECDSA used by Bitcoin, Ethereum, and MST.</div>
+            <div class="tl-body"><strong>Shor's Algorithm.</strong> Peter Shor at Bell Labs publishes a quantum algorithm that can factor large integers and compute discrete logarithms in polynomial time. This algorithm, if run on a sufficiently powerful quantum computer, would break RSA, DSA, and all elliptic curve cryptography - including the ECDSA used by Bitcoin, Ethereum, and MST.</div>
         </div>
     </div>
     <div class="tl-item">
         <div class="tl-left"><div class="tl-dot"></div><div class="tl-line"></div></div>
         <div class="tl-right">
             <div class="tl-year">1996</div>
-            <div class="tl-body"><strong>Grover's Algorithm.</strong> Lov Grover invents a quantum search algorithm that provides a quadratic speedup for unstructured search. For blockchain, this means a 256‑bit hash has only 128 bits of quantum security — still strong, but hash functions need to be doubled in output size for equivalent security.</div>
+            <div class="tl-body"><strong>Grover's Algorithm.</strong> Lov Grover invents a quantum search algorithm that provides a quadratic speedup for unstructured search. For blockchain, this means a 256-bit hash has only 128 bits of quantum security - still strong, but hash functions need to be doubled in output size for equivalent security.</div>
         </div>
     </div>
     <div class="tl-item">
         <div class="tl-left"><div class="tl-dot"></div><div class="tl-line"></div></div>
         <div class="tl-right">
             <div class="tl-year">2016</div>
-            <div class="tl-body"><strong>NIST Post‑Quantum Cryptography Competition Begins.</strong> Recognizing the quantum threat, NIST launches an open competition to standardize quantum‑resistant cryptographic algorithms. 82 initial submissions are received from teams worldwide, covering key encapsulation mechanisms (KEMs) and digital signature schemes.</div>
+            <div class="tl-body"><strong>NIST Post-Quantum Cryptography Competition Begins.</strong> Recognizing the quantum threat, NIST launches an open competition to standardize quantum-resistant cryptographic algorithms. 82 initial submissions are received from teams worldwide, covering key encapsulation mechanisms (KEMs) and digital signature schemes.</div>
         </div>
     </div>
     <div class="tl-item">
         <div class="tl-left"><div class="tl-dot"></div><div class="tl-line"></div></div>
         <div class="tl-right">
-            <div class="tl-year">2022–2024</div>
-            <div class="tl-body"><strong>NIST Selects Winners.</strong> After multiple rounds of cryptanalysis, NIST selects the first standards: <strong>CRYSTALS‑Kyber</strong> for key encapsulation (lattice‑based), and <strong>CRYSTALS‑Dilithium</strong>, <strong>Falcon</strong>, and <strong>SPHINCS+</strong> for digital signatures. These algorithms are now being integrated into TLS, VPNs, and blockchain protocols.</div>
+            <div class="tl-year">2022 - 2024</div>
+            <div class="tl-body"><strong>NIST Selects Winners.</strong> After multiple rounds of cryptanalysis, NIST selects the first standards: <strong>CRYSTALS-Kyber</strong> for key encapsulation (lattice-based), and <strong>CRYSTALS-Dilithium</strong>, <strong>Falcon</strong>, and <strong>SPHINCS+</strong> for digital signatures. These algorithms are now being integrated into TLS, VPNs, and blockchain protocols.</div>
         </div>
     </div>
     <div class="tl-item">
         <div class="tl-left"><div class="tl-dot"></div><div class="tl-line"></div></div>
         <div class="tl-right">
-            <div class="tl-year">2025–2030</div>
-            <div class="tl-body"><strong>The Migration Era.</strong> Industries begin transitioning to post‑quantum cryptography. For blockchains, this means supporting both classical (ECDSA) and post‑quantum (Dilithium) signatures in parallel — a "hybrid mode" — until quantum computers are proven capable of breaking ECDSA. MST's hybrid architecture is designed for this transition.</div>
+            <div class="tl-year">2025 - 2030</div>
+            <div class="tl-body"><strong>The Migration Era.</strong> Industries begin transitioning to post-quantum cryptography. For blockchains, this means supporting both classical (ECDSA) and post-quantum (Dilithium) signatures in parallel - a "hybrid mode" - until quantum computers are proven capable of breaking ECDSA. MST's hybrid architecture is designed for this transition.</div>
         </div>
     </div>
     <div class="tl-item">
         <div class="tl-left"><div class="tl-dot"></div><div class="tl-line"></div></div>
         <div class="tl-right">
             <div class="tl-year">2030+</div>
-            <div class="tl-body"><strong>Post‑Quantum Only.</strong> Once quantum threats are imminent, the classical signature schemes will be deprecated, and all transactions will require post‑quantum signatures. Wallets that have not migrated will be frozen — but MST's planned migration tools ensure no user is left behind.</div>
+            <div class="tl-body"><strong>Post-Quantum Only.</strong> Once quantum threats are imminent, the classical signature schemes will be deprecated, and all transactions will require post-quantum signatures. Wallets that have not migrated will be frozen - but MST's planned migration tools ensure no user is left behind.</div>
         </div>
     </div>
 </div>
 
 <div class="callout insight">
     <div class="callout-label">💡 The Cryptographic Reality</div>
-    <p>ECDSA with secp256k1 offers 128 bits of classical security but <strong>zero</strong> bits of quantum security. Shor's algorithm reduces the discrete log problem from exponential to polynomial time. Post‑quantum cryptography is not an upgrade — it's a complete replacement of the cryptographic foundation.</p>
+    <p>ECDSA with secp256k1 offers 128 bits of classical security but <strong>zero</strong> bits of quantum security. Shor's algorithm reduces the discrete log problem from exponential to polynomial time. Post-quantum cryptography is not an upgrade - it's a complete replacement of the cryptographic foundation.</p>
 </div>
 
 
@@ -134,68 +135,74 @@
      SECTION 4: BEGINNER-FRIENDLY EXPLANATION
 ════════════════════════════════════════════════════ -->
 <div class="section-label">04 &nbsp; Beginner-Friendly Explanation</div>
-<h2 class="section-title">The Lock and the Quantum Pick — Understanding the Threat</h2>
+<h2 class="section-title">The Lock and the Quantum Pick - Understanding the Threat</h2>
 
 <div class="callout analogy">
     <div class="callout-label">🔐 The Classical Lock vs. The Quantum Skeleton Key</div>
-    <p>Imagine your blockchain wallet is a strong metal lock (ECDSA). For 30 years, the only way to open it was to try trillions of key combinations — impossible with classical computers. A quantum computer running Shor's algorithm is like a skeleton key that reads the internal pins of the lock and crafts a perfect copy in seconds. The lock isn't stronger or weaker — it's fundamentally bypassed by a new kind of tool.</p>
-    <p>Post‑quantum cryptography replaces the metal lock with a <strong>lattice lock</strong> — a lock whose security is based on mathematical problems that even quantum computers cannot efficiently solve, like finding the shortest vector in a high‑dimensional lattice.</p>
+    <p>Imagine your blockchain wallet is a strong metal lock (ECDSA). For 30 years, the only way to open it was to try trillions of key combinations - impossible with classical computers. A quantum computer running Shor's algorithm is like a skeleton key that reads the internal pins of the lock and crafts a perfect copy in seconds. The lock isn't stronger or weaker - it's fundamentally bypassed by a new kind of tool.</p>
+    <p>Post-quantum cryptography replaces the metal lock with a <strong>lattice lock</strong> - a lock whose security is based on mathematical problems that even quantum computers cannot efficiently solve, like finding the shortest vector in a high-dimensional lattice.</p>
 </div>
 
 <div class="w5-grid">
     <div class="w5-row">
         <div class="w5-label-cell"><div class="w5-letter">W</div><div class="w5-word">WHY</div></div>
         <div class="w5-content">
-            <div class="w5-q">Why does MST need a post‑quantum layer?</div>
-            <div class="w5-a">Because every digital signature on MST — wallet transactions, SARAL biometric attestations, Trika POSA validator votes — relies on ECDSA, which quantum computers will break. If MST waits until quantum computers exist, it will be too late for all the data already on‑chain.</div>
+            <div class="w5-q">Why does MST need a post-quantum layer?</div>
+            <div class="w5-a">Because every digital signature on MST - wallet transactions, SARAL biometric attestations, Trika POSA validator votes - relies on ECDSA, which quantum computers will break. If MST waits until quantum computers exist, it will be too late for all the data already on-chain.</div>
         </div>
     </div>
     <div class="w5-row">
         <div class="w5-label-cell"><div class="w5-letter">W</div><div class="w5-word">WHAT</div></div>
         <div class="w5-content">
-            <div class="w5-q">What does the post‑quantum layer do?</div>
-            <div class="w5-a">It adds support for <strong>NIST‑standardized post‑quantum algorithms</strong> to MST's transaction signing, key generation, and consensus mechanisms. During a transition period, both classical and post‑quantum signatures are accepted. Eventually, only post‑quantum signatures will be valid.</div>
+            <div class="w5-q">What does the post-quantum layer do?</div>
+            <div class="w5-a">It adds support for <strong>NIST-standardized post-quantum algorithms</strong> to MST's transaction signing, key generation, and consensus mechanisms. During a transition period, both classical and post-quantum signatures are accepted. Eventually, only post-quantum signatures will be valid.</div>
         </div>
     </div>
     <div class="w5-row">
         <div class="w5-label-cell"><div class="w5-letter">H</div><div class="w5-word">HOW</div></div>
         <div class="w5-content">
             <div class="w5-q">How does the migration work?</div>
-            <div class="w5-a">MST introduces <strong>hybrid addresses</strong> that can be controlled by either a classical ECDSA key or a post‑quantum Dilithium key. Users generate a new post‑quantum key pair, register it on‑chain, and can then move funds to a hybrid address. Old addresses remain spendable with ECDSA until a protocol upgrade requires post‑quantum signatures only, with ample notice.</div>
+            <div class="w5-a">MST introduces <strong>hybrid addresses</strong> that can be controlled by either a classical ECDSA key or a post-quantum Dilithium key. Users generate a new post-quantum key pair, register it on-chain, and can then move funds to a hybrid address. Old addresses remain spendable with ECDSA until a protocol upgrade requires post-quantum signatures only, with ample notice.</div>
         </div>
     </div>
     <div class="w5-row">
         <div class="w5-label-cell"><div class="w5-letter">W</div><div class="w5-word">WHERE</div></div>
         <div class="w5-content">
-            <div class="w5-q">Where are post‑quantum algorithms applied?</div>
-            <div class="w5-a"><strong>Wallets:</strong> New key generation uses Dilithium or Falcon. <strong>Transactions:</strong> Signatures can be classical or post‑quantum. <strong>Consensus:</strong> Validator attestations will migrate to post‑quantum signatures. <strong>SARAL:</strong> Threshold key shares will use lattice‑based KEM for share distribution. <strong>FortunaX:</strong> Randomness beacon will adopt post‑quantum VRFs.</div>
+            <div class="w5-q">Where are post-quantum algorithms applied?</div>
+            <div class="w5-a"><strong>Wallets:</strong> New key generation uses Dilithium or Falcon. <strong>Transactions:</strong> Signatures can be classical or post-quantum. <strong>Consensus:</strong> Validator attestations will migrate to post-quantum signatures. <strong>SARAL:</strong> Threshold key shares will use lattice-based KEM for share distribution. <strong>FortunaX:</strong> Randomness beacon will adopt post-quantum VRFs.</div>
         </div>
     </div>
     <div class="w5-row">
         <div class="w5-label-cell"><div class="w5-letter">L</div><div class="w5-word">LIMITS</div></div>
         <div class="w5-content">
             <div class="w5-q">What are the challenges?</div>
-            <div class="w5-a">Post‑quantum signatures are larger than ECDSA — Dilithium signatures are ~2.5 KB vs. 64 bytes for ECDSA. This increases transaction size and gas costs. Lattice‑based key generation is slower. The algorithms are newer and have less battle‑testing than ECDSA. MST mitigates these by offering <strong>hybrid mode</strong> (classical + PQ) and using aggressive optimization, and by participating in the wider cryptographic community's ongoing evaluation.</div>
+            <div class="w5-a">Post-quantum signatures are larger than ECDSA - Dilithium signatures are ~2.5 KB vs. 64 bytes for ECDSA. This increases transaction size and gas costs. Lattice-based key generation is slower. The algorithms are newer and have less battle-testing than ECDSA. MST mitigates these by offering <strong>hybrid mode</strong> (classical + PQ) and using aggressive optimization, and by participating in the wider cryptographic community's ongoing evaluation.</div>
         </div>
     </div>
 </div>
 
 
 <!-- ═══════════════════════════════════════════════════
-     SECTION 5: TECHNICAL DEEP DIVE
+     SECTION 5: MATHEMATICS OF LATTICE PROBLEMS (NEW)
 ════════════════════════════════════════════════════ -->
-<div class="section-label">05 &nbsp; Technical Deep Dive</div>
-<h2 class="section-title">The NIST Algorithms and MST's Integration Plan</h2>
+<div class="section-label">05 &nbsp; Understanding the Mathematics</div>
+<h2 class="section-title">Lattice Problems in Simple Terms - Why Quantum Computers Cannot Crack Them</h2>
 
-<p>MST's post‑quantum strategy is built around the NIST‑selected algorithms. Understanding each one's role reveals how MST will evolve its cryptographic primitives without disrupting the network.</p>
+<p>Post-quantum cryptography derives its security from mathematical problems that are fundamentally different from those used by ECDSA. To appreciate why lattice-based cryptography resists quantum attacks, it helps to understand the core problems in intuitive terms.</p>
+
+<div class="callout analogy">
+    <div class="callout-label">🧩 The City Grid Analogy</div>
+    <p>Imagine a perfectly regular city grid - like the planned streets of Chandigarh or the blocks of New York City. Each intersection is a <strong>lattice point</strong>. Now imagine someone scrambles the grid: the streets bend at random angles, the spacing becomes irregular, and the city extends into hundreds of dimensions (not just the two dimensions of a map). You are standing at one lattice point and asked to find the <strong>nearest other lattice point</strong>. In two dimensions, this is trivial - you just look around. In 500 dimensions, with no visual reference and billions of nearby-but-not-quite points, this becomes computationally impossible - even for a quantum computer.</p>
+    <p>This is the <strong>Shortest Vector Problem (SVP)</strong>, and it is the mathematical foundation of lattice-based cryptography.</p>
+</div>
 
 <div class="feature-list">
     <div class="feature-item">
         <div class="feature-num">1</div>
         <div class="feature-content">
-            <div class="feature-title">CRYSTALS‑Dilithium — The Primary Post‑Quantum Signature</div>
+            <div class="feature-title">The Shortest Vector Problem (SVP)</div>
             <div class="feature-desc">
-                Dilithium is a lattice‑based signature scheme based on the Module Learning With Errors (MLWE) problem. Its security reduces to the hardness of finding short vectors in high‑dimensional lattices — a problem believed to be hard for both classical and quantum computers. Dilithium offers three security levels; MST will use <strong>Dilithium3</strong> (NIST Level 3, ~128 bits quantum security). A Dilithium signature is ~2.5 KB, public key is ~1.3 KB — larger than ECDSA but manageable. MST will implement Dilithium as a <strong>precompiled contract</strong> for efficient verification, similar to <code>ecrecover</code>. Wallet addresses will be derived as <code>hash(Dilithium_pubkey)</code> using SHA‑3, creating a new address format distinct from ECDSA addresses.
+                A lattice is a set of points in multi-dimensional space arranged in a repeating pattern, defined by a set of <strong>basis vectors</strong>. Given a "bad" basis (one where the vectors are long and nearly parallel), find the shortest non-zero vector in the lattice. In low dimensions (2D or 3D), algorithms can solve this efficiently. But as the number of dimensions grows to 256, 512, or 1024, the problem becomes exponentially harder. No known quantum algorithm provides more than a marginal speedup for SVP, unlike Shor's algorithm which completely demolishes the discrete logarithm problem. This dimensional hardness is what protects Dilithium, Falcon, and Kyber.
             </div>
         </div>
     </div>
@@ -203,9 +210,9 @@
     <div class="feature-item">
         <div class="feature-num">2</div>
         <div class="feature-content">
-            <div class="feature-title">Falcon — The Compact Alternative</div>
+            <div class="feature-title">Learning With Errors (LWE)</div>
             <div class="feature-desc">
-                Falcon is another lattice‑based signature scheme (NTRU lattice) that produces smaller signatures (~666 bytes) but requires floating‑point arithmetic in key generation, making it harder to implement in constant‑time. MST will support Falcon as an <strong>alternative</strong> for applications that need smaller transaction sizes (e.g., mobile wallets). Falcon's compactness makes it attractive for SARAL's biometric‑verified key shares, where bandwidth is limited.
+                LWE is a problem closely related to SVP and forms the direct basis for CRYSTALS-Dilithium and CRYSTALS-Kyber. The idea is simple: take a system of linear equations over integers and add small random "errors" (noise) to each answer. Without the errors, solving the system is straightforward linear algebra. With the errors, the system becomes unsolvable in polynomial time. Think of it like a teacher announcing exam results but adding a random number between -3 and +3 to each student's score. If you know the random offsets, you can recover the original scores. Without that knowledge, you cannot reliably determine any student's true score - even if you have millions of noisy results. The <strong>Module-LWE</strong> variant used in Dilithium organises the equations into structured modules, making them faster to compute while preserving security.
             </div>
         </div>
     </div>
@@ -213,9 +220,71 @@
     <div class="feature-item">
         <div class="feature-num">3</div>
         <div class="feature-content">
-            <div class="feature-title">SPHINCS+ — The Stateless Hash‑Based Backup</div>
+            <div class="feature-title">Why Quantum Computers Struggle with Lattices</div>
             <div class="feature-desc">
-                SPHINCS+ is a stateless hash‑based signature scheme. Unlike lattice‑based schemes, its security relies only on the collision resistance of the underlying hash function (SHA‑256 or SHAKE256), not on the hardness of lattice problems. This makes it a <strong>conservative fallback</strong>: even if lattice cryptography is broken, SPHINCS+ remains secure. Its downside is very large signatures (~8‑50 KB). MST will use SPHINCS+ for <strong>high‑value, low‑frequency operations</strong> like validator key rotation and cross‑zone certification, where size is less critical.
+                Shor's algorithm exploits the periodic structure of modular exponentiation to find factors and discrete logarithms. Lattice problems have no such periodic structure. The best known quantum algorithm for SVP (by Laarhoven, 2015) provides only a modest constant-factor speedup, not the exponential-to-polynomial collapse that Shor's algorithm achieves against ECDSA. In practical terms, a 256-dimensional lattice problem that takes 2^128 operations on a classical computer might take roughly 2^118 operations on a quantum computer - still utterly infeasible. This is in stark contrast to ECDSA, where Shor's algorithm reduces a 2^128-operation problem to roughly 2^10 operations.
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="diagram-wrap">
+    <div class="diagram-title">FIGURE 5-A · Classical vs Quantum Speedup Comparison</div>
+    <pre>  PROBLEM TYPE              CLASSICAL          QUANTUM            SPEEDUP
+  ──────────────────────    ─────────────      ──────────────     ─────────────
+  Integer Factorisation     Exponential        Polynomial         TOTAL BREAK
+  (RSA, ECDSA)              ~2^128 ops         ~2^10 ops          (Shor's)
+
+  Shortest Vector Problem   Exponential        Exponential        MARGINAL
+  (Lattice / Dilithium)     ~2^128 ops         ~2^118 ops         (No Shor)
+
+  Hash Preimage             Exponential        Quadratic root     MODERATE
+  (SHA-256)                 ~2^256 ops         ~2^128 ops         (Grover's)
+    </pre>
+    <div class="diagram-caption">Shor's algorithm provides an exponential-to-polynomial collapse for factorisation and discrete log problems, but lattice problems resist this. Grover's algorithm halves the effective bit-security of hash functions but does not break them.</div>
+</div>
+
+<div class="callout insight">
+    <div class="callout-label">💡 The Dimensional Shield</div>
+    <p>Each additional dimension in a lattice roughly doubles the computational cost of finding the shortest vector. CRYSTALS-Dilithium uses lattices with 256 to 1024 dimensions. Even the most optimistic quantum projections cannot bring this cost below astronomical levels. This is why lattice-based cryptography is considered the strongest foundation for post-quantum security - and why NIST selected lattice-based algorithms as its primary standards.</p>
+</div>
+
+
+<!-- ═══════════════════════════════════════════════════
+     SECTION 6: TECHNICAL DEEP DIVE
+════════════════════════════════════════════════════ -->
+<div class="section-label">06 &nbsp; Technical Deep Dive</div>
+<h2 class="section-title">The NIST Algorithms and MST's Integration Plan</h2>
+
+<p>MST's post-quantum strategy is built around the NIST-selected algorithms. Understanding each one's role reveals how MST will evolve its cryptographic primitives without disrupting the network.</p>
+
+<div class="feature-list">
+    <div class="feature-item">
+        <div class="feature-num">1</div>
+        <div class="feature-content">
+            <div class="feature-title">CRYSTALS-Dilithium - The Primary Post-Quantum Signature</div>
+            <div class="feature-desc">
+                Dilithium is a lattice-based signature scheme based on the Module Learning With Errors (MLWE) problem. Its security reduces to the hardness of finding short vectors in high-dimensional lattices - a problem believed to be hard for both classical and quantum computers. Dilithium offers three security levels; MST will use <strong>Dilithium3</strong> (NIST Level 3, ~128 bits quantum security). A Dilithium signature is ~2.5 KB, public key is ~1.3 KB - larger than ECDSA but manageable. MST will implement Dilithium as a <strong>precompiled contract</strong> for efficient verification, similar to <code>ecrecover</code>. Wallet addresses will be derived as <code>hash(Dilithium_pubkey)</code> using SHA-3, creating a new address format distinct from ECDSA addresses.
+            </div>
+        </div>
+    </div>
+
+    <div class="feature-item">
+        <div class="feature-num">2</div>
+        <div class="feature-content">
+            <div class="feature-title">Falcon - The Compact Alternative</div>
+            <div class="feature-desc">
+                Falcon is another lattice-based signature scheme (NTRU lattice) that produces smaller signatures (~666 bytes) but requires floating-point arithmetic in key generation, making it harder to implement in constant-time. MST will support Falcon as an <strong>alternative</strong> for applications that need smaller transaction sizes (e.g., mobile wallets). Falcon's compactness makes it attractive for SARAL's biometric-verified key shares, where bandwidth is limited.
+            </div>
+        </div>
+    </div>
+
+    <div class="feature-item">
+        <div class="feature-num">3</div>
+        <div class="feature-content">
+            <div class="feature-title">SPHINCS+ - The Stateless Hash-Based Backup</div>
+            <div class="feature-desc">
+                SPHINCS+ is a stateless hash-based signature scheme. Unlike lattice-based schemes, its security relies only on the collision resistance of the underlying hash function (SHA-256 or SHAKE256), not on the hardness of lattice problems. This makes it a <strong>conservative fallback</strong>: even if lattice cryptography is broken, SPHINCS+ remains secure. Its downside is very large signatures (~8-50 KB). MST will use SPHINCS+ for <strong>high-value, low-frequency operations</strong> like validator key rotation and cross-zone certification, where size is less critical.
             </div>
         </div>
     </div>
@@ -223,9 +292,9 @@
     <div class="feature-item">
         <div class="feature-num">4</div>
         <div class="feature-content">
-            <div class="feature-title">CRYSTALS‑Kyber — Key Encapsulation for SARAL</div>
+            <div class="feature-title">CRYSTALS-Kyber - Key Encapsulation for SARAL</div>
             <div class="feature-desc">
-                Kyber is a lattice‑based Key Encapsulation Mechanism (KEM) — a way to securely share symmetric keys over a public channel. In SARAL, the threshold key shares between the user's device, the MST key‑management node, and the OAuth backup will be distributed using Kyber‑based encryption. This replaces the current ECDH (Elliptic Curve Diffie‑Hellman) key exchange with a quantum‑resistant alternative. Kyber's encapsulation is fast (~0.1 ms) and its ciphertexts are small (~768 bytes for Kyber‑768, NIST Level 3).
+                Kyber is a lattice-based Key Encapsulation Mechanism (KEM) - a way to securely share symmetric keys over a public channel. In SARAL, the threshold key shares between the user's device, the MST key-management node, and the OAuth backup will be distributed using Kyber-based encryption. This replaces the current ECDH (Elliptic Curve Diffie-Hellman) key exchange with a quantum-resistant alternative. Kyber's encapsulation is fast (~0.1 ms) and its ciphertexts are small (~768 bytes for Kyber-768, NIST Level 3).
             </div>
         </div>
     </div>
@@ -233,9 +302,9 @@
     <div class="feature-item">
         <div class="feature-num">5</div>
         <div class="feature-content">
-            <div class="feature-title">Hybrid Mode — Classical + Post‑Quantum in Parallel</div>
+            <div class="feature-title">Hybrid Mode - Classical + Post-Quantum in Parallel</div>
             <div class="feature-desc">
-                During the migration period (estimated 2025–2032), MST will operate in <strong>hybrid mode</strong>. A transaction must be signed by <em>either</em> a valid ECDSA signature <em>or</em> a valid Dilithium/Falcon signature — but a new "hybrid" signature mode will require <em>both</em> to be valid for high‑security contexts. This ensures that even if one scheme is broken, the other still protects the transaction. Hybrid addresses (derived from both an ECDSA key and a Dilithium key) allow funds to be controlled by either key, enabling gradual migration without forcing all users to move at once. Over time, the protocol will require post‑quantum signatures for all transactions.
+                During the migration period (estimated 2025 - 2032), MST will operate in <strong>hybrid mode</strong>. A transaction must be signed by <em>either</em> a valid ECDSA signature <em>or</em> a valid Dilithium/Falcon signature - but a new "hybrid" signature mode will require <em>both</em> to be valid for high-security contexts. This ensures that even if one scheme is broken, the other still protects the transaction. Hybrid addresses (derived from both an ECDSA key and a Dilithium key) allow funds to be controlled by either key, enabling gradual migration without forcing all users to move at once. Over time, the protocol will require post-quantum signatures for all transactions.
             </div>
         </div>
     </div>
@@ -243,33 +312,89 @@
 
 <div class="callout key">
     <div class="callout-label">🗝️ The "Harvest Now, Decrypt Later" Defense</div>
-    <p>An attacker storing all MST transaction data today could break ECDSA in 2036 and steal funds. The only defense is to <strong>move funds to post‑quantum addresses before quantum computers exist</strong>. MST's hybrid mode encourages this migration by supporting both signature types, allowing users to transition at their own pace while the network remains fully functional.</p>
+    <p>An attacker storing all MST transaction data today could break ECDSA in 2036 and steal funds. The only defense is to <strong>move funds to post-quantum addresses before quantum computers exist</strong>. MST's hybrid mode encourages this migration by supporting both signature types, allowing users to transition at their own pace while the network remains fully functional.</p>
 </div>
 
 
 <!-- ═══════════════════════════════════════════════════
-     SECTION 6: ARCHITECTURE & DIAGRAMS
+     SECTION 7: INDIA'S QUANTUM COMPUTING LANDSCAPE (NEW)
 ════════════════════════════════════════════════════ -->
-<div class="section-label">06 &nbsp; Architecture &amp; Diagrams</div>
-<h2 class="section-title">Visualising MST's Quantum‑Resistant Transition</h2>
+<div class="section-label">07 &nbsp; India's Quantum Computing Landscape</div>
+<h2 class="section-title">From National Quantum Mission to MST - India's Quantum Readiness</h2>
+
+<p>India's quantum computing ecosystem is rapidly maturing, and MST's post-quantum strategy is closely aligned with national priorities. Understanding the Indian quantum landscape helps contextualise why MST's proactive approach is both timely and strategically important for the country's digital infrastructure.</p>
+
+<div class="feature-list">
+    <div class="feature-item">
+        <div class="feature-num" style="background: var(--orange);">🇮🇳</div>
+        <div class="feature-content">
+            <div class="feature-title">National Quantum Mission (NQM) - Rs 6,003 Crore Investment</div>
+            <div class="feature-desc">
+                Approved by the Union Cabinet in April 2023, India's National Quantum Mission allocates Rs 6,003 crore (~$730 million) over eight years (2023-2031) to develop quantum technologies. The mission targets building intermediate-scale quantum computers with 50-1000 qubits, developing quantum communication networks, and advancing quantum sensing. Four Thematic Hubs (T-Hubs) have been established at leading institutions: IISc Bangalore for quantum computing, IIT Madras for quantum communication, IIT Bombay for quantum sensing, and IIT Delhi for quantum materials. For MST, this national push means that quantum computing capability within India itself is advancing rapidly, making the "harvest now, decrypt later" threat not just an international concern but a domestic one.
+            </div>
+        </div>
+    </div>
+
+    <div class="feature-item">
+        <div class="feature-num" style="background: var(--blue);">🖥️</div>
+        <div class="feature-content">
+            <div class="feature-title">QSim - India's Quantum Computer Simulator</div>
+            <div class="feature-desc">
+                Developed by the Indian Institute of Science (IISc) Bangalore in collaboration with C-DAC and the Ministry of Electronics and Information Technology (MeitY), QSim is a web-based quantum computing toolkit. It allows researchers, students, and developers to design and simulate quantum circuits on classical hardware before real quantum machines become widely available. QSim supports up to 38 qubits in simulation mode. For MST developers, QSim provides a practical environment to test how Shor's algorithm behaves against ECDSA parameters and to benchmark the performance of post-quantum signature verification routines under simulated quantum conditions.
+            </div>
+        </div>
+    </div>
+
+    <div class="feature-item">
+        <div class="feature-num" style="background: var(--green);">🛰️</div>
+        <div class="feature-content">
+            <div class="feature-title">ISRO and Quantum Communication</div>
+            <div class="feature-desc">
+                The Indian Space Research Organisation (ISRO) has successfully demonstrated free-space Quantum Key Distribution (QKD) over a distance of 300 metres at its Space Applications Centre in Ahmedabad. ISRO's roadmap includes satellite-based QKD for secure government communications. While QKD is distinct from post-quantum cryptography (QKD uses physics-based security rather than mathematical hardness), ISRO's work demonstrates India's growing quantum infrastructure. MST's architecture could eventually integrate QKD channels for validator-to-validator communication in high-security permissioned zones, providing a second layer of quantum-safe key exchange alongside Kyber-based KEM.
+            </div>
+        </div>
+    </div>
+
+    <div class="feature-item">
+        <div class="feature-num" style="background: var(--purple);">🎓</div>
+        <div class="feature-content">
+            <div class="feature-title">IIT and IISc Research Contributions</div>
+            <div class="feature-desc">
+                Indian research institutions are actively contributing to post-quantum cryptography. IIT Madras hosts a dedicated Quantum Information and Computing (QuIC) lab working on quantum-resistant protocols. IISc Bangalore's Cryptography and Information Security group has published research on efficient lattice-based signature implementations optimised for embedded devices - directly relevant to MST's mobile wallet requirements. IIT Kanpur's researchers have contributed to the analysis of NTRU-based schemes (the family that includes Falcon). These academic contributions feed directly into India's capacity to evaluate, implement, and audit post-quantum cryptographic deployments like MST's.
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="callout insight">
+    <div class="callout-label">💡 India's Strategic Position</div>
+    <p>India is simultaneously building quantum computing capability (through NQM) and quantum-resistant infrastructure (through projects like MST). This dual approach means India is not merely reacting to the quantum threat but actively shaping its response. MST's adoption of NIST post-quantum standards positions the network to benefit from the testing, validation, and audit infrastructure being built across India's T-Hubs and research labs, creating a feedback loop between academic research and real-world deployment.</p>
+</div>
+
+
+<!-- ═══════════════════════════════════════════════════
+     SECTION 8: ARCHITECTURE & DIAGRAMS
+════════════════════════════════════════════════════ -->
+<div class="section-label">08 &nbsp; Architecture &amp; Diagrams</div>
+<h2 class="section-title">Visualising MST's Quantum-Resistant Transition</h2>
 
 <div class="diagram-wrap">
-    <div class="diagram-title">FIGURE 7.7-A · Post‑Quantum Migration Timeline on MST</div>
-    <pre>  PHASE 1 (2025‑2027)              PHASE 2 (2027‑2030)              PHASE 3 (2030+)
+    <div class="diagram-title">FIGURE 7.7-A · Post-Quantum Migration Timeline on MST</div>
+    <pre>  PHASE 1 (2025-2027)              PHASE 2 (2027-2030)              PHASE 3 (2030+)
   ──────────────────               ──────────────────               ─────────────
-  │  PRE‑COMPILE DEPLOYMENT │      │  HYBRID MODE ACTIVE │          │  PQ‑ONLY MODE │
+  │  PRE-COMPILE DEPLOYMENT │      │  HYBRID MODE ACTIVE │          │  PQ-ONLY MODE │
   │                        │      │                     │          │               │
   │ • Dilithium verifier   │      │ • Both ECDSA and PQ │          │ • ECDSA       │
   │   precompile added     │      │   signatures valid  │          │   deprecated  │
   │ • Falcon verifier      │      │ • Hybrid addresses  │          │ • All TXs     │
-  │   precompile added     │─────▶│   available         │─────────▶│   require PQ │
+  │   precompile added     │─────>│   available         │─────────>│   require PQ │
   │ • SPHINCS+ verifier    │      │ • SARAL Kyber KEM   │          │   signatures │
   │   precompile added     │      │   for key shares    │          │ • Classical   │
-  │ • FortunaX PQ‑VRF     │      │ • User migration    │          │   addresses  │
+  │ • FortunaX PQ-VRF     │      │ • User migration    │          │   addresses  │
   │   research begins      │      │   tools active      │          │   frozen     │
   └────────────────────────┘      └─────────────────────┘          └───────────────┘
     </pre>
-    <div class="diagram-caption">MST's phased approach: first deploy the cryptographic primitives, then enable hybrid signatures for gradual migration, and finally require post‑quantum exclusivity once the threat timeline is clear.</div>
+    <div class="diagram-caption">MST's phased approach: first deploy the cryptographic primitives, then enable hybrid signatures for gradual migration, and finally require post-quantum exclusivity once the threat timeline is clear.</div>
 </div>
 
 <div class="diagram-wrap">
@@ -282,17 +407,73 @@
                                         
   SPEND CONDITION:                      SPEND CONDITION:
   Valid ECDSA signature                 (Valid ECDSA sig) OR (Valid Dilithium sig)
-                                        (OR both for high‑security mode)
+                                        (OR both for high-security mode)
     </pre>
-    <div class="diagram-caption">A hybrid address allows spending with either classical or post‑quantum keys, ensuring funds remain accessible even if the user hasn't yet migrated to a pure PQ wallet.</div>
+    <div class="diagram-caption">A hybrid address allows spending with either classical or post-quantum keys, ensuring funds remain accessible even if the user hasn't yet migrated to a pure PQ wallet.</div>
 </div>
 
 
 <!-- ═══════════════════════════════════════════════════
-     SECTION 7: COMPARISON TABLE
+     SECTION 9: SMART CONTRACT PQ MIGRATION (NEW)
 ════════════════════════════════════════════════════ -->
-<div class="section-label">07 &nbsp; Comparison</div>
-<h2 class="section-title">Classical vs Post‑Quantum Signatures — The Numbers</h2>
+<div class="section-label">09 &nbsp; Developer Preparation Guide</div>
+<h2 class="section-title">How Smart Contract Developers Should Prepare for Post-Quantum Migration</h2>
+
+<p>The transition to post-quantum cryptography is not solely a protocol-level concern. Smart contract developers building on MST must plan for the migration in their contract designs, key management patterns, and testing strategies. This section provides a practical roadmap for writing PQ-ready smart contracts.</p>
+
+<div class="feature-list">
+    <div class="feature-item">
+        <div class="feature-num">1</div>
+        <div class="feature-content">
+            <div class="feature-title">Crypto-Agile Contract Patterns</div>
+            <div class="feature-desc">
+                The most important principle for PQ readiness is <strong>crypto-agility</strong> - designing contracts that are not hardcoded to a specific signature scheme. Instead of verifying signatures using only <code>ecrecover</code>, developers should use an abstracted verification interface that can accept multiple signature types. MST will provide a unified <code>sigVerify(bytes signature, bytes publicKey, bytes32 hash, uint8 sigType)</code> precompile that routes verification to the appropriate algorithm based on the <code>sigType</code> parameter (0 = ECDSA, 1 = Dilithium, 2 = Falcon, 3 = SPHINCS+). Contracts written with this pattern today will seamlessly support post-quantum signatures when they are enabled.
+            </div>
+        </div>
+    </div>
+
+    <div class="feature-item">
+        <div class="feature-num">2</div>
+        <div class="feature-content">
+            <div class="feature-title">Key Rotation Hooks</div>
+            <div class="feature-desc">
+                Smart contracts that store owner or admin public keys on-chain must include a <strong>key rotation mechanism</strong>. This means providing a function that allows the current key holder to register a new public key (potentially of a different algorithm type) and transfer authority to it. Without key rotation hooks, contracts controlled by ECDSA keys will become permanently vulnerable once quantum computers arrive. Best practice is to implement a two-step rotation: first, the new key is proposed; then, after a time-lock period (e.g., 48 hours), the rotation is confirmed. This prevents instant theft if a classical key is compromised. MST's recommended pattern includes an <code>onKeyRotation</code> event and a <code>pendingKey</code> state variable.
+            </div>
+        </div>
+    </div>
+
+    <div class="feature-item">
+        <div class="feature-num">3</div>
+        <div class="feature-content">
+            <div class="feature-title">Storage Considerations for Larger Keys and Signatures</div>
+            <div class="feature-desc">
+                Dilithium public keys (1,312 bytes) and signatures (2,473 bytes) are significantly larger than their ECDSA equivalents. Contracts that store public keys on-chain will incur higher storage costs. Developers should consider storing a <strong>hash commitment</strong> of the public key on-chain rather than the full key, and requiring the full key to be submitted only during signature verification (passed as calldata rather than stored in state). This pattern reduces storage costs by over 95% while maintaining security. For multi-signature wallets, where multiple public keys are stored, the savings are even more significant.
+            </div>
+        </div>
+    </div>
+
+    <div class="feature-item">
+        <div class="feature-num">4</div>
+        <div class="feature-content">
+            <div class="feature-title">Testing Strategies for PQ Readiness</div>
+            <div class="feature-desc">
+                MST's testnet will support post-quantum precompiles before mainnet deployment. Developers should adopt a four-stage testing approach: <strong>(a)</strong> Unit tests using mock PQ signature verification to ensure contract logic works with larger signature sizes. <strong>(b)</strong> Integration tests on MST's PQ-enabled testnet to verify gas costs and transaction throughput with real Dilithium signatures. <strong>(c)</strong> Migration tests that simulate the transition from ECDSA-only to hybrid to PQ-only modes, ensuring contracts behave correctly at each phase boundary. <strong>(d)</strong> Fuzz testing with randomly generated signature types and sizes to catch edge cases in signature routing logic. MST will provide a developer toolkit with pre-built test fixtures for all four NIST algorithms.
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="callout key">
+    <div class="callout-label">🗝️ The Developer's PQ Migration Checklist</div>
+    <p><strong>Step 1:</strong> Audit all contracts for hardcoded <code>ecrecover</code> calls and replace with abstracted signature verification. <strong>Step 2:</strong> Add key rotation functions with time-lock protection to all owner-controlled contracts. <strong>Step 3:</strong> Replace on-chain public key storage with hash commitments where possible. <strong>Step 4:</strong> Update gas estimation logic to account for larger PQ signature verification costs. <strong>Step 5:</strong> Run the full test suite on MST's PQ testnet and verify correct behaviour in all three migration phases.</p>
+</div>
+
+
+<!-- ═══════════════════════════════════════════════════
+     SECTION 10: COMPARISON TABLE
+════════════════════════════════════════════════════ -->
+<div class="section-label">10 &nbsp; Comparison</div>
+<h2 class="section-title">Classical vs Post-Quantum Signatures - The Numbers</h2>
 
 <table class="compare-table">
     <thead>
@@ -300,8 +481,8 @@
             <th>Property</th>
             <th>ECDSA (secp256k1)</th>
             <th>Dilithium3 (Lattice)</th>
-            <th>Falcon‑512 (NTRU)</th>
-            <th>SPHINCS+‑128s (Hash)</th>
+            <th>Falcon-512 (NTRU)</th>
+            <th>SPHINCS+-128s (Hash)</th>
         </tr>
     </thead>
     <tbody>
@@ -345,48 +526,66 @@
             <td class="good">20+ years</td>
             <td class="mid">NIST standard 2024</td>
             <td class="mid">NIST standard 2024</td>
-            <td class="good">Hash‑based, well‑studied</td>
+            <td class="good">Hash-based, well-studied</td>
         </tr>
     </tbody>
 </table>
 
 <div class="callout insight">
-    <div class="callout-label">💡 The Size Trade‑Off</div>
-    <p>Post‑quantum signatures are 10–100× larger than ECDSA. This directly increases transaction fees. MST's high throughput and low gas costs partially offset this, but dApp developers should be aware that PQ transactions will cost more gas. Hybrid mode allows users to choose when to pay this premium.</p>
+    <div class="callout-label">💡 The Size Trade-Off</div>
+    <p>Post-quantum signatures are 10 - 100x larger than ECDSA. This directly increases transaction fees. MST's high throughput and low gas costs partially offset this, but dApp developers should be aware that PQ transactions will cost more gas. Hybrid mode allows users to choose when to pay this premium.</p>
 </div>
 
 
 <!-- ═══════════════════════════════════════════════════
-     SECTION 8: REAL WORLD CASE STUDIES
+     SECTION 11: REAL WORLD CASE STUDIES
 ════════════════════════════════════════════════════ -->
-<div class="section-label">08 &nbsp; Real-World Case Studies</div>
-<h2 class="section-title">Why Post‑Quantum Matters — Real Assets at Stake</h2>
+<div class="section-label">11 &nbsp; Real-World Case Studies</div>
+<h2 class="section-title">Why Post-Quantum Matters - Real Assets at Stake</h2>
 
 <div class="feature-list">
     <div class="feature-item">
         <div class="feature-num" style="background: var(--orange);">🏦</div>
         <div class="feature-content">
-            <div class="feature-title">CBDC Vault — Protecting the Digital Rupee for 50 Years</div>
+            <div class="feature-title">CBDC Vault - Protecting the Digital Rupee for 50 Years</div>
             <div class="feature-desc">
-                The RBI's Digital Rupee on MST is expected to circulate for decades. If a quantum computer in 2040 can derive the central bank's minting keys from on‑chain signatures recorded in 2026, the entire currency supply could be counterfeited. MST's post‑quantum layer ensures that by 2030, all CBDC‑controlling keys will be lattice‑based, making "harvest now, decrypt later" ineffective.
+                The RBI's Digital Rupee on MST is expected to circulate for decades. If a quantum computer in 2040 can derive the central bank's minting keys from on-chain signatures recorded in 2026, the entire currency supply could be counterfeited. MST's post-quantum layer ensures that by 2030, all CBDC-controlling keys will be lattice-based, making "harvest now, decrypt later" ineffective.
             </div>
         </div>
     </div>
     <div class="feature-item">
         <div class="feature-num" style="background: var(--blue);">🏠</div>
         <div class="feature-content">
-            <div class="feature-title">Land Registry — Immutable Records Must Stay Authentic</div>
+            <div class="feature-title">Land Registry - Immutable Records Must Stay Authentic</div>
             <div class="feature-desc">
-                Andhra Pradesh's land registry pilot records title deeds on blockchain. These records must remain verifiable and non‑repudiable for generations. If a quantum attacker forges a signature to transfer land, the immutability of blockchain works <em>against</em> justice — the forged record is permanent. MST's transition to PQ signatures ensures that title transfer signatures remain unforgeable indefinitely.
+                Andhra Pradesh's land registry pilot records title deeds on blockchain. These records must remain verifiable and non-repudiable for generations. If a quantum attacker forges a signature to transfer land, the immutability of blockchain works <em>against</em> justice - the forged record is permanent. MST's transition to PQ signatures ensures that title transfer signatures remain unforgeable indefinitely.
             </div>
         </div>
     </div>
     <div class="feature-item">
         <div class="feature-num" style="background: var(--green);">🔗</div>
         <div class="feature-content">
-            <div class="feature-title">Cross‑Chain Bridges — Signed Messages Across Zones</div>
+            <div class="feature-title">Cross-Chain Bridges - Signed Messages Across Zones</div>
             <div class="feature-desc">
-                MST's Inter‑Zone Communication (IZC) uses validator attestations to secure cross‑zone transfers. If those attestations could be forged by a quantum adversary, the entire hybrid architecture collapses — an attacker could mint fake tokens in the public zone by forging a permissioned zone validator's signature. Post‑quantum validator keys (Dilithium) will be required for IZC messages well before the quantum threat materializes.
+                MST's Inter-Zone Communication (IZC) uses validator attestations to secure cross-zone transfers. If those attestations could be forged by a quantum adversary, the entire hybrid architecture collapses - an attacker could mint fake tokens in the public zone by forging a permissioned zone validator's signature. Post-quantum validator keys (Dilithium) will be required for IZC messages well before the quantum threat materializes.
+            </div>
+        </div>
+    </div>
+    <div class="feature-item">
+        <div class="feature-num" style="background: var(--purple);">🆔</div>
+        <div class="feature-content">
+            <div class="feature-title">Aadhaar-Linked Digital Identity on Blockchain</div>
+            <div class="feature-desc">
+                India's Unique Identification Authority of India (UIDAI) has issued over 1.4 billion Aadhaar numbers. If digital identity attestations - linking an Aadhaar identity to a blockchain address - are signed with ECDSA, a future quantum adversary could forge identity proofs. Consider the implications: someone could create a fraudulent identity attestation linking their own wallet to another person's Aadhaar, enabling impersonation at a national scale. MST's post-quantum signatures ensure that identity attestations recorded today remain unforgeable even in 2040 or 2050, protecting the integrity of India's digital identity infrastructure for generations.
+            </div>
+        </div>
+    </div>
+    <div class="feature-item">
+        <div class="feature-num" style="background: var(--ink-3);">🏥</div>
+        <div class="feature-content">
+            <div class="feature-title">Healthcare Records on the Ayushman Bharat Digital Mission</div>
+            <div class="feature-desc">
+                The Ayushman Bharat Digital Mission (ABDM) envisions a unified digital health ecosystem for India's 1.4 billion citizens. If patient consent records, prescription authentications, and diagnostic reports are anchored to a blockchain using ECDSA-signed attestations, quantum computers could later forge consent records or alter prescription histories. Medical data has an extremely long sensitivity lifespan - a patient's health records from 2026 remain sensitive in 2060. MST's lattice-based signatures provide the cryptographic durability that healthcare data demands.
             </div>
         </div>
     </div>
@@ -394,10 +593,59 @@
 
 
 <!-- ═══════════════════════════════════════════════════
-     SECTION 9: ASSESSMENT PREPARATION
+     SECTION 12: COMMON MISCONCEPTIONS (NEW)
 ════════════════════════════════════════════════════ -->
-<div class="section-label">09 &nbsp; Assessment Preparation</div>
-<h2 class="section-title">Top Facts — Know These Cold for the 5‑Mark Assessment</h2>
+<div class="section-label">12 &nbsp; Common Misconceptions</div>
+<h2 class="section-title">Debunking Myths About Quantum Computing and Blockchain Security</h2>
+
+<p>The intersection of quantum computing and blockchain security is surrounded by misinformation, exaggeration, and confusion. This section addresses the most common misconceptions with clear, evidence-based explanations.</p>
+
+<table class="compare-table">
+    <thead>
+        <tr>
+            <th style="width:35%;">Misconception</th>
+            <th style="width:65%;">Reality</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td class="bad">"Quantum computers will break all encryption overnight."</td>
+            <td>Quantum computers threaten specific types of cryptography - primarily those based on integer factorisation (RSA) and discrete logarithms (ECDSA, DH). Symmetric encryption (AES-256) and hash functions (SHA-256) remain secure with minor parameter adjustments. Lattice-based cryptography, code-based cryptography, and hash-based signatures are all believed to resist quantum attacks. The threat is targeted, not universal.</td>
+        </tr>
+        <tr>
+            <td class="bad">"Bitcoin and all blockchains are already dead because of quantum."</td>
+            <td>No cryptographically relevant quantum computer (CRQC) exists today. Current quantum computers have at most a few thousand noisy qubits; breaking ECDSA requires an estimated 2,500 - 4,000 error-corrected logical qubits, which translates to millions of physical qubits with today's error rates. Blockchains have years to migrate, and protocols like MST are already building the migration path.</td>
+        </tr>
+        <tr>
+            <td class="bad">"We can simply wait until quantum computers exist and then upgrade."</td>
+            <td>This ignores the "harvest now, decrypt later" threat. Every ECDSA signature broadcast on a public blockchain today reveals enough information for a future quantum computer to derive the private key. Data recorded on-chain is permanent and publicly accessible. Migrating after quantum computers exist means all historical data is already compromised. The migration must happen <strong>before</strong> the threat materialises.</td>
+        </tr>
+        <tr>
+            <td class="bad">"Post-quantum algorithms are unproven and risky."</td>
+            <td>NIST's selection process ran from 2016 to 2024 - eight years of public scrutiny by hundreds of cryptographers worldwide. Lattice-based problems have been studied since the 1990s (the LWE problem was formalised by Oded Regev in 2005). While PQ algorithms lack the 25+ years of deployment history of RSA or ECDSA, they are the most thoroughly vetted new cryptographic standards in history. MST's SPHINCS+ fallback adds a further safety net: if lattice assumptions are broken, hash-based security remains.</td>
+        </tr>
+        <tr>
+            <td class="bad">"Only banks and governments need to worry about quantum."</td>
+            <td>Any system that relies on the long-term integrity of digital signatures is at risk. This includes individual wallet holders, small businesses recording invoices on-chain, DAOs with multi-sig governance, and NFT creators whose provenance records must remain authentic for decades. On MST, even a user with a small balance faces the risk that their private key could be derived from a single on-chain transaction signature.</td>
+        </tr>
+        <tr>
+            <td class="bad">"Quantum Key Distribution (QKD) solves everything."</td>
+            <td>QKD is a secure key exchange method that uses quantum physics (not mathematics) to detect eavesdropping. However, QKD requires dedicated optical hardware, works only over limited distances without quantum repeaters, and solves only the key exchange problem - it does not provide digital signatures. Post-quantum cryptography (PQC) is software-based, works on existing infrastructure, and provides both encryption and signatures. The two technologies are complementary, not substitutes.</td>
+        </tr>
+    </tbody>
+</table>
+
+<div class="callout insight">
+    <div class="callout-label">💡 The Prudent Middle Ground</div>
+    <p>The quantum threat is neither imminent panic nor distant fantasy. The scientific consensus places a CRQC within 10-20 years, but the "harvest now, decrypt later" attack makes today's data vulnerable to tomorrow's quantum computers. The rational response - and MST's approach - is to begin migration now, use hybrid modes during the transition, and ensure that every piece of data recorded on-chain today will remain cryptographically secure regardless of when quantum computers arrive.</p>
+</div>
+
+
+<!-- ═══════════════════════════════════════════════════
+     SECTION 13: ASSESSMENT PREPARATION
+════════════════════════════════════════════════════ -->
+<div class="section-label">13 &nbsp; Assessment Preparation</div>
+<h2 class="section-title">Top Facts - Know These Cold for the 5-Mark Assessment</h2>
 
 <div class="feature-list">
     <div class="feature-item">
@@ -410,14 +658,14 @@
     <div class="feature-item">
         <div class="feature-num" style="background: var(--ink-3); font-size:11px;">02</div>
         <div class="feature-content">
-            <div class="feature-title">NIST Post‑Quantum Standards</div>
-            <div class="feature-desc">CRYSTALS‑Dilithium (signature, lattice‑based), Falcon (compact signature), SPHINCS+ (hash‑based fallback), and CRYSTALS‑Kyber (KEM for key exchange). MST adopts all four for different use cases.</div>
+            <div class="feature-title">NIST Post-Quantum Standards</div>
+            <div class="feature-desc">CRYSTALS-Dilithium (signature, lattice-based), Falcon (compact signature), SPHINCS+ (hash-based fallback), and CRYSTALS-Kyber (KEM for key exchange). MST adopts all four for different use cases.</div>
         </div>
     </div>
     <div class="feature-item">
         <div class="feature-num" style="background: var(--ink-3); font-size:11px;">03</div>
         <div class="feature-content">
-            <div class="feature-title">Hybrid Mode — Classical + PQ in Parallel</div>
+            <div class="feature-title">Hybrid Mode - Classical + PQ in Parallel</div>
             <div class="feature-desc">During migration, transactions can be signed with ECDSA or Dilithium. Hybrid addresses accept either. Eventually, only PQ signatures will be valid.</div>
         </div>
     </div>
@@ -431,7 +679,7 @@
     <div class="feature-item">
         <div class="feature-num" style="background: var(--ink-3); font-size:11px;">05</div>
         <div class="feature-content">
-            <div class="feature-title">MST Migration Timeline: Precompiles → Hybrid → PQ‑Only</div>
+            <div class="feature-title">MST Migration Timeline: Precompiles → Hybrid → PQ-Only</div>
             <div class="feature-desc">Phase 1: Deploy PQ verifier precompiles. Phase 2: Enable hybrid signatures and addresses. Phase 3: Require PQ signatures for all transactions, deprecating ECDSA.</div>
         </div>
     </div>
@@ -447,8 +695,8 @@
 <!-- ═══════════════════════════════════════════════════
      GLOSSARY
 ════════════════════════════════════════════════════ -->
-<div class="section-label" style="margin-top:52px;">10 &nbsp; Glossary</div>
-<h2 class="section-title">Key Terms — Sub-Module 7.7</h2>
+<div class="section-label" style="margin-top:52px;">14 &nbsp; Glossary</div>
+<h2 class="section-title">Key Terms - Sub-Module 7.7</h2>
 
 <div class="glossary-grid">
     <div class="glossary-item">
@@ -457,47 +705,71 @@
     </div>
     <div class="glossary-item">
         <div class="glossary-term">Grover's Algorithm</div>
-        <div class="glossary-def">A quantum search algorithm providing quadratic speedup; reduces the effective security of hash functions by half (e.g., SHA‑256 → 128‑bit quantum security).</div>
+        <div class="glossary-def">A quantum search algorithm providing quadratic speedup; reduces the effective security of hash functions by half (e.g., SHA-256 → 128-bit quantum security).</div>
     </div>
     <div class="glossary-item">
-        <div class="glossary-term">CRYSTALS‑Dilithium</div>
-        <div class="glossary-def">A NIST‑standardized lattice‑based digital signature scheme. MST's primary post‑quantum signature algorithm.</div>
+        <div class="glossary-term">CRYSTALS-Dilithium</div>
+        <div class="glossary-def">A NIST-standardized lattice-based digital signature scheme. MST's primary post-quantum signature algorithm.</div>
     </div>
     <div class="glossary-item">
-        <div class="glossary-term">CRYSTALS‑Kyber</div>
-        <div class="glossary-def">A lattice‑based key encapsulation mechanism (KEM) for securely sharing symmetric keys; used in SARAL for post‑quantum key share distribution.</div>
+        <div class="glossary-term">CRYSTALS-Kyber</div>
+        <div class="glossary-def">A lattice-based key encapsulation mechanism (KEM) for securely sharing symmetric keys; used in SARAL for post-quantum key share distribution.</div>
     </div>
     <div class="glossary-item">
         <div class="glossary-term">Falcon</div>
-        <div class="glossary-def">A compact lattice‑based signature scheme (NTRU) producing smaller signatures than Dilithium; alternative for bandwidth‑sensitive applications.</div>
+        <div class="glossary-def">A compact lattice-based signature scheme (NTRU) producing smaller signatures than Dilithium; alternative for bandwidth-sensitive applications.</div>
     </div>
     <div class="glossary-item">
         <div class="glossary-term">SPHINCS+</div>
-        <div class="glossary-def">A stateless hash‑based signature scheme; conservative fallback that does not rely on lattice assumptions. Large signatures but well‑studied security.</div>
+        <div class="glossary-def">A stateless hash-based signature scheme; conservative fallback that does not rely on lattice assumptions. Large signatures but well-studied security.</div>
     </div>
     <div class="glossary-item">
         <div class="glossary-term">Hybrid Mode</div>
-        <div class="glossary-def">MST's transition period where both classical (ECDSA) and post‑quantum signatures are valid, and hybrid addresses accept either key type.</div>
+        <div class="glossary-def">MST's transition period where both classical (ECDSA) and post-quantum signatures are valid, and hybrid addresses accept either key type.</div>
     </div>
     <div class="glossary-item">
         <div class="glossary-term">Harvest Now, Decrypt Later</div>
         <div class="glossary-def">An attack strategy where encrypted/signed data is stored today and broken later when quantum computers become available.</div>
     </div>
     <div class="glossary-item">
-        <div class="glossary-term">Lattice‑Based Cryptography</div>
+        <div class="glossary-term">Lattice-Based Cryptography</div>
         <div class="glossary-def">Cryptographic primitives whose security is based on the hardness of lattice problems like Learning With Errors (LWE), believed resistant to quantum attacks.</div>
     </div>
     <div class="glossary-item">
-        <div class="glossary-term">Precompile (Post‑Quantum)</div>
-        <div class="glossary-def">A built‑in smart contract on MST that efficiently verifies post‑quantum signatures (Dilithium, Falcon, SPHINCS+) with low gas cost.</div>
+        <div class="glossary-term">Precompile (Post-Quantum)</div>
+        <div class="glossary-def">A built-in smart contract on MST that efficiently verifies post-quantum signatures (Dilithium, Falcon, SPHINCS+) with low gas cost.</div>
+    </div>
+    <div class="glossary-item">
+        <div class="glossary-term">CRQC (Cryptographically Relevant Quantum Computer)</div>
+        <div class="glossary-def">A quantum computer with sufficient error-corrected qubits to run Shor's algorithm against real-world cryptographic parameters (e.g., break 256-bit ECDSA). Estimated to require millions of physical qubits with current technology.</div>
+    </div>
+    <div class="glossary-item">
+        <div class="glossary-term">Module-LWE (Module Learning With Errors)</div>
+        <div class="glossary-def">A structured variant of the Learning With Errors problem used in CRYSTALS-Dilithium and CRYSTALS-Kyber. Organises noisy linear equations into algebraic modules for efficient computation while preserving worst-case hardness guarantees.</div>
+    </div>
+    <div class="glossary-item">
+        <div class="glossary-term">Shortest Vector Problem (SVP)</div>
+        <div class="glossary-def">The fundamental hard problem in lattice cryptography: given a lattice defined by a basis, find the shortest non-zero lattice vector. Believed to be hard for both classical and quantum computers in high dimensions.</div>
+    </div>
+    <div class="glossary-item">
+        <div class="glossary-term">Crypto-Agility</div>
+        <div class="glossary-def">The design principle of building systems that can switch between cryptographic algorithms without requiring a complete redesign. Essential for surviving cryptographic transitions such as the move from ECDSA to post-quantum schemes.</div>
+    </div>
+    <div class="glossary-item">
+        <div class="glossary-term">Quantum Key Distribution (QKD)</div>
+        <div class="glossary-def">A method of secure key exchange that uses quantum mechanical properties (such as photon polarisation) to detect eavesdropping. Distinct from post-quantum cryptography, which uses mathematical hardness rather than physics for security.</div>
+    </div>
+    <div class="glossary-item">
+        <div class="glossary-term">National Quantum Mission (NQM)</div>
+        <div class="glossary-def">India's Rs 6,003 crore (2023-2031) government initiative to develop quantum computing, quantum communication, and quantum sensing technologies through research hubs at IISc, IIT Madras, IIT Bombay, and IIT Delhi.</div>
     </div>
 </div>
 
 
 <!-- FOOTER -->
 <div class="page-footer">
-    <p>MST Blockchain Academy — Professional Blockchain Developer Program</p>
-    <p>Module 7 · Sub-Module <strong>7.7</strong> of 8 &nbsp;·&nbsp; Next: Sub-Module 7.8 — BridgeKey Wallet &amp; Explorer →</p>
+    <p>MST Blockchain Academy - Professional Blockchain Developer Program</p>
+    <p>Module 7 · Sub-Module <strong>7.7</strong> of 8 &nbsp;·&nbsp; Next: Sub-Module 7.8 - BridgeKey Wallet &amp; Explorer →</p>
 </div>
 
 

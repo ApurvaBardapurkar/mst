@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sub-Module 8.8 – First dApp Contract: To‑Do List | MST Blockchain Academy</title>
+    <title>Sub-Module 8.8 - First dApp Contract: To-Do List | MST Blockchain Academy</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,600&family=JetBrains+Mono:wght@400;500;600;700&display=swap');
         *,
@@ -676,8 +676,8 @@
 <body>
 
     <div class="module-badge">🚀 Module 8 &nbsp;·&nbsp; Sub-Module 8.8 of 8</div>
-    <h1 class="module-title">First dApp Contract: <span class="highlight">To‑Do List</span></h1>
-    <p class="module-subtitle">Your first full‑stack decentralized application. From a blank VS Code window to a working React frontend connected to a smart contract on the MST testnet — every line of code explained, every decision justified, every concept from Modules 1‑8 brought together in one project.</p>
+    <h1 class="module-title">First dApp Contract: <span class="highlight">To-Do List</span></h1>
+    <p class="module-subtitle">Your first full-stack decentralized application. From a blank VS Code window to a working React frontend connected to a smart contract on the MST testnet - every line of code explained, every decision justified, every concept from Modules 1-8 brought together in one project.</p>
 
     <div class="meta-bar">
         <div class="meta-chip">⏱ 40 Minutes</div>
@@ -690,22 +690,22 @@
     <div class="section-label">01 &nbsp; Learning Objectives</div>
     <h2 class="section-title">By the end of this sub-module, you will have built…</h2>
     <div style="display:grid; grid-template-columns:1fr 1fr; gap:12px; margin:20px 0;">
-        <div class="feature-item"><div class="feature-num">📝</div><div class="feature-content"><strong>A complete Solidity smart contract</strong> for a decentralized To‑Do List with task creation, completion toggling, and event logging — deployed to the MST testnet.</div></div>
+        <div class="feature-item"><div class="feature-num">📝</div><div class="feature-content"><strong>A complete Solidity smart contract</strong> for a decentralized To-Do List with task creation, completion toggling, and event logging - deployed to the MST testnet.</div></div>
         <div class="feature-item"><div class="feature-num">🧪</div><div class="feature-content"><strong>A comprehensive test suite</strong> using Hardhat and Chai that validates every function, edge case, and event emission in your contract.</div></div>
-        <div class="feature-item"><div class="feature-num">🖥️</div><div class="feature-content"><strong>A React frontend</strong> built with Vite, connected to your contract via ethers.js and the MST SDK — users can add tasks, toggle completion, and view the list.</div></div>
+        <div class="feature-item"><div class="feature-num">🖥️</div><div class="feature-content"><strong>A React frontend</strong> built with Vite, connected to your contract via ethers.js and the MST SDK - users can add tasks, toggle completion, and view the list.</div></div>
         <div class="feature-item"><div class="feature-num">🌐</div><div class="feature-content"><strong>A deployed, verified, and fully functional dApp</strong> that you can share as a portfolio piece and use as a template for all future projects.</div></div>
     </div>
 
     <!-- 2. REAL-WORLD STORY -->
-    <div class="section-label">02 &nbsp; Real‑World Story</div>
+    <div class="section-label">02 &nbsp; Real-World Story</div>
     <h2 class="section-title">The Intern's First dApp That Landed a Job</h2>
     <div class="callout story">
         <div class="callout-label">📖 Story</div>
-        <p>Aarav, a final‑year engineering student from Jaipur, had spent months learning Solidity from tutorials. He understood mappings, modifiers, and events. But when he sat for an interview at a Web3 startup, the interviewer didn't ask him to explain mappings. The interviewer opened a browser, navigated to MSTScan, and said: <strong>"Show me a contract you deployed. Walk me through the code, the tests, and the frontend. Prove you can build."</strong></p>
+        <p>Aarav, a final-year engineering student from Jaipur, had spent months learning Solidity from tutorials. He understood mappings, modifiers, and events. But when he sat for an interview at a Web3 startup, the interviewer didn't ask him to explain mappings. The interviewer opened a browser, navigated to MSTScan, and said: <strong>"Show me a contract you deployed. Walk me through the code, the tests, and the frontend. Prove you can build."</strong></p>
         <br>
-        <p>Aarav pulled up his To‑Do List dApp — a project he had built by following this exact sub‑module. He showed the Solidity contract with its Task struct and toggle function. He demonstrated the test suite, pointing out how he tested edge cases like toggling a non‑existent task. He showed the React frontend, explaining how he used ethers.js to read from and write to the blockchain. He even walked the interviewer through the deployment transaction on MSTScan.</p>
+        <p>Aarav pulled up his To-Do List dApp - a project he had built by following this exact sub-module. He showed the Solidity contract with its Task struct and toggle function. He demonstrated the test suite, pointing out how he tested edge cases like toggling a non-existent task. He showed the React frontend, explaining how he used ethers.js to read from and write to the blockchain. He even walked the interviewer through the deployment transaction on MSTScan.</p>
         <br>
-        <p>Twenty minutes later, the interviewer said: <strong>"This is exactly what we look for. Not theory. Not multiple‑choice answers. A working dApp with clean code, tests, and a frontend. When can you start?"</strong> Aarav got the job — not because he memorized definitions, but because he had built something real, deployed it, and could explain every decision. This sub‑module is where you build your Aarav moment.</p>
+        <p>Twenty minutes later, the interviewer said: <strong>"This is exactly what we look for. Not theory. Not multiple-choice answers. A working dApp with clean code, tests, and a frontend. When can you start?"</strong> Aarav got the job - not because he memorized definitions, but because he had built something real, deployed it, and could explain every decision. This sub-module is where you build your Aarav moment.</p>
     </div>
 
     <!-- 3. PROJECT PLANNING -->
@@ -718,14 +718,14 @@
             <div class="feature-num">1</div>
             <div class="feature-content">
                 <div class="feature-title">Functional Requirements</div>
-                <div class="feature-desc"><strong>Create Task:</strong> Any user can add a new task with a text description. The task is stored on the blockchain with a unique ID.<br><strong>Toggle Task:</strong> Any user can mark a task as completed or uncompleted by its ID.<br><strong>View All Tasks:</strong> Anyone can read the complete list of tasks — no gas cost, no wallet required.<br><strong>View Task Count:</strong> Anyone can see how many tasks exist.<br><strong>Events:</strong> The contract emits events when tasks are created or toggled, enabling frontend reactivity.</div>
+                <div class="feature-desc"><strong>Create Task:</strong> Any user can add a new task with a text description. The task is stored on the blockchain with a unique ID.<br><strong>Toggle Task:</strong> Any user can mark a task as completed or uncompleted by its ID.<br><strong>View All Tasks:</strong> Anyone can read the complete list of tasks - no gas cost, no wallet required.<br><strong>View Task Count:</strong> Anyone can see how many tasks exist.<br><strong>Events:</strong> The contract emits events when tasks are created or toggled, enabling frontend reactivity.</div>
             </div>
         </div>
         <div class="feature-item">
             <div class="feature-num">2</div>
             <div class="feature-content">
                 <div class="feature-title">Architecture Decisions</div>
-                <div class="feature-desc"><strong>Smart Contract:</strong> A single Solidity contract (TodoList.sol) that manages all task data and logic. No ownership restrictions — anyone can add and toggle tasks for simplicity.<br><strong>Data Structure:</strong> A struct for Task (id, content, completed) and a dynamic array to store all tasks.<br><strong>Frontend:</strong> React with Vite for fast builds, ethers.js for blockchain interaction, and Tailwind CSS for styling.<br><strong>Network:</strong> Deploy to MST Testnet (Chain ID 4545) for testing and demonstration.</div>
+                <div class="feature-desc"><strong>Smart Contract:</strong> A single Solidity contract (TodoList.sol) that manages all task data and logic. No ownership restrictions - anyone can add and toggle tasks for simplicity.<br><strong>Data Structure:</strong> A struct for Task (id, content, completed) and a dynamic array to store all tasks.<br><strong>Frontend:</strong> React with Vite for fast builds, ethers.js for blockchain interaction, and Tailwind CSS for styling.<br><strong>Network:</strong> Deploy to MST Testnet (Chain ID 4545) for testing and demonstration.</div>
             </div>
         </div>
         <div class="feature-item">
@@ -738,7 +738,7 @@
     </div>
 
     <div class="diagram-wrap">
-        <div class="diagram-title">FIGURE 8.8‑A · To‑Do List dApp Architecture</div>
+        <div class="diagram-title">FIGURE 8.8-A · To-Do List dApp Architecture</div>
         <pre>
 ┌──────────────────────────────────────────────────────────────────────┐
 │                        THE USER                                       │
@@ -773,13 +773,13 @@
 │  └────────────────────────────────────────────────────────────────┘  │
 └──────────────────────────────────────────────────────────────────────┘
         </pre>
-        <div class="diagram-caption">The three‑layer architecture: React frontend → ethers.js/MST SDK → Smart Contract on MST Testnet.</div>
+        <div class="diagram-caption">The three-layer architecture: React frontend → ethers.js/MST SDK → Smart Contract on MST Testnet.</div>
     </div>
 
     <!-- 4. SMART CONTRACT DEVELOPMENT -->
     <div class="section-label">04 &nbsp; Smart Contract</div>
-    <h2 class="section-title">The TodoList Smart Contract — Complete Code & Explanation</h2>
-    <p>Below is the complete, production‑ready TodoList smart contract. Every design decision is explained. Copy this code into <strong>contracts/TodoList.sol</strong> in your Hardhat project.</p>
+    <h2 class="section-title">The TodoList Smart Contract - Complete Code & Explanation</h2>
+    <p>Below is the complete, production-ready TodoList smart contract. Every design decision is explained. Copy this code into <strong>contracts/TodoList.sol</strong> in your Hardhat project.</p>
 
     <div class="code-block-wrap">
         <pre>// SPDX-License-Identifier: MIT
@@ -892,15 +892,15 @@ contract TodoList {
 
     <div class="callout key">
         <div class="callout-label">🔑 Design Decisions Explained</div>
-        <p><strong>Why an array instead of a mapping?</strong> An array allows easy iteration over all tasks for display. A mapping would be more gas‑efficient for lookups but would require additional tracking of keys for iteration. For a to‑do list with a reasonable number of tasks, the array is the simpler, more readable choice.</p>
-        <p><strong>Why no access control?</strong> This is an intentionally open contract — anyone can add tasks and toggle any task. This keeps the project focused on the core concepts without the complexity of ownership. In a production app, you would likely restrict task modification to the task creator using msg.sender tracking.</p>
-        <p><strong>Why events?</strong> Events allow the frontend to react to blockchain state changes without polling. When a user adds a task, the TaskCreated event fires, and the frontend listener updates the UI instantly — providing a Web2‑like user experience.</p>
+        <p><strong>Why an array instead of a mapping?</strong> An array allows easy iteration over all tasks for display. A mapping would be more gas-efficient for lookups but would require additional tracking of keys for iteration. For a to-do list with a reasonable number of tasks, the array is the simpler, more readable choice.</p>
+        <p><strong>Why no access control?</strong> This is an intentionally open contract - anyone can add tasks and toggle any task. This keeps the project focused on the core concepts without the complexity of ownership. In a production app, you would likely restrict task modification to the task creator using msg.sender tracking.</p>
+        <p><strong>Why events?</strong> Events allow the frontend to react to blockchain state changes without polling. When a user adds a task, the TaskCreated event fires, and the frontend listener updates the UI instantly - providing a Web2-like user experience.</p>
     </div>
 
     <!-- 5. COMPREHENSIVE TESTING -->
     <div class="section-label">05 &nbsp; Testing</div>
     <h2 class="section-title">Writing a Comprehensive Test Suite</h2>
-    <p>Testing smart contracts is <strong>not optional</strong> — it is the most important part of development. Smart contracts handle real money and cannot be patched after deployment. Every function, every edge case, every revert condition must be tested. Here is the complete test file for our TodoList contract.</p>
+    <p>Testing smart contracts is <strong>not optional</strong> - it is the most important part of development. Smart contracts handle real money and cannot be patched after deployment. Every function, every edge case, every revert condition must be tested. Here is the complete test file for our TodoList contract.</p>
 
     <div class="code-block-wrap">
         <pre>// test/TodoList.test.js
@@ -1044,7 +1044,7 @@ describe("TodoList Contract", function () {
 
     <div class="callout insight">
         <div class="callout-label">💡 Testing Best Practices</div>
-        <p>Notice how each test is <strong>independent</strong> — the <code>beforeEach</code> block deploys a fresh contract for every test. This ensures tests don't interfere with each other. Also notice how we test both <strong>happy paths</strong> (normal usage) and <strong>sad paths</strong> (invalid inputs, reverts). Both are equally important.</p>
+        <p>Notice how each test is <strong>independent</strong> - the <code>beforeEach</code> block deploys a fresh contract for every test. This ensures tests don't interfere with each other. Also notice how we test both <strong>happy paths</strong> (normal usage) and <strong>sad paths</strong> (invalid inputs, reverts). Both are equally important.</p>
     </div>
 
     <!-- 6. DEPLOYMENT -->
@@ -1268,10 +1268,10 @@ export default App;</pre>
 
     <!-- 8. COMPLETE WORKFLOW -->
     <div class="section-label">08 &nbsp; Complete Workflow</div>
-    <h2 class="section-title">The End‑to‑End Journey — Step by Step</h2>
+    <h2 class="section-title">The End-to-End Journey - Step by Step</h2>
 
     <div class="diagram-wrap">
-        <div class="diagram-title">FIGURE 8.8‑B · The Complete To‑Do dApp Development Workflow</div>
+        <div class="diagram-title">FIGURE 8.8-B · The Complete To-Do dApp Development Workflow</div>
         <pre>
 ┌─────────────────────────────────────────────────────────────────────────────┐
 │  STEP 1              STEP 2              STEP 3              STEP 4          │
@@ -1310,12 +1310,12 @@ export default App;</pre>
 │                        connects to MST    blockchain app      for GitHub     │
 └─────────────────────────────────────────────────────────────────────────────┘
         </pre>
-        <div class="diagram-caption">Eight steps from empty folder to a deployed, functional, full‑stack dApp on the MST Testnet.</div>
+        <div class="diagram-caption">Eight steps from empty folder to a deployed, functional, full-stack dApp on the MST Testnet.</div>
     </div>
 
     <!-- 9. ASSESSMENT PREP -->
     <div class="section-label">09 &nbsp; Assessment Preparation</div>
-    <h2 class="section-title">Top Facts — Know These Cold</h2>
+    <h2 class="section-title">Top Facts - Know These Cold</h2>
     <div class="feature-list">
         <div class="feature-item"><div class="feature-num" style="background:var(--ink-3);">01</div><div class="feature-content"><div class="feature-title">The complete dApp stack: Solidity (contract) → Hardhat (compile/test/deploy) → ethers.js (interact) → React (frontend).</div></div></div>
         <div class="feature-item"><div class="feature-num" style="background:var(--ink-3);">02</div><div class="feature-content"><div class="feature-title">Events (TaskCreated, TaskToggled) enable the frontend to react to blockchain state changes without polling.</div></div></div>
@@ -1326,7 +1326,7 @@ export default App;</pre>
     <!-- 10. ASSESSMENT -->
     <section class="assessment-section">
         <div class="assessment-header">
-            <h2>📝 Sub-Module 8.8 Assessment — Mini Project</h2>
+            <h2>📝 Sub-Module 8.8 Assessment - Mini Project</h2>
             <div class="marks-total-badge"><div class="num">30</div><div class="label">Total Marks</div></div>
         </div>
         <div class="assessment-body">
@@ -1334,7 +1334,7 @@ export default App;</pre>
 
             <div class="question-block">
                 <div class="q-header"><div class="q-badge">R1</div><div class="q-meta"><span class="q-type">Deliverable</span><span class="q-diff medium">Required</span><span class="q-marks">10 marks</span></div></div>
-                <div class="q-text"><strong>Smart Contract (TodoList.sol) — 10 marks</strong><br>Submit the complete Solidity contract with the Task struct, createTask, toggleCompleted, getTaskCount, and getAllTasks functions. Must include events and proper input validation. The contract must compile successfully with Solidity 0.8.20.</div>
+                <div class="q-text"><strong>Smart Contract (TodoList.sol) - 10 marks</strong><br>Submit the complete Solidity contract with the Task struct, createTask, toggleCompleted, getTaskCount, and getAllTasks functions. Must include events and proper input validation. The contract must compile successfully with Solidity 0.8.20.</div>
                 <div class="answer-box">
                     <div class="answer-box-label">📊 Grading Rubric</div>
                     <p><strong>4 marks:</strong> Correct Task struct and state variable (array).<br><strong>3 marks:</strong> createTask with validation and event emission.<br><strong>2 marks:</strong> toggleCompleted with existence check and event emission.<br><strong>1 mark:</strong> getTaskCount and getAllTasks view functions.</p>
@@ -1343,16 +1343,16 @@ export default App;</pre>
 
             <div class="question-block">
                 <div class="q-header"><div class="q-badge">R2</div><div class="q-meta"><span class="q-type">Deliverable</span><span class="q-diff medium">Required</span><span class="q-marks">8 marks</span></div></div>
-                <div class="q-text"><strong>Test Suite (TodoList.test.js) — 8 marks</strong><br>Submit a Hardhat test file with at least 12 tests covering deployment, task creation (including edge cases like empty content), task toggling (including non‑existent task ID), and event emission verification.</div>
+                <div class="q-text"><strong>Test Suite (TodoList.test.js) - 8 marks</strong><br>Submit a Hardhat test file with at least 12 tests covering deployment, task creation (including edge cases like empty content), task toggling (including non-existent task ID), and event emission verification.</div>
                 <div class="answer-box">
                     <div class="answer-box-label">📊 Grading Rubric</div>
-                    <p><strong>2 marks:</strong> Deployment tests (initial state).<br><strong>3 marks:</strong> createTask tests (happy path + empty string + long string + event).<br><strong>2 marks:</strong> toggleCompleted tests (toggle + double toggle + non‑existent ID + event).<br><strong>1 mark:</strong> getAllTasks test verifying correct ordering.</p>
+                    <p><strong>2 marks:</strong> Deployment tests (initial state).<br><strong>3 marks:</strong> createTask tests (happy path + empty string + long string + event).<br><strong>2 marks:</strong> toggleCompleted tests (toggle + double toggle + non-existent ID + event).<br><strong>1 mark:</strong> getAllTasks test verifying correct ordering.</p>
                 </div>
             </div>
 
             <div class="question-block">
                 <div class="q-header"><div class="q-badge">R3</div><div class="q-meta"><span class="q-type">Deliverable</span><span class="q-diff medium">Required</span><span class="q-marks">6 marks</span></div></div>
-                <div class="q-text"><strong>Deployment to MST Testnet — 6 marks</strong><br>Submit the deployment script, the deployed contract address on MST Testnet (Chain ID 4545), and a link to the verified contract on MSTScan. The contract must be verified so source code is visible on the explorer.</div>
+                <div class="q-text"><strong>Deployment to MST Testnet - 6 marks</strong><br>Submit the deployment script, the deployed contract address on MST Testnet (Chain ID 4545), and a link to the verified contract on MSTScan. The contract must be verified so source code is visible on the explorer.</div>
                 <div class="answer-box">
                     <div class="answer-box-label">📊 Grading Rubric</div>
                     <p><strong>2 marks:</strong> Correct deployment script.<br><strong>2 marks:</strong> Successful deployment to MST Testnet (contract address provided).<br><strong>2 marks:</strong> Contract verified on MSTScan (source code visible).</p>
@@ -1361,7 +1361,7 @@ export default App;</pre>
 
             <div class="question-block">
                 <div class="q-header"><div class="q-badge">R4</div><div class="q-meta"><span class="q-type">Deliverable</span><span class="q-diff hard">Required</span><span class="q-marks">6 marks</span></div></div>
-                <div class="q-text"><strong>React Frontend — 6 marks</strong><br>Submit the complete React frontend built with Vite that includes: wallet connection (BridgeKey or MetaMask), display of all tasks with completion status, a form to add new tasks, and the ability to toggle task completion. The frontend must be connected to your deployed MST Testnet contract.</div>
+                <div class="q-text"><strong>React Frontend - 6 marks</strong><br>Submit the complete React frontend built with Vite that includes: wallet connection (BridgeKey or MetaMask), display of all tasks with completion status, a form to add new tasks, and the ability to toggle task completion. The frontend must be connected to your deployed MST Testnet contract.</div>
                 <div class="answer-box">
                     <div class="answer-box-label">📊 Grading Rubric</div>
                     <p><strong>2 marks:</strong> Wallet connection and account display.<br><strong>2 marks:</strong> Task display with correct completion status and styling.<br><strong>2 marks:</strong> Add task form and toggle functionality with transaction handling.</p>
@@ -1382,7 +1382,7 @@ export default App;</pre>
 
     <!-- 11. SUBMISSION CHECKLIST -->
     <div class="section-label" style="margin-top:52px;">10 &nbsp; Submission Checklist</div>
-    <h2 class="section-title">Before You Submit — The Final Review</h2>
+    <h2 class="section-title">Before You Submit - The Final Review</h2>
     <div class="feature-list">
         <div class="feature-item"><div class="feature-num" style="background:var(--green);">✓</div><div class="feature-content"><div class="feature-title">All Solidity code compiles with 0.8.20 without warnings.</div></div></div>
         <div class="feature-item"><div class="feature-num" style="background:var(--green);">✓</div><div class="feature-content"><div class="feature-title">All 17 tests pass (or more, if you added extra edge cases).</div></div></div>
@@ -1394,10 +1394,10 @@ export default App;</pre>
 
     <!-- 12. GLOSSARY -->
     <div class="section-label" style="margin-top:52px;">11 &nbsp; Glossary</div>
-    <h2 class="section-title">Key Terms — Sub-Module 8.8</h2>
+    <h2 class="section-title">Key Terms - Sub-Module 8.8</h2>
     <div class="glossary-grid">
-        <div class="glossary-item"><div class="glossary-term">dApp</div><div class="glossary-def">Decentralized Application — a frontend (web/mobile) connected to a smart contract backend on a blockchain.</div></div>
-        <div class="glossary-item"><div class="glossary-term">ABI</div><div class="glossary-def">Application Binary Interface — a JSON file that describes a contract's functions and parameters, used by ethers.js to interact with deployed contracts.</div></div>
+        <div class="glossary-item"><div class="glossary-term">dApp</div><div class="glossary-def">Decentralized Application - a frontend (web/mobile) connected to a smart contract backend on a blockchain.</div></div>
+        <div class="glossary-item"><div class="glossary-term">ABI</div><div class="glossary-def">Application Binary Interface - a JSON file that describes a contract's functions and parameters, used by ethers.js to interact with deployed contracts.</div></div>
         <div class="glossary-item"><div class="glossary-term">BrowserProvider</div><div class="glossary-def">An ethers.js class that connects to the user's wallet (BridgeKey/MetaMask) via window.ethereum.</div></div>
         <div class="glossary-item"><div class="glossary-term">Signer</div><div class="glossary-def">An ethers.js object representing a wallet that can sign and send transactions to the blockchain.</div></div>
         <div class="glossary-item"><div class="glossary-term">waitForDeployment</div><div class="glossary-def">A Hardhat method that waits until a contract deployment transaction is confirmed on the blockchain.</div></div>
@@ -1407,8 +1407,8 @@ export default App;</pre>
     </div>
 
     <div class="page-footer">
-        <p>MST Blockchain Academy — Professional Blockchain Developer Program</p>
-        <p>Module 8 · Sub-Module <strong>8.8</strong> of 8 · Next: Module 9 — Capstone Kickoff →</p>
+        <p>MST Blockchain Academy - Professional Blockchain Developer Program</p>
+        <p>Module 8 · Sub-Module <strong>8.8</strong> of 8 · Next: Module 9 - Capstone Kickoff →</p>
     </div>
 
 </body>

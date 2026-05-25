@@ -1,13 +1,13 @@
 
 
 <div class="module-badge">🎓 Module 13 &nbsp;·&nbsp; Sub-Module 13.5 of 5</div>
-<h1 class="module-title">Mini‑Project: Build a <span class="highlight">Weather Oracle</span></h1>
-<p class="module-subtitle">Put everything you've learned into practice. In this capstone‑style mini‑project, you'll build a complete, trustless weather oracle using MST's WASMify — writing Rust code, generating ZK proofs, deploying a Solidity consumer contract, and bringing real‑world temperature data on‑chain without trusting any single data source.</p>
+<h1 class="module-title">Mini-Project: Build a <span class="highlight">Weather Oracle</span></h1>
+<p class="module-subtitle">Put everything you've learned into practice. In this capstone-style mini-project, you'll build a complete, trustless weather oracle using MST's WASMify - writing Rust code, generating ZK proofs, deploying a Solidity consumer contract, and bringing real-world temperature data on-chain without trusting any single data source.</p>
 
 <div class="meta-bar">
   <div class="meta-chip">⏱ 30 Minutes</div>
   <div class="meta-chip purple">🎯 30 Marks</div>
-  <div class="meta-chip">📋 Project Submission (code that simulates external data feed on‑chain)</div>
+  <div class="meta-chip">📋 Project Submission (code that simulates external data feed on-chain)</div>
   <div class="meta-chip green">Phase 4 · Oracles &amp; WASMify</div>
 </div>
 
@@ -19,13 +19,13 @@
     <div class="obj-icon">🛠️</div>
     <div class="obj-text">
       <strong>Build a complete WASMify oracle pipeline from scratch</strong>
-      Design and implement the entire data flow — from fetching external weather data to generating a ZK proof to settling an on‑chain smart contract.
+      Design and implement the entire data flow - from fetching external weather data to generating a ZK proof to settling an on-chain smart contract.
     </div>
   </div>
   <div class="obj-card">
     <div class="obj-icon">🦀</div>
     <div class="obj-text">
-      <strong>Write a Rust‑based WASM module for deterministic computation</strong>
+      <strong>Write a Rust-based WASM module for deterministic computation</strong>
       Compile weather logic into WebAssembly and understand how to structure code for provable execution.
     </div>
   </div>
@@ -39,36 +39,66 @@
   <div class="obj-card">
     <div class="obj-icon">🧪</div>
     <div class="obj-text">
-      <strong>Test end‑to‑end with simulated weather data</strong>
-      Run the off‑chain executor, submit proofs, and observe the smart contract reacting — exactly as it would in production.
+      <strong>Test end-to-end with simulated weather data</strong>
+      Run the off-chain executor, submit proofs, and observe the smart contract reacting - exactly as it would in production.
     </div>
   </div>
 </div>
 
 <!-- 02 STORY -->
-<div class="section-label">02 &nbsp; Real‑World Introduction Story</div>
+<div class="section-label">02 &nbsp; Real-World Introduction Story</div>
 <h2 class="section-title">The Farmer, the Insurance, and the Blockchain Rain Gauge</h2>
 <div class="callout story">
   <div class="callout-label">📖 Story</div>
-  <p>In the arid fields of Marathwada, a farmer named Tukaram bought a blockchain‑based crop insurance policy. The policy promised a payout of ₹50,000 if the monsoon rainfall in his district fell below 400 mm by the end of September. The smart contract held the insurer's funds in escrow. The insurer had deployed a weather oracle that, every day, fetched official rainfall data from the Indian Meteorological Department's API, ran a WASM module to compute the cumulative rainfall, and submitted a ZK proof to the contract. The farmer didn't have to trust the insurer, the API, or even the oracle operator — the ZK proof guaranteed the computation was correct. On October 1st, the contract verified the final proof: rainfall was 387 mm. The payout of ₹50,000 was released to Tukaram's wallet within seconds. The gas cost for the entire oracle over three months? Less than ₹10 on MST.</p>
+  <p>In the arid fields of Marathwada, a farmer named Tukaram bought a blockchain-based crop insurance policy. The policy promised a payout of ₹50,000 if the monsoon rainfall in his district fell below 400 mm by the end of September. The smart contract held the insurer's funds in escrow. The insurer had deployed a weather oracle that, every day, fetched official rainfall data from the Indian Meteorological Department's API, ran a WASM module to compute the cumulative rainfall, and submitted a ZK proof to the contract. The farmer didn't have to trust the insurer, the API, or even the oracle operator - the ZK proof guaranteed the computation was correct. On October 1st, the contract verified the final proof: rainfall was 387 mm. The payout of ₹50,000 was released to Tukaram's wallet within seconds. The gas cost for the entire oracle over three months? Less than ₹10 on MST.</p>
 </div>
 
 <!-- 03 BACKGROUND & HISTORY -->
 <div class="section-label">03 &nbsp; Background &amp; History</div>
-<h2 class="section-title">Weather Oracles — The First Killer App for Trustless Data</h2>
-<p>Weather data has been one of the earliest and most compelling use cases for blockchain oracles. Agriculture, insurance, logistics, and energy trading all depend on accurate, tamper‑proof weather information. Traditional parametric insurance (payouts triggered by a predefined index, like rainfall amount) has existed for decades, but it relies on a central authority to certify the data. Blockchain changed that by enabling smart contracts to execute payouts automatically — but only if they could trust the incoming weather data.</p>
-<p>Early solutions used centralised oracles, but these introduced a single point of failure. Decentralised oracle networks like Chainlink added redundancy, yet they still required multiple trusted nodes and exposed raw data. WASMify, with its ZK‑proof approach, allowed a single execution of a complex rainfall computation to be verified on‑chain without any trust in the executor. This project simulates exactly that: you'll build a mini‑oracle that reads a simulated temperature file, checks if the average is below a threshold, and settles a contract — all trustlessly.</p>
+<h2 class="section-title">Weather Oracles - The First Killer App for Trustless Data</h2>
+<p>Weather data has been one of the earliest and most compelling use cases for blockchain oracles. Agriculture, insurance, logistics, and energy trading all depend on accurate, tamper-proof weather information. Traditional parametric insurance (payouts triggered by a predefined index, like rainfall amount) has existed for decades, but it relies on a central authority to certify the data. Blockchain changed that by enabling smart contracts to execute payouts automatically - but only if they could trust the incoming weather data.</p>
+<p>Early solutions used centralised oracles, but these introduced a single point of failure. Decentralised oracle networks like Chainlink added redundancy, yet they still required multiple trusted nodes and exposed raw data. WASMify, with its ZK-proof approach, allowed a single execution of a complex rainfall computation to be verified on-chain without any trust in the executor. This project simulates exactly that: you'll build a mini-oracle that reads a simulated temperature file, checks if the average is below a threshold, and settles a contract - all trustlessly.</p>
 
 <div class="highlight-strip">
-  <strong>Why this project matters:</strong> It's a perfect synthesis of blockchain, zero‑knowledge, and real‑world data. Completing it demonstrates you can design, code, and deploy a working oracle — a skill that top DeFi and insurance protocols actively seek.
+  <strong>Why this project matters:</strong> It's a perfect synthesis of blockchain, zero-knowledge, and real-world data. Completing it demonstrates you can design, code, and deploy a working oracle - a skill that top DeFi and insurance protocols actively seek.
+</div>
+
+<p><strong>The evolution of weather oracles:</strong> Weather oracle technology has progressed through distinct generations, each solving a different trust problem:</p>
+<div class="feature-list">
+  <div class="feature-item">
+    <div class="feature-num">1</div>
+    <div class="feature-content">
+      <div class="feature-title">Generation 1: Centralised API Oracles (2017-2019)</div>
+      <div class="feature-desc">A single server fetched weather data from an API (like OpenWeatherMap) and pushed it on-chain. The obvious problem: the operator could lie, manipulate data, or go offline. If the server went down during a critical monsoon measurement, the insurance contract had no data and no payout could be triggered.</div>
+    </div>
+  </div>
+  <div class="feature-item">
+    <div class="feature-num">2</div>
+    <div class="feature-content">
+      <div class="feature-title">Generation 2: Decentralised Oracle Networks (2020-2022)</div>
+      <div class="feature-desc">Chainlink and Band Protocol introduced networks of independent nodes that each fetched the same data and submitted it on-chain. The contract aggregated submissions (e.g., median of 7 nodes). This solved the single-point-of-failure problem but introduced new ones: high cost (7 nodes all paying gas), data exposure (all nodes see the raw API response), and a reliance on the honesty of a majority of nodes.</div>
+    </div>
+  </div>
+  <div class="feature-item">
+    <div class="feature-num">3</div>
+    <div class="feature-content">
+      <div class="feature-title">Generation 3: ZK-Proof Oracles (2023-present)</div>
+      <div class="feature-desc">WASMify and similar systems allow a single executor to fetch data, run a computation, and generate a zero-knowledge proof that the computation was performed correctly. The smart contract verifies the proof without needing to trust the executor, see the raw data, or pay for multiple nodes. This is what you are building in this project.</div>
+    </div>
+  </div>
+</div>
+
+<div class="callout key">
+    <div class="callout-label">🔑 Why India Needs Weather Oracles</div>
+    <p>India's agriculture sector employs over 42% of the workforce and contributes 18% of GDP, yet crop insurance penetration remains below 30%. The Pradhan Mantri Fasal Bima Yojana (PMFBY) scheme aims to cover more farmers, but claim settlement is slow because it relies on manual crop cutting experiments and subjective loss assessment. A blockchain-based weather oracle that automatically triggers payouts based on verifiable rainfall data could reduce settlement time from months to seconds. The Indian Meteorological Department (IMD) already publishes district-level rainfall data publicly - the missing piece is a trustless bridge from that data to on-chain insurance contracts. That bridge is exactly what WASMify provides.</p>
 </div>
 
 <!-- 04 BEGINNER‑FRIENDLY EXPLANATION -->
-<div class="section-label">04 &nbsp; Beginner‑Friendly Explanation</div>
-<h2 class="section-title">The Oracle You're Building — An Automatic Rainfall Judge</h2>
+<div class="section-label">04 &nbsp; Beginner-Friendly Explanation</div>
+<h2 class="section-title">The Oracle You're Building - An Automatic Rainfall Judge</h2>
 <div class="callout analogy">
   <div class="callout-label">🌧️ The Analogy</div>
-  <p>Imagine you're an umpire who must decide if a cricket match is rained out. But instead of looking at the sky yourself, you have a locked box. The box contains a thermometer and a calculator. The box can be opened, measurements taken, and then it prints a signed note saying "Rainfall was 387 mm — below 400 mm." The signature can't be forged. You never saw the raw data, but you trust the math. That's your WASM module. The signed note is the ZK proof. The umpire is the smart contract. This project teaches you to build that locked box.</p>
+  <p>Imagine you're an umpire who must decide if a cricket match is rained out. But instead of looking at the sky yourself, you have a locked box. The box contains a thermometer and a calculator. The box can be opened, measurements taken, and then it prints a signed note saying "Rainfall was 387 mm - below 400 mm." The signature can't be forged. You never saw the raw data, but you trust the math. That's your WASM module. The signed note is the ZK proof. The umpire is the smart contract. This project teaches you to build that locked box.</p>
 </div>
 <p>You'll create a simple "weather station" that checks if the average temperature of a shipment or a crop season stayed below a critical threshold. The project will simulate the temperature data, prove the average is below the limit, and release escrowed funds on MST.</p>
 
@@ -77,28 +107,28 @@
     <div class="w5-label-cell"><div class="w5-letter">①</div><div class="w5-word">DATA</div></div>
     <div class="w5-content">
       <div class="w5-q">Where does the temperature data come from?</div>
-      <div class="w5-a">For this project, you'll use a <strong>simulated JSON file</strong> containing an array of temperature readings (one per minute for a 48‑hour period). In a real deployment, this would come from IoT sensors or a trusted weather API. The WASM module will read this file as input.</div>
+      <div class="w5-a">For this project, you'll use a <strong>simulated JSON file</strong> containing an array of temperature readings (one per minute for a 48-hour period). In a real deployment, this would come from IoT sensors or a trusted weather API. The WASM module will read this file as input.</div>
     </div>
   </div>
   <div class="w5-row">
     <div class="w5-label-cell"><div class="w5-letter">②</div><div class="w5-word">COMPUTE</div></div>
     <div class="w5-content">
       <div class="w5-q">What does the WASM module do?</div>
-      <div class="w5-a">It takes the temperature array, computes the <strong>average temperature</strong>, and checks if it's below a threshold (e.g., 8°C for a cold‑chain vaccine). It returns <code>1</code> (true) if the condition is met, or <code>0</code> (false). This is a deterministic, provable computation.</div>
+      <div class="w5-a">It takes the temperature array, computes the <strong>average temperature</strong>, and checks if it's below a threshold (e.g., 8°C for a cold-chain vaccine). It returns <code>1</code> (true) if the condition is met, or <code>0</code> (false). This is a deterministic, provable computation.</div>
     </div>
   </div>
   <div class="w5-row">
     <div class="w5-label-cell"><div class="w5-letter">③</div><div class="w5-word">PROVE</div></div>
     <div class="w5-content">
       <div class="w5-q">How is the ZK proof generated?</div>
-      <div class="w5-a">You'll use a simulated ZK prover (or a real one like RISC Zero if your hardware permits). The prover takes the WASM binary and the temperature data, executes the module, and produces a <strong>proof</strong> and the <strong>public output</strong> (1 or 0). For this project, we'll provide a simple Node.js script that simulates proof generation by hashing the output — you can replace it with a real prover later.</div>
+      <div class="w5-a">You'll use a simulated ZK prover (or a real one like RISC Zero if your hardware permits). The prover takes the WASM binary and the temperature data, executes the module, and produces a <strong>proof</strong> and the <strong>public output</strong> (1 or 0). For this project, we'll provide a simple Node.js script that simulates proof generation by hashing the output - you can replace it with a real prover later.</div>
     </div>
   </div>
   <div class="w5-row">
     <div class="w5-label-cell"><div class="w5-letter">④</div><div class="w5-word">VERIFY</div></div>
     <div class="w5-content">
       <div class="w5-q">How does the MST contract use the proof?</div>
-      <div class="w5-a">A Solidity consumer contract calls the WASMify Verifier contract with the proof and the claimed output. If valid, it executes the business logic — for example, releasing an escrowed payment to a farmer or certifying a shipment. The entire verification costs about ₹0.024 on MST.</div>
+      <div class="w5-a">A Solidity consumer contract calls the WASMify Verifier contract with the proof and the claimed output. If valid, it executes the business logic - for example, releasing an escrowed payment to a farmer or certifying a shipment. The entire verification costs about ₹0.024 on MST.</div>
     </div>
   </div>
 </div>
@@ -108,7 +138,7 @@
 <h2 class="section-title">The Complete Data Flow</h2>
 
 <div class="diagram-wrap">
-  <div class="diagram-title">FIGURE 13.5‑A · Weather Oracle Architecture</div>
+  <div class="diagram-title">FIGURE 13.5-A · Weather Oracle Architecture</div>
   <pre>  ┌───────────────────────────────────────────────────────────┐
   │                    OFF‑CHAIN (Your Laptop)                 │
   │                                                            │
@@ -142,11 +172,11 @@
   │  └─────────────────────────────────────────────────────┘  │
   └───────────────────────────────────────────────────────────┘
   </pre>
-  <div class="diagram-caption">The off‑chain world computes and proves; the on‑chain world verifies and acts. No trust required.</div>
+  <div class="diagram-caption">The off-chain world computes and proves; the on-chain world verifies and acts. No trust required.</div>
 </div>
 
 <!-- 06 TECHNICAL DEEP DIVE: STEP‑BY‑STEP IMPLEMENTATION -->
-<div class="section-label">06 &nbsp; Technical Deep Dive — Implementation</div>
+<div class="section-label">06 &nbsp; Technical Deep Dive - Implementation</div>
 <h2 class="section-title">Let's Build the Weather Oracle Together</h2>
 
 <h3 style="font-size:18px; font-weight:700; margin:20px 0 8px; color:var(--ink);">Step 1: Write the WASM Module in Rust</h3>
@@ -223,7 +253,7 @@ contract WeatherOracle {
 <pre style="background:var(--surface); border:1px solid var(--border); border-radius:var(--radius-sm); padding:12px 16px; font-family:var(--mono); font-size:13px; color:var(--ink-2); line-height:1.7; margin:12px 0;">npx hardhat run scripts/deploy.js --network mst_testnet
 </pre>
 
-<h3 style="font-size:18px; font-weight:700; margin:20px 0 8px; color:var(--ink);">Step 6: Submit the Proof from the Off‑Chain Script</h3>
+<h3 style="font-size:18px; font-weight:700; margin:20px 0 8px; color:var(--ink);">Step 6: Submit the Proof from the Off-Chain Script</h3>
 <p>Modify <code>prover.js</code> to include ethers.js and send a transaction to the deployed contract with the proof and result.</p>
 <pre style="background:var(--surface); border:1px solid var(--border); border-radius:var(--radius-sm); padding:12px 16px; font-family:var(--mono); font-size:13px; color:var(--ink-2); line-height:1.7; margin:12px 0;">const contract = new ethers.Contract(oracleAddress, abi, wallet);
 const tx = await contract.settle(proof, result);
@@ -232,7 +262,7 @@ console.log("Settled! Tx:", tx.hash);
 </pre>
 
 <div class="diagram-wrap">
-  <div class="diagram-title">FIGURE 13.5‑B · End‑to‑End Sequence</div>
+  <div class="diagram-title">FIGURE 13.5-B · End-to-End Sequence</div>
   <pre>  Off‑Chain Server                        MST Smart Contract
   ──────────────                         ───────────────────
   1. Read temperature JSON
@@ -243,11 +273,11 @@ console.log("Settled! Tx:", tx.hash);
                                            → transfer payout
                                         7. Emit PayoutReleased
   </pre>
-  <div class="diagram-caption">All steps are automated. In a production system, the off‑chain server runs periodically (e.g., end of season) triggered by a cron job or an event listener.</div>
+  <div class="diagram-caption">All steps are automated. In a production system, the off-chain server runs periodically (e.g., end of season) triggered by a cron job or an event listener.</div>
 </div>
 
 <!-- 07 INTERACTIVE BUILD‑ALONG -->
-<div class="section-label">07 &nbsp; Interactive Build‑Along</div>
+<div class="section-label">07 &nbsp; Interactive Build-Along</div>
 <h2 class="section-title">Click Each Step for Detailed Guidance</h2>
 
 <details>
@@ -304,13 +334,69 @@ npm install hardhat ethers dotenv
     <tr><th>Operation</th><th>Ethereum Cost (₹)</th><th>MST Cost (₹)</th></tr>
   </thead>
   <tbody>
-    <tr><td>Deploy WeatherOracle</td><td>₹5,000–₹10,000</td><td>₹0.03</td></tr>
+    <tr><td>Deploy WeatherOracle</td><td>₹5,000-₹10,000</td><td>₹0.03</td></tr>
     <tr><td>Submit proof (250k gas)</td><td>₹2,925</td><td>₹0.024</td></tr>
     <tr><td>Total for 100 settlements (yearly)</td><td>₹2,97,000</td><td>₹2.43</td></tr>
   </tbody>
 </table>
 <div class="highlight-strip">
-  <strong>MST makes micro‑insurance viable.</strong> On Ethereum, deploying and running this oracle for a single policy would cost more than the premium. On MST, it's practically free.
+  <strong>MST makes micro-insurance viable.</strong> On Ethereum, deploying and running this oracle for a single policy would cost more than the premium. On MST, it's practically free.
+</div>
+
+<!-- 08B EXTENDED USE CASES -->
+<div class="section-label">08B &nbsp; Extended Use Cases Beyond Insurance</div>
+<h2 class="section-title">Where Else Can a Weather Oracle Be Used?</h2>
+<p>The weather oracle pattern you are building is not limited to crop insurance. The same architecture - fetch external data, compute a result off-chain, prove it with ZK, settle on-chain - can be applied to dozens of real-world scenarios:</p>
+
+<div class="feature-list">
+  <div class="feature-item">
+    <div class="feature-num">🚚</div>
+    <div class="feature-content">
+      <div class="feature-title">Cold-Chain Logistics Verification</div>
+      <div class="feature-desc">Pharmaceutical companies must maintain vaccines at 2-8 degrees Celsius during transport. IoT sensors record temperatures every minute. Your WASM module checks if the average temperature stayed within range. If it did, the smart contract releases payment to the logistics provider. If it didn't, the shipment is flagged and payment is withheld. Companies like Zydus Cadila and Serum Institute could use this for transparent, automated compliance.</div>
+    </div>
+  </div>
+  <div class="feature-item">
+    <div class="feature-num">⚡</div>
+    <div class="feature-content">
+      <div class="feature-title">Solar Energy Production Certificates</div>
+      <div class="feature-desc">India's National Solar Mission targets 500 GW of renewable energy by 2030. Solar farms need to prove their production to earn Renewable Energy Certificates (RECs). A weather oracle that reads solar irradiance data and proves the expected energy output was met can automate REC issuance on-chain, eliminating manual audits and paper certificates.</div>
+    </div>
+  </div>
+  <div class="feature-item">
+    <div class="feature-num">🌊</div>
+    <div class="feature-content">
+      <div class="feature-title">Flood Warning and Relief Disbursement</div>
+      <div class="feature-desc">During monsoon season, districts in Bihar, Assam, and Kerala regularly face flooding. A weather oracle monitoring river water levels (from Central Water Commission data) can trigger automatic relief fund disbursement when water levels cross a critical threshold. The ZK proof ensures the measurement is genuine, preventing fraudulent claims.</div>
+    </div>
+  </div>
+  <div class="feature-item">
+    <div class="feature-num">🏟️</div>
+    <div class="feature-content">
+      <div class="feature-title">Event Cancellation Insurance</div>
+      <div class="feature-desc">Outdoor events (IPL matches, festivals, weddings) can be insured against bad weather. If rainfall exceeds 50mm on the event date, the policy pays out. The oracle reads rainfall data from the nearest IMD station, proves the computation, and settles the contract. No claims adjuster needed.</div>
+    </div>
+  </div>
+</div>
+
+<p><strong>Design considerations for production oracles:</strong> The mini-project you are building uses simulated data and a fake proof. In a production system, you would need to address several additional concerns:</p>
+<div class="table-wrap">
+    <table>
+        <thead><tr><th>Concern</th><th>Mini-Project (Simulation)</th><th>Production System</th></tr></thead>
+        <tbody>
+            <tr><td><strong>Data source</strong></td><td>Local JSON file</td><td>IMD API, IoT sensors, or satellite feeds with authentication</td></tr>
+            <tr><td><strong>Proof generation</strong></td><td>Hash of result (fake)</td><td>RISC Zero, zkWASM, or SP1 generating real ZK-SNARKs</td></tr>
+            <tr><td><strong>Data freshness</strong></td><td>Static file</td><td>Timestamp validation ensuring data is within acceptable window</td></tr>
+            <tr><td><strong>Multiple data sources</strong></td><td>Single source</td><td>Median of 3+ sources to prevent manipulation</td></tr>
+            <tr><td><strong>Proof cost</strong></td><td>Near zero</td><td>~$0.01-$0.10 per proof depending on computation complexity</td></tr>
+            <tr><td><strong>Fallback mechanism</strong></td><td>None</td><td>Timeout + manual settlement if oracle fails to submit within deadline</td></tr>
+        </tbody>
+    </table>
+</div>
+
+<div class="callout warning">
+    <div class="callout-label">⚠️ Security Consideration: The Oracle Problem Is Not Fully Solved</div>
+    <p>Even with ZK proofs, your oracle is only as trustworthy as the data source. The ZK proof guarantees that the computation on the input data was correct - it does not guarantee that the input data itself is accurate. If the API you fetch from is compromised or returns incorrect data, the proof will still validate, but the result will be wrong. In production, use multiple independent data sources and implement outlier detection in your WASM module to reject data that is statistically implausible (e.g., a temperature reading of 80 degrees C in Delhi).</p>
 </div>
 
 <!-- 09 COMMON PITFALLS -->
@@ -321,13 +407,13 @@ npm install hardhat ethers dotenv
     <div class="feature-num" style="background: var(--red);">⚠️</div>
     <div class="feature-content">
       <div class="feature-title">WASM module returns wrong result</div>
-      <div class="feature-desc">Double‑check that you're using the correct data types (f32) and that the array length matches. Test the module locally with a small array before proving.</div>
+      <div class="feature-desc">Double-check that you're using the correct data types (f32) and that the array length matches. Test the module locally with a small array before proving.</div>
     </div>
   </div>
   <div class="feature-item">
     <div class="feature-num" style="background: var(--red);">⚠️</div>
     <div class="feature-content">
-      <div class="feature-title">Proof verification fails on‑chain</div>
+      <div class="feature-title">Proof verification fails on-chain</div>
       <div class="feature-desc">Ensure the proof format matches what the Verifier expects. In the simulated version, your contract's <code>verify</code> function must mimic the prover's logic. In production, use the standard verifier contract.</div>
     </div>
   </div>
@@ -345,17 +431,23 @@ npm install hardhat ethers dotenv
 
 <!-- GLOSSARY -->
 <div class="section-label" style="margin-top:52px;">11 &nbsp; Glossary</div>
-<h2 class="section-title">Key Terms — Sub-Module 13.5</h2>
+<h2 class="section-title">Key Terms - Sub-Module 13.5</h2>
 <div class="glossary-grid">
-  <div class="glossary-item"><div class="glossary-term">WASM Module</div><div class="glossary-def">A compiled WebAssembly binary that performs a deterministic computation. Used in WASMify as the off‑chain logic to be proven.</div></div>
-  <div class="glossary-item"><div class="glossary-term">ZK Prover</div><div class="glossary-def">Software that generates a zero‑knowledge proof of a computation. In this project, simulated with a hash; in production, a real prover like RISC Zero.</div></div>
-  <div class="glossary-item"><div class="glossary-term">Consumer Contract</div><div class="glossary-def">The on‑chain Solidity contract that consumes the verified data and executes business logic (e.g., insurance payout).</div></div>
+  <div class="glossary-item"><div class="glossary-term">WASM Module</div><div class="glossary-def">A compiled WebAssembly binary that performs a deterministic computation. Used in WASMify as the off-chain logic to be proven.</div></div>
+  <div class="glossary-item"><div class="glossary-term">ZK Prover</div><div class="glossary-def">Software that generates a zero-knowledge proof of a computation. In this project, simulated with a hash; in production, a real prover like RISC Zero.</div></div>
+  <div class="glossary-item"><div class="glossary-term">Consumer Contract</div><div class="glossary-def">The on-chain Solidity contract that consumes the verified data and executes business logic (e.g., insurance payout).</div></div>
   <div class="glossary-item"><div class="glossary-term">Parametric Insurance</div><div class="glossary-def">An insurance model where payout is automatically triggered by a predefined index (like rainfall) rather than an assessed loss.</div></div>
+  <div class="glossary-item"><div class="glossary-term">Deterministic Computation</div><div class="glossary-def">A computation that always produces the same output for the same input, regardless of when or where it is executed. Required for ZK-provable WASM modules.</div></div>
+  <div class="glossary-item"><div class="glossary-term">IMD (Indian Meteorological Department)</div><div class="glossary-def">India's official weather authority that publishes district-level rainfall, temperature, and forecast data. A potential data source for production weather oracles.</div></div>
+  <div class="glossary-item"><div class="glossary-term">Cold-Chain Monitoring</div><div class="glossary-def">The process of tracking temperature conditions during the transport and storage of temperature-sensitive goods like vaccines and food. A key use case for IoT-connected weather oracles.</div></div>
+  <div class="glossary-item"><div class="glossary-term">Escrow</div><div class="glossary-def">A smart contract pattern where funds are held by the contract and released only when predefined conditions are met (e.g., proof verification). Used in the WeatherOracle to hold the insurer's payout.</div></div>
+  <div class="glossary-item"><div class="glossary-term">Data Freshness</div><div class="glossary-def">The requirement that oracle data be recent enough to be relevant. Production oracles include timestamp checks to reject stale data that could be manipulated or irrelevant.</div></div>
+  <div class="glossary-item"><div class="glossary-term">Outlier Detection</div><div class="glossary-def">A technique in the WASM module that rejects individual data points that are statistically implausible (e.g., 80 degrees C in winter), protecting against corrupted or manipulated input data.</div></div>
 </div>
 
 <div class="page-footer">
-  <p>MasterStroke Academy — Professional Blockchain Developer Program</p>
-  <p>Module 13 · Sub-Module <strong>13.5</strong> of 5 &nbsp;·&nbsp; End of Module 13 — Oracles &amp; WASMify Complete ✅</p>
+  <p>MasterStroke Academy - Professional Blockchain Developer Program</p>
+  <p>Module 13 · Sub-Module <strong>13.5</strong> of 5 &nbsp;·&nbsp; End of Module 13 - Oracles &amp; WASMify Complete ✅</p>
 </div>
 
 

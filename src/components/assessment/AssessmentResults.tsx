@@ -2,8 +2,10 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
-import { CheckCircle2, XCircle, Clock, Award, CheckSquare, AlertTriangle, Play, HelpCircle } from "lucide-react";
+import { useRouter } from "next/navigation";
+import { CheckCircle2, XCircle, Clock, Award, CheckSquare, AlertTriangle, Play, HelpCircle, ArrowRight } from "lucide-react";
 import type { AssessmentQuestion, QuestionResult, UserAnswer } from "@/lib/types";
+import { playSuccess, playError } from "@/lib/sounds";
 
 interface StoredPayload {
   results: QuestionResult[];
@@ -29,11 +31,30 @@ export function AssessmentResults({
   subSlug: string;
 }) {
   const [data, setData] = useState<StoredPayload | null>(null);
+  const [countdown, setCountdown] = useState(10);
+  const router = useRouter();
 
   useEffect(() => {
     const raw = sessionStorage.getItem(`assessment-${moduleId}-${subSlug}`);
-    if (raw) setData(JSON.parse(raw));
+    if (raw) {
+      const parsed = JSON.parse(raw) as StoredPayload;
+      setData(parsed);
+      setTimeout(() => {
+        if (parsed.passed) playSuccess();
+        else playError();
+      }, 300);
+    }
   }, [moduleId, subSlug]);
+
+  useEffect(() => {
+    if (!data?.passed) return;
+    if (countdown <= 0) {
+      router.push("/dashboard/student");
+      return;
+    }
+    const t = setTimeout(() => setCountdown((c) => c - 1), 1000);
+    return () => clearTimeout(t);
+  }, [data?.passed, countdown, router]);
 
   if (!data) {
     return (
@@ -60,6 +81,30 @@ export function AssessmentResults({
   return (
     <div className="flex h-full flex-col overflow-y-auto bg-[var(--bg)] text-[var(--text)] transition-colors duration-250">
       
+      {/* Auto-redirect banner for passed assessments */}
+      {data.passed && (
+        <div className="border-b border-green-500/20 bg-green-500/10 px-6 py-3 text-center">
+          <p className="text-sm font-semibold text-green-600 flex items-center justify-center gap-2">
+            <CheckCircle2 size={16} />
+            Assessment Passed! Redirecting to Dashboard in {countdown}s...
+            <Link
+              href="/dashboard/student"
+              className="ml-2 inline-flex items-center gap-1 rounded-full bg-green-500 px-4 py-1 text-xs font-bold text-white hover:bg-green-600 transition"
+              onClick={() => setCountdown(-1)}
+            >
+              Go Now <ArrowRight size={12} />
+            </Link>
+            <button
+              type="button"
+              onClick={() => setCountdown(9999)}
+              className="ml-1 text-xs text-green-600 underline hover:no-underline"
+            >
+              Stay here
+            </button>
+          </p>
+        </div>
+      )}
+
       {/* HEADER SECTION */}
       <header className="border-b border-[var(--border)] bg-[var(--bg-muted)] px-6 py-8 text-center">
         <span className="inline-flex items-center gap-1.5 rounded-full bg-mst-red/10 px-3.5 py-1 text-xs font-bold text-mst-red uppercase tracking-wider mb-3">
@@ -92,7 +137,7 @@ export function AssessmentResults({
               {data.percentage}%
             </p>
             <p className="mt-1 text-[11px] font-semibold text-[var(--text-muted)]">
-              Threshold: 70% to Pass
+              Threshold: 75% to Pass
             </p>
           </div>
 
@@ -127,12 +172,28 @@ export function AssessmentResults({
 
       {/* QUICK LINK CONTROLS */}
       <div className="flex flex-wrap justify-center gap-3 border-b border-[var(--border)] bg-[var(--bg)] px-6 py-4">
+        {data.passed && (
+          <Link
+            href="/dashboard/student"
+            className="rounded-full bg-gradient-to-r from-green-500 to-emerald-600 px-6 py-2.5 text-xs font-bold text-white transition shadow-sm hover:shadow-green-500/30"
+          >
+            Go to Dashboard
+          </Link>
+        )}
         <Link
           href={`/module/${moduleId}/${subSlug}/assessment/review`}
           className="rounded-full bg-mst-red hover:bg-mst-red-dark px-6 py-2.5 text-xs font-bold text-white transition shadow-sm"
         >
-          Review Questions Mode
+          Review Questions
         </Link>
+        {!data.passed && (
+          <Link
+            href={`/module/${moduleId}/${subSlug}/assessment`}
+            className="rounded-full border-2 border-amber-500 bg-amber-500/10 hover:bg-amber-500/20 px-6 py-2.5 text-xs font-bold transition text-amber-600"
+          >
+            Retake Assessment
+          </Link>
+        )}
         <Link
           href={`/module/${moduleId}/${subSlug}`}
           className="rounded-full border border-[var(--border-strong)] bg-[var(--surface-2)] hover:bg-[var(--bg-muted)] px-6 py-2.5 text-xs font-bold transition text-[var(--text)]"
@@ -143,13 +204,13 @@ export function AssessmentResults({
           href={`/module/${moduleId}`}
           className="rounded-full border border-[var(--border-strong)] bg-[var(--surface-2)] hover:bg-[var(--bg-muted)] px-6 py-2.5 text-xs font-bold transition text-[var(--text)]"
         >
-          Back to Module
+          Module Overview
         </Link>
         <Link
-          href="/learn"
+          href="/dashboard/student"
           className="rounded-full border border-[var(--border-strong)] bg-[var(--surface-2)] hover:bg-[var(--bg-muted)] px-6 py-2.5 text-xs font-bold transition text-[var(--text)]"
         >
-          Back to Phase Tree
+          Dashboard
         </Link>
       </div>
 

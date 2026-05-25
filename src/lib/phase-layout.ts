@@ -1,68 +1,73 @@
 import type { ModuleMeta } from "./types";
 
-/** Avax-style tree positions per phase — progression path with branches */
+const CARD_WIDTH = 280;
+
+/** Tree positions per phase with generous spacing to prevent card overlap */
 export function getPhaseTreeLayout(
   modules: ModuleMeta[],
   phaseIndex: number
 ): { id: string; x: number; y: number }[] {
-  const ids = modules.map((m) => `mod-${m.id}`);
-  const n = ids.length;
-
+  const n = modules.length;
   if (n === 0) return [];
 
-  // Phase 1 (4 mods): funnel — 1 top, 2 middle, 1 bottom converge
-  if (n === 4 && phaseIndex === 0) {
-    return [
-      { id: ids[0], x: 400, y: 0 },
-      { id: ids[1], x: 220, y: 180 },
-      { id: ids[2], x: 580, y: 180 },
-      { id: ids[3], x: 400, y: 360 },
-    ];
+  // Phase 1 (6 modules): 2 columns, 3 rows
+  if (phaseIndex === 0 && n === 6) {
+    const cols = [0, 400];
+    const rows = [0, 280, 560];
+    return modules.map((m, i) => ({
+      id: `mod-${m.id}`,
+      x: cols[i % 2],
+      y: rows[Math.floor(i / 2)],
+    }));
   }
 
-  // Phase 2 (4 mods): linear spine with side branches
-  if (n === 4 && phaseIndex === 1) {
-    return [
-      { id: ids[0], x: 400, y: 0 },
-      { id: ids[1], x: 400, y: 180 },
-      { id: ids[2], x: 200, y: 400 },
-      { id: ids[3], x: 600, y: 400 },
-    ];
+  // Phase 2 (4 modules): 2 columns, 2 rows (inset for visual variety)
+  if (phaseIndex === 1 && n === 4) {
+    const cols = [100, 500];
+    const rows = [0, 280];
+    return modules.map((m, i) => ({
+      id: `mod-${m.id}`,
+      x: cols[i % 2],
+      y: rows[Math.floor(i / 2)],
+    }));
   }
 
-  // Phase 4 (4 mods): diamond merge pattern
-  if (n === 4 && phaseIndex === 3) {
-    return [
-      { id: ids[0], x: 400, y: 0 },
-      { id: ids[1], x: 220, y: 160 },
-      { id: ids[2], x: 580, y: 160 },
-      { id: ids[3], x: 400, y: 320 },
-    ];
+  // Phase 3 (9 modules): 3 columns, 3 rows
+  if (phaseIndex === 2 && n === 9) {
+    const cols = [0, 380, 760];
+    const rows = [0, 280, 560];
+    return modules.map((m, i) => ({
+      id: `mod-${m.id}`,
+      x: cols[i % 3],
+      y: rows[Math.floor(i / 3)],
+    }));
   }
 
-  // Phase 3 (9 modules): wider branching tree
-  if (n >= 7) {
-    const positions: { id: string; x: number; y: number }[] = [];
-    const cols = 3;
-    modules.forEach((m, i) => {
-      const row = Math.floor(i / cols);
-      const col = i % cols;
-      const offsetX = row % 2 === 0 ? 0 : 80;
-      positions.push({
-        id: `mod-${m.id}`,
-        x: 120 + col * 280 + offsetX,
-        y: row * 160,
-      });
-    });
-    return positions;
+  // Phase 4 (2 modules): single centered column
+  if (phaseIndex === 3 && n === 2) {
+    return modules.map((m, i) => ({
+      id: `mod-${m.id}`,
+      x: 200,
+      y: i * 280,
+    }));
   }
 
-  // Default: vertical path with slight zigzag
+  // Default fallback: 2 columns with proper spacing
   return modules.map((m, i) => ({
     id: `mod-${m.id}`,
-    x: 400 + (i % 2 === 0 ? -120 : 120),
-    y: i * 150,
+    x: (i % 2) * 400,
+    y: Math.floor(i / 2) * 280,
   }));
+}
+
+/** Compute the center x of a set of card positions (accounts for card width) */
+export function getLayoutCenterX(
+  positions: { x: number }[]
+): number {
+  if (positions.length === 0) return 0;
+  const minX = Math.min(...positions.map((p) => p.x));
+  const maxX = Math.max(...positions.map((p) => p.x));
+  return minX + (maxX + CARD_WIDTH - minX) / 2;
 }
 
 export function getPhaseEdges(
@@ -71,35 +76,53 @@ export function getPhaseEdges(
 ): { source: string; target: string }[] {
   const edges: { source: string; target: string }[] = [];
   const n = modules.length;
+  if (n < 2) return edges;
 
-  // Funnel / diamond for 4-module phases
-  if (n === 4 && (phaseIndex === 0 || phaseIndex === 3)) {
-    const [a, b, c, d] = modules.map((m) => `mod-${m.id}`);
+  const id = (i: number) => `mod-${modules[i].id}`;
+
+  // Phase 1 (6 modules, 2x3 grid): horizontal row links + vertical column links
+  if (phaseIndex === 0 && n === 6) {
     edges.push(
-      { source: a, target: b },
-      { source: a, target: c },
-      { source: b, target: d },
-      { source: c, target: d }
+      { source: id(0), target: id(1) },
+      { source: id(2), target: id(3) },
+      { source: id(4), target: id(5) },
+      { source: id(0), target: id(2) },
+      { source: id(2), target: id(4) },
+      { source: id(1), target: id(3) },
+      { source: id(3), target: id(5) },
     );
     return edges;
   }
 
-  // Phase 2: spine + branches
-  if (n === 4 && phaseIndex === 1) {
-    const [a, b, c, d] = modules.map((m) => `mod-${m.id}`);
+  // Phase 2 (4 modules, 2x2 grid): fan-out from top then converge
+  if (phaseIndex === 1 && n === 4) {
     edges.push(
-      { source: a, target: b },
-      { source: b, target: c },
-      { source: b, target: d }
+      { source: id(0), target: id(1) },
+      { source: id(0), target: id(2) },
+      { source: id(1), target: id(3) },
+      { source: id(2), target: id(3) },
     );
     return edges;
   }
 
+  // Phase 3 (9 modules, 3x3 grid): row links + column links
+  if (phaseIndex === 2 && n === 9) {
+    for (let row = 0; row < 3; row++) {
+      for (let col = 0; col < 2; col++) {
+        edges.push({ source: id(row * 3 + col), target: id(row * 3 + col + 1) });
+      }
+    }
+    for (let col = 0; col < 3; col++) {
+      for (let row = 0; row < 2; row++) {
+        edges.push({ source: id(row * 3 + col), target: id((row + 1) * 3 + col) });
+      }
+    }
+    return edges;
+  }
+
+  // Default: sequential chain
   for (let i = 0; i < n - 1; i++) {
-    edges.push({
-      source: `mod-${modules[i].id}`,
-      target: `mod-${modules[i + 1].id}`,
-    });
+    edges.push({ source: id(i), target: id(i + 1) });
   }
   return edges;
 }

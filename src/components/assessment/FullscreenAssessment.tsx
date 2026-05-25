@@ -3,14 +3,27 @@
 import { useState, useEffect, useCallback, useRef } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { X, ChevronLeft, ChevronRight, Clock } from "lucide-react";
+import {
+  X,
+  ChevronLeft,
+  ChevronRight,
+  Clock,
+  ShieldAlert,
+  AlertTriangle,
+  CheckCircle2,
+  Monitor,
+  EyeOff,
+  Clipboard,
+  Timer,
+  Lock,
+} from "lucide-react";
 import type { Assessment, AssessmentQuestion, UserAnswer } from "@/lib/types";
 import { scoreAssessment } from "@/lib/scoring";
 import { markAssessmentComplete, PASS_THRESHOLD } from "@/lib/progress";
 import { CodingWorkspace } from "./CodingWorkspace";
 import { useAuth } from "@/components/AuthProvider";
+import { playClick, playSelect, playWarning, playSubmit, playNavigate, playSuccess, playError } from "@/lib/sounds";
 
-// Intelligent coding question detector checking marks and file/script references
 function isCodingQuestion(q: AssessmentQuestion): boolean {
   if (["coding", "live_coding"].includes(q.type)) {
     return true;
@@ -24,7 +37,6 @@ function isCodingQuestion(q: AssessmentQuestion): boolean {
   return false;
 }
 
-// Calculate question-specific timer in seconds
 function getQuestionTimeLimit(q: AssessmentQuestion): number {
   if ((q as any).timeLimit) {
     const limit = (q as any).timeLimit;
@@ -42,25 +54,171 @@ function getQuestionTimeLimit(q: AssessmentQuestion): number {
   if (type === "mcq" || type === "true_false" || type === "true_false_justification") {
     if (diff === "easy" || diff === "required") return 30;
     if (diff === "hard") return 60;
-    return 45; // medium
+    return 45;
   }
 
   if (type === "descriptive") {
     if (diff === "easy" || diff === "required") return 5 * 60;
     if (diff === "hard") return 10 * 60;
-    return 7 * 60; // medium
+    return 7 * 60;
   }
 
   if (isCodingQuestion(q)) {
-    if (diff === "easy") return 20 * 60; // 20 mins
-    if (diff === "hard") return 45 * 60; // 45 mins
-    return 30 * 60; // 30 mins (medium)
+    if (diff === "easy") return 20 * 60;
+    if (diff === "hard") return 45 * 60;
+    return 30 * 60;
   }
 
-  // default / assignment / other
-  return 10 * 60; // 10 minutes per question
+  return 10 * 60;
 }
 
+const MAX_VIOLATIONS = 3;
+
+/* ─────────────── Warning Modal ─────────────── */
+function ViolationWarningModal({
+  type,
+  count,
+  onContinue,
+}: {
+  type: "tab_switch" | "fullscreen_exit";
+  count: number;
+  onContinue: () => void;
+}) {
+  useEffect(() => { playWarning(); }, []);
+  const remaining = MAX_VIOLATIONS - count;
+  return (
+    <div className="fixed inset-0 z-[200] flex items-center justify-center bg-black/70 backdrop-blur-sm">
+      <div className="mx-4 w-full max-w-md rounded-2xl border border-red-500/30 bg-[var(--bg)] p-8 shadow-2xl">
+        <div className="mb-4 flex items-center justify-center">
+          <div className="rounded-full bg-red-500/15 p-4">
+            <ShieldAlert className="h-10 w-10 text-red-500" />
+          </div>
+        </div>
+        <h2 className="mb-2 text-center text-xl font-black text-red-500">
+          Security Violation Detected
+        </h2>
+        <p className="mb-4 text-center text-sm text-[var(--text-muted)]">
+          {type === "tab_switch"
+            ? "You switched away from the assessment tab. This has been logged."
+            : "You exited fullscreen mode. This has been logged."}
+        </p>
+        <div className="mb-6 rounded-xl border border-red-500/20 bg-red-500/5 p-4 text-center">
+          <p className="text-sm font-bold text-red-500">
+            Warning {count} of {MAX_VIOLATIONS}
+          </p>
+          <p className="mt-1 text-xs text-[var(--text-muted)]">
+            {remaining > 0
+              ? `${remaining} more violation${remaining !== 1 ? "s" : ""} will auto-submit your assessment.`
+              : "Your assessment is being submitted now."}
+          </p>
+        </div>
+        {remaining > 0 && (
+          <button
+            type="button"
+            onClick={onContinue}
+            className="w-full rounded-full bg-red-500 px-6 py-3 text-sm font-bold text-white transition hover:bg-red-600"
+          >
+            Continue Assessment
+          </button>
+        )}
+      </div>
+    </div>
+  );
+}
+
+/* ─────────────── Entry Confirmation Screen ─────────────── */
+function EntryConfirmationScreen({
+  assessment,
+  submoduleTitle,
+  totalTimeLimit,
+  onBegin,
+}: {
+  assessment: Assessment;
+  submoduleTitle: string;
+  totalTimeLimit: number;
+  onBegin: () => void;
+}) {
+  const [agreed, setAgreed] = useState(false);
+  const questions = assessment.questions;
+  const totalMarks = questions.reduce((s, q) => s + q.marks, 0);
+
+  const rules = [
+    { icon: Monitor, text: "Fullscreen mode is required throughout the assessment" },
+    { icon: EyeOff, text: "Tab switching is not allowed — violations are logged" },
+    { icon: Clipboard, text: "Copy, paste, and cut are disabled" },
+    { icon: Timer, text: "Assessment is timed — auto-submits when time runs out" },
+    { icon: Lock, text: "Right-click and developer tools are blocked" },
+    { icon: AlertTriangle, text: "3 violations will auto-submit your assessment" },
+  ];
+
+  return (
+    <div className="flex h-full items-center justify-center bg-[var(--bg)] p-6">
+      <div className="w-full max-w-lg rounded-2xl border border-[var(--border)] bg-[var(--surface-2)] p-8 shadow-xl">
+        <div className="mb-6 flex items-center justify-center">
+          <div className="rounded-full bg-mst-red/10 p-4">
+            <ShieldAlert className="h-10 w-10 text-mst-red" />
+          </div>
+        </div>
+        <h1 className="mb-2 text-center text-2xl font-black text-[var(--text)]">
+          Assessment Rules
+        </h1>
+        <p className="mb-6 text-center text-sm text-[var(--text-muted)]">
+          {submoduleTitle}
+        </p>
+
+        {/* Stats */}
+        <div className="mb-6 grid grid-cols-3 gap-3">
+          <div className="rounded-xl border border-[var(--border)] bg-[var(--bg)] p-3 text-center">
+            <p className="text-lg font-black text-[var(--text)]">{questions.length}</p>
+            <p className="text-[10px] font-bold uppercase text-[var(--text-muted)]">Questions</p>
+          </div>
+          <div className="rounded-xl border border-[var(--border)] bg-[var(--bg)] p-3 text-center">
+            <p className="text-lg font-black text-[var(--text)]">{totalMarks}</p>
+            <p className="text-[10px] font-bold uppercase text-[var(--text-muted)]">Total Marks</p>
+          </div>
+          <div className="rounded-xl border border-[var(--border)] bg-[var(--bg)] p-3 text-center">
+            <p className="text-lg font-black text-[var(--text)]">{Math.ceil(totalTimeLimit / 60)}m</p>
+            <p className="text-[10px] font-bold uppercase text-[var(--text-muted)]">Time Limit</p>
+          </div>
+        </div>
+
+        {/* Rules */}
+        <ul className="mb-6 space-y-2.5">
+          {rules.map((rule, i) => (
+            <li key={i} className="flex items-center gap-3 text-sm text-[var(--text)]">
+              <rule.icon className="h-4 w-4 shrink-0 text-mst-red" />
+              <span>{rule.text}</span>
+            </li>
+          ))}
+        </ul>
+
+        {/* Agreement checkbox */}
+        <label className="mb-6 flex cursor-pointer items-start gap-3 rounded-xl border border-[var(--border)] bg-[var(--bg)] p-4 transition hover:border-mst-red/50">
+          <input
+            type="checkbox"
+            checked={agreed}
+            onChange={(e) => setAgreed(e.target.checked)}
+            className="mt-0.5 h-4 w-4 shrink-0 accent-[#e63946] rounded"
+          />
+          <span className="text-sm text-[var(--text)]">
+            I understand and agree to follow these rules. I acknowledge that violations will be recorded and may result in automatic submission.
+          </span>
+        </label>
+
+        <button
+          type="button"
+          onClick={onBegin}
+          disabled={!agreed}
+          className="w-full rounded-full bg-mst-red px-6 py-3.5 text-sm font-bold text-white transition hover:bg-mst-red-dark disabled:cursor-not-allowed disabled:opacity-40"
+        >
+          Begin Assessment
+        </button>
+      </div>
+    </div>
+  );
+}
+
+/* ─────────────── Main Component ─────────────── */
 interface FullscreenAssessmentProps {
   moduleId: number;
   subSlug: string;
@@ -81,6 +239,7 @@ export function FullscreenAssessment({
   const [answers, setAnswers] = useState<Record<string, UserAnswer>>({});
   const [startedAt] = useState(Date.now());
   const [elapsed, setElapsed] = useState(0);
+  const [assessmentStarted, setAssessmentStarted] = useState(false);
 
   const current = questions[index];
   const storageKey = `mst-assessment-draft-${moduleId}-${subSlug}`;
@@ -90,6 +249,18 @@ export function FullscreenAssessment({
   const [exitClickCount, setExitClickCount] = useState(0);
   const codingQuestionActive = isCodingQuestion(current);
 
+  // Anti-cheat state
+  const [tabSwitchCount, setTabSwitchCount] = useState(0);
+  const [fullscreenExitCount, setFullscreenExitCount] = useState(0);
+  const [warningModal, setWarningModal] = useState<{
+    type: "tab_switch" | "fullscreen_exit";
+    count: number;
+  } | null>(null);
+  const tabSwitchRef = useRef(0);
+  const fullscreenExitRef = useRef(0);
+  const hasAutoSubmitted = useRef(false);
+  const containerRef = useRef<HTMLDivElement>(null);
+
   useEffect(() => {
     return () => {
       if (exitTimerRef.current) {
@@ -98,13 +269,12 @@ export function FullscreenAssessment({
     };
   }, []);
 
-  // Time limit for the entire assessment is capped to 45 minutes for project/assignment assessments
   const [totalTimeLimit] = useState(() => {
     const hasProjectQuestion = questions.some(
       q => q.marks >= 3 && (q.type === "other" || q.type === "coding_project")
     );
     if (hasProjectQuestion) {
-      return 45 * 60; // 45 minutes total (2700 seconds) for project submissions
+      return 45 * 60;
     }
     return questions.reduce((acc, q) => acc + getQuestionTimeLimit(q), 0);
   });
@@ -133,11 +303,12 @@ export function FullscreenAssessment({
     );
   }, [answers, index, storageKey]);
 
-  // Keep track of elapsed time
+  // Keep track of elapsed time (only after assessment started)
   useEffect(() => {
+    if (!assessmentStarted) return;
     const t = setInterval(() => setElapsed(Math.floor((Date.now() - startedAt) / 1000)), 1000);
     return () => clearInterval(t);
-  }, [startedAt]);
+  }, [startedAt, assessmentStarted]);
 
   const setAnswer = useCallback(
     (q: AssessmentQuestion, value: string, selectedKey?: string, codingResults?: any) => {
@@ -165,7 +336,6 @@ export function FullscreenAssessment({
     const passed = pct >= PASS_THRESHOLD;
     const durationSec = Math.floor((Date.now() - startedAt) / 1000);
 
-    // Calculate attempted and skipped count
     const attempted = answerList.filter(a => a.value.trim().length > 0 || a.selectedKey).length;
     const skipped = questions.length - attempted;
 
@@ -192,18 +362,166 @@ export function FullscreenAssessment({
       JSON.stringify(payload)
     );
     sessionStorage.removeItem(storageKey);
+
+    if (document.fullscreenElement) {
+      document.exitFullscreen().catch(() => {});
+    }
+
     window.location.href = `/module/${moduleId}/${subSlug}/assessment/results`;
   }, [answers, moduleId, questions, startedAt, submoduleId, submoduleTitle, subSlug, storageKey]);
 
   // Auto-submit when time is up
   useEffect(() => {
+    if (!assessmentStarted) return;
     if (totalTimeLimit > 0 && elapsed >= totalTimeLimit) {
       handleSubmit();
     }
-  }, [elapsed, totalTimeLimit, handleSubmit]);
+  }, [elapsed, totalTimeLimit, handleSubmit, assessmentStarted]);
+
+  const triggerAutoSubmit = useCallback(() => {
+    if (hasAutoSubmitted.current) return;
+    if (isAdmin) return;
+    hasAutoSubmitted.current = true;
+    handleSubmit();
+  }, [handleSubmit, isAdmin]);
+
+  /* ─── Fullscreen enforcement ─── */
+  const requestFullscreen = useCallback(() => {
+    try {
+      document.documentElement.requestFullscreen?.();
+    } catch {
+      /* some browsers block this */
+    }
+  }, []);
+
+  useEffect(() => {
+    if (!assessmentStarted) return;
+
+    const handleFullscreenChange = () => {
+      if (!document.fullscreenElement && assessmentStarted) {
+        fullscreenExitRef.current += 1;
+        const count = fullscreenExitRef.current;
+        setFullscreenExitCount(count);
+
+        if (count >= MAX_VIOLATIONS) {
+          triggerAutoSubmit();
+        } else {
+          setWarningModal({ type: "fullscreen_exit", count });
+        }
+      }
+    };
+
+    document.addEventListener("fullscreenchange", handleFullscreenChange);
+    return () => document.removeEventListener("fullscreenchange", handleFullscreenChange);
+  }, [assessmentStarted, triggerAutoSubmit]);
+
+  /* ─── Tab switch detection ─── */
+  useEffect(() => {
+    if (!assessmentStarted) return;
+
+    const handleVisibilityChange = () => {
+      if (document.hidden) {
+        tabSwitchRef.current += 1;
+        const count = tabSwitchRef.current;
+        setTabSwitchCount(count);
+
+        if (count >= MAX_VIOLATIONS) {
+          triggerAutoSubmit();
+        } else {
+          setWarningModal({ type: "tab_switch", count });
+        }
+      }
+    };
+
+    document.addEventListener("visibilitychange", handleVisibilityChange);
+    return () => document.removeEventListener("visibilitychange", handleVisibilityChange);
+  }, [assessmentStarted, triggerAutoSubmit]);
+
+  /* ─── Copy/Paste/Cut prevention ─── */
+  useEffect(() => {
+    if (!assessmentStarted) return;
+    const container = containerRef.current;
+    if (!container) return;
+
+    const handleCopy = (e: Event) => {
+      const target = e.target as HTMLElement;
+      const isMonaco = target.closest(".monaco-editor");
+      if (!isMonaco) e.preventDefault();
+    };
+    const handleCut = (e: Event) => {
+      const target = e.target as HTMLElement;
+      const isMonaco = target.closest(".monaco-editor");
+      if (!isMonaco) e.preventDefault();
+    };
+    const handlePaste = (e: Event) => {
+      const target = e.target as HTMLElement;
+      const isMonaco = target.closest(".monaco-editor");
+      if (!isMonaco) e.preventDefault();
+    };
+
+    container.addEventListener("copy", handleCopy);
+    container.addEventListener("cut", handleCut);
+    container.addEventListener("paste", handlePaste);
+
+    return () => {
+      container.removeEventListener("copy", handleCopy);
+      container.removeEventListener("cut", handleCut);
+      container.removeEventListener("paste", handlePaste);
+    };
+  }, [assessmentStarted]);
+
+  /* ─── Keyboard shortcut prevention ─── */
+  useEffect(() => {
+    if (!assessmentStarted) return;
+
+    const handleKeyDown = (e: KeyboardEvent) => {
+      const target = e.target as HTMLElement;
+      const isTextInput = target.tagName === "TEXTAREA" || target.tagName === "INPUT" || target.isContentEditable;
+      const isMonaco = target.closest(".monaco-editor");
+
+      if (e.key === "F12") {
+        e.preventDefault();
+        return;
+      }
+
+      if (e.ctrlKey || e.metaKey) {
+        const blockedKeys = ["c", "v", "a", "s", "p", "u"];
+        if (blockedKeys.includes(e.key.toLowerCase())) {
+          if (isMonaco) return;
+          if (isTextInput && (e.key.toLowerCase() === "a" || e.key.toLowerCase() === "v")) {
+            return;
+          }
+          e.preventDefault();
+          return;
+        }
+
+        if (e.shiftKey && e.key.toLowerCase() === "i") {
+          e.preventDefault();
+          return;
+        }
+      }
+    };
+
+    document.addEventListener("keydown", handleKeyDown);
+    return () => document.removeEventListener("keydown", handleKeyDown);
+  }, [assessmentStarted]);
+
+  /* ─── Begin assessment handler ─── */
+  const handleBeginAssessment = useCallback(() => {
+    setAssessmentStarted(true);
+    requestFullscreen();
+  }, [requestFullscreen]);
+
+  const handleWarningDismiss = useCallback(() => {
+    setWarningModal(null);
+    requestFullscreen();
+  }, [requestFullscreen]);
 
   function handleExitAttempt() {
     if (!codingQuestionActive) {
+      if (document.fullscreenElement) {
+        document.exitFullscreen().catch(() => {});
+      }
       router.push(`/module/${moduleId}/${subSlug}`);
       return;
     }
@@ -218,7 +536,22 @@ export function FullscreenAssessment({
       return;
     }
 
+    if (document.fullscreenElement) {
+      document.exitFullscreen().catch(() => {});
+    }
     router.push(`/module/${moduleId}/${subSlug}`);
+  }
+
+  /* ─── Entry confirmation screen ─── */
+  if (!assessmentStarted) {
+    return (
+      <EntryConfirmationScreen
+        assessment={assessment}
+        submoduleTitle={submoduleTitle}
+        totalTimeLimit={totalTimeLimit}
+        onBegin={handleBeginAssessment}
+      />
+    );
   }
 
   if (!current) return null;
@@ -227,9 +560,24 @@ export function FullscreenAssessment({
   const hasCodingSubmission = codingQuestionActive && !!currentAnswer?.codingResults;
   const progress = ((index + 1) / questions.length) * 100;
   const totalMaxMarks = questions.reduce((s, q) => s + q.marks, 0);
+  const totalViolations = tabSwitchCount + fullscreenExitCount;
 
   return (
-    <div className="flex h-full flex-col bg-[var(--bg)] text-[var(--text)] transition-colors duration-250">
+    <div
+      ref={containerRef}
+      onContextMenu={(e) => e.preventDefault()}
+      className="assessment-lockdown flex h-full flex-col bg-[var(--bg)] text-[var(--text)] transition-colors duration-250"
+      style={{ userSelect: "none", WebkitUserSelect: "none" } as React.CSSProperties}
+    >
+      {/* Warning Modal */}
+      {warningModal && (
+        <ViolationWarningModal
+          type={warningModal.type}
+          count={warningModal.count}
+          onContinue={handleWarningDismiss}
+        />
+      )}
+
       {/* TOP HEADER */}
       <header className="flex shrink-0 items-center justify-between border-b border-[var(--border)] bg-[var(--bg)] px-4 py-4 md:px-6">
         <div className="min-w-0 flex-1">
@@ -241,6 +589,15 @@ export function FullscreenAssessment({
           </h1>
         </div>
         <div className="flex items-center gap-6">
+          {/* Violation indicator */}
+          {totalViolations > 0 && (
+            <div className="flex items-center gap-1.5 rounded-full border border-red-500/30 bg-red-500/10 px-3 py-1.5">
+              <AlertTriangle size={12} className="text-red-500" />
+              <span className="text-[10px] font-bold text-red-500">
+                {totalViolations}/{MAX_VIOLATIONS * 2}
+              </span>
+            </div>
+          )}
           <div className="text-right">
             <p className="text-[10px] uppercase text-[var(--text-muted)] font-bold">Time Remaining</p>
             <p className={`flex items-center gap-1 font-mono text-sm font-black ${
@@ -327,7 +684,7 @@ export function FullscreenAssessment({
                       <li key={opt.key}>
                         <button
                           type="button"
-                          onClick={() => setAnswer(current, opt.text, opt.key)}
+                          onClick={() => { playSelect(); setAnswer(current, opt.text, opt.key); }}
                           className={`w-full rounded-xl border-2 px-5 py-4 text-left text-sm transition font-medium ${
                             sel
                               ? "border-mst-red bg-mst-red/10 text-[var(--text)] shadow-sm"
@@ -357,6 +714,7 @@ export function FullscreenAssessment({
                           key={v}
                           type="button"
                           onClick={() => {
+                            playSelect();
                             const just =
                               (currentAnswer?.value || "").split("\n---\n")[1] ||
                               "";
@@ -384,6 +742,7 @@ export function FullscreenAssessment({
                       rows={5}
                       placeholder="Mandatory justification (at least 40 characters)…"
                       className="w-full rounded-xl border border-[var(--border)] bg-[var(--surface-2)] p-4 text-sm text-[var(--text)] placeholder:text-[var(--text-muted)] focus:border-mst-red focus:outline-none"
+                      style={{ userSelect: "text", WebkitUserSelect: "text" } as React.CSSProperties}
                       value={
                         (currentAnswer?.value || "").split("\n---\n")[1] || ""
                       }
@@ -407,6 +766,7 @@ export function FullscreenAssessment({
                     rows={8}
                     placeholder="Type your answer here (minimum 40 words recommended, auto-saved)…"
                     className="w-full rounded-xl border border-[var(--border)] bg-[var(--surface-2)] p-4 text-sm text-[var(--text)] placeholder:text-[var(--text-muted)] focus:border-mst-red focus:outline-none"
+                    style={{ userSelect: "text", WebkitUserSelect: "text" } as React.CSSProperties}
                     value={currentAnswer?.value || ""}
                     onChange={(e) => setAnswer(current, e.target.value)}
                   />
@@ -421,7 +781,7 @@ export function FullscreenAssessment({
         <button
           type="button"
           disabled={index === 0 || codingQuestionActive}
-          onClick={() => setIndex((i) => i - 1)}
+          onClick={() => { playNavigate(); setIndex((i) => i - 1); }}
           className="inline-flex items-center gap-1.5 rounded-full border border-[var(--border-strong)] bg-[var(--surface-2)] px-5 py-2.5 text-sm font-semibold text-[var(--text)] hover:bg-[var(--bg-muted)] transition disabled:opacity-30"
           title={codingQuestionActive ? "Cannot navigate away during coding question" : undefined}
         >
@@ -442,7 +802,7 @@ export function FullscreenAssessment({
           <button
             type="button"
             disabled={codingQuestionActive && !hasCodingSubmission}
-            onClick={() => setIndex((i) => i + 1)}
+            onClick={() => { playNavigate(); setIndex((i) => i + 1); }}
             className="inline-flex items-center gap-1.5 rounded-full bg-mst-red hover:bg-mst-red-dark px-6 py-2.5 text-sm font-bold text-white transition disabled:opacity-30"
             title={codingQuestionActive && !hasCodingSubmission ? "Submit code before continuing" : undefined}
           >
@@ -451,7 +811,7 @@ export function FullscreenAssessment({
         ) : (
           <button
             type="button"
-            onClick={handleSubmit}
+            onClick={() => { playSubmit(); handleSubmit(); }}
             disabled={codingQuestionActive && !hasCodingSubmission}
             className="rounded-full bg-mst-red hover:bg-mst-red-dark px-8 py-2.5 text-sm font-bold text-white transition disabled:opacity-30"
             title={codingQuestionActive && !hasCodingSubmission ? "Submit code before finishing assessment" : undefined}

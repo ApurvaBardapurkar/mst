@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
-  <title>Sub‑Module 21.1 – Final Security Audit &amp; Optimisation | MasterStroke Academy</title>
+  <title>Sub-Module 21.1 - Final Security Audit &amp; Optimisation | MasterStroke Academy</title>
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,600&family=JetBrains+Mono:wght@400;500;600;700&display=swap');
 
@@ -368,10 +368,10 @@
 <body>
 
 <!-- ═══════════════════════════════ HEADER ═══════════════ -->
-<div class="module-badge">🛡️ Module 21 · Sub‑Module 21.1 of 5</div>
+<div class="module-badge">🛡️ Module 21 · Sub-Module 21.1 of 5</div>
 <h1 class="module-title">Final Security Audit &amp; <span class="highlight">Gas Optimisation</span></h1>
 <p class="module-subtitle">
-  Your smart contract is built. Now comes the hardest gate: finding every vulnerability, squeezing out every wasted gas unit, and preparing it for the real world — where a single bug can cost millions.
+  Your smart contract is built. Now comes the hardest gate: finding every vulnerability, squeezing out every wasted gas unit, and preparing it for the real world - where a single bug can cost millions.
 </p>
 
 <div class="meta-bar">
@@ -383,41 +383,41 @@
 
 <!-- ═══════════════════════════════ OBJECTIVES ═══════════════ -->
 <div class="section-label">01 · Learning Objectives</div>
-<h2 class="section-title">By the end of this sub‑module, you will be able to…</h2>
+<h2 class="section-title">By the end of this sub-module, you will be able to…</h2>
 <div class="obj-grid">
   <div class="obj-card">
     <div class="obj-icon">🔍</div>
-    <div class="obj-text"><strong>Execute a professional smart‑contract audit</strong> using Slither, Mythril, and Echidna — and interpret their output.</div>
+    <div class="obj-text"><strong>Execute a professional smart-contract audit</strong> using Slither, Mythril, and Echidna - and interpret their output.</div>
   </div>
   <div class="obj-card">
     <div class="obj-icon">🧠</div>
-    <div class="obj-text"><strong>Manually review Solidity code</strong> against a 12‑point checklist (reentrancy, access control, overflow, etc.).</div>
+    <div class="obj-text"><strong>Manually review Solidity code</strong> against a 12-point checklist (reentrancy, access control, overflow, etc.).</div>
   </div>
   <div class="obj-card">
     <div class="obj-icon">⛽</div>
-    <div class="obj-text"><strong>Apply advanced gas‑optimisation techniques</strong> that can reduce transaction costs by 30‑70% without compromising security.</div>
+    <div class="obj-text"><strong>Apply advanced gas-optimisation techniques</strong> that can reduce transaction costs by 30-70% without compromising security.</div>
   </div>
   <div class="obj-card">
     <div class="obj-icon">📋</div>
-    <div class="obj-text"><strong>Produce a mainnet‑ready audit report</strong> that meets MST BuildGrant requirements.</div>
+    <div class="obj-text"><strong>Produce a mainnet-ready audit report</strong> that meets MST BuildGrant requirements.</div>
   </div>
 </div>
 
 <!-- ═══════════════════════════════ STORY ═══════════════ -->
-<div class="section-label">02 · Real‑World Introduction Story</div>
-<h2 class="section-title">The ₹120 Crore Lesson — Why Audits Are Not Optional</h2>
+<div class="section-label">02 · Real-World Introduction Story</div>
+<h2 class="section-title">The ₹120 Crore Lesson - Why Audits Are Not Optional</h2>
 <div class="callout story">
   <div class="callout-label">📖 Story</div>
   <p>
-    In March 2022, a popular DeFi protocol on an EVM chain was preparing for a V2 launch. The team had built a beautiful UI, a clever staking mechanism, and a governance token. The smart contract was written by a senior developer and reviewed by two other engineers. They ran the Hardhat test suite — all green. The code was deployed to mainnet on a Friday evening.
+    In March 2022, a popular DeFi protocol on an EVM chain was preparing for a V2 launch. The team had built a beautiful UI, a clever staking mechanism, and a governance token. The smart contract was written by a senior developer and reviewed by two other engineers. They ran the Hardhat test suite - all green. The code was deployed to mainnet on a Friday evening.
   </p>
   <br/>
   <p>
-    By Monday morning, ₹120 crore (about $15 million) was gone. The attacker had exploited a subtle reentrancy vulnerability in the <span class="code-inline">withdraw()</span> function. The team had missed it because their test only checked normal withdrawal flow — not cross‑contract reentrancy. Worse, they had never run a single automated security tool. No Slither. No Mythril. No fuzzing. Just manual confidence.
+    By Monday morning, ₹120 crore (about $15 million) was gone. The attacker had exploited a subtle reentrancy vulnerability in the <span class="code-inline">withdraw()</span> function. The team had missed it because their test only checked normal withdrawal flow - not cross-contract reentrancy. Worse, they had never run a single automated security tool. No Slither. No Mythril. No fuzzing. Just manual confidence.
   </p>
   <br/>
   <p>
-    This is not a rare story. In 2023 alone, blockchain hacks totalled over $1.8 billion, according to Chainalysis. The vast majority of exploited contracts had <strong>never undergone a professional audit or even a basic automated scan</strong>. The MST ecosystem is safer by design — but EVM compatibility means existing Solidity vulnerabilities can still travel to MST. As an MST Blockchain Developer, your capstone project will handle real user value. You owe it to yourself and your users to harden every line of code.
+    This is not a rare story. In 2023 alone, blockchain hacks totalled over $1.8 billion, according to Chainalysis. The vast majority of exploited contracts had <strong>never undergone a professional audit or even a basic automated scan</strong>. The MST ecosystem is safer by design - but EVM compatibility means existing Solidity vulnerabilities can still travel to MST. As an MST Blockchain Developer, your capstone project will handle real user value. You owe it to yourself and your users to harden every line of code.
   </p>
 </div>
 
@@ -425,28 +425,28 @@
 <div class="section-label">03 · Why Final Hardening Matters on MST</div>
 <h2 class="section-title">EVM Compatibility = Attack Surface Transportability</h2>
 <p>
-  Because MST is fully EVM‑compatible, any security flaw that exists in Ethereum’s Solidity ecosystem can manifest identically on MST. The low gas fees on MST actually increase the risk — attackers can afford to try multiple exploits that would be prohibitively expensive on Ethereum. Moreover, MST’s <strong>Trika POSA</strong> provides fast finality (~3 seconds), but that also means a successful attack is irreversible almost instantly.
+  Because MST is fully EVM-compatible, any security flaw that exists in Ethereum’s Solidity ecosystem can manifest identically on MST. The low gas fees on MST actually increase the risk - attackers can afford to try multiple exploits that would be prohibitively expensive on Ethereum. Moreover, MST’s <strong>Trika POSA</strong> provides fast finality (~3 seconds), but that also means a successful attack is irreversible almost instantly.
 </p>
 <p>
-  A robust security audit is not just a checkbox for your capstone project; it’s the difference between a funded startup and a catastrophic failure. MST’s <strong>BuildGrant</strong> requires an audit report signed by a qualified reviewer (even if self‑audited with tools). The skills you learn here will be directly applicable in job interviews, where 80% of technical questions revolve around security and gas optimisation.
+  A robust security audit is not just a checkbox for your capstone project; it’s the difference between a funded startup and a catastrophic failure. MST’s <strong>BuildGrant</strong> requires an audit report signed by a qualified reviewer (even if self-audited with tools). The skills you learn here will be directly applicable in job interviews, where 80% of technical questions revolve around security and gas optimisation.
 </p>
 
 <!-- ═══════════════════════════════ AUDIT MINDSET ═══════════════ -->
-<div class="section-label">04 · The Security‑Audit Mindset</div>
+<div class="section-label">04 · The Security-Audit Mindset</div>
 <h2 class="section-title">Think Like an Attacker, Act Like an Auditor</h2>
 <div class="w5-grid">
   <div class="w5-row">
     <div class="w5-label-cell"><div class="w5-letter">A</div><div class="w5-word">Attacker</div></div>
     <div class="w5-content">
       <div class="w5-q">How does an attacker see your contract?</div>
-      <div class="w5-a">They look for unvalidated external calls, missing access controls, and economic incentives that can be gamed. They treat your contract as a free‑for‑all puzzle.</div>
+      <div class="w5-a">They look for unvalidated external calls, missing access controls, and economic incentives that can be gamed. They treat your contract as a free-for-all puzzle.</div>
     </div>
   </div>
   <div class="w5-row">
     <div class="w5-label-cell"><div class="w5-letter">B</div><div class="w5-word">Blinders</div></div>
     <div class="w5-content">
       <div class="w5-q">What are the most common mental traps?</div>
-      <div class="w5-a">“It’s only testnet.” “Nobody would try that.” “OpenZeppelin handles everything.” Over‑reliance on libraries without understanding their internals is a top cause of exploits.</div>
+      <div class="w5-a">“It’s only testnet.” “Nobody would try that.” “OpenZeppelin handles everything.” Over-reliance on libraries without understanding their internals is a top cause of exploits.</div>
     </div>
   </div>
   <div class="w5-row">
@@ -459,32 +459,32 @@
 </div>
 
 <!-- ═══════════════════════════════ AUTOMATED TOOLS ═══════════════ -->
-<div class="section-label">05 · Automated Analysis — Your First Line of Defence</div>
+<div class="section-label">05 · Automated Analysis - Your First Line of Defence</div>
 <h2 class="section-title">Slither, Mythril, and Echidna on MST</h2>
 
 <div class="feature-list">
   <div class="feature-item">
     <div class="feature-num" style="background:var(--blue);">1</div>
     <div class="feature-content">
-      <div class="feature-title">Slither — Static Analysis</div>
+      <div class="feature-title">Slither - Static Analysis</div>
       <div class="feature-desc">
-        Slither (by Trail of Bits) is the industry‑standard static analyser for Solidity. It examines your code without executing it, detecting reentrancy, missing events, incorrect modifiers, unused variables, and dangerous delegatecall patterns. Install via <span class="code-inline">pip3 install slither-analyzer</span>. Run it with <span class="code-inline">slither .</span> inside your Hardhat project. Slither outputs a ranked list of findings with severity: High, Medium, Low, Informational. <strong>For MST deployment, fix all High and Medium issues before proceeding.</strong>
+        Slither (by Trail of Bits) is the industry-standard static analyser for Solidity. It examines your code without executing it, detecting reentrancy, missing events, incorrect modifiers, unused variables, and dangerous delegatecall patterns. Install via <span class="code-inline">pip3 install slither-analyzer</span>. Run it with <span class="code-inline">slither .</span> inside your Hardhat project. Slither outputs a ranked list of findings with severity: High, Medium, Low, Informational. <strong>For MST deployment, fix all High and Medium issues before proceeding.</strong>
       </div>
     </div>
   </div>
   <div class="feature-item">
     <div class="feature-num" style="background:var(--teal);">2</div>
     <div class="feature-content">
-      <div class="feature-title">Mythril — Symbolic Execution</div>
+      <div class="feature-title">Mythril - Symbolic Execution</div>
       <div class="feature-desc">
-        Mythril explores all possible execution paths of a contract, looking for assertion violations, integer overflows, and unprotected SELFDESTRUCT calls. Unlike Slither, it doesn’t just read the code — it <em>runs</em> it symbolically, reaching deep states. Command: <span class="code-inline">myth analyze contracts/MyContract.sol --execution-timeout 60</span>. It can uncover bugs that a human might miss in nested if‑else branches.
+        Mythril explores all possible execution paths of a contract, looking for assertion violations, integer overflows, and unprotected SELFDESTRUCT calls. Unlike Slither, it doesn’t just read the code - it <em>runs</em> it symbolically, reaching deep states. Command: <span class="code-inline">myth analyze contracts/MyContract.sol --execution-timeout 60</span>. It can uncover bugs that a human might miss in nested if-else branches.
       </div>
     </div>
   </div>
   <div class="feature-item">
     <div class="feature-num" style="background:var(--orange);">3</div>
     <div class="feature-content">
-      <div class="feature-title">Echidna — Fuzzing / Invariant Testing</div>
+      <div class="feature-title">Echidna - Fuzzing / Invariant Testing</div>
       <div class="feature-desc">
         Echidna bombards your contract with random inputs and checks whether any invariant breaks (e.g., “total supply must never exceed 1 million”). You write invariants as Solidity functions with names starting with <span class="code-inline">echidna_</span>. This catches logic errors that static tools miss. For MST, we especially fuzz staking rewards and RWA token mint/burn functions.
       </div>
@@ -518,51 +518,51 @@
 </div>
 
 <!-- ═══════════════════════════════ MANUAL CHECKLIST ═══════════════ -->
-<div class="section-label">06 · Manual Code‑Review Checklist</div>
-<h2 class="section-title">The Human Touch — 12 Points You Must Verify</h2>
-<p>Automated tools are essential, but they cannot understand <em>business logic</em>. A contract may have zero tool‑reported issues yet contain a fatal economic design flaw. Here is the checklist that professional auditors use for every MST dApp.</p>
+<div class="section-label">06 · Manual Code-Review Checklist</div>
+<h2 class="section-title">The Human Touch - 12 Points You Must Verify</h2>
+<p>Automated tools are essential, but they cannot understand <em>business logic</em>. A contract may have zero tool-reported issues yet contain a fatal economic design flaw. Here is the checklist that professional auditors use for every MST dApp.</p>
 
 <div class="feature-list">
   <div class="feature-item">
     <div class="feature-num">01</div>
     <div class="feature-content">
-      <div class="feature-title">Reentrancy (Checks‑Effects‑Interactions)</div>
-      <div class="feature-desc">All state changes must happen <strong>before</strong> external calls. Use OpenZeppelin’s <span class="code-inline">ReentrancyGuard</span>. Never rely on <span class="code-inline">transfer()</span> or <span class="code-inline">send()</span> for reentrancy protection — use CEI pattern.</div>
+      <div class="feature-title">Reentrancy (Checks-Effects-Interactions)</div>
+      <div class="feature-desc">All state changes must happen <strong>before</strong> external calls. Use OpenZeppelin’s <span class="code-inline">ReentrancyGuard</span>. Never rely on <span class="code-inline">transfer()</span> or <span class="code-inline">send()</span> for reentrancy protection - use CEI pattern.</div>
     </div>
   </div>
   <div class="feature-item">
     <div class="feature-num">02</div>
     <div class="feature-content">
       <div class="feature-title">Integer Overflow / Underflow</div>
-      <div class="feature-desc">Solidity ≥0.8 has built‑in checks, but explicit <span class="code-inline">unchecked</span> blocks can be dangerous. Verify every <span class="code-inline">unchecked</span> usage with a detailed comment.</div>
+      <div class="feature-desc">Solidity ≥0.8 has built-in checks, but explicit <span class="code-inline">unchecked</span> blocks can be dangerous. Verify every <span class="code-inline">unchecked</span> usage with a detailed comment.</div>
     </div>
   </div>
   <div class="feature-item">
     <div class="feature-num">03</div>
     <div class="feature-content">
       <div class="feature-title">Access Control</div>
-      <div class="feature-desc">Every state‑changing function must have appropriate modifiers (<span class="code-inline">onlyOwner</span>, role‑based). Check for missing <span class="code-inline">onlyOwner</span> on critical setters. Avoid <span class="code-inline">tx.origin</span> for authentication.</div>
+      <div class="feature-desc">Every state-changing function must have appropriate modifiers (<span class="code-inline">onlyOwner</span>, role-based). Check for missing <span class="code-inline">onlyOwner</span> on critical setters. Avoid <span class="code-inline">tx.origin</span> for authentication.</div>
     </div>
   </div>
   <div class="feature-item">
     <div class="feature-num">04</div>
     <div class="feature-content">
-      <div class="feature-title">Front‑Running & MEV</div>
-      <div class="feature-desc">On MST, validators can still reorder transactions. Use commit‑reveal schemes for sensitive actions, and avoid large price‑impact operations that can be sandwiched.</div>
+      <div class="feature-title">Front-Running & MEV</div>
+      <div class="feature-desc">On MST, validators can still reorder transactions. Use commit-reveal schemes for sensitive actions, and avoid large price-impact operations that can be sandwiched.</div>
     </div>
   </div>
   <div class="feature-item">
     <div class="feature-num">05</div>
     <div class="feature-content">
       <div class="feature-title">Unchecked Return Values</div>
-      <div class="feature-desc">Low‑level calls (<span class="code-inline">.call()</span>) return a boolean that must be checked. Failing to check can lead to silent failures. Use <span class="code-inline">require(success, "call failed")</span>.</div>
+      <div class="feature-desc">Low-level calls (<span class="code-inline">.call()</span>) return a boolean that must be checked. Failing to check can lead to silent failures. Use <span class="code-inline">require(success, "call failed")</span>.</div>
     </div>
   </div>
   <div class="feature-item">
     <div class="feature-num">06</div>
     <div class="feature-content">
       <div class="feature-title">Denial of Service (DoS)</div>
-      <div class="feature-desc">Avoid loops over unbounded arrays that can hit block gas limits. Use pull‑over‑push for payments, and never rely on a single external call to succeed for critical logic.</div>
+      <div class="feature-desc">Avoid loops over unbounded arrays that can hit block gas limits. Use pull-over-push for payments, and never rely on a single external call to succeed for critical logic.</div>
     </div>
   </div>
   <div class="feature-item">
@@ -583,21 +583,21 @@
     <div class="feature-num">09</div>
     <div class="feature-content">
       <div class="feature-title">Signature Replay Attacks</div>
-      <div class="feature-desc">If your contract accepts off‑chain signatures, include a nonce and chain ID to prevent cross‑chain replay. Use EIP‑712 structured hashing.</div>
+      <div class="feature-desc">If your contract accepts off-chain signatures, include a nonce and chain ID to prevent cross-chain replay. Use EIP-712 structured hashing.</div>
     </div>
   </div>
   <div class="feature-item">
     <div class="feature-num">10</div>
     <div class="feature-content">
       <div class="feature-title">Rounding Errors & Precision</div>
-      <div class="feature-desc">In financial contracts, always multiply before dividing to minimise precision loss. Use fixed‑point math libraries (PRBMath) for high‑accuracy calculations.</div>
+      <div class="feature-desc">In financial contracts, always multiply before dividing to minimise precision loss. Use fixed-point math libraries (PRBMath) for high-accuracy calculations.</div>
     </div>
   </div>
   <div class="feature-item">
     <div class="feature-num">11</div>
     <div class="feature-content">
       <div class="feature-title">Event Emission</div>
-      <div class="feature-desc">All state‑changing functions should emit events for off‑chain monitoring. Missing events make debugging and user‑notification impossible.</div>
+      <div class="feature-desc">All state-changing functions should emit events for off-chain monitoring. Missing events make debugging and user-notification impossible.</div>
     </div>
   </div>
   <div class="feature-item">
@@ -610,15 +610,15 @@
 </div>
 
 <!-- ═══════════════════════════════ GAS OPTIMISATION ═══════════════ -->
-<div class="section-label">07 · Gas Optimisation — Every Wei Counts</div>
+<div class="section-label">07 · Gas Optimisation - Every Wei Counts</div>
 <h2 class="section-title">MST Gas Model and Why Optimisation Still Matters</h2>
 <p>
   MST’s gas fees are significantly lower than Ethereum’s during congestion (often < 0.01 MST per transfer). However, gas optimisation is still critical for three reasons:
 </p>
 <ul style="padding-left:20px; color:var(--ink-2); font-size:15px; margin-bottom:20px;">
-  <li style="margin-bottom:8px;"><strong>Scalability:</strong> high‑throughput dApps (gaming, RWA micro‑transactions) can execute millions of transactions daily. Shaving 20% off each call saves real money.</li>
+  <li style="margin-bottom:8px;"><strong>Scalability:</strong> high-throughput dApps (gaming, RWA micro-transactions) can execute millions of transactions daily. Shaving 20% off each call saves real money.</li>
   <li style="margin-bottom:8px;"><strong>User experience:</strong> lower gas = faster confirmation and less friction. This is part of MST’s promise.</li>
-  <li style="margin-bottom:8px;"><strong>MST BuildGrant criteria:</strong> grant reviewers penalise wasteful code; a gas‑optimised contract signals professionalism.</li>
+  <li style="margin-bottom:8px;"><strong>MST BuildGrant criteria:</strong> grant reviewers penalise wasteful code; a gas-optimised contract signals professionalism.</li>
 </ul>
 
 <div class="two-col">
@@ -638,21 +638,21 @@
       <li>Cache storage variables into memory once per function</li>
       <li>Pack multiple <span class="code-inline">uint128</span> into a single storage slot</li>
       <li>Use <span class="code-inline">immutable</span> and <span class="code-inline">constant</span> for values known at compile time</li>
-      <li>Short‑circuit boolean evaluations (<span class="code-inline">&&</span> / <span class="code-inline">||</span>)</li>
+      <li>Short-circuit boolean evaluations (<span class="code-inline">&&</span> / <span class="code-inline">||</span>)</li>
       <li>Batch operations using multicall patterns</li>
     </ul>
   </div>
 </div>
 
 <div class="diagram-wrap">
-  <div class="diagram-title">Fig. 21.1-B · Gas Cost Comparison — Before vs After Optimisation</div>
+  <div class="diagram-title">Fig. 21.1-B · Gas Cost Comparison - Before vs After Optimisation</div>
   <table class="compare-table">
     <thead>
       <tr><th>Operation</th><th>Before (gas)</th><th>After (gas)</th></tr>
     </thead>
     <tbody>
-      <tr><td>ERC‑20 transfer</td><td class="bad">51,000</td><td class="good">34,800</td></tr>
-      <tr><td>Mint NFT (ERC‑721)</td><td class="bad">148,000</td><td class="good">97,500</td></tr>
+      <tr><td>ERC-20 transfer</td><td class="bad">51,000</td><td class="good">34,800</td></tr>
+      <tr><td>Mint NFT (ERC-721)</td><td class="bad">148,000</td><td class="good">97,500</td></tr>
       <tr><td>Stake 100 tokens</td><td class="bad">187,000</td><td class="good">120,000</td></tr>
       <tr><td>Batch claim rewards (10 users)</td><td class="bad">420,000</td><td class="good">212,000</td></tr>
     </tbody>
@@ -702,41 +702,41 @@ contract StakingPool {
 <div class="callout warning">
   <div class="callout-label">⚠️ Issues Found by Slither</div>
   <p>
-    Slither immediately flags: <strong>reentrancy in withdraw()</strong> (state change after external call), <strong>unchecked return value in claimReward()</strong> (no require message), and <strong>missing events</strong> for all state changes. It also warns that <span class="code-inline">owner</span> could be centralised — a governance consideration.
+    Slither immediately flags: <strong>reentrancy in withdraw()</strong> (state change after external call), <strong>unchecked return value in claimReward()</strong> (no require message), and <strong>missing events</strong> for all state changes. It also warns that <span class="code-inline">owner</span> could be centralised - a governance consideration.
   </p>
 </div>
 
 <div class="callout insight">
   <div class="callout-label">💡 Fixes Applied</div>
   <p>
-    We reorder withdraw() to follow CEI: decrease stakes before the call. We add ReentrancyGuard to both withdraw and claimReward. We emit events StakeDeposited, Withdrawal, and RewardClaimed. We also change the updateReward function to use a role‑based access control or timelock if it’s a governance parameter.
+    We reorder withdraw() to follow CEI: decrease stakes before the call. We add ReentrancyGuard to both withdraw and claimReward. We emit events StakeDeposited, Withdrawal, and RewardClaimed. We also change the updateReward function to use a role-based access control or timelock if it’s a governance parameter.
   </p>
 </div>
 
-<p>After applying fixes, we re‑run Slither — zero Highs, zero Mediums. We then run Echidna with an invariant that total ETH balance of the contract must always equal sum of stakes + unclaimed rewards (minus any fees). Echidna finds no violations after 10,000 transactions. The contract is now ready for mainnet.</p>
+<p>After applying fixes, we re-run Slither - zero Highs, zero Mediums. We then run Echidna with an invariant that total ETH balance of the contract must always equal sum of stakes + unclaimed rewards (minus any fees). Echidna finds no violations after 10,000 transactions. The contract is now ready for mainnet.</p>
 
 <!-- ═══════════════════════════════ ASSESSMENT PREP ═══════════════ -->
 <div class="section-label">09 · Assessment Preparation</div>
-<h2 class="section-title">Key Facts — Know These Cold</h2>
+<h2 class="section-title">Key Facts - Know These Cold</h2>
 <div class="feature-list">
   <div class="feature-item">
     <div class="feature-num" style="background:var(--ink-3);font-size:11px;">A</div>
     <div class="feature-content">
       <div class="feature-title">Slither’s primary advantage</div>
-      <div class="feature-desc">Static analysis without execution; fast, detects reentrancy, missing modifiers, and incorrect pragma settings. It does not find business‑logic bugs.</div>
+      <div class="feature-desc">Static analysis without execution; fast, detects reentrancy, missing modifiers, and incorrect pragma settings. It does not find business-logic bugs.</div>
     </div>
   </div>
   <div class="feature-item">
     <div class="feature-num" style="background:var(--ink-3);font-size:11px;">B</div>
     <div class="feature-content">
-      <div class="feature-title">Checks‑Effects‑Interactions (CEI)</div>
+      <div class="feature-title">Checks-Effects-Interactions (CEI)</div>
       <div class="feature-desc">The golden rule: update state first, then interact with external contracts. This prevents reentrancy even without a guard (though guard is recommended).</div>
     </div>
   </div>
   <div class="feature-item">
     <div class="feature-num" style="background:var(--ink-3);font-size:11px;">C</div>
     <div class="feature-content">
-      <div class="feature-title">Gas‑optimisation mantra</div>
+      <div class="feature-title">Gas-optimisation mantra</div>
       <div class="feature-desc">Cache storage → memory, use <span class="code-inline">calldata</span> not <span class="code-inline">memory</span> for external inputs, pack variables, avoid unbounded loops.</div>
     </div>
   </div>
@@ -744,7 +744,7 @@ contract StakingPool {
     <div class="feature-num" style="background:var(--ink-3);font-size:11px;">D</div>
     <div class="feature-content">
       <div class="feature-title">MST BuildGrant Requirement</div>
-      <div class="feature-desc">Applicants must submit a security‑audit report (self‑audit with tools accepted at initGrant level). The report must list all findings and their resolutions.</div>
+      <div class="feature-desc">Applicants must submit a security-audit report (self-audit with tools accepted at initGrant level). The report must list all findings and their resolutions.</div>
     </div>
   </div>
 </div>
@@ -752,7 +752,7 @@ contract StakingPool {
 <!-- ═══════════════════════════════ ASSESSMENT ═══════════════ -->
 <section class="assessment-section">
   <div class="assessment-header">
-    <h2>📝 Sub‑Module 21.1 Assessment</h2>
+    <h2>📝 Sub-Module 21.1 Assessment</h2>
     <div class="marks-total-badge">
       <div class="num">25</div>
       <div class="label">Total Marks</div>
@@ -762,7 +762,7 @@ contract StakingPool {
   <div class="assessment-body">
     <!-- SECTION A – MCQ -->
     <div class="q-section-header">
-      <div class="q-section-title">Section A — Multiple Choice Questions</div>
+      <div class="q-section-title">Section A - Multiple Choice Questions</div>
       <div class="q-section-meta">5 Questions · 1 mark each · 5 marks total</div>
     </div>
 
@@ -777,7 +777,7 @@ contract StakingPool {
         <li><span class="opt-key">D</span> Hardhat Gas Reporter</li>
       </ul>
       <div class="answer-box">
-        <div class="answer-box-label">✅ Correct Answer: B — Slither</div>
+        <div class="answer-box-label">✅ Correct Answer: B - Slither</div>
         <p>Slither is a static analysis framework that examines Solidity code without executing it. It detects reentrancy, missing modifiers, and many other vulnerability patterns. Mythril uses symbolic execution (dynamic), Echidna does fuzzing, and Gas Reporter measures gas costs.</p>
         <div class="marks-bd"><span>1 mark:</span> selecting B. No partial credit.</div>
       </div>
@@ -786,11 +786,11 @@ contract StakingPool {
     <!-- Q2 -->
     <div class="question-block">
       <div class="q-header"><div class="q-badge">Q2</div><div class="q-meta"><span class="q-type">MCQ</span><span class="q-diff easy">Easy</span><span class="q-marks">1 mark</span></div></div>
-      <div class="q-text">The Checks‑Effects‑Interactions pattern primarily defends against which attack?</div>
+      <div class="q-text">The Checks-Effects-Interactions pattern primarily defends against which attack?</div>
       <ul class="options">
         <li><span class="opt-key">A</span> Integer overflow</li>
         <li class="correct"><span class="opt-key">B</span> Reentrancy ✅</li>
-        <li><span class="opt-key">C</span> Front‑running</li>
+        <li><span class="opt-key">C</span> Front-running</li>
         <li><span class="opt-key">D</span> Denial of Service</li>
       </ul>
       <div class="answer-box">
@@ -805,7 +805,7 @@ contract StakingPool {
       <div class="q-text">In Solidity ≥0.8, which of the following statements about integer overflow is TRUE?</div>
       <ul class="options">
         <li><span class="opt-key">A</span> Overflow is impossible because the EVM rejects such transactions.</li>
-        <li class="correct"><span class="opt-key">B</span> Overflow protection is built‑in, but can be bypassed with <code>unchecked { … }</code>. ✅</li>
+        <li class="correct"><span class="opt-key">B</span> Overflow protection is built-in, but can be bypassed with <code>unchecked { … }</code>. ✅</li>
         <li><span class="opt-key">C</span> Overflow is still possible by default; SafeMath must be imported.</li>
         <li><span class="opt-key">D</span> Overflow only affects <code>uint256</code> and not smaller integer types.</li>
       </ul>
@@ -822,7 +822,7 @@ contract StakingPool {
       <ul class="options">
         <li><span class="opt-key">A</span> Change to <code>string storage name</code></li>
         <li class="correct"><span class="opt-key">B</span> Change to <code>string calldata name</code> ✅</li>
-        <li><span class="opt-key">C</span> Keep as <code>memory</code> — it's already the cheapest</li>
+        <li><span class="opt-key">C</span> Keep as <code>memory</code> - it's already the cheapest</li>
         <li><span class="opt-key">D</span> Use <code>bytes32 name</code> instead</li>
       </ul>
       <div class="answer-box">
@@ -834,29 +834,29 @@ contract StakingPool {
     <!-- Q5 -->
     <div class="question-block">
       <div class="q-header"><div class="q-badge">Q5</div><div class="q-meta"><span class="q-type">MCQ</span><span class="q-diff hard">Hard</span><span class="q-marks">1 mark</span></div></div>
-      <div class="q-text">MST’s BuildGrant requires a security‑audit report. What is the minimum acceptable evidence for an <strong>initGrant</strong> application?</div>
+      <div class="q-text">MST’s BuildGrant requires a security-audit report. What is the minimum acceptable evidence for an <strong>initGrant</strong> application?</div>
       <ul class="options">
-        <li><span class="opt-key">A</span> A third‑party audit from Certik or Trail of Bits</li>
-        <li class="correct"><span class="opt-key">B</span> A self‑audit report showing Slither/Mythril output and manual checklist completion ✅</li>
+        <li><span class="opt-key">A</span> A third-party audit from Certik or Trail of Bits</li>
+        <li class="correct"><span class="opt-key">B</span> A self-audit report showing Slither/Mythril output and manual checklist completion ✅</li>
         <li><span class="opt-key">C</span> A tweet stating the contract is safe</li>
         <li><span class="opt-key">D</span> No audit is required at initGrant stage</li>
       </ul>
       <div class="answer-box">
         <div class="answer-box-label">✅ Correct Answer: B</div>
-        <p>MST’s initGrant track (up to $1,000) accepts a thorough self‑audit report. The applicant must demonstrate they have run automated tools and manually reviewed the checklist. Professional audits are expected for buildGrant and scaleGrant tiers.</p>
+        <p>MST’s initGrant track (up to $1,000) accepts a thorough self-audit report. The applicant must demonstrate they have run automated tools and manually reviewed the checklist. Professional audits are expected for buildGrant and scaleGrant tiers.</p>
       </div>
     </div>
 
     <!-- SECTION B – TRUE/FALSE -->
     <div class="q-section-header">
-      <div class="q-section-title">Section B — True / False</div>
+      <div class="q-section-title">Section B - True / False</div>
       <div class="q-section-meta">3 Questions · 1 mark each · 3 marks total</div>
     </div>
 
     <!-- Q6 -->
     <div class="question-block">
       <div class="q-header"><div class="q-badge">Q6</div><div class="q-meta"><span class="q-type">T/F</span><span class="q-diff easy">Easy</span><span class="q-marks">1 mark</span></div></div>
-      <div class="q-text">Slither can detect all possible smart‑contract vulnerabilities without any human review.</div>
+      <div class="q-text">Slither can detect all possible smart-contract vulnerabilities without any human review.</div>
       <div class="tf-box">
         <div class="tf-verdict false">FALSE</div>
         <p>Slither is a static analyser; it cannot understand business logic or find complex economic attacks. Manual review is always required.</p>
@@ -870,7 +870,7 @@ contract StakingPool {
       <div class="q-text">On MST, gas fees are so low that gas optimisation is unnecessary.</div>
       <div class="tf-box">
         <div class="tf-verdict false">FALSE</div>
-        <p>While MST fees are low, high‑frequency dApps (gaming, RWA) still benefit enormously from optimisation — and grant reviewers expect efficient code.</p>
+        <p>While MST fees are low, high-frequency dApps (gaming, RWA) still benefit enormously from optimisation - and grant reviewers expect efficient code.</p>
       </div>
       <div class="answer-box"><div class="answer-box-label">✅ 1 mark for FALSE</div></div>
     </div>
@@ -888,7 +888,7 @@ contract StakingPool {
 
     <!-- SECTION C – TRUE/FALSE WITH JUSTIFICATION -->
     <div class="q-section-header">
-      <div class="q-section-title">Section C — True / False with Mandatory Justification</div>
+      <div class="q-section-title">Section C - True / False with Mandatory Justification</div>
       <div class="q-section-meta">2 Questions · 2 marks each · 4 marks total</div>
     </div>
 
@@ -900,12 +900,12 @@ contract StakingPool {
         <div class="tf-verdict false">FALSE</div>
         <div class="tf-must-write">📝 Sample Justification (write similar):</div>
         <div class="tf-sample">
-          Automated tools cannot detect flaws in business logic, economic incentives, or incorrect access‑control design. For example, a contract might give all users the ability to call a sensitive function because of a missing <code>onlyOwner</code> modifier that the developer forgot — Slither would flag only if the function had no modifier at all, not if the wrong logic was applied. Human code review and fuzzing are mandatory.
+          Automated tools cannot detect flaws in business logic, economic incentives, or incorrect access-control design. For example, a contract might give all users the ability to call a sensitive function because of a missing <code>onlyOwner</code> modifier that the developer forgot - Slither would flag only if the function had no modifier at all, not if the wrong logic was applied. Human code review and fuzzing are mandatory.
         </div>
       </div>
       <div class="answer-box">
         <div class="answer-box-label">📊 Marks Breakdown</div>
-        <p><strong>1 mark:</strong> states FALSE. <strong>+1 mark:</strong> provides a valid justification (mentions business‑logic blindness, or need for manual review, or limitation of static analysis).</p>
+        <p><strong>1 mark:</strong> states FALSE. <strong>+1 mark:</strong> provides a valid justification (mentions business-logic blindness, or need for manual review, or limitation of static analysis).</p>
       </div>
     </div>
 
@@ -922,13 +922,13 @@ contract StakingPool {
       </div>
       <div class="answer-box">
         <div class="answer-box-label">📊 Marks Breakdown</div>
-        <p><strong>1 mark:</strong> FALSE. <strong>+1 mark:</strong> justification mentions that <code>unchecked</code> disables protection and must be used only with a proof of non‑overflow, not blindly.</p>
+        <p><strong>1 mark:</strong> FALSE. <strong>+1 mark:</strong> justification mentions that <code>unchecked</code> disables protection and must be used only with a proof of non-overflow, not blindly.</p>
       </div>
     </div>
 
     <!-- SECTION D – DESCRIPTIVE -->
     <div class="q-section-header">
-      <div class="q-section-title">Section D — Descriptive Questions</div>
+      <div class="q-section-title">Section D - Descriptive Questions</div>
       <div class="q-section-meta">3 Questions · 2+3+3 = 8 marks total</div>
     </div>
 
@@ -938,22 +938,22 @@ contract StakingPool {
       <div class="q-text">Explain why reentrancy is still possible even if a contract uses <code>ReentrancyGuard</code> from OpenZeppelin.</div>
       <div class="answer-box">
         <div class="answer-box-label">✅ Model Answer</div>
-        <p><code>ReentrancyGuard</code> only prevents reentrant calls to the <em>same</em> function that holds the lock. If a contract has multiple functions that call external contracts, and only some of them are guarded, an attacker can still re-enter through an unguarded function and corrupt state. Additionally, cross‑contract reentrancy (attacking contract A via contract B) is not prevented by a guard inside contract A alone. CEI pattern is the fundamental defence.</p>
-        <div class="marks-bd"><span>2 marks:</span> 1 for mentioning unguarded functions, 1 for cross‑contract nuance.</div>
+        <p><code>ReentrancyGuard</code> only prevents reentrant calls to the <em>same</em> function that holds the lock. If a contract has multiple functions that call external contracts, and only some of them are guarded, an attacker can still re-enter through an unguarded function and corrupt state. Additionally, cross-contract reentrancy (attacking contract A via contract B) is not prevented by a guard inside contract A alone. CEI pattern is the fundamental defence.</p>
+        <div class="marks-bd"><span>2 marks:</span> 1 for mentioning unguarded functions, 1 for cross-contract nuance.</div>
       </div>
     </div>
 
     <!-- Q12 -->
     <div class="question-block">
       <div class="q-header"><div class="q-badge">Q12</div><div class="q-meta"><span class="q-type">Descriptive</span><span class="q-diff medium">Medium</span><span class="q-marks">3 marks</span></div></div>
-      <div class="q-text">List three concrete gas‑optimisation techniques that can be applied to the following function, and explain why each saves gas.<br><code>function setUser(address user, uint256 balance) public { users[user] = balance; }</code></div>
+      <div class="q-text">List three concrete gas-optimisation techniques that can be applied to the following function, and explain why each saves gas.<br><code>function setUser(address user, uint256 balance) public { users[user] = balance; }</code></div>
       <div class="answer-box">
         <div class="answer-box-label">✅ Model Answer (any three valid)</div>
         <p>
-          1. Change parameter <code>balance</code> to <code>uint256 balance</code> — it’s already value type; but if it were a string/bytes, switch to calldata. <br/>
-          2. Emit an event inside the function to provide off‑chain logging (not a direct gas saver but required for good practice). <br/>
+          1. Change parameter <code>balance</code> to <code>uint256 balance</code> - it’s already value type; but if it were a string/bytes, switch to calldata. <br/>
+          2. Emit an event inside the function to provide off-chain logging (not a direct gas saver but required for good practice). <br/>
           More relevant: if the mapping read is done elsewhere, cache it. <br/>
-          Real optimisations: if the function is called externally, mark it <code>external</code> instead of <code>public</code> — saves a few gas. <br/>
+          Real optimisations: if the function is called externally, mark it <code>external</code> instead of <code>public</code> - saves a few gas. <br/>
           If the mapping key is an address, use <code>unchecked</code> for arithmetic if doing so. <br/>
           Packing: not applicable here. <br/>
           (Accept any three that are technically sound.)
@@ -969,15 +969,15 @@ contract StakingPool {
       <div class="answer-box">
         <div class="answer-box-label">✅ Model Answer</div>
         <p>
-          <code>block.timestamp</code> can be manipulated by validators within a small range, and <code>block.difficulty</code> (or equivalent on MST) is not truly random. An attacker can influence the outcome. A better approach is to use MST’s <strong>FortunaX</strong> protocol, which provides a provably fair random number via a commit‑reveal scheme or VRF (verifiable random function). Alternatively, use a commit‑reveal pattern where users commit a hash and later reveal the preimage.
+          <code>block.timestamp</code> can be manipulated by validators within a small range, and <code>block.difficulty</code> (or equivalent on MST) is not truly random. An attacker can influence the outcome. A better approach is to use MST’s <strong>FortunaX</strong> protocol, which provides a provably fair random number via a commit-reveal scheme or VRF (verifiable random function). Alternatively, use a commit-reveal pattern where users commit a hash and later reveal the preimage.
         </p>
-        <div class="marks-bd"><span>3 marks:</span> 1 for explaining insecurity, 1 for mentioning FortunaX/VRF, 1 for commit‑reveal concept.</div>
+        <div class="marks-bd"><span>3 marks:</span> 1 for explaining insecurity, 1 for mentioning FortunaX/VRF, 1 for commit-reveal concept.</div>
       </div>
     </div>
 
     <!-- SECTION E – CODING -->
     <div class="q-section-header">
-      <div class="q-section-title">Section E — Coding Question</div>
+      <div class="q-section-title">Section E - Coding Question</div>
       <div class="q-section-meta">1 Question · 5 marks</div>
     </div>
 
@@ -1004,11 +1004,11 @@ contract StakingPool {
       <div class="answer-box">
         <div class="answer-box-label">✅ Solution</div>
         <p>
-          <strong>Vulnerability 1 – Reentrancy:</strong> The contract sends ETH to the previous bidder before updating <code>highestBidder</code> and <code>highestBid</code>. An attacker can re‑enter <code>bid()</code> from the fallback and place a new bid, draining funds. <br/>
-          <strong>Vulnerability 2 – Unchecked return value:</strong> The <code>call</code> return is checked with <code>require</code>, but if the previous bidder is a contract that consumes all gas in its fallback, the refund will always fail, locking the auction. Should use a pull‑over‑push pattern. <br/>
+          <strong>Vulnerability 1 - Reentrancy:</strong> The contract sends ETH to the previous bidder before updating <code>highestBidder</code> and <code>highestBid</code>. An attacker can re-enter <code>bid()</code> from the fallback and place a new bid, draining funds. <br/>
+          <strong>Vulnerability 2 - Unchecked return value:</strong> The <code>call</code> return is checked with <code>require</code>, but if the previous bidder is a contract that consumes all gas in its fallback, the refund will always fail, locking the auction. Should use a pull-over-push pattern. <br/>
           <strong>Gas inefficiency:</strong> The <code>bids</code> mapping write is unnecessary for the core logic and wastes storage. Remove or optimise.
         </p>
-        <p><strong>Corrected code (using CEI and Pull‑over‑Push):</strong></p>
+        <p><strong>Corrected code (using CEI and Pull-over-Push):</strong></p>
         <div class="code-block"><code>function bid() external payable nonReentrant {
     require(msg.value > highestBid, "too low");
     address previousBidder = highestBidder;
@@ -1024,7 +1024,7 @@ contract StakingPool {
     }
     emit NewBid(msg.sender, msg.value);
 }</code></div>
-        <div class="marks-bd"><span>5 marks:</span> 1 for identifying reentrancy, 1 for identifying DoS/refund issue, 1 for gas inefficiency, 2 for providing corrected code with CEI and pull‑over‑push.</div>
+        <div class="marks-bd"><span>5 marks:</span> 1 for identifying reentrancy, 1 for identifying DoS/refund issue, 1 for gas inefficiency, 2 for providing corrected code with CEI and pull-over-push.</div>
       </div>
     </div>
 
@@ -1033,7 +1033,7 @@ contract StakingPool {
   <!-- SCORE SUMMARY -->
   <div class="score-summary">
     <div class="score-left">
-      <div class="score-label">Sub‑Module 21.1 Assessment Summary</div>
+      <div class="score-label">Sub-Module 21.1 Assessment Summary</div>
       <div class="score-row">Section A: 5 × MCQ <span>(1 mark each) = 5 marks</span></div>
       <div class="score-row">Section B: 3 × True/False <span>(1 mark each) = 3 marks</span></div>
       <div class="score-row">Section C: 2 × True/False with Justification <span>(2 marks each) = 4 marks</span></div>
@@ -1049,21 +1049,21 @@ contract StakingPool {
 
 <!-- ═══════════════════════════════ GLOSSARY ═══════════════ -->
 <div class="section-label" style="margin-top:52px;">10 · Glossary</div>
-<h2 class="section-title">Key Terms — Sub‑Module 21.1</h2>
+<h2 class="section-title">Key Terms - Sub-Module 21.1</h2>
 <div class="glossary-grid">
   <div class="glossary-item"><div class="glossary-term">Slither</div><div class="glossary-def">Static analysis tool for Solidity that detects vulnerabilities without executing code.</div></div>
   <div class="glossary-item"><div class="glossary-term">Mythril</div><div class="glossary-def">Symbolic execution engine that explores all possible code paths to find deep bugs.</div></div>
-  <div class="glossary-item"><div class="glossary-term">Echidna</div><div class="glossary-def">Fuzzer for EVM bytecode; tests user‑defined invariants with random transactions.</div></div>
-  <div class="glossary-item"><div class="glossary-term">CEI</div><div class="glossary-def">Checks‑Effects‑Interactions pattern — update state before external calls to prevent reentrancy.</div></div>
-  <div class="glossary-item"><div class="glossary-term">Reentrancy Guard</div><div class="glossary-def">A modifier that prevents a function from being re‑entered within the same transaction.</div></div>
+  <div class="glossary-item"><div class="glossary-term">Echidna</div><div class="glossary-def">Fuzzer for EVM bytecode; tests user-defined invariants with random transactions.</div></div>
+  <div class="glossary-item"><div class="glossary-term">CEI</div><div class="glossary-def">Checks-Effects-Interactions pattern - update state before external calls to prevent reentrancy.</div></div>
+  <div class="glossary-item"><div class="glossary-term">Reentrancy Guard</div><div class="glossary-def">A modifier that prevents a function from being re-entered within the same transaction.</div></div>
   <div class="glossary-item"><div class="glossary-term">Gas Optimisation</div><div class="glossary-def">Techniques to reduce the computational cost of executing smart contract functions.</div></div>
-  <div class="glossary-item"><div class="glossary-term">MST BuildGrant</div><div class="glossary-def">MST ecosystem grant program (up to $10,000) that requires a security‑audit report for eligibility.</div></div>
-  <div class="glossary-item"><div class="glossary-term">FortunaX</div><div class="glossary-def">MST’s provably fair random‑number generation protocol, safe for gaming and lotteries.</div></div>
+  <div class="glossary-item"><div class="glossary-term">MST BuildGrant</div><div class="glossary-def">MST ecosystem grant program (up to $10,000) that requires a security-audit report for eligibility.</div></div>
+  <div class="glossary-item"><div class="glossary-term">FortunaX</div><div class="glossary-def">MST’s provably fair random-number generation protocol, safe for gaming and lotteries.</div></div>
 </div>
 
 <div class="page-footer">
-  <p>MasterStroke Academy — Professional Blockchain Developer Program</p>
-  <p>Module 21 · Sub‑Module <strong>21.1</strong> of 5 · Next: 21.2 — Mainnet Deployment on MST →</p>
+  <p>MasterStroke Academy - Professional Blockchain Developer Program</p>
+  <p>Module 21 · Sub-Module <strong>21.1</strong> of 5 · Next: 21.2 - Mainnet Deployment on MST →</p>
 </div>
 
 </body>

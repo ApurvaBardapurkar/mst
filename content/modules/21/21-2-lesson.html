@@ -1,10 +1,10 @@
 
 
 <!-- ═══════════════════════════════ HEADER ═══════════════ -->
-<div class="module-badge">🚀 Module 21 · Sub‑Module 21.2 of 5</div>
+<div class="module-badge">🚀 Module 21 · Sub-Module 21.2 of 5</div>
 <h1 class="module-title">Mainnet Deployment on <span class="highlight">MST</span></h1>
 <p class="module-subtitle">
-  Your contracts have passed the security audit. Now it’s time to launch them on the real MST mainnet — where every transaction costs real MST tokens and every byte is permanent. This is the moment your dApp becomes a live product.
+  Your contracts have passed the security audit. Now it’s time to launch them on the real MST mainnet - where every transaction costs real MST tokens and every byte is permanent. This is the moment your dApp becomes a live product.
 </p>
 
 <div class="meta-bar">
@@ -16,7 +16,7 @@
 
 <!-- ═══════════════════════════════ OBJECTIVES ═══════════════ -->
 <div class="section-label">01 · Learning Objectives</div>
-<h2 class="section-title">By the end of this sub‑module, you will be able to…</h2>
+<h2 class="section-title">By the end of this sub-module, you will be able to…</h2>
 <div class="obj-grid">
   <div class="obj-card">
     <div class="obj-icon">🔐</div>
@@ -37,8 +37,8 @@
 </div>
 
 <!-- ═══════════════════════════════ STORY ═══════════════ -->
-<div class="section-label">02 · Real‑World Deployment Story</div>
-<h2 class="section-title">The Night a Mainnet Launch Failed — And Why</h2>
+<div class="section-label">02 · Real-World Deployment Story</div>
+<h2 class="section-title">The Night a Mainnet Launch Failed - And Why</h2>
 <div class="callout story">
   <div class="callout-label">📖 Story</div>
   <p>
@@ -46,36 +46,36 @@
   </p>
   <br>
   <p>
-    The transaction failed. Gas estimation had reverted because the contract’s constructor included a call to a Uniswap router address that didn’t exist on the new chain. They had hardcoded a testnet address. Worse, the private key they used belonged to a team member who was on vacation — no one else had access to the deployer address. The project launch was delayed by three days, community trust eroded, and the token lost 40% of its anticipated momentum within the first week.
+    The transaction failed. Gas estimation had reverted because the contract’s constructor included a call to a Uniswap router address that didn’t exist on the new chain. They had hardcoded a testnet address. Worse, the private key they used belonged to a team member who was on vacation - no one else had access to the deployer address. The project launch was delayed by three days, community trust eroded, and the token lost 40% of its anticipated momentum within the first week.
   </p>
   <br>
   <p>
-    This story isn’t unique. Mainnet deployment is fundamentally different from testnet. On MST, the margin for error is slim — but with the right configuration and a meticulous checklist, you can deploy confidently and become the hero who shipped on time. This sub‑module gives you that checklist.
+    This story isn’t unique. Mainnet deployment is fundamentally different from testnet. On MST, the margin for error is slim - but with the right configuration and a meticulous checklist, you can deploy confidently and become the hero who shipped on time. This sub-module gives you that checklist.
   </p>
 </div>
 
 <!-- ═══════════════════════════════ MINDSET ═══════════════ -->
 <div class="section-label">03 · The Mainnet Mindset</div>
-<h2 class="section-title">Testnet ≠ Mainnet — Understand the Gap</h2>
+<h2 class="section-title">Testnet ≠ Mainnet - Understand the Gap</h2>
 <table class="compare-table">
   <thead>
     <tr><th>Aspect</th><th>⚠️ Testnet</th><th>✅ Mainnet</th></tr>
   </thead>
   <tbody>
-    <tr><td>Token value</td><td class="bad">Worthless — free from faucet</td><td class="good">Real economic value; mistakes cost money</td></tr>
-    <tr><td>Contract immutability</td><td class="mid">Redeploy anytime</td><td class="good">Permanent — cannot be changed unless upgradeable</td></tr>
-    <tr><td>Private key exposure</td><td class="mid">Can use exposed test keys</td><td class="bad">Must use a secure, backed‑up private key; never share</td></tr>
-    <tr><td>RPC reliability</td><td class="mid">Often rate‑limited</td><td class="good">High‑availability endpoints, but require proper retry logic</td></tr>
+    <tr><td>Token value</td><td class="bad">Worthless - free from faucet</td><td class="good">Real economic value; mistakes cost money</td></tr>
+    <tr><td>Contract immutability</td><td class="mid">Redeploy anytime</td><td class="good">Permanent - cannot be changed unless upgradeable</td></tr>
+    <tr><td>Private key exposure</td><td class="mid">Can use exposed test keys</td><td class="bad">Must use a secure, backed-up private key; never share</td></tr>
+    <tr><td>RPC reliability</td><td class="mid">Often rate-limited</td><td class="good">High-availability endpoints, but require proper retry logic</td></tr>
     <tr><td>Ecosystem dependencies</td><td class="mid">Mock oracles, fake tokens</td><td class="good">Real price feeds, real token contracts (e.g., MST stablecoins, bridges)</td></tr>
     <tr><td>Gas fee</td><td class="bad">Can be high if faucet limited</td><td class="good">Very low on MST, but still must be managed</td></tr>
   </tbody>
 </table>
 
 <!-- ═══════════════════════════════ MASTER CHECKLIST ═══════════════ -->
-<div class="section-label">04 · Pre‑Deployment Checklist</div>
+<div class="section-label">04 · Pre-Deployment Checklist</div>
 <h2 class="section-title">Do These 8 Things Before You Touch Mainnet</h2>
 <div class="feature-list">
-  <div class="feature-item"><div class="feature-num" style="background:var(--green);">✓</div><div class="feature-content"><div class="feature-title">1. Audit report signed off</div><div class="feature-desc">All High and Medium findings resolved; Slither &amp; Mythril re‑run with zero Highs.</div></div></div>
+  <div class="feature-item"><div class="feature-num" style="background:var(--green);">✓</div><div class="feature-content"><div class="feature-title">1. Audit report signed off</div><div class="feature-desc">All High and Medium findings resolved; Slither &amp; Mythril re-run with zero Highs.</div></div></div>
   <div class="feature-item"><div class="feature-num" style="background:var(--green);">✓</div><div class="feature-content"><div class="feature-title">2. Final gas optimisation applied</div><div class="feature-desc">Hardhat Gas Reporter shows key functions under target thresholds.</div></div></div>
   <div class="feature-item"><div class="feature-num" style="background:var(--green);">✓</div><div class="feature-content"><div class="feature-title">3. Environment variables set</div><div class="feature-desc"><code>MST_MAINNET_RPC</code>, <code>PRIVATE_KEY</code>, <code>MSTSCAN_API_KEY</code> all in <code>.env</code> (never committed).</div></div></div>
   <div class="feature-item"><div class="feature-num" style="background:var(--green);">✓</div><div class="feature-content"><div class="feature-title">4. Deployer wallet funded</div><div class="feature-desc">Mainnet MST tokens acquired (via bridge or exchange). Balance checked on MST Explorer.</div></div></div>
@@ -87,7 +87,7 @@
 
 <!-- ═══════════════════════════════ HARDHAT CONFIG ═══════════════ -->
 <div class="section-label">05 · Configuring Hardhat for MST Mainnet</div>
-<h2 class="section-title">Chain ID 4646 — The Gateway to the Real MST</h2>
+<h2 class="section-title">Chain ID 4646 - The Gateway to the Real MST</h2>
 <p>
   The MST mainnet is identified by <strong>Chain ID 4646</strong>. Every transaction on this network requires real MST tokens for gas. The RPC endpoint and block explorer are different from testnet. Your <code>hardhat.config.js</code> must include the correct network configuration.
 </p>
@@ -140,14 +140,14 @@ module.exports = {
     <div class="feature-num" style="background:var(--teal);">1</div>
     <div class="feature-content">
       <div class="feature-title">Centralised Exchange (CEX)</div>
-      <div class="feature-desc">Purchase MST on supported exchanges (e.g., KuCoin, Gate.io) and withdraw to your deployer address. Always double‑check the withdrawal network is <strong>MST Mainnet (Chain ID 4646)</strong>.</div>
+      <div class="feature-desc">Purchase MST on supported exchanges (e.g., KuCoin, Gate.io) and withdraw to your deployer address. Always double-check the withdrawal network is <strong>MST Mainnet (Chain ID 4646)</strong>.</div>
     </div>
   </div>
   <div class="feature-item">
     <div class="feature-num" style="background:var(--teal);">2</div>
     <div class="feature-content">
       <div class="feature-title">Bridge from Ethereum / BSC</div>
-      <div class="feature-desc">Use the official MST Bridge (bridge.mstblockchain.com) to transfer assets from Ethereum or BSC. The bridge will wrap tokens as MST‑compatible assets and also provide a small amount of native MST for gas.</div>
+      <div class="feature-desc">Use the official MST Bridge (bridge.mstblockchain.com) to transfer assets from Ethereum or BSC. The bridge will wrap tokens as MST-compatible assets and also provide a small amount of native MST for gas.</div>
     </div>
   </div>
   <div class="feature-item">
@@ -167,9 +167,9 @@ module.exports = {
 
 <!-- ═══════════════════════════════ DEPLOYMENT SCRIPT ═══════════════ -->
 <div class="section-label">07 · Writing the Production Deployment Script</div>
-<h2 class="section-title">From Script to Mainnet — Step by Step</h2>
+<h2 class="section-title">From Script to Mainnet - Step by Step</h2>
 <p>
-  A professional deployment script does more than just deploy a contract. It logs every address, waits for confirmations, verifies contracts automatically, and handles errors gracefully. Below is a battle‑tested script for deploying your capstone’s core contracts to MST mainnet.
+  A professional deployment script does more than just deploy a contract. It logs every address, waits for confirmations, verifies contracts automatically, and handles errors gracefully. Below is a battle-tested script for deploying your capstone’s core contracts to MST mainnet.
 </p>
 
 <div class="code-block"><code>// scripts/deploy_mainnet.js
@@ -226,7 +226,7 @@ main().catch((error) =&gt; {
 <div class="callout insight">
   <div class="callout-label">💡 Pro Tip: Use Hardhat Ignition (New)</div>
   <p>
-    Hardhat Ignition is the new declarative deployment system. It automatically handles contract dependencies, re‑deployment detection, and verification. For complex multi‑contract capstones, Ignition reduces script complexity significantly.
+    Hardhat Ignition is the new declarative deployment system. It automatically handles contract dependencies, re-deployment detection, and verification. For complex multi-contract capstones, Ignition reduces script complexity significantly.
   </p>
 </div>
 
@@ -252,21 +252,21 @@ main().catch((error) =&gt; {
                       │  Published ✅  │
                       └────────────────┘
   </pre>
-  <div class="diagram-caption">Verification is a one‑way operation: once verified, the source code is permanently associated with the contract address.</div>
+  <div class="diagram-caption">Verification is a one-way operation: once verified, the source code is permanently associated with the contract address.</div>
 </div>
 
 <div class="callout key">
   <div class="callout-label">🗝️ Manual Verification Alternative</div>
   <p>
-    If the Hardhat verify plugin fails (e.g., due to compiler version mismatch), you can manually verify via MST Explorer’s “Verify &amp; Publish” page. You’ll need to provide the exact Solidity version, optimisation settings, and constructor arguments (ABI‑encoded).
+    If the Hardhat verify plugin fails (e.g., due to compiler version mismatch), you can manually verify via MST Explorer’s “Verify &amp; Publish” page. You’ll need to provide the exact Solidity version, optimisation settings, and constructor arguments (ABI-encoded).
   </p>
 </div>
 
 <!-- ═══════════════════════════════ INTERACTING ═══════════════ -->
 <div class="section-label">09 · Interacting with Your Live Contracts</div>
-<h2 class="section-title">First Mainnet Transactions — Reading &amp; Writing</h2>
+<h2 class="section-title">First Mainnet Transactions - Reading &amp; Writing</h2>
 <p>
-  Once deployed and verified, you can interact with your contracts directly from the MST Explorer’s “Contract” tab. You can call view functions for free, and send state‑changing transactions via your BridgeKey wallet. This is also how you test the live flow before sharing the dApp URL with users.
+  Once deployed and verified, you can interact with your contracts directly from the MST Explorer’s “Contract” tab. You can call view functions for free, and send state-changing transactions via your BridgeKey wallet. This is also how you test the live flow before sharing the dApp URL with users.
 </p>
 
 <div class="two-col">
@@ -283,7 +283,7 @@ main().catch((error) =&gt; {
     <div class="col-card-title">❌ DON'T</div>
     <ul>
       <li>Never use the same private key for deployment and daily use.</li>
-      <li>Don't skip verification — unverified contracts look suspicious.</li>
+      <li>Don't skip verification - unverified contracts look suspicious.</li>
       <li>Don't forget to transfer ownership to a multisig after deployment.</li>
       <li>Don't deploy at 2 AM without a team member online to verify.</li>
     </ul>
@@ -292,7 +292,7 @@ main().catch((error) =&gt; {
 
 <!-- ═══════════════════════════════ ASSESSMENT PREP ═══════════════ -->
 <div class="section-label">10 · Assessment Preparation</div>
-<h2 class="section-title">Must‑Know Facts for the Test</h2>
+<h2 class="section-title">Must-Know Facts for the Test</h2>
 <div class="feature-list">
   <div class="feature-item"><div class="feature-num" style="background:var(--ink-3);font-size:11px;">A</div><div class="feature-content"><div class="feature-title">MST Mainnet Chain ID</div><div class="feature-desc">Always <strong>4646</strong>. Using any other chain ID will fail. This is how wallets and Hardhat distinguish the network.</div></div></div>
   <div class="feature-item"><div class="feature-num" style="background:var(--ink-3);font-size:11px;">B</div><div class="feature-content"><div class="feature-title">Environment Variables</div><div class="feature-desc">Private keys must be stored in <code>.env</code> (never in code). Use <code>dotenv</code> package and add <code>.env</code> to <code>.gitignore</code>.</div></div></div>
@@ -305,9 +305,9 @@ main().catch((error) =&gt; {
 
 <!-- ═══════════════════════════════ GLOSSARY ═══════════════ -->
 <div class="section-label" style="margin-top:52px;">11 · Glossary</div>
-<h2 class="section-title">Key Terms — Sub‑Module 21.2</h2>
+<h2 class="section-title">Key Terms - Sub-Module 21.2</h2>
 <div class="glossary-grid">
-  <div class="glossary-item"><div class="glossary-term">Chain ID 4646</div><div class="glossary-def">The unique network identifier for MST mainnet, used by wallets and Hardhat to prevent cross‑chain replay attacks.</div></div>
+  <div class="glossary-item"><div class="glossary-term">Chain ID 4646</div><div class="glossary-def">The unique network identifier for MST mainnet, used by wallets and Hardhat to prevent cross-chain replay attacks.</div></div>
   <div class="glossary-item"><div class="glossary-term">RPC Endpoint</div><div class="glossary-def">The URL through which your script communicates with the MST network (e.g., <code>https://rpc.mstblockchain.com</code>).</div></div>
   <div class="glossary-item"><div class="glossary-term">MST Explorer</div><div class="glossary-def">The block explorer for MST (mstscan.com), where contracts are verified and transactions inspected.</div></div>
   <div class="glossary-item"><div class="glossary-term">Hardhat Verify</div><div class="glossary-def">Plugin that uploads source code to the explorer to prove bytecode matches the Solidity code.</div></div>
@@ -316,8 +316,8 @@ main().catch((error) =&gt; {
 </div>
 
 <div class="page-footer">
-  <p>MasterStroke Academy — Professional Blockchain Developer Program</p>
-  <p>Module 21 · Sub‑Module <strong>21.2</strong> of 5 · Next: 21.3 — Production Frontend &amp; Documentation →</p>
+  <p>MasterStroke Academy - Professional Blockchain Developer Program</p>
+  <p>Module 21 · Sub-Module <strong>21.2</strong> of 5 · Next: 21.3 - Production Frontend &amp; Documentation →</p>
 </div>
 
 

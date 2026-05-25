@@ -4,7 +4,6 @@ import "./globals.css";
 import { Navbar } from "@/components/Navbar";
 import { AuthProvider } from "@/components/AuthProvider";
 import { ThemeProvider } from "@/components/ThemeProvider";
-import { ThemeScript } from "@/components/ThemeScript";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -17,9 +16,45 @@ const jetbrains = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Masterstroke Academy | MST Blockchain",
+  title: {
+    default: "Masterstroke Academy | Professional Blockchain Developer Program",
+    template: "%s | Masterstroke Academy",
+  },
   description:
-    "Professional blockchain developer program — 21 modules across 4 phases.",
+    "Master blockchain development with 21 comprehensive modules across 4 phases. Learn Solidity, DeFi, NFTs, DAOs, and more with interactive assessments and live coding.",
+  keywords: [
+    "blockchain",
+    "solidity",
+    "web3",
+    "defi",
+    "nft",
+    "dao",
+    "smart contracts",
+    "cryptocurrency",
+    "ethereum",
+    "developer course",
+    "masterstroke",
+    "MST blockchain",
+  ],
+  authors: [{ name: "Masterstroke Academy" }],
+  creator: "MST Blockchain",
+  openGraph: {
+    type: "website",
+    locale: "en_IN",
+    siteName: "Masterstroke Academy",
+    title: "Masterstroke Academy | Professional Blockchain Developer Program",
+    description:
+      "21 modules, 4 phases, 122+ lessons. The most comprehensive blockchain developer program with interactive assessments and live code execution.",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Masterstroke Academy",
+    description: "Professional Blockchain Developer Program — Learn. Build. Launch.",
+  },
+  robots: {
+    index: true,
+    follow: true,
+  },
 };
 
 export default function RootLayout({
@@ -28,9 +63,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${inter.variable} ${jetbrains.variable} h-full`} suppressHydrationWarning>
+    <html lang="en" className={`${inter.variable} ${jetbrains.variable} h-full`} suppressHydrationWarning data-scroll-behavior="smooth">
       <head>
-        <ThemeScript />
+        <link rel="icon" href="/favicon.ico" sizes="any" />
+        <meta name="theme-color" content="#e31e24" />
       </head>
       <body className="min-h-full flex flex-col antialiased">
         <ThemeProvider>

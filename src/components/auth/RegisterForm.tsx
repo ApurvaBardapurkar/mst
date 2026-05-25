@@ -4,10 +4,8 @@ import { useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import {
-  BLOCKCHAIN_LEVELS,
   COLLEGES,
   DEMO_FEES,
-  registerNonValidator,
   registerStudent,
   registerValidator,
   dashboardPath,
@@ -21,20 +19,17 @@ import {
   HighlightBox,
   SelectInput,
   SubmitButton,
-  TabButton,
   TextInput,
 } from "./AuthShell";
 
-type PrimaryTab = "student" | "developer";
-type DeveloperTab = "validator" | "non-validator";
+type SelectedRole = "student" | "validator";
 
 const VALIDATOR_ID_PLACEHOLDER_URL = "https://example.com/validator-id-card.pdf";
 
 export function RegisterForm() {
   const router = useRouter();
   const { refresh } = useAuth();
-  const [primaryTab, setPrimaryTab] = useState<PrimaryTab>("student");
-  const [developerTab, setDeveloperTab] = useState<DeveloperTab>("validator");
+  const [role, setRole] = useState<SelectedRole>("student");
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
 
@@ -43,19 +38,14 @@ export function RegisterForm() {
   const [phone, setPhone] = useState("");
   const [college, setCollege] = useState<string>(COLLEGES[0]);
   const [collegeOther, setCollegeOther] = useState("");
-  const [blockchainLevel, setBlockchainLevel] = useState(BLOCKCHAIN_LEVELS[0]);
   const [studentIdFile, setStudentIdFile] = useState<File | null>(null);
   const [validatorIdFile, setValidatorIdFile] = useState<File | null>(null);
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
 
-  function resetErrors() {
-    setError("");
-  }
-
   function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
-    resetErrors();
+    setError("");
     setLoading(true);
 
     if (password !== confirmPassword) {
@@ -68,7 +58,7 @@ export function RegisterForm() {
       | { ok: true; user: { role: string } }
       | { ok: false; error: string };
 
-    if (primaryTab === "student") {
+    if (role === "student") {
       if (!studentIdFile) {
         setLoading(false);
         setError("Student ID card upload is required.");
@@ -88,7 +78,7 @@ export function RegisterForm() {
         collegeOther: college === "Other" ? collegeOther : undefined,
         idCardFileName: studentIdFile.name,
       });
-    } else if (developerTab === "validator") {
+    } else {
       if (!validatorIdFile) {
         setLoading(false);
         setError("Validator ID card upload is required.");
@@ -101,14 +91,6 @@ export function RegisterForm() {
         password,
         idCardFileName: validatorIdFile.name,
       });
-    } else {
-      result = registerNonValidator({
-        fullName,
-        email,
-        phone,
-        password,
-        blockchainLevel,
-      });
     }
 
     setLoading(false);
@@ -118,63 +100,73 @@ export function RegisterForm() {
     }
     refresh();
     router.push(
-      dashboardPath(
-        result.user.role as "student" | "validator" | "non-validator"
-      )
+      dashboardPath(result.user.role as "student" | "validator")
     );
   }
 
   return (
     <AuthShell
       title="Create Account"
-      subtitle="Choose your path."
+      subtitle="Choose your path and get started."
     >
-      <div className="mb-4 space-y-4">
+      <div className="mb-6 space-y-4">
         <DemoFeeNote />
-        <div className="flex gap-2">
-          <TabButton
-            active={primaryTab === "student"}
-            onClick={() => {
-              setPrimaryTab("student");
-              resetErrors();
-            }}
-          >
-            Student
-          </TabButton>
-          <TabButton
-            active={primaryTab === "developer"}
-            onClick={() => {
-              setPrimaryTab("developer");
-              resetErrors();
-            }}
-          >
-            User / Developer
-          </TabButton>
+
+        <div>
+          <FieldLabel required>I am registering as a</FieldLabel>
+          <div className="mt-2 grid grid-cols-2 gap-3">
+            <button
+              type="button"
+              onClick={() => { setRole("student"); setError(""); }}
+              className={`group relative flex flex-col items-center gap-2 rounded-2xl border-2 px-4 py-5 text-center transition-all ${
+                role === "student"
+                  ? "border-mst-red bg-mst-red/5 shadow-md shadow-mst-red/10"
+                  : "border-[var(--border)] bg-[var(--bg)] hover:border-[var(--text-muted)]/40 hover:bg-[var(--bg-muted)]"
+              }`}
+            >
+              <span className="text-3xl">🎓</span>
+              <span className={`text-sm font-bold ${
+                role === "student" ? "text-mst-red" : "text-[var(--text)]"
+              }`}>
+                Student
+              </span>
+              <span className="text-[11px] leading-tight text-[var(--text-muted)]">
+                Enroll in courses & earn certifications
+              </span>
+              {role === "student" && (
+                <span className="absolute -right-1.5 -top-1.5 flex h-5 w-5 items-center justify-center rounded-full bg-mst-red text-[10px] text-white">
+                  ✓
+                </span>
+              )}
+            </button>
+
+            <button
+              type="button"
+              onClick={() => { setRole("validator"); setError(""); }}
+              className={`group relative flex flex-col items-center gap-2 rounded-2xl border-2 px-4 py-5 text-center transition-all ${
+                role === "validator"
+                  ? "border-mst-red bg-mst-red/5 shadow-md shadow-mst-red/10"
+                  : "border-[var(--border)] bg-[var(--bg)] hover:border-[var(--text-muted)]/40 hover:bg-[var(--bg-muted)]"
+              }`}
+            >
+              <span className="text-3xl">🔐</span>
+              <span className={`text-sm font-bold ${
+                role === "validator" ? "text-mst-red" : "text-[var(--text)]"
+              }`}>
+                Validator
+              </span>
+              <span className="text-[11px] leading-tight text-[var(--text-muted)]">
+                Validate transactions & earn rewards
+              </span>
+              {role === "validator" && (
+                <span className="absolute -right-1.5 -top-1.5 flex h-5 w-5 items-center justify-center rounded-full bg-mst-red text-[10px] text-white">
+                  ✓
+                </span>
+              )}
+            </button>
+          </div>
         </div>
       </div>
-
-      {primaryTab === "developer" && (
-        <div className="mb-6 flex gap-2">
-          <TabButton
-            active={developerTab === "validator"}
-            onClick={() => {
-              setDeveloperTab("validator");
-              resetErrors();
-            }}
-          >
-            Validator
-          </TabButton>
-          <TabButton
-            active={developerTab === "non-validator"}
-            onClick={() => {
-              setDeveloperTab("non-validator");
-              resetErrors();
-            }}
-          >
-            General User
-          </TabButton>
-        </div>
-      )}
 
       <form onSubmit={handleSubmit} className="space-y-4">
         <div>
@@ -186,35 +178,40 @@ export function RegisterForm() {
             required
             value={fullName}
             onChange={(e) => setFullName(e.target.value)}
+            placeholder="Your full name"
           />
         </div>
 
-        {primaryTab === "student" && (
+        <div>
+          <FieldLabel htmlFor="email" required>
+            Email
+          </FieldLabel>
+          <TextInput
+            id="email"
+            type="email"
+            required
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            placeholder="you@example.com"
+          />
+        </div>
+
+        <div>
+          <FieldLabel htmlFor="phone" required>
+            Phone Number
+          </FieldLabel>
+          <TextInput
+            id="phone"
+            type="tel"
+            required
+            value={phone}
+            onChange={(e) => setPhone(e.target.value)}
+            placeholder="+91 XXXXX XXXXX"
+          />
+        </div>
+
+        {role === "student" && (
           <>
-            <div>
-              <FieldLabel htmlFor="email" required>
-                Email
-              </FieldLabel>
-              <TextInput
-                id="email"
-                type="email"
-                required
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-              />
-            </div>
-            <div>
-              <FieldLabel htmlFor="phone" required>
-                Phone Number
-              </FieldLabel>
-              <TextInput
-                id="phone"
-                type="tel"
-                required
-                value={phone}
-                onChange={(e) => setPhone(e.target.value)}
-              />
-            </div>
             <div>
               <FieldLabel htmlFor="college" required>
                 College
@@ -241,6 +238,7 @@ export function RegisterForm() {
                   required
                   value={collegeOther}
                   onChange={(e) => setCollegeOther(e.target.value)}
+                  placeholder="Your college name"
                 />
               </div>
             )}
@@ -271,32 +269,8 @@ export function RegisterForm() {
           </>
         )}
 
-        {primaryTab === "developer" && developerTab === "validator" && (
+        {role === "validator" && (
           <>
-            <div>
-              <FieldLabel htmlFor="v-email" required>
-                Registered Email
-              </FieldLabel>
-              <TextInput
-                id="v-email"
-                type="email"
-                required
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-              />
-            </div>
-            <div>
-              <FieldLabel htmlFor="v-phone" required>
-                Registered Mobile Number
-              </FieldLabel>
-              <TextInput
-                id="v-phone"
-                type="tel"
-                required
-                value={phone}
-                onChange={(e) => setPhone(e.target.value)}
-              />
-            </div>
             <div>
               <FieldLabel htmlFor="validatorId" required>
                 Validator ID Card Upload
@@ -328,61 +302,6 @@ export function RegisterForm() {
               </a>
             </p>
             <DemoFee amount={DEMO_FEES.validator} />
-          </>
-        )}
-
-        {primaryTab === "developer" && developerTab === "non-validator" && (
-          <>
-            <div>
-              <FieldLabel htmlFor="nv-email" required>
-                Email
-              </FieldLabel>
-              <TextInput
-                id="nv-email"
-                type="email"
-                required
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-              />
-            </div>
-            <div>
-              <FieldLabel htmlFor="nv-phone" required>
-                Phone Number
-              </FieldLabel>
-              <TextInput
-                id="nv-phone"
-                type="tel"
-                required
-                value={phone}
-                onChange={(e) => setPhone(e.target.value)}
-              />
-            </div>
-            <div>
-              <FieldLabel htmlFor="level" required>
-                Blockchain Knowledge Level
-              </FieldLabel>
-              <SelectInput
-                id="level"
-                value={blockchainLevel}
-                onChange={(e) =>
-                  setBlockchainLevel(
-                    e.target.value as (typeof BLOCKCHAIN_LEVELS)[number]
-                  )
-                }
-              >
-                {BLOCKCHAIN_LEVELS.map((l) => (
-                  <option key={l} value={l}>
-                    {l}
-                  </option>
-                ))}
-              </SelectInput>
-            </div>
-            <DemoFee amount={DEMO_FEES.nonValidator} />
-            <HighlightBox>
-              Upon successful enrollment, a fractional share of MST Validator
-              participation will be allocated to the user, enabling Validator
-              ecosystem participation.
-            </HighlightBox>
           </>
         )}
 

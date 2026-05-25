@@ -7,7 +7,7 @@
     <div class="meta-bar">
         <div class="meta-chip">⏱ 40 Minutes</div>
         <div class="meta-chip purple">🎯 10 Marks</div>
-        <div class="meta-chip">📋 6 MCQ + 2 T/F with Justification + 1 Identify‑Output</div>
+        <div class="meta-chip">📋 6 MCQ + 2 T/F with Justification + 1 Identify-Output</div>
         <div class="meta-chip green">Phase 2 · Development Environment &amp; Solidity</div>
     </div>
 
@@ -15,31 +15,31 @@
     <div class="section-label">01 &nbsp; Learning Objectives</div>
     <h2 class="section-title">By the end of this sub-module, you will be able to…</h2>
     <div style="display:grid; grid-template-columns:1fr 1fr; gap:12px; margin:20px 0;">
-        <div class="feature-item"><div class="feature-num">🧬</div><div class="feature-content"><strong>Leverage single and multi‑level inheritance</strong> to reuse and extend contract functionality securely.</div></div>
+        <div class="feature-item"><div class="feature-num">🧬</div><div class="feature-content"><strong>Leverage single and multi-level inheritance</strong> to reuse and extend contract functionality securely.</div></div>
         <div class="feature-item"><div class="feature-num">🔀</div><div class="feature-content"><strong>Solve the Diamond Problem</strong> in Solidity using C3 linearization and understand exactly how the compiler resolves multiple inheritance.</div></div>
-        <div class="feature-item"><div class="feature-num">📜</div><div class="feature-content"><strong>Define and implement Interfaces</strong> (like IERC‑20) to guarantee that a contract follows a specific standard.</div></div>
-        <div class="feature-item"><div class="feature-num">🔧</div><div class="feature-content"><strong>Use Abstract Contracts and Libraries</strong> to build efficient, gas‑optimized code with reusable internal functions.</div></div>
+        <div class="feature-item"><div class="feature-num">📜</div><div class="feature-content"><strong>Define and implement Interfaces</strong> (like IERC-20) to guarantee that a contract follows a specific standard.</div></div>
+        <div class="feature-item"><div class="feature-num">🔧</div><div class="feature-content"><strong>Use Abstract Contracts and Libraries</strong> to build efficient, gas-optimized code with reusable internal functions.</div></div>
     </div>
 
     <!-- 2. REAL-WORLD STORY -->
-    <div class="section-label">02 &nbsp; Real‑World Story</div>
+    <div class="section-label">02 &nbsp; Real-World Story</div>
     <h2 class="section-title">The Copied Code That Cost ₹10 Lakh</h2>
     <div class="callout story">
         <div class="callout-label">📖 Story</div>
-        <p>Karan was building a DeFi protocol with two types of staking pools. He wrote the first pool's smart contract from scratch, implementing ownership checks, pause functionality, and a withdrawal mechanism. It worked perfectly. For the second pool, he copied the entire 200‑line contract, changed the staking logic slightly, and deployed it.</p>
+        <p>Karan was building a DeFi protocol with two types of staking pools. He wrote the first pool's smart contract from scratch, implementing ownership checks, pause functionality, and a withdrawal mechanism. It worked perfectly. For the second pool, he copied the entire 200-line contract, changed the staking logic slightly, and deployed it.</p>
         <br>
-        <p>Three weeks after launch, a user discovered that Karan had forgotten to update the <strong>require</strong> statement in the second contract's withdrawal function. The first contract limited withdrawals to 10% per day. The copied contract had no limit. An attacker drained the entire pool. Over ₹10 lakh worth of tokens were gone. The bug was not in the new logic – it was in the duplicated boilerplate that Karan had failed to synchronize between the two contracts.</p>
+        <p>Three weeks after launch, a user discovered that Karan had forgotten to update the <strong>require</strong> statement in the second contract's withdrawal function. The first contract limited withdrawals to 10% per day. The copied contract had no limit. An attacker drained the entire pool. Over ₹10 lakh worth of tokens were gone. The bug was not in the new logic - it was in the duplicated boilerplate that Karan had failed to synchronize between the two contracts.</p>
         <br>
         <p>If Karan had used <strong>inheritance</strong>, he would have written the ownership and pause logic once, in a base contract, and both staking pools would have inherited it. A single fix to the base contract would have fixed both. This is the power of inheritance: <strong>write once, reuse everywhere, fix once, secure everywhere.</strong> Combined with interfaces, which enforce standards, inheritance is what makes the composable "money lego" ecosystem of blockchain possible.</p>
     </div>
 
     <!-- 3. WHAT IS INHERITANCE? -->
     <div class="section-label">03 &nbsp; The Core Concept</div>
-    <h2 class="section-title">What Is Inheritance? The "Is‑A" Relationship</h2>
-    <p>Inheritance is a mechanism where one contract derives properties and behavior from another. The child contract <strong>inherits</strong> state variables and functions from the parent, and can override them or add new ones. This creates a hierarchical relationship that models real‑world categories.</p>
+    <h2 class="section-title">What Is Inheritance? The "Is-A" Relationship</h2>
+    <p>Inheritance is a mechanism where one contract derives properties and behavior from another. The child contract <strong>inherits</strong> state variables and functions from the parent, and can override them or add new ones. This creates a hierarchical relationship that models real-world categories.</p>
 
     <div class="diagram-wrap">
-        <div class="diagram-title">FIGURE 8.7‑A · Visualizing Inheritance in Solidity</div>
+        <div class="diagram-title">FIGURE 8.7-A · Visualizing Inheritance in Solidity</div>
         <pre>                          ┌─────────────────────────┐
                           │        Ownable          │  ← Base contract: ownership logic
                           │  - owner: address       │
@@ -61,7 +61,21 @@
         <div class="diagram-caption">Solidity inheritance is declared with the <strong>is</strong> keyword. The child contract merges the parent's state and logic.</div>
     </div>
 
-    <p>In Solidity, you declare inheritance using the <strong>is</strong> keyword: <code>contract Child is Parent { }</code>. The child contract automatically gets access to all non‑private state variables and functions of the parent. This is the foundation of code reuse in smart contracts.</p>
+    <p>In Solidity, you declare inheritance using the <strong>is</strong> keyword: <code>contract Child is Parent { }</code>. The child contract automatically gets access to all non-private state variables and functions of the parent. This is the foundation of code reuse in smart contracts.</p>
+
+    <div class="callout story">
+        <div class="callout-label">🇮🇳 Indian Context Analogy</div>
+        <p>Think of inheritance like the organizational structure of the Indian Railways. At the top, the Railway Board defines common policies: safety regulations, ticketing standards, and employee rules. These are the "base contract." Each Zonal Railway (Northern, Southern, Western, etc.) <strong>inherits</strong> all these policies but can <strong>override</strong> specific ones - for example, Southern Railway might have different monsoon-preparedness procedures. Individual Divisions within each zone inherit from both the zone and the board, adding their own local rules.</p>
+        <br>
+        <p>If the Railway Board updates a safety regulation, every zone and division automatically follows the new rule - unless they have explicitly overridden it. This is exactly how Solidity inheritance works: a change in the base contract propagates to all child contracts that have not overridden that specific function. Without inheritance, every zone would maintain its own complete copy of all policies - and when a critical update happens, someone would inevitably forget to update one copy. That is the ₹10 lakh bug from our story.</p>
+    </div>
+
+    <p>There are three <strong>visibility levels</strong> that determine what a child contract can access from its parent:</p>
+    <div class="feature-list">
+        <div class="feature-item"><div class="feature-num">🟢</div><div class="feature-content"><strong>public</strong> - Accessible from anywhere: other contracts, external calls, and child contracts. Automatically generates a getter function for state variables.</div></div>
+        <div class="feature-item"><div class="feature-num">🟡</div><div class="feature-content"><strong>internal</strong> - Accessible only within the contract itself and its children. This is the default visibility for state variables. Think of it as "family-only access."</div></div>
+        <div class="feature-item"><div class="feature-num">🔴</div><div class="feature-content"><strong>private</strong> - Accessible only within the contract that defines it. Children CANNOT access private members. The data still exists on-chain (nothing is truly hidden on a public blockchain), but the Solidity compiler will prevent child contracts from reading or writing private variables directly.</div></div>
+    </div>
 
     <!-- 4. BASIC INHERITANCE -->
     <div class="section-label">04 &nbsp; Basic Inheritance</div>
@@ -108,11 +122,11 @@ contract MySecureContract is Ownable {
 }</pre>
     </div>
 
-    <p>In this example, <code>MySecureContract</code> inherits <code>owner</code>, <code>onlyOwner</code>, and <code>transferOwnership</code> from <code>Ownable</code>. It adds its own <code>secretValue</code> state variable and <code>setSecret</code> function. The <code>onlyOwner</code> modifier, defined in the parent, works perfectly in the child – because the child <strong>is</strong> an Ownable contract.</p>
+    <p>In this example, <code>MySecureContract</code> inherits <code>owner</code>, <code>onlyOwner</code>, and <code>transferOwnership</code> from <code>Ownable</code>. It adds its own <code>secretValue</code> state variable and <code>setSecret</code> function. The <code>onlyOwner</code> modifier, defined in the parent, works perfectly in the child - because the child <strong>is</strong> an Ownable contract.</p>
 
     <!-- 5. FUNCTION OVERRIDING -->
     <div class="section-label">05 &nbsp; Overriding Functions</div>
-    <h2 class="section-title">virtual and override – Changing Inherited Behavior</h2>
+    <h2 class="section-title">virtual and override - Changing Inherited Behavior</h2>
     <p>Sometimes a child contract needs to change how a parent's function works. Solidity provides the <strong>virtual</strong> and <strong>override</strong> keywords for this purpose. The parent marks a function as <strong>virtual</strong> to signal "I allow my children to override this." The child marks its version of the function with <strong>override</strong> to signal "I am intentionally replacing the parent's implementation."</p>
 
     <div class="code-block-wrap">
@@ -140,13 +154,13 @@ contract Cat is Animal {
     <p>1. Only functions marked <strong>virtual</strong> can be overridden.</p>
     <p>2. Overriding functions must use the <strong>override</strong> keyword.</p>
     <p>3. The overriding function must have the same visibility or broader (e.g., external can be overridden as public, but not the reverse).</p>
-    <p>4. Mutability (view, pure, payable) must remain compatible – a non‑payable function cannot be overridden as payable.</p>
+    <p>4. Mutability (view, pure, payable) must remain compatible - a non-payable function cannot be overridden as payable.</p>
     <p>5. If overriding a function from multiple parents, you must explicitly list them: <strong>override(Parent1, Parent2)</strong>.</p>
 
     <!-- 6. CONSTRUCTORS AND INHERITANCE -->
     <div class="section-label">06 &nbsp; Constructors</div>
     <h2 class="section-title">Constructors in Inheritance Chains</h2>
-    <p>When a child contract is deployed, the constructors of all its parent contracts execute, from the <strong>most base‑like to the most derived</strong>. If a parent constructor requires arguments, the child must supply them in its constructor definition.</p>
+    <p>When a child contract is deployed, the constructors of all its parent contracts execute, from the <strong>most base-like to the most derived</strong>. If a parent constructor requires arguments, the child must supply them in its constructor definition.</p>
 
     <div class="code-block-wrap">
         <pre>contract Base {
@@ -173,7 +187,7 @@ contract DerivedWithParam is Base {
     </div>
 
     <!-- 7. MULTI-LEVEL INHERITANCE -->
-    <div class="section-label">07 &nbsp; Multi‑Level Inheritance</div>
+    <div class="section-label">07 &nbsp; Multi-Level Inheritance</div>
     <h2 class="section-title">Grandparent → Parent → Child</h2>
     <p>A contract can inherit from another contract that itself inherits from a third. This creates a chain: <strong>Grandparent → Parent → Child</strong>. The child inherits everything from the parent, which includes everything from the grandparent.</p>
 
@@ -197,7 +211,7 @@ contract Child is Parent {
 }</pre>
     </div>
 
-    <p>Deploying the Child contract creates a single contract on the blockchain that contains all three generations' code. Calling <code>generation()</code> returns "I am the leaf" – the most derived override wins.</p>
+    <p>Deploying the Child contract creates a single contract on the blockchain that contains all three generations' code. Calling <code>generation()</code> returns "I am the leaf" - the most derived override wins.</p>
 
     <!-- 8. MULTIPLE INHERITANCE & C3 LINEARIZATION -->
     <div class="section-label">08 &nbsp; Multiple Inheritance</div>
@@ -205,7 +219,7 @@ contract Child is Parent {
     <p>Solidity allows a contract to inherit from <strong>multiple</strong> parent contracts. This creates a potential conflict: if two parents define the same function, which version does the child use? This is the classic <strong>Diamond Problem</strong>. Solidity solves it using <strong>C3 Linearization</strong>, an algorithm that creates a single, unambiguous order of all ancestor contracts.</p>
 
     <div class="diagram-wrap">
-        <div class="diagram-title">FIGURE 8.7‑B · C3 Linearization Solving the Diamond Problem</div>
+        <div class="diagram-title">FIGURE 8.7-B · C3 Linearization Solving the Diamond Problem</div>
         <pre>                    ┌──────────┐
                     │    A     │  ← Base (virtual)
                     │  foo()   │
@@ -270,9 +284,99 @@ contract D is B, C {
         </div>
     </details>
 
+    <!-- 8B. WHEN TO USE WHAT -->
+    <div class="section-label">08-B &nbsp; Decision Guide</div>
+    <h2 class="section-title">When to Use What - Inheritance vs. Interfaces vs. Abstract Contracts vs. Libraries</h2>
+    <p>Solidity gives you four primary tools for code organization and reuse. Choosing the wrong one leads to bloated bytecode, wasted gas, or inflexible designs. Here is a practical decision framework:</p>
+
+    <div class="diagram-wrap">
+        <div class="diagram-title">FIGURE 8.7-C · Decision Tree: Choosing the Right Code-Reuse Mechanism</div>
+        <pre>
+        START: Do you need to share code between contracts?
+            │
+            ├── NO → Write a standalone contract.
+            │
+            └── YES → Does the shared code need its own state variables?
+                    │
+                    ├── NO → Does it only define function signatures (no logic)?
+                    │       │
+                    │       ├── YES → Use an INTERFACE
+                    │       │         (e.g., IERC20, IERC721)
+                    │       │
+                    │       └── NO → Is the logic pure utility (math, string, array)?
+                    │               │
+                    │               ├── YES → Use a LIBRARY
+                    │               │         (e.g., SafeMath, Strings)
+                    │               │
+                    │               └── NO → Use an ABSTRACT CONTRACT
+                    │                         (partial implementation, child completes)
+                    │
+                    └── YES → Use INHERITANCE (contract Child is Parent)
+                              The child inherits both state and behavior.
+        </pre>
+        <div class="diagram-caption">Follow this tree whenever you are deciding how to structure shared logic between multiple contracts.</div>
+    </div>
+
+    <div class="callout key">
+        <div class="callout-label">📊 Comparison Table</div>
+        <table style="width:100%; border-collapse:collapse; margin:12px 0; font-size:0.97em;">
+            <tr style="background:var(--ink-1); color:#fff;">
+                <th style="padding:10px; text-align:left; border:1px solid var(--ink-2);">Feature</th>
+                <th style="padding:10px; text-align:center; border:1px solid var(--ink-2);">Inheritance</th>
+                <th style="padding:10px; text-align:center; border:1px solid var(--ink-2);">Interface</th>
+                <th style="padding:10px; text-align:center; border:1px solid var(--ink-2);">Abstract Contract</th>
+                <th style="padding:10px; text-align:center; border:1px solid var(--ink-2);">Library</th>
+            </tr>
+            <tr>
+                <td style="padding:8px; border:1px solid var(--ink-2);"><strong>Can hold state?</strong></td>
+                <td style="padding:8px; text-align:center; border:1px solid var(--ink-2);">Yes</td>
+                <td style="padding:8px; text-align:center; border:1px solid var(--ink-2);">No</td>
+                <td style="padding:8px; text-align:center; border:1px solid var(--ink-2);">Yes</td>
+                <td style="padding:8px; text-align:center; border:1px solid var(--ink-2);">No</td>
+            </tr>
+            <tr>
+                <td style="padding:8px; border:1px solid var(--ink-2);"><strong>Can be deployed?</strong></td>
+                <td style="padding:8px; text-align:center; border:1px solid var(--ink-2);">Yes</td>
+                <td style="padding:8px; text-align:center; border:1px solid var(--ink-2);">No</td>
+                <td style="padding:8px; text-align:center; border:1px solid var(--ink-2);">No</td>
+                <td style="padding:8px; text-align:center; border:1px solid var(--ink-2);">Yes (once)</td>
+            </tr>
+            <tr>
+                <td style="padding:8px; border:1px solid var(--ink-2);"><strong>Has constructors?</strong></td>
+                <td style="padding:8px; text-align:center; border:1px solid var(--ink-2);">Yes</td>
+                <td style="padding:8px; text-align:center; border:1px solid var(--ink-2);">No</td>
+                <td style="padding:8px; text-align:center; border:1px solid var(--ink-2);">Yes</td>
+                <td style="padding:8px; text-align:center; border:1px solid var(--ink-2);">No</td>
+            </tr>
+            <tr>
+                <td style="padding:8px; border:1px solid var(--ink-2);"><strong>Function bodies?</strong></td>
+                <td style="padding:8px; text-align:center; border:1px solid var(--ink-2);">Yes</td>
+                <td style="padding:8px; text-align:center; border:1px solid var(--ink-2);">No</td>
+                <td style="padding:8px; text-align:center; border:1px solid var(--ink-2);">Some</td>
+                <td style="padding:8px; text-align:center; border:1px solid var(--ink-2);">Yes</td>
+            </tr>
+            <tr>
+                <td style="padding:8px; border:1px solid var(--ink-2);"><strong>Primary use case</strong></td>
+                <td style="padding:8px; text-align:center; border:1px solid var(--ink-2);">Share state + logic</td>
+                <td style="padding:8px; text-align:center; border:1px solid var(--ink-2);">Define standards</td>
+                <td style="padding:8px; text-align:center; border:1px solid var(--ink-2);">Partial templates</td>
+                <td style="padding:8px; text-align:center; border:1px solid var(--ink-2);">Utility functions</td>
+            </tr>
+            <tr>
+                <td style="padding:8px; border:1px solid var(--ink-2);"><strong>Gas implication</strong></td>
+                <td style="padding:8px; text-align:center; border:1px solid var(--ink-2);">Code copied into child</td>
+                <td style="padding:8px; text-align:center; border:1px solid var(--ink-2);">Zero (no code)</td>
+                <td style="padding:8px; text-align:center; border:1px solid var(--ink-2);">Code copied into child</td>
+                <td style="padding:8px; text-align:center; border:1px solid var(--ink-2);">DELEGATECALL or inlined</td>
+            </tr>
+        </table>
+    </div>
+
+    <p><strong>Rule of thumb for Indian developers building on Polygon or BSC:</strong> If you are building a DeFi protocol or NFT marketplace for the Indian market, use <strong>interfaces</strong> when you need your contract to interact with existing standards (UPI-like payment tokens following ERC-20). Use <strong>inheritance</strong> when you want your staking or lending pool to share common admin logic (pause, unpause, ownership). Use <strong>libraries</strong> for repetitive math or string operations that multiple contracts share. Use <strong>abstract contracts</strong> when you have a family of related contracts (like multiple pool types in a DEX) that share 80% of their logic but differ in a few key functions.</p>
+
     <!-- 9. ABSTRACT CONTRACTS -->
     <div class="section-label">09 &nbsp; Abstract Contracts</div>
-    <h2 class="section-title">The Blueprint – abstract Contracts</h2>
+    <h2 class="section-title">The Blueprint - abstract Contracts</h2>
     <p>An <strong>abstract contract</strong> is a contract that cannot be deployed directly. It exists only to be inherited by other contracts. It may contain <strong>unimplemented functions</strong> (functions without a body) that child contracts must implement. This is how Solidity defines templates and standards.</p>
 
     <div class="code-block-wrap">
@@ -303,8 +407,8 @@ contract Circle is Shape {
 
     <!-- 10. INTERFACES -->
     <div class="section-label">10 &nbsp; Interfaces</div>
-    <h2 class="section-title">The Contract Standard – Interfaces</h2>
-    <p>An <strong>interface</strong> is the strictest form of an abstract contract. It defines <strong>what</strong> functions a contract must have, but not <strong>how</strong> they work. Interfaces are the backbone of interoperability in the EVM ecosystem – they are what allow wallets to display your token balance, exchanges to list your token, and other contracts to interact with your contract without knowing its internal code.</p>
+    <h2 class="section-title">The Contract Standard - Interfaces</h2>
+    <p>An <strong>interface</strong> is the strictest form of an abstract contract. It defines <strong>what</strong> functions a contract must have, but not <strong>how</strong> they work. Interfaces are the backbone of interoperability in the EVM ecosystem - they are what allow wallets to display your token balance, exchanges to list your token, and other contracts to interact with your contract without knowing its internal code.</p>
 
     <div class="callout key">
         <div class="callout-label">🔑 Rules of Interfaces</div>
@@ -340,9 +444,91 @@ contract MyToken is IERC20 {
 
     <p>By declaring <code>contract MyToken is IERC20</code>, we promise that MyToken has all the functions IERC20 requires. If we forget to implement <code>totalSupply()</code>, the compiler will refuse to compile. This is a powerful enforcement mechanism that prevents catastrophic integration errors.</p>
 
+    <!-- 10B. DEEP DIVE: IERC-721 AND NFT INHERITANCE -->
+    <div class="section-label">10-B &nbsp; Deep Dive</div>
+    <h2 class="section-title">IERC-721 - How the NFT Standard Uses Interfaces and Inheritance</h2>
+    <p>The ERC-721 standard defines Non-Fungible Tokens (NFTs). Unlike ERC-20 tokens where every unit is identical (fungible), each ERC-721 token has a unique ID. This is the standard behind every digital art NFT, in-game asset, and digital land deed on Ethereum, Polygon, and other EVM chains. Understanding how ERC-721 is structured teaches you how interfaces and inheritance work together in a real production system.</p>
+
+    <p>The IERC-721 interface defines the minimum set of functions any NFT contract must implement:</p>
+
+    <div class="code-block-wrap">
+        <pre>// Simplified IERC-721 Interface
+interface IERC721 {
+    event Transfer(address indexed from, address indexed to, uint256 indexed tokenId);
+    event Approval(address indexed owner, address indexed approved, uint256 indexed tokenId);
+    event ApprovalForAll(address indexed owner, address indexed operator, bool approved);
+
+    function balanceOf(address owner) external view returns (uint256 balance);
+    function ownerOf(uint256 tokenId) external view returns (address owner);
+    function safeTransferFrom(address from, address to, uint256 tokenId) external;
+    function transferFrom(address from, address to, uint256 tokenId) external;
+    function approve(address to, uint256 tokenId) external;
+    function setApprovalForAll(address operator, bool approved) external;
+    function getApproved(uint256 tokenId) external view returns (address operator);
+    function isApprovedForAll(address owner, address operator) external view returns (bool);
+}</pre>
+    </div>
+
+    <p>When you build an NFT project - say, a digital art marketplace for Indian artists - you do not implement IERC721 from scratch. You inherit from OpenZeppelin's <strong>ERC721</strong> contract, which already implements the interface. Then you layer on additional functionality through multiple inheritance:</p>
+
+    <div class="code-block-wrap">
+        <pre>// SPDX-License-Identifier: MIT
+pragma solidity ^0.8.20;
+
+import "@openzeppelin/contracts/token/ERC721/ERC721.sol";
+import "@openzeppelin/contracts/token/ERC721/extensions/ERC721URIStorage.sol";
+import "@openzeppelin/contracts/token/ERC721/extensions/ERC721Burnable.sol";
+import "@openzeppelin/contracts/access/Ownable.sol";
+
+// Multiple inheritance: this contract IS an ERC721, IS URI-storable,
+// IS burnable, and IS ownable - all at once.
+contract IndianArtNFT is ERC721, ERC721URIStorage, ERC721Burnable, Ownable {
+    uint256 private _nextTokenId;
+
+    constructor() ERC721("IndianArtNFT", "IANFT") Ownable() {}
+
+    function mintArt(address artist, string memory metadataURI)
+        public onlyOwner returns (uint256)
+    {
+        uint256 tokenId = _nextTokenId++;
+        _safeMint(artist, tokenId);
+        _setTokenURI(tokenId, metadataURI);
+        return tokenId;
+    }
+
+    // Required overrides when inheriting from multiple parents
+    // that define the same function
+    function tokenURI(uint256 tokenId)
+        public view override(ERC721, ERC721URIStorage)
+        returns (string memory)
+    {
+        return super.tokenURI(tokenId);
+    }
+
+    function supportsInterface(bytes4 interfaceId)
+        public view override(ERC721, ERC721URIStorage)
+        returns (bool)
+    {
+        return super.supportsInterface(interfaceId);
+    }
+}</pre>
+    </div>
+
+    <div class="callout key">
+        <div class="callout-label">🔑 Why Multiple Overrides Are Required</div>
+        <p>Notice the <code>override(ERC721, ERC721URIStorage)</code> syntax. Both ERC721 and ERC721URIStorage define <code>tokenURI()</code> and <code>supportsInterface()</code>. When a child inherits from both, the compiler does not know which parent's version to use. You must explicitly override and resolve the conflict. Using <code>super.tokenURI(tokenId)</code> calls the function according to C3 linearization order, ensuring all parents in the chain get their say.</p>
+    </div>
+
+    <div class="callout story">
+        <div class="callout-label">🇮🇳 Real-World Application</div>
+        <p>Consider WazirX's NFT marketplace or a startup building on Polygon for the Indian creator economy. Indian digital artists upload their work, and the platform mints an ERC-721 token representing ownership. The <code>ERC721URIStorage</code> extension stores the IPFS link to the artwork's metadata. <code>ERC721Burnable</code> allows artists to permanently destroy a token if they want to remove a piece from circulation. <code>Ownable</code> restricts minting to the platform's admin wallet. All of this is achieved through four lines of inheritance - no need to write thousands of lines of token logic from scratch.</p>
+    </div>
+
+    <p>The <code>supportsInterface()</code> function deserves special attention. It implements <strong>ERC-165</strong>, a standard that allows contracts to declare which interfaces they support. When a marketplace like OpenSea queries your contract, it calls <code>supportsInterface(0x80ac58cd)</code> (the interface ID for ERC-721). If your contract returns <code>true</code>, the marketplace knows it can safely call <code>ownerOf()</code>, <code>transferFrom()</code>, and other ERC-721 functions. This is interface-driven interoperability in action.</p>
+
     <!-- 11. LIBRARIES -->
     <div class="section-label">11 &nbsp; Libraries</div>
-    <h2 class="section-title">using for – Gas‑Efficient Code Reuse with Libraries</h2>
+    <h2 class="section-title">using for - Gas-Efficient Code Reuse with Libraries</h2>
     <p>A <strong>library</strong> is a special type of contract that cannot hold state or receive ether. It is deployed once at a specific address, and other contracts call its functions using <strong>DELEGATECALL</strong>, meaning the library's code executes in the context of the calling contract's storage. Libraries are ideal for reusable utility functions like math operations, array manipulations, and string processing.</p>
 
     <div class="code-block-wrap">
@@ -365,12 +551,157 @@ contract Calculator {
 }</pre>
     </div>
 
-    <p>The <strong>using for</strong> directive attaches library functions to a specific type. In the example, <code>using MathLib for uint256</code> makes <code>max</code> and <code>min</code> available as member functions on any uint256 variable. This is purely syntactic sugar – the compiler transforms it into a regular library call. Libraries keep your contracts modular, reusable, and gas‑optimized.</p>
+    <p>The <strong>using for</strong> directive attaches library functions to a specific type. In the example, <code>using MathLib for uint256</code> makes <code>max</code> and <code>min</code> available as member functions on any uint256 variable. This is purely syntactic sugar - the compiler transforms it into a regular library call. Libraries keep your contracts modular, reusable, and gas-optimized.</p>
+
+    <!-- 11B. OPENZEPPELIN LIBRARIES IN DEPTH -->
+    <div class="section-label">11-B &nbsp; OpenZeppelin Libraries</div>
+    <h2 class="section-title">Common OpenZeppelin Libraries Every Developer Should Know</h2>
+    <p>OpenZeppelin provides a collection of battle-tested libraries that handle common operations. Understanding their history and purpose will save you from reinventing the wheel - and from introducing vulnerabilities that have already been solved by the community.</p>
+
+    <div class="feature-list">
+        <div class="feature-item"><div class="feature-num">01</div><div class="feature-content"><div class="feature-title">SafeMath (Historical - No Longer Needed)</div><p>Before Solidity 0.8.0, arithmetic operations silently overflowed. Adding 1 to the maximum uint256 value would wrap around to 0 - a catastrophic bug that was exploited in multiple real attacks, including the 2018 BEC token hack. OpenZeppelin's <code>SafeMath</code> library provided <code>add()</code>, <code>sub()</code>, <code>mul()</code>, and <code>div()</code> functions that reverted on overflow. Since Solidity 0.8.0, the compiler checks for overflow by default, making SafeMath unnecessary. However, you will still see it in legacy codebases and older tutorials. If you encounter <code>using SafeMath for uint256</code> in a contract running Solidity 0.8+, it is redundant and wastes gas.</p></div></div>
+        <div class="feature-item"><div class="feature-num">02</div><div class="feature-content"><div class="feature-title">Address Library</div><p>The <code>Address</code> library provides utility functions for working with Ethereum addresses. Its most important function is <code>sendValue(address payable recipient, uint256 amount)</code>, which safely sends Ether and reverts if the transfer fails. It also provides <code>functionCall()</code> for low-level calls with automatic revert message propagation, and <code>isContract()</code> to check if an address contains deployed code.</p></div></div>
+        <div class="feature-item"><div class="feature-num">03</div><div class="feature-content"><div class="feature-title">Strings Library</div><p>Solidity has limited built-in string support. The <code>Strings</code> library provides <code>toString(uint256)</code> to convert numbers to their string representation, <code>toHexString(uint256)</code> for hexadecimal conversion, and <code>equal(string, string)</code> for string comparison. These are essential when generating on-chain metadata for NFTs or building human-readable error messages.</p></div></div>
+        <div class="feature-item"><div class="feature-num">04</div><div class="feature-content"><div class="feature-title">Counters (Deprecated in v5.x)</div><p>The <code>Counters</code> library provided a simple incrementing counter, commonly used for generating sequential token IDs in NFT contracts. It wrapped a uint256 in a struct and provided <code>increment()</code>, <code>decrement()</code>, and <code>current()</code> functions. In OpenZeppelin v5.x, this library was removed in favor of simply using a plain <code>uint256</code> variable with direct increment (<code>++</code>), as the added abstraction provided no real safety benefit.</p></div></div>
+    </div>
+
+    <div class="code-block-wrap">
+        <pre>// Using OpenZeppelin's Strings library for on-chain NFT metadata
+import "@openzeppelin/contracts/utils/Strings.sol";
+
+contract OnChainNFT {
+    using Strings for uint256;
+
+    function generateName(uint256 tokenId) public pure returns (string memory) {
+        // Converts tokenId (a number) to a string for metadata
+        return string.concat("Indian Art #", tokenId.toString());
+    }
+
+    function generateHexId(uint256 tokenId) public pure returns (string memory) {
+        return tokenId.toHexString();
+    }
+}</pre>
+    </div>
+
+    <!-- 11C. GAS IMPLICATIONS OF INHERITANCE -->
+    <div class="section-label">11-C &nbsp; Gas Implications</div>
+    <h2 class="section-title">How Inheritance Affects Gas Costs and Storage Layout</h2>
+    <p>Inheritance is a compile-time mechanism. When you deploy a child contract, the EVM does not maintain separate "parent" and "child" sections. The Solidity compiler <strong>flattens</strong> the entire inheritance tree into a single contract bytecode. This has important implications for gas costs and contract size.</p>
+
+    <div class="callout key">
+        <div class="callout-label">⛽ Storage Layout Across Parents</div>
+        <p>State variables from parent contracts occupy storage slots in the order of C3 linearization. If contract A declares <code>uint256 x</code> (slot 0) and contract B declares <code>uint256 y</code> (slot 1), then <code>contract C is A, B</code> will have <code>x</code> at slot 0 and <code>y</code> at slot 1. This ordering is critical when working with upgradeable contracts (proxy patterns) - if you change the inheritance order or insert a new parent, storage slots shift, and all existing data becomes corrupted.</p>
+    </div>
+
+    <p><strong>Key gas considerations:</strong></p>
+    <div class="feature-list">
+        <div class="feature-item"><div class="feature-num">⛽</div><div class="feature-content"><strong>Contract deployment cost increases with inheritance depth.</strong> Every parent's code is copied into the child's bytecode. A contract that inherits from ERC721, ERC721URIStorage, ERC721Burnable, Ownable, and Pausable will have significantly larger bytecode than a minimal contract. Ethereum has a 24,576-byte contract size limit (EIP-170) - deep inheritance chains can push you toward this limit.</div></div>
+        <div class="feature-item"><div class="feature-num">⛽</div><div class="feature-content"><strong>Function dispatch adds minimal overhead.</strong> The Solidity compiler generates a function selector lookup table at the beginning of the bytecode. More inherited functions mean a larger lookup table, but the actual runtime cost difference is negligible (a few gas units per additional function selector comparison).</div></div>
+        <div class="feature-item"><div class="feature-num">⛽</div><div class="feature-content"><strong>super calls in deep chains cost more.</strong> When <code>super.foo()</code> traverses multiple parents in the C3 linearization, each function call adds to the call stack. In a chain of 5 contracts, calling <code>super.foo()</code> from the most derived contract executes 5 function bodies sequentially. This is usually acceptable but can matter in gas-sensitive DeFi operations on networks like Polygon where every wei counts for high-frequency transactions.</div></div>
+        <div class="feature-item"><div class="feature-num">⛽</div><div class="feature-content"><strong>Libraries with internal functions are inlined.</strong> When a library function is declared <code>internal</code>, the compiler copies its bytecode directly into the calling contract - no DELEGATECALL overhead. External library functions use DELEGATECALL, which costs approximately 2,600 gas for the call itself plus the gas for execution. Choose internal library functions for frequently called utilities and external for rarely used, large functions to save on deployment size.</div></div>
+    </div>
+
+    <!-- 11D. COMMON PITFALLS -->
+    <div class="section-label">11-D &nbsp; Common Pitfalls</div>
+    <h2 class="section-title">Inheritance Bugs That Catch Even Experienced Developers</h2>
+    <p>Inheritance is powerful but introduces subtle bugs that are difficult to detect in testing and can lead to critical vulnerabilities in production. Here are the most common pitfalls and how to avoid them.</p>
+
+    <div class="callout story">
+        <div class="callout-label">⚠️ Pitfall 1: Shadowing State Variables</div>
+        <p>If a child contract declares a state variable with the <strong>same name</strong> as one in the parent, the child creates a completely separate variable. The parent's version still exists in storage but the child's functions will reference the new one. This is called <strong>shadowing</strong> and leads to extremely confusing bugs where the parent's functions read one value and the child's functions read a different value.</p>
+    </div>
+
+    <div class="code-block-wrap">
+        <pre>contract Parent {
+    uint256 public value = 100;
+
+    function getValue() public view returns (uint256) {
+        return value;  // Returns Parent's 'value' (100)
+    }
+}
+
+contract Child is Parent {
+    uint256 public value = 200;  // SHADOWING! Creates a NEW variable
+
+    function getChildValue() public view returns (uint256) {
+        return value;  // Returns Child's 'value' (200)
+    }
+    // But calling getValue() still returns 100!
+    // The parent's function references the parent's 'value'.
+}
+// Solidity 0.6+ emits a compiler WARNING for shadowed variables.
+// Always heed compiler warnings - they prevent real losses.</pre>
+    </div>
+
+    <div class="callout story">
+        <div class="callout-label">⚠️ Pitfall 2: Constructor Ordering Bugs</div>
+        <p>When a contract inherits from multiple parents, constructor execution order follows C3 linearization - NOT the order you pass arguments. This means the constructor you think runs first might actually run second. If one parent's constructor depends on state set by another parent's constructor, the wrong order causes initialization bugs.</p>
+    </div>
+
+    <div class="code-block-wrap">
+        <pre>contract A {
+    uint256 public x;
+    constructor(uint256 _x) { x = _x; }
+}
+
+contract B {
+    uint256 public y;
+    constructor(uint256 _y) { y = _y; }
+}
+
+// The order in the "is" clause determines constructor order!
+contract C is A, B {
+    // A's constructor runs first, then B's
+    constructor() A(10) B(20) {}
+}
+
+contract D is B, A {
+    // B's constructor runs first, then A's
+    constructor() A(10) B(20) {}
+    // Note: even though A(10) appears before B(20) in the
+    // constructor arguments, B runs first because D "is B, A".
+}</pre>
+    </div>
+
+    <div class="callout story">
+        <div class="callout-label">⚠️ Pitfall 3: Forgetting the override Keyword</div>
+        <p>If you intend to override a parent's function but forget the <code>override</code> keyword, the compiler will throw an error (in Solidity 0.6+). However, a more subtle issue occurs when you accidentally create a function with the same name but a <strong>different signature</strong> (different parameters). This creates function overloading, not overriding - the parent's function still exists alongside your new one, leading to unexpected behavior when external callers invoke the parent's version.</p>
+    </div>
+
+    <div class="callout story">
+        <div class="callout-label">⚠️ Pitfall 4: The "Unreachable Parent" Problem</div>
+        <p>In multi-level inheritance, if you override a function in a middle contract but forget to mark it as <code>virtual</code>, the grandchild contract cannot override it further. This locks behavior at the middle layer and prevents further customization. Always mark overriding functions as <code>virtual override</code> if there is any possibility that a deeper child might need to customize them.</p>
+    </div>
+
+    <div class="code-block-wrap">
+        <pre>contract Base {
+    function greet() public pure virtual returns (string memory) {
+        return "Hello from Base";
+    }
+}
+
+contract Middle is Base {
+    // BUG: Missing 'virtual' keyword!
+    function greet() public pure override returns (string memory) {
+        return "Hello from Middle";
+    }
+}
+
+// This will NOT compile:
+// contract Child is Middle {
+//     function greet() public pure override returns (string memory) {
+//         return "Hello from Child";
+//         // ERROR: Middle.greet() is not virtual
+//     }
+// }
+
+// FIX: Middle should use "virtual override" instead of just "override"</pre>
+    </div>
 
     <!-- 12. HANDS-ON: OPENZEPPELIN -->
-    <div class="section-label">12 &nbsp; Hands‑On Integration</div>
-    <h2 class="section-title">Using OpenZeppelin Contracts – The Standard Library</h2>
-    <p>OpenZeppelin provides battle‑tested, community‑audited base contracts for all common blockchain functionality. You should never write your own token standard, access control, or math library from scratch for production. Use OpenZeppelin and extend it through inheritance.</p>
+    <div class="section-label">12 &nbsp; Hands-On Integration</div>
+    <h2 class="section-title">Using OpenZeppelin Contracts - The Standard Library</h2>
+    <p>OpenZeppelin provides battle-tested, community-audited base contracts for all common blockchain functionality. You should never write your own token standard, access control, or math library from scratch for production. Use OpenZeppelin and extend it through inheritance.</p>
 
     <div class="code-block-wrap">
         <pre>// SPDX-License-Identifier: MIT
@@ -395,14 +726,14 @@ contract MyGovernanceToken is ERC20, Ownable {
 }</pre>
     </div>
 
-    <p>With just these few lines, we have created a fully functional ERC‑20 token with ownership management, using code that has been audited by the top security firms in the world. This is the power of inheritance combined with interfaces – <strong>you build on the shoulders of giants.</strong></p>
+    <p>With just these few lines, we have created a fully functional ERC-20 token with ownership management, using code that has been audited by the top security firms in the world. This is the power of inheritance combined with interfaces - <strong>you build on the shoulders of giants.</strong></p>
 
     <!-- 13. ASSESSMENT PREP -->
     <div class="section-label">13 &nbsp; Assessment Preparation</div>
-    <h2 class="section-title">Top Facts – Know These Cold</h2>
+    <h2 class="section-title">Top Facts - Know These Cold</h2>
     <div class="feature-list">
         <div class="feature-item"><div class="feature-num" style="background:var(--ink-3);">01</div><div class="feature-content"><div class="feature-title">Inheritance is declared with <strong>is</strong>. Use <strong>virtual</strong> and <strong>override</strong> for polymorphism.</div></div></div>
-        <div class="feature-item"><div class="feature-num" style="background:var(--ink-3);">02</div><div class="feature-content"><div class="feature-title">Constructors execute from <strong>most base‑like to most derived</strong> following C3 linearization.</div></div></div>
+        <div class="feature-item"><div class="feature-num" style="background:var(--ink-3);">02</div><div class="feature-content"><div class="feature-title">Constructors execute from <strong>most base-like to most derived</strong> following C3 linearization.</div></div></div>
         <div class="feature-item"><div class="feature-num" style="background:var(--ink-3);">03</div><div class="feature-content"><div class="feature-title">Multiple inheritance uses <strong>C3 linearization</strong> to solve the Diamond Problem. <code>super</code> follows this exact order.</div></div></div>
         <div class="feature-item"><div class="feature-num" style="background:var(--ink-3);">04</div><div class="feature-content"><div class="feature-title"><strong>Interfaces</strong> define external function signatures with no state, constructors, or function bodies. They enforce standards.</div></div></div>
         <div class="feature-item"><div class="feature-num" style="background:var(--ink-3);">05</div><div class="feature-content"><div class="feature-title"><strong>Libraries</strong> are deployed once and used via <strong>DELEGATECALL</strong>. Use <strong>using for</strong> for cleaner syntax.</div></div></div>
@@ -412,7 +743,7 @@ contract MyGovernanceToken is ERC20, Ownable {
     
 
     <div class="section-label" style="margin-top:52px;">14 &nbsp; Glossary</div>
-    <h2 class="section-title">Key Terms – Sub-Module 8.7</h2>
+    <h2 class="section-title">Key Terms - Sub-Module 8.7</h2>
     <div class="glossary-grid">
         <div class="glossary-item"><div class="glossary-term">Inheritance</div><div class="glossary-def">A mechanism where a contract derives properties and behavior from another contract, using the <strong>is</strong> keyword.</div></div>
         <div class="glossary-item"><div class="glossary-term">virtual / override</div><div class="glossary-def">Keywords used for polymorphism. Parent functions are marked <strong>virtual</strong>; child functions that replace them use <strong>override</strong>.</div></div>
@@ -422,11 +753,17 @@ contract MyGovernanceToken is ERC20, Ownable {
         <div class="glossary-item"><div class="glossary-term">Library</div><div class="glossary-def">A stateless contract deployed once and called via DELEGATECALL, used for reusable utility functions.</div></div>
         <div class="glossary-item"><div class="glossary-term">using for</div><div class="glossary-def">A directive that attaches library functions to a specific type, enabling cleaner syntax like <strong>myArray.push(5)</strong>.</div></div>
         <div class="glossary-item"><div class="glossary-term">super</div><div class="glossary-def">A keyword that calls the next function in the C3 linearization order, not necessarily the immediate parent.</div></div>
+        <div class="glossary-item"><div class="glossary-term">DELEGATECALL</div><div class="glossary-def">A low-level EVM opcode that executes another contract's code in the context of the calling contract's storage. Libraries use DELEGATECALL so their logic can read and write the caller's state variables.</div></div>
+        <div class="glossary-item"><div class="glossary-term">Diamond Problem</div><div class="glossary-def">An ambiguity that arises in multiple inheritance when two parent contracts define the same function. Solidity resolves this using C3 linearization, creating a single unambiguous call order.</div></div>
+        <div class="glossary-item"><div class="glossary-term">EIP-2535 (Diamond Pattern)</div><div class="glossary-def">An Ethereum Improvement Proposal that defines a proxy pattern allowing a single contract address to delegate calls to multiple implementation contracts (called "facets"). Used to overcome the 24 KB contract size limit while maintaining a unified interface.</div></div>
+        <div class="glossary-item"><div class="glossary-term">Polymorphism</div><div class="glossary-def">The ability of different contracts to respond to the same function call in different ways. In Solidity, polymorphism is achieved through the <strong>virtual</strong> and <strong>override</strong> keywords - a child contract can replace a parent's function with its own implementation.</div></div>
+        <div class="glossary-item"><div class="glossary-term">Shadowing</div><div class="glossary-def">A bug where a child contract declares a state variable with the same name as the parent, creating two separate variables instead of one shared variable. The Solidity compiler issues a warning when this occurs.</div></div>
+        <div class="glossary-item"><div class="glossary-term">ERC-165</div><div class="glossary-def">A standard that allows contracts to declare which interfaces they support via the <strong>supportsInterface()</strong> function. Marketplaces and wallets use ERC-165 to discover a contract's capabilities before interacting with it.</div></div>
     </div>
 
     <div class="page-footer">
-        <p>MST Blockchain Academy – Professional Blockchain Developer Program</p>
-        <p>Module 8 · Sub-Module <strong>8.7</strong> of 8 · Next: Sub-Module 8.8 – First dApp Contract →</p>
+        <p>MST Blockchain Academy - Professional Blockchain Developer Program</p>
+        <p>Module 8 · Sub-Module <strong>8.7</strong> of 8 · Next: Sub-Module 8.8 - First dApp Contract →</p>
     </div>
 
 

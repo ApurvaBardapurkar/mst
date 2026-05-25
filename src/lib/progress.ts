@@ -154,4 +154,4 @@ export function getModuleProgressPercent(
   return Math.round((done / submoduleSlugs.length) * 100);
 }
 
-export const PASS_THRESHOLD = 60;
+export const PASS_THRESHOLD = 75;

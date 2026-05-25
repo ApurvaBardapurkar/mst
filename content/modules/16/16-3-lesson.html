@@ -1,8 +1,9 @@
 
 
+
 <div class="module-badge">🔏 Module 16 &nbsp;·&nbsp; Sub-Module 16.3</div>
-<h1 class="module-title">Privacy with <span class="highlight">Zero‑Knowledge Proofs</span></h1>
-<p class="module-subtitle">Proving you know a secret without revealing it — from private payments on Tornado Cash to confidential DeFi on Aztec, and how MST brings ZK privacy to India's digital stack.</p>
+<h1 class="module-title">Privacy with <span class="highlight">Zero-Knowledge Proofs</span></h1>
+<p class="module-subtitle">Proving you know a secret without revealing it - from private payments on Tornado Cash to confidential DeFi on Aztec, and how MST brings ZK privacy to India's digital stack.</p>
 
 <div class="meta-bar">
   <div class="meta-chip">⏱ 60 Minutes</div>
@@ -18,29 +19,29 @@
   <div class="obj-card">
     <div class="obj-icon">🧩</div>
     <div class="obj-text">
-      <strong>Explain how Zero‑Knowledge Proofs work</strong>
-      Describe the core properties — completeness, soundness, zero‑knowledge — and differentiate between ZK‑SNARKs and ZK‑STARKs.
+      <strong>Explain how Zero-Knowledge Proofs work</strong>
+      Describe the core properties - completeness, soundness, zero-knowledge - and differentiate between ZK-SNARKs and ZK-STARKs.
     </div>
   </div>
   <div class="obj-card">
     <div class="obj-icon">🌪️</div>
     <div class="obj-text">
       <strong>Deconstruct Tornado Cash's privacy model</strong>
-      Understand how commitments, nullifiers, and Merkle trees enable anonymous transfers without revealing sender‑receiver links.
+      Understand how commitments, nullifiers, and Merkle trees enable anonymous transfers without revealing sender-receiver links.
     </div>
   </div>
   <div class="obj-card">
     <div class="obj-icon">🏦</div>
     <div class="obj-text">
       <strong>Analyse Aztec's confidential DeFi</strong>
-      Explain how ZK‑rollups enable private smart contract execution, and compare with public L1s.
+      Explain how ZK-rollups enable private smart contract execution, and compare with public L1s.
     </div>
   </div>
   <div class="obj-card">
     <div class="obj-icon">💻</div>
     <div class="obj-text">
       <strong>Write a simple ZK circuit for private payments</strong>
-      Implement a Circom circuit that verifies knowledge of a preimage and nullifier for a private transaction, as used in Tornado‑like systems.
+      Implement a Circom circuit that verifies knowledge of a preimage and nullifier for a private transaction, as used in Tornado-like systems.
     </div>
   </div>
 </div>
@@ -51,33 +52,33 @@
 
 <div class="callout story">
   <div class="callout-label">📖 Story</div>
-  <p>In 2023, an activist in Maharashtra filed an RTI query about illegal sand mining. Within a week, she received a threatening phone call: "We know who you are. Withdraw the query or face consequences." Her name was on the public RTI portal. She had done nothing wrong — but the simple act of asking a question had exposed her identity, putting her at risk.</p>
+  <p>In 2023, an activist in Maharashtra filed an RTI query about illegal sand mining. Within a week, she received a threatening phone call: "We know who you are. Withdraw the query or face consequences." Her name was on the public RTI portal. She had done nothing wrong - but the simple act of asking a question had exposed her identity, putting her at risk.</p>
   <br>
-  <p>Now imagine a different world. The same activist submits her RTI query through a <strong>zero‑knowledge portal</strong>. She proves to the government server that she is an Indian citizen with a valid Aadhaar — without revealing her name, her Aadhaar number, or even her pincode. The server only learns that the query is from a valid citizen. The activist remains anonymous, yet the query is legitimate. The government cannot trace it back to her, and the sand mafia cannot find her.</p>
+  <p>Now imagine a different world. The same activist submits her RTI query through a <strong>zero-knowledge portal</strong>. She proves to the government server that she is an Indian citizen with a valid Aadhaar - without revealing her name, her Aadhaar number, or even her pincode. The server only learns that the query is from a valid citizen. The activist remains anonymous, yet the query is legitimate. The government cannot trace it back to her, and the sand mafia cannot find her.</p>
   <br>
-  <p>This is the power of Zero‑Knowledge Proofs — the ability to prove a statement is true without revealing any information beyond the truth of the statement itself. For blockchain, this means transactions where you can prove you have enough balance to pay, without showing your balance; private voting where your vote is counted but not linked to your identity; and confidential DeFi where your trades are invisible to front‑runners.</p>
+  <p>This is the power of Zero-Knowledge Proofs - the ability to prove a statement is true without revealing any information beyond the truth of the statement itself. For blockchain, this means transactions where you can prove you have enough balance to pay, without showing your balance; private voting where your vote is counted but not linked to your identity; and confidential DeFi where your trades are invisible to front-runners.</p>
 </div>
 
-<p>Zero‑Knowledge cryptography is not a distant concept. It powers <strong>Tornado Cash</strong>, which has processed over $10 billion in private Ethereum transactions; <strong>Aztec</strong>, a ZK‑rollup enabling confidential smart contracts; and <strong>MST's privacy layer</strong>, which uses ZK‑proofs to shield user data in identity verification, AI agent delegation, and WASMify data feeds.</p>
+<p>Zero-Knowledge cryptography is not a distant concept. It powers <strong>Tornado Cash</strong>, which has processed over $10 billion in private Ethereum transactions; <strong>Aztec</strong>, a ZK-rollup enabling confidential smart contracts; and <strong>MST's privacy layer</strong>, which uses ZK-proofs to shield user data in identity verification, AI agent delegation, and WASMify data feeds.</p>
 
 <!-- SECTION 3 -->
 <div class="section-label">03 &nbsp; Background &amp; History</div>
-<h2 class="section-title">From Cave Analogies to zk‑SNARKs</h2>
+<h2 class="section-title">From Cave Analogies to zk-SNARKs</h2>
 
-<p>Zero‑Knowledge Proofs were first conceived in 1985 by Shafi Goldwasser, Silvio Micali, and Charles Rackoff. The classic "Ali Baba cave" analogy (by Jean‑Jacques Quisquater) is still the best way to understand the idea:</p>
+<p>Zero-Knowledge Proofs were first conceived in 1985 by Shafi Goldwasser, Silvio Micali, and Charles Rackoff. The classic "Ali Baba cave" analogy (by Jean-Jacques Quisquater) is still the best way to understand the idea:</p>
 
 <div class="callout analogy">
   <div class="callout-label">🕳️ The Cave Analogy</div>
-  <p>Imagine a ring‑shaped cave with a secret door at the far end. Peggy claims she knows the magic word that opens the door. Victor, standing at the entrance, doesn't want to learn the word — he just wants to be convinced Peggy knows it. Peggy enters the cave through one entrance (A or B) while Victor waits outside. Victor then shouts from outside which entrance (A or B) Peggy must exit from. If Peggy knows the magic word, she can open the door and exit from whichever side Victor demands. If she doesn't, she can only exit from the side she entered. After 20 successful rounds, Victor is statistically convinced Peggy knows the word — yet he learned nothing about the word itself.</p>
+  <p>Imagine a ring-shaped cave with a secret door at the far end. Peggy claims she knows the magic word that opens the door. Victor, standing at the entrance, doesn't want to learn the word - he just wants to be convinced Peggy knows it. Peggy enters the cave through one entrance (A or B) while Victor waits outside. Victor then shouts from outside which entrance (A or B) Peggy must exit from. If Peggy knows the magic word, she can open the door and exit from whichever side Victor demands. If she doesn't, she can only exit from the side she entered. After 20 successful rounds, Victor is statistically convinced Peggy knows the word - yet he learned nothing about the word itself.</p>
 </div>
 
 <div class="timeline">
   <div class="tl-item"><div class="tl-left"><div class="tl-dot"></div><div class="tl-line"></div></div><div class="tl-right"><div class="tl-year">1985</div><div class="tl-body"><strong>GMR Paper.</strong> Goldwasser, Micali, and Rackoff publish "The Knowledge Complexity of Interactive Proof-Systems," defining ZK proofs formally.</div></div></div>
-  <div class="tl-item"><div class="tl-left"><div class="tl-dot"></div><div class="tl-line"></div></div><div class="tl-right"><div class="tl-year">2012</div><div class="tl-body"><strong>zk‑SNARKs emerge.</strong> Ben‑Sasson, Chiesa, et al. introduce Succinct Non‑Interactive ARguments of Knowledge (SNARKs) — ZK proofs that are small and fast to verify.</div></div></div>
-  <div class="tl-item"><div class="tl-left"><div class="tl-dot"></div><div class="tl-line"></div></div><div class="tl-right"><div class="tl-year">2016</div><div class="tl-body"><strong>Zcash launches.</strong> The first major blockchain to use zk‑SNARKs for shielded transactions, proving amounts and addresses are valid without revealing them.</div></div></div>
-  <div class="tl-item"><div class="tl-left"><div class="tl-dot"></div><div class="tl-line"></div></div><div class="tl-right"><div class="tl-year">2019</div><div class="tl-body"><strong>Tornado Cash.</strong> A fully decentralised, non‑custodial privacy solution on Ethereum using zk‑SNARKs and Merkle trees to break on‑chain linkability.</div></div></div>
-  <div class="tl-item"><div class="tl-left"><div class="tl-dot"></div><div class="tl-line"></div></div><div class="tl-right"><div class="tl-year">2022</div><div class="tl-body"><strong>Aztec Network.</strong> A ZK‑rollup with privacy‑first smart contracts, enabling confidential DeFi — trades invisible to MEV bots.</div></div></div>
-  <div class="tl-item"><div class="tl-left"><div class="tl-dot"></div></div><div class="tl-right"><div class="tl-year">2025</div><div class="tl-body"><strong>MST Privacy Layer.</strong> MST integrates ZK‑proofs natively for SARAL identity verification, private AI agent delegation, and confidential WASMify computations.</div></div></div>
+  <div class="tl-item"><div class="tl-left"><div class="tl-dot"></div><div class="tl-line"></div></div><div class="tl-right"><div class="tl-year">2012</div><div class="tl-body"><strong>zk-SNARKs emerge.</strong> Ben-Sasson, Chiesa, et al. introduce Succinct Non-Interactive ARguments of Knowledge (SNARKs) - ZK proofs that are small and fast to verify.</div></div></div>
+  <div class="tl-item"><div class="tl-left"><div class="tl-dot"></div><div class="tl-line"></div></div><div class="tl-right"><div class="tl-year">2016</div><div class="tl-body"><strong>Zcash launches.</strong> The first major blockchain to use zk-SNARKs for shielded transactions, proving amounts and addresses are valid without revealing them.</div></div></div>
+  <div class="tl-item"><div class="tl-left"><div class="tl-dot"></div><div class="tl-line"></div></div><div class="tl-right"><div class="tl-year">2019</div><div class="tl-body"><strong>Tornado Cash.</strong> A fully decentralised, non-custodial privacy solution on Ethereum using zk-SNARKs and Merkle trees to break on-chain linkability.</div></div></div>
+  <div class="tl-item"><div class="tl-left"><div class="tl-dot"></div><div class="tl-line"></div></div><div class="tl-right"><div class="tl-year">2022</div><div class="tl-body"><strong>Aztec Network.</strong> A ZK-rollup with privacy-first smart contracts, enabling confidential DeFi - trades invisible to MEV bots.</div></div></div>
+  <div class="tl-item"><div class="tl-left"><div class="tl-dot"></div></div><div class="tl-right"><div class="tl-year">2025</div><div class="tl-body"><strong>MST Privacy Layer.</strong> MST integrates ZK-proofs natively for SARAL identity verification, private AI agent delegation, and confidential WASMify computations.</div></div></div>
 </div>
 
 <style>
@@ -97,14 +98,14 @@
 <div class="section-label">04 &nbsp; Beginner-Friendly Explanation</div>
 <h2 class="section-title">The Three Magic Properties of ZK Proofs</h2>
 
-<p>Every zero‑knowledge proof must satisfy three properties. Let's use a simple Indian example — proving your age for a driving licence — to understand them.</p>
+<p>Every zero-knowledge proof must satisfy three properties. Let's use a simple Indian example - proving your age for a driving licence - to understand them.</p>
 
 <div class="w5-grid">
   <div class="w5-row">
     <div class="w5-label-cell"><div class="w5-letter">C</div><div class="w5-word">COMPLETE</div></div>
     <div class="w5-content">
       <div class="w5-q">If the statement is true, an honest prover can convince the verifier.</div>
-      <div class="w5-a">If you are really 18, and you generate a valid ZK proof of age from your Aadhaar‑linked VC, the verifier will always accept it. The proof generation is deterministic given the correct inputs.</div>
+      <div class="w5-a">If you are really 18, and you generate a valid ZK proof of age from your Aadhaar-linked VC, the verifier will always accept it. The proof generation is deterministic given the correct inputs.</div>
     </div>
   </div>
   <div class="w5-row">
@@ -115,7 +116,7 @@
     </div>
   </div>
   <div class="w5-row">
-    <div class="w5-label-cell"><div class="w5-letter">Z</div><div class="w5-word">ZERO‑KNOWLEDGE</div></div>
+    <div class="w5-label-cell"><div class="w5-letter">Z</div><div class="w5-word">ZERO-KNOWLEDGE</div></div>
     <div class="w5-content">
       <div class="w5-q">The verifier learns nothing beyond the truth of the statement.</div>
       <div class="w5-a">The proof only reveals that you are ≥ 18. It does not reveal your exact birthdate, your Aadhaar number, or even which year you were born. This is the property that makes ZK proofs a privacy superpower.</div>
@@ -124,23 +125,65 @@
 </div>
 
 <div class="callout key">
-  <div class="callout-label">🗝️ ZK‑SNARK vs ZK‑STARK</div>
-  <p><strong>SNARKs</strong> (Succinct Non‑interactive ARguments of Knowledge) require a <strong>trusted setup</strong> — a one‑time ceremony where a "toxic waste" is generated and then destroyed. If the ceremony is compromised, fake proofs can be created. SNARKs are extremely fast to verify and small in size (e.g., Groth16). <strong>STARKs</strong> (Scalable Transparent ARguments of Knowledge) remove the trusted setup, are post‑quantum secure, but produce larger proofs. MST's privacy layer uses a hybrid: Groth16 SNARKs for speed, with a transparent fallback for long‑term security.</p>
+  <div class="callout-label">🗝️ ZK-SNARK vs ZK-STARK</div>
+  <p><strong>SNARKs</strong> (Succinct Non-interactive ARguments of Knowledge) require a <strong>trusted setup</strong> - a one-time ceremony where a "toxic waste" is generated and then destroyed. If the ceremony is compromised, fake proofs can be created. SNARKs are extremely fast to verify and small in size (e.g., Groth16). <strong>STARKs</strong> (Scalable Transparent ARguments of Knowledge) remove the trusted setup, are post-quantum secure, but produce larger proofs. MST's privacy layer uses a hybrid: Groth16 SNARKs for speed, with a transparent fallback for long-term security.</p>
+</div>
+
+<!-- SECTION 4A: EVERYDAY INDIAN ANALOGIES -->
+<div class="section-label">04A &nbsp; ZK Proofs in Everyday Indian Life</div>
+<h2 class="section-title">Four More Analogies That Make ZK Click</h2>
+
+<p>Zero-knowledge proofs can seem abstract until you map them to situations every Indian encounters. Below are four practical scenarios where ZK proofs solve a real problem - proving something about yourself while keeping your private data completely hidden.</p>
+
+<div class="feature-list">
+  <div class="feature-item">
+    <div class="feature-num" style="background: var(--blue);">01</div>
+    <div class="feature-content">
+      <div class="feature-title">Income Tax Compliance Without Revealing Your Salary</div>
+      <div class="feature-desc">Suppose you are applying for a home loan with SBI. The bank needs proof that your income tax returns are filed and that your income is above Rs. 5 lakh per annum. Today, you must hand over your Form 16 or ITR-V, which reveals your exact salary, employer name, and deductions. With a ZK proof, you can prove to the bank: "My annual income exceeds Rs. 5 lakh AND my tax returns are filed with the IT Department" - without revealing the exact figure, your employer, your deductions, or any other line item. The bank gets the assurance it needs; you keep your financial details private. On MST, a SARAL wallet could generate such a proof directly from a digitally signed ITR document issued by the Income Tax portal, verified against the government's public key.</div>
+    </div>
+  </div>
+  <div class="feature-item">
+    <div class="feature-num" style="background: var(--green);">02</div>
+    <div class="feature-content">
+      <div class="feature-title">Vaccination Proof Without Revealing Medical History</div>
+      <div class="feature-desc">During the COVID-19 pandemic, millions of Indians used the CoWIN certificate as a vaccine passport. However, the certificate also contained the person's date of birth, photo, and vaccine batch number - all unnecessary for simply proving vaccination status. A ZK-based CoWIN verification would let you prove "I have received two doses of an approved COVID-19 vaccine" without revealing which vaccine, when you got it, or your personal details. This pattern extends to any medical credential: proving you are not colour-blind for a driving licence, proving a negative drug test for employment, or proving health insurance eligibility - all without exposing your full medical file.</div>
+    </div>
+  </div>
+  <div class="feature-item">
+    <div class="feature-num" style="background: var(--orange);">03</div>
+    <div class="feature-content">
+      <div class="feature-title">Caste Certificate Verification Without Revealing Caste</div>
+      <div class="feature-desc">In India's reservation system, a candidate applying for a government job or university seat must prove they belong to a specific reserved category (SC, ST, OBC). This requires submitting a caste certificate, which is a sensitive document often leading to social stigma or discrimination in private settings. With ZK proofs, the candidate can prove: "I hold a valid caste certificate issued by the competent authority that qualifies me for this reserved category" - without the verifying institution (say, a private employer running a diversity program) ever learning the candidate's specific caste, sub-caste, or issuing district. The proof is mathematically binding yet reveals nothing beyond eligibility.</div>
+    </div>
+  </div>
+  <div class="feature-item">
+    <div class="feature-num" style="background: var(--purple);">04</div>
+    <div class="feature-content">
+      <div class="feature-title">Bank Balance Proof for Visa Without Revealing Transactions</div>
+      <div class="feature-desc">When applying for a Schengen or US visa, applicants must submit six months of bank statements to prove financial stability. These statements expose every UPI payment, every subscription, every salary credit, and every personal purchase - a massive invasion of privacy for a simple solvency check. A ZK proof can prove: "My average bank balance over the last six months exceeds Rs. 3 lakh, and I have had no negative balance" - without revealing a single transaction, your employer's name, or your spending patterns. The embassy receives cryptographic certainty about your financial status; your private life stays private. This is the kind of selective disclosure that makes ZK proofs transformative for financial privacy.</div>
+    </div>
+  </div>
+</div>
+
+<div class="callout insight">
+  <div class="callout-label">💡 The Common Pattern</div>
+  <p>Notice the structure in every analogy above: you have a <strong>private input</strong> (salary details, medical records, caste certificate, bank statements), a <strong>public statement</strong> (income above threshold, vaccinated, eligible category, solvent), and a <strong>proof</strong> that connects the two without leaking the input. This is exactly how ZK circuits work in blockchain systems - the prover computes a proof from private witness data, and the verifier checks the proof against a public statement, learning nothing about the witness.</p>
 </div>
 
 <!-- SECTION 5: TORNADO CASH DEEP DIVE -->
 <div class="section-label">05 &nbsp; Technical Deep Dive</div>
-<h2 class="section-title">Anatomy of a Private Transaction — Tornado Cash</h2>
+<h2 class="section-title">Anatomy of a Private Transaction - Tornado Cash</h2>
 
-<p>Tornado Cash is the most widely understood on‑chain privacy protocol. It uses <strong>Merkle trees</strong>, <strong>commitments</strong>, and <strong>zk‑SNARKs</strong> to break the on‑chain link between sender and receiver. Let's walk through the exact flow.</p>
+<p>Tornado Cash is the most widely understood on-chain privacy protocol. It uses <strong>Merkle trees</strong>, <strong>commitments</strong>, and <strong>zk-SNARKs</strong> to break the on-chain link between sender and receiver. Let's walk through the exact flow.</p>
 
 <h3 style="font-size:18px; margin-top:28px;">5.1 Deposit: Creating a Commitment</h3>
 <p>When you want to deposit 1 ETH privately, you generate two random numbers: a <strong>secret</strong> (call it <em>s</em>) and a <strong>nullifier</strong> (call it <em>n</em>). You then compute a commitment:</p>
 <div class="code-snippet"><pre>commitment = PoseidonHash(nullifier, secret)</pre></div>
-<p>You send 1 ETH to the Tornado Cash contract along with the commitment. The contract inserts the commitment into a Merkle tree. The key insight: <strong>the on‑chain record shows only that some commitment was deposited. It doesn't reveal who deposited it, how much, or the secret/nullifier.</strong> In fact, the depositor can be any address; the funds are mixed.</p>
+<p>You send 1 ETH to the Tornado Cash contract along with the commitment. The contract inserts the commitment into a Merkle tree. The key insight: <strong>the on-chain record shows only that some commitment was deposited. It doesn't reveal who deposited it, how much, or the secret/nullifier.</strong> In fact, the depositor can be any address; the funds are mixed.</p>
 
 <h3 style="font-size:18px; margin-top:28px;">5.2 Withdrawal: Proving Ownership Without Revealing Which Deposit</h3>
-<p>To withdraw, you must prove that you know the <em>nullifier</em> and <em>secret</em> for <em>some</em> deposit in the Merkle tree — without revealing <strong>which</strong> deposit. This is done via a ZK‑SNARK proof. The circuit takes as private input: the nullifier, secret, and the Merkle path to the commitment. It outputs the nullifier hash (to prevent double‑spending) and the recipient address. The contract verifies the proof and releases the funds to the recipient.</p>
+<p>To withdraw, you must prove that you know the <em>nullifier</em> and <em>secret</em> for <em>some</em> deposit in the Merkle tree - without revealing <strong>which</strong> deposit. This is done via a ZK-SNARK proof. The circuit takes as private input: the nullifier, secret, and the Merkle path to the commitment. It outputs the nullifier hash (to prevent double-spending) and the recipient address. The contract verifies the proof and releases the funds to the recipient.</p>
 
 <div class="diagram-wrap">
   <div class="diagram-title">FIGURE 16.3-A · Tornado Cash Deposit &amp; Withdrawal Flow</div>
@@ -162,7 +205,7 @@
 <p><strong>Why is this private?</strong> An external observer sees Deposit<sub>1</sub>, Deposit<sub>2</sub>, ... Deposit<sub>N</sub> and Withdrawal<sub>A</sub>, Withdrawal<sub>B</sub>, ... Withdrawal<sub>M</sub>. They cannot determine which deposit corresponds to which withdrawal because the proof does not reveal the leaf index. The anonymity set size is the number of deposits. The larger the anonymity set, the stronger the privacy.</p>
 
 <h3 style="font-size:18px; margin-top:28px;">5.3 The ZK Circuit in Circom (Simplified)</h3>
-<p>Below is a simplified version of the Tornado Cash circuit, written in Circom (a domain‑specific language for ZK circuits).</p>
+<p>Below is a simplified version of the Tornado Cash circuit, written in Circom (a domain-specific language for ZK circuits).</p>
 <div class="code-snippet"><pre>pragma circom 2.0.0;
 
 include "merkleTree.circom";
@@ -201,68 +244,263 @@ template Withdraw(levels) {
 component main {public [root, nullifierHash]} = Withdraw(20);</pre></div>
 <p>The public signals are <code>root</code> (the Merkle root) and <code>nullifierHash</code>. The verifier contract checks that root matches the current Merkle root, and that nullifierHash has not been used before. The private inputs (nullifier, secret, path) remain hidden from the verifier.</p>
 
+<!-- SECTION 5A: TORNADO CASH SANCTIONS CONTROVERSY -->
+<div class="section-label">05A &nbsp; The Tornado Cash Sanctions Controversy</div>
+<h2 class="section-title">When Privacy Tools Collide with Regulation</h2>
+
+<p>Tornado Cash is not just a technical case study - it became the centre of one of the most significant legal battles in the history of blockchain and open-source software. Understanding this controversy is essential for any developer building privacy tools, including on MST.</p>
+
+<h3 style="font-size:18px; margin-top:28px;">The OFAC Sanctions (August 2022)</h3>
+<p>On August 8, 2022, the U.S. Department of the Treasury's Office of Foreign Assets Control (OFAC) added Tornado Cash smart contract addresses to its Specially Designated Nationals (SDN) list. This was unprecedented - it was the first time a government sanctioned <strong>a piece of open-source code</strong> rather than a person or an organisation. The Treasury alleged that Tornado Cash had been used to launder over $7 billion in cryptocurrency, including $455 million stolen by North Korea's Lazarus Group. The immediate consequences were severe: Circle froze USDC held in Tornado Cash contracts, GitHub removed the Tornado Cash repositories, and some RPC providers began blocking interactions with the sanctioned addresses.</p>
+
+<h3 style="font-size:18px; margin-top:28px;">The Developer Arrests</h3>
+<p>On August 10, 2022 - just two days after the sanctions - Dutch authorities arrested Alexey Pertsev, one of Tornado Cash's core developers, in Amsterdam. He was charged with facilitating money laundering. In May 2024, a Dutch court sentenced Pertsev to 64 months in prison. Separately, another developer, Roman Storm, was indicted in the United States on charges of money laundering conspiracy, sanctions violations, and operating an unlicensed money transmitting business. These arrests sent shockwaves through the developer community. The central question became: <strong>can a developer be held criminally liable for writing open-source code that others use for illegal purposes?</strong></p>
+
+<h3 style="font-size:18px; margin-top:28px;">The Legal and Ethical Debate</h3>
+<p>The Tornado Cash case raised fundamental questions that remain unresolved:</p>
+
+<div class="feature-list">
+  <div class="feature-item">
+    <div class="feature-num" style="background: var(--ink-3);">01</div>
+    <div class="feature-content">
+      <div class="feature-title">Code as Speech</div>
+      <div class="feature-desc">Advocacy groups including the Electronic Frontier Foundation (EFF) and Coin Center argued that immutable smart contracts are a form of speech protected under the First Amendment (in the U.S. context). Sanctioning code, they argued, is equivalent to banning a mathematical equation. In November 2024, a U.S. appeals court ruled that OFAC overstepped its authority by sanctioning the immutable smart contracts, finding that they do not constitute "property" of a foreign national.</div>
+    </div>
+  </div>
+  <div class="feature-item">
+    <div class="feature-num" style="background: var(--ink-3);">02</div>
+    <div class="feature-content">
+      <div class="feature-title">Dual-Use Technology</div>
+      <div class="feature-desc">Privacy tools are inherently dual-use. The same protocol that a dissident uses to protect donations from an authoritarian regime is the protocol a money launderer uses to hide stolen funds. Regulators struggle with this tension: how do you allow legitimate privacy without enabling crime? This mirrors historical debates about encryption (the "Crypto Wars" of the 1990s), where the U.S. government initially tried to restrict strong encryption before eventually recognising its necessity.</div>
+    </div>
+  </div>
+  <div class="feature-item">
+    <div class="feature-num" style="background: var(--ink-3);">03</div>
+    <div class="feature-content">
+      <div class="feature-title">Chilling Effect on Developers</div>
+      <div class="feature-desc">Perhaps the most damaging consequence was the chilling effect on open-source development. If a developer can be imprisoned for writing a smart contract, many talented engineers will simply avoid building privacy tools - even ones with clear legitimate use cases. This self-censorship could slow innovation in ZK privacy precisely when it is most needed.</div>
+    </div>
+  </div>
+</div>
+
+<div class="callout warning">
+  <div class="callout-label">⚠️ Lessons for MST Developers</div>
+  <p>The Tornado Cash controversy carries direct implications for anyone building privacy features on MST or any blockchain. <strong>First,</strong> design for compliance - MST's shielded pool architecture supports optional compliance hooks where a regulatory authority (not the counterparty) can access transaction details under a court order, balancing privacy with legal requirements. <strong>Second,</strong> document legitimate use cases clearly - privacy for salary data, medical records, and identity credentials has obvious social value. <strong>Third,</strong> decentralise governance and control - protocols that have no single operator are harder to characterise as "money transmitting businesses." <strong>Fourth,</strong> understand your jurisdiction - Indian law (particularly the Digital Personal Data Protection Act, 2023) actually mandates data minimisation, which aligns with ZK proof philosophy. Building privacy tools that help entities comply with DPDP Act requirements gives your project a strong regulatory narrative.</p>
+</div>
+
 <!-- SECTION 6: AZTEC & CONFIDENTIAL DEFI -->
 <div class="section-label">06 &nbsp; Aztec &amp; Confidential DeFi</div>
-<h2 class="section-title">Private Smart Contracts on a ZK‑Rollup</h2>
+<h2 class="section-title">Private Smart Contracts on a ZK-Rollup</h2>
 
-<p>While Tornado Cash provides transactional privacy, <strong>Aztec Network</strong> goes further: it enables <strong>entire smart contracts to execute privately</strong>. On Aztec, the state of a contract (e.g., your lending position) is encrypted, and the execution of functions is done via ZK proofs. The sequencer sees only encrypted data and proofs; it cannot learn the amounts, the identities, or the logic. This prevents MEV (Miner Extractable Value) front‑running, which plagues public DeFi.</p>
+<p>While Tornado Cash provides transactional privacy, <strong>Aztec Network</strong> goes further: it enables <strong>entire smart contracts to execute privately</strong>. On Aztec, the state of a contract (e.g., your lending position) is encrypted, and the execution of functions is done via ZK proofs. The sequencer sees only encrypted data and proofs; it cannot learn the amounts, the identities, or the logic. This prevents MEV (Miner Extractable Value) front-running, which plagues public DeFi.</p>
 
-<p><strong>How Aztec works:</strong> Each user has a set of <strong>notes</strong> (encrypted UTXOs) that represent their assets. When Alice sends 100 DAI to Bob, she nullifies one of her notes (by revealing its nullifier) and creates a new note for Bob. The transaction includes a ZK proof that the sum of inputs equals the sum of outputs, and that the nullified note existed. The contract's state is a UTXO tree, updated entirely off‑chain by the rollup, with only a proof posted on‑chain.</p>
+<p><strong>How Aztec works:</strong> Each user has a set of <strong>notes</strong> (encrypted UTXOs) that represent their assets. When Alice sends 100 DAI to Bob, she nullifies one of her notes (by revealing its nullifier) and creates a new note for Bob. The transaction includes a ZK proof that the sum of inputs equals the sum of outputs, and that the nullified note existed. The contract's state is a UTXO tree, updated entirely off-chain by the rollup, with only a proof posted on-chain.</p>
 
 <div class="compare-table">
-  PropertyPublic L1 (Ethereum)Aztec (ZK‑Rollup)
+  PropertyPublic L1 (Ethereum)Aztec (ZK-Rollup)
   
     Transaction visibilityFully visible (addresses, amounts)Encrypted; only ZK proof visible
-    MEV resistanceFront‑running possibleEncrypted mempool prevents front‑running
+    MEV resistanceFront-running possibleEncrypted mempool prevents front-running
     Scalability~15 TPS~1000+ TPS (rollup)
-    ComposabilitySynchronousAsynchronous (cross‑contract calls via notes)
+    ComposabilitySynchronousAsynchronous (cross-contract calls via notes)
     PrivacyNoneFull payload encryption + ZK proofs
   
 </div>
 
 <div class="callout insight">
   <div class="callout-label">💡 MST's Privacy Approach</div>
-  <p>MST leverages ZK proofs in three layers: (1) <strong>SARAL Identity:</strong> prove age, citizenship, or credential validity without revealing raw data. (2) <strong>WASMify ZK Bridge:</strong> off‑chain computations verified on‑chain with ZK proofs, preserving data confidentiality. (3) <strong>Private Token Transfers:</strong> an optional shielded pool (similar to Tornado Cash) natively integrated into the MST protocol, using Groth16 SNARKs. Developers can deploy private ERC‑20 tokens on MST by inheriting from a shielded token standard.</p>
+  <p>MST leverages ZK proofs in three layers: (1) <strong>SARAL Identity:</strong> prove age, citizenship, or credential validity without revealing raw data. (2) <strong>WASMify ZK Bridge:</strong> off-chain computations verified on-chain with ZK proofs, preserving data confidentiality. (3) <strong>Private Token Transfers:</strong> an optional shielded pool (similar to Tornado Cash) natively integrated into the MST protocol, using Groth16 SNARKs. Developers can deploy private ERC-20 tokens on MST by inheriting from a shielded token standard.</p>
+</div>
+
+<!-- SECTION 6A: COMPARING ZK PROOF SYSTEMS -->
+<div class="section-label">06A &nbsp; Comparing ZK Proof Systems</div>
+<h2 class="section-title">Groth16, PLONK, Halo 2, and STARKs - A Developer's Guide</h2>
+
+<p>Not all ZK proof systems are created equal. The choice of proving system has a direct impact on your application's security model, performance, and deployment complexity. The table below compares the four most important ZK proof systems in production today. Understanding their trade-offs is critical for any developer choosing a ZK stack for their dApp on MST or any other chain.</p>
+
+<div class="compare-table">
+  PropertyGroth16PLONKHalo 2STARKs
+  
+    Trusted SetupYes (circuit-specific)Yes (universal, updateable)No (recursive, no setup)No (transparent)
+    Proof Size~200 bytes~400 bytes~500 bytes~50-200 KB
+    Verification TimeFastest (~3 ms)Fast (~5 ms)Fast (~5 ms)Moderate (~10-50 ms)
+    Prover TimeModerateModerateModerate-SlowSlow (large circuits)
+    Post-Quantum SecureNoNoNoYes (hash-based)
+    UniversalityCircuit-specificUniversal (one setup for all circuits)Universal + recursiveUniversal
+    Used ByTornado Cash, Zcash, MSTzkSync, Polygon zkEVM, AztecZcash Orchard, scrollStarkNet, StarkEx
+    Key Trade-offSmallest proofs, but new setup per circuitFlexible, but larger proofsNo trusted setup, supports recursionLargest proofs, but post-quantum and transparent
+  
+</div>
+
+<h3 style="font-size:18px; margin-top:28px;">Understanding the Trade-offs</h3>
+
+<p><strong>Groth16</strong> remains the gold standard for applications where proof size and verification speed are paramount. Its proofs are the smallest (around 200 bytes) and the fastest to verify, making it ideal for on-chain verification where gas costs are a concern. However, it requires a new trusted setup ceremony for every circuit change, which introduces operational overhead and a trust assumption. Tornado Cash and Zcash both use Groth16 for this reason, and MST's shielded token standard defaults to Groth16 for on-chain proof verification.</p>
+
+<p><strong>PLONK</strong> introduced the concept of a universal trusted setup - a single ceremony whose output can be reused across different circuits. This is a significant improvement because you do not need to run a new ceremony every time you update your circuit logic. The trade-off is slightly larger proofs and marginally slower verification compared to Groth16. PLONK is the foundation of several major ZK-rollups, including Aztec's newer iterations and Polygon zkEVM.</p>
+
+<p><strong>Halo 2</strong>, developed by the Electric Coin Company (the team behind Zcash), eliminates the trusted setup entirely through a technique called recursive proof composition. This means a proof can verify another proof inside itself, enabling incrementally verifiable computation without any setup ceremony. Halo 2 is used in Zcash's Orchard shielded pool and is being adopted by Scroll's zkEVM.</p>
+
+<p><strong>STARKs</strong> (Scalable Transparent ARguments of Knowledge) are the most conservative choice from a security perspective. They rely on hash functions rather than elliptic curve pairings, making them resistant to quantum computer attacks. They require no trusted setup at all (fully transparent). The price is significantly larger proof sizes (tens to hundreds of kilobytes), which makes on-chain verification more expensive. STARKs are used by StarkNet and StarkEx, and are favoured for applications where long-term security is more important than gas efficiency.</p>
+
+<div class="callout key">
+  <div class="callout-label">🗝️ Which System Should MST Developers Choose?</div>
+  <p>For most MST dApps, the recommended path is: use <strong>Groth16</strong> for on-chain verification of fixed circuits (e.g., shielded transfers, identity proofs) where proof size and gas cost matter most. Use <strong>PLONK</strong> when your circuit logic needs to evolve frequently (e.g., a DeFi protocol with upgradeable rules). Consider <strong>STARKs</strong> if your application handles high-value, long-term data (e.g., land registry proofs) where post-quantum security justifies the larger proof size. MST's ZK SDK supports all four systems, with Groth16 as the default.</p>
+</div>
+
+<!-- SECTION 6B: ZK-ROLLUPS AND SCALABILITY -->
+<div class="section-label">06B &nbsp; ZK-Rollups and Blockchain Scalability</div>
+<h2 class="section-title">Beyond Privacy - How ZK Proofs Scale Blockchains</h2>
+
+<p>One of the most important developments in blockchain technology is the realisation that ZK proofs are not just a privacy tool - they are equally powerful as a <strong>scalability solution</strong>. ZK-rollups use ZK proofs to compress thousands of transactions into a single proof that is verified on the main chain. This insight has made ZK technology central to Ethereum's scaling roadmap and MST's architecture alike.</p>
+
+<h3 style="font-size:18px; margin-top:28px;">How ZK-Rollups Work</h3>
+<p>In a ZK-rollup, a sequencer collects transactions off-chain, executes them, and generates a ZK proof (called a validity proof) that attests: "I executed N transactions correctly, and the resulting state root is X." This proof, along with the compressed transaction data, is posted to the Layer 1 chain. The L1 contract verifies the proof and updates the state root. The key advantage over optimistic rollups is that <strong>ZK-rollups provide instant finality</strong> - there is no fraud proof challenge period, because the mathematical proof guarantees correctness.</p>
+
+<div class="diagram-wrap">
+  <div class="diagram-title">FIGURE 16.3-B · ZK-Rollup Architecture</div>
+  <pre>  LAYER 2 (Off-Chain)                           LAYER 1 (On-Chain)
+
+  Users submit transactions                     L1 Verifier Contract:
+        |                                         - Receives ZK proof + state diff
+  Sequencer executes transactions                 - Verifies proof (O(1) time)
+        |                                         - Updates state root
+  Prover generates validity proof                 - Stores compressed tx data
+  (proves correct execution of all txs)             for data availability
+        |
+  Posts proof + data to L1
+  </pre>
+  <div class="diagram-caption">The ZK proof compresses the verification of thousands of transactions into a single constant-time check on L1, dramatically increasing throughput without sacrificing security.</div>
+</div>
+
+<h3 style="font-size:18px; margin-top:28px;">Validity Proofs vs. Fraud Proofs</h3>
+<p>It is important to distinguish ZK-rollups from optimistic rollups (like Arbitrum and Optimism). Optimistic rollups assume all transactions are valid by default and rely on a 7-day challenge window during which anyone can submit a fraud proof. ZK-rollups, by contrast, provide a cryptographic validity proof with every batch, so the L1 contract knows <em>immediately</em> that the state transition is correct. This means faster withdrawals (minutes instead of a week), stronger security guarantees (no assumption about honest watchers), and better capital efficiency.</p>
+
+<div class="compare-table">
+  PropertyZK-RollupsOptimistic Rollups
+  
+    Proof TypeValidity proof (ZK)Fraud proof (challenge period)
+    Finality TimeMinutes (after proof generation)7 days (challenge window)
+    SecurityCryptographic guaranteesRequires at least one honest watcher
+    Computation CostHigh (prover must generate ZK proof)Low (only re-execution on dispute)
+    Data CompressionHigher (validity proof enables compression)Lower (full tx data needed for fraud proofs)
+    ExampleszkSync, Scroll, Polygon zkEVM, Aztec, MSTArbitrum, Optimism, Base
+  
+</div>
+
+<h3 style="font-size:18px; margin-top:28px;">ZK-Rollups and MST</h3>
+<p>MST uses ZK-rollup technology for both privacy and scalability. The WASMify execution layer generates ZK proofs of correct computation, allowing heavy processing (such as AI inference, data aggregation, or complex DeFi logic) to happen off-chain while the results are verified on-chain with a compact proof. This design enables MST to achieve throughput in the range of thousands of TPS while maintaining the security of the underlying L1. For Indian use cases - such as processing millions of UPI-linked transactions, verifying SARAL credentials at scale, or running supply chain computations for agricultural exports - ZK-rollup scalability is not a nice-to-have but a necessity.</p>
+
+<div class="callout insight">
+  <div class="callout-label">💡 The Dual Power of ZK</div>
+  <p>This is the key insight that separates expert blockchain architects from beginners: ZK proofs provide <strong>both</strong> privacy and scalability simultaneously. When a ZK-rollup processes 10,000 transactions into a single proof, it achieves compression (scalability) because the verifier checks one proof instead of 10,000 transactions. And if those transactions contain encrypted data, the proof also achieves privacy because the verifier never sees the underlying data. This dual power is why ZK technology is considered the most important cryptographic primitive in blockchain today, and why every major L1 and L2 is investing heavily in ZK research.</p>
 </div>
 
 <!-- SECTION 7: CASE STUDIES -->
-<div class="section-label">07 &nbsp; Real‑World Case Studies</div>
+<div class="section-label">07 &nbsp; Real-World Case Studies</div>
 <h2 class="section-title">ZK Proofs in Indian &amp; Global Context</h2>
 
 <div class="feature-list">
   <div class="feature-item">
     <div class="feature-num" style="background: var(--blue);">🇮🇳</div>
     <div class="feature-content">
-      <div class="feature-title">Aadhaar‑Based ZK Age Verification</div>
-      <div class="feature-desc">A fintech app wants to verify a user is ≥ 18 for a loan product, without accessing the full Aadhaar XML. The user generates a ZK proof from their Aadhaar XML that proves the birthdate meets the threshold, and shares only the proof. The fintech verifies the proof against UIDAI's public key. MST's SARAL wallet can produce such proofs directly from DigiLocker‑issued VCs.</div>
+      <div class="feature-title">Aadhaar-Based ZK Age Verification</div>
+      <div class="feature-desc">A fintech app wants to verify a user is ≥ 18 for a loan product, without accessing the full Aadhaar XML. The user generates a ZK proof from their Aadhaar XML that proves the birthdate meets the threshold, and shares only the proof. The fintech verifies the proof against UIDAI's public key. MST's SARAL wallet can produce such proofs directly from DigiLocker-issued VCs.</div>
     </div>
   </div>
   <div class="feature-item">
     <div class="feature-num" style="background: var(--green);">🏛️</div>
     <div class="feature-content">
       <div class="feature-title">Private DAO Voting</div>
-      <div class="feature-desc">A DAO on MST wants members to vote on a sensitive proposal without exposing individual votes. Using a ZK voting circuit, each member proves they hold a governance token and their vote choice, without revealing which token or the choice. The tally is public, but individual votes are private — preventing voter intimidation and vote buying.</div>
+      <div class="feature-desc">A DAO on MST wants members to vote on a sensitive proposal without exposing individual votes. Using a ZK voting circuit, each member proves they hold a governance token and their vote choice, without revealing which token or the choice. The tally is public, but individual votes are private - preventing voter intimidation and vote buying.</div>
     </div>
   </div>
   <div class="feature-item">
     <div class="feature-num" style="background: var(--orange);">🚛</div>
     <div class="feature-content">
       <div class="feature-title">Confidential Supply Chain with WASMify</div>
-      <div class="feature-desc">A pharmaceutical company ships vaccines across India, recording temperature logs on MST via WASMify. The logs are sensitive — competitors shouldn't know volumes. The company submits ZK proofs that all temperature readings were within range, without revealing the raw data. Regulators verify the proofs; the company keeps its logistics private.</div>
+      <div class="feature-desc">A pharmaceutical company ships vaccines across India, recording temperature logs on MST via WASMify. The logs are sensitive - competitors shouldn't know volumes. The company submits ZK proofs that all temperature readings were within range, without revealing the raw data. Regulators verify the proofs; the company keeps its logistics private.</div>
     </div>
   </div>
 </div>
 
-<!-- SECTION 8: ASSESSMENT PREP -->
-<div class="section-label">08 &nbsp; Assessment Preparation</div>
-<h2 class="section-title">Top Facts — Know These Cold</h2>
+<!-- SECTION 7A: BUILDING WITH ZK ON MST -->
+<div class="section-label">07A &nbsp; Building with ZK on MST</div>
+<h2 class="section-title">MST's ZK Architecture and Developer Workflow</h2>
+
+<p>For developers building on MST, ZK proofs are not an abstract academic concept - they are a practical tool available through the MST ZK SDK. This section covers the end-to-end workflow for integrating ZK proofs into your dApps, from circuit design to on-chain verification.</p>
+
+<h3 style="font-size:18px; margin-top:28px;">MST's ZK Stack Overview</h3>
+<p>MST's ZK infrastructure is built in three layers, each serving a distinct purpose:</p>
 
 <div class="feature-list">
-  <div class="feature-item"><div class="feature-num" style="background: var(--ink-3);">01</div><div class="feature-content"><div class="feature-title">ZK Proof Properties:</div><div class="feature-desc">Completeness (true → accepted), Soundness (false → rejected), Zero‑Knowledge (verifier learns nothing else).</div></div></div>
-  <div class="feature-item"><div class="feature-num" style="background: var(--ink-3);">02</div><div class="feature-content"><div class="feature-title">zk‑SNARK vs zk‑STARK:</div><div class="feature-desc">SNARKs require trusted setup, are fast, small proofs. STARKs are transparent (no trusted setup), post‑quantum secure, larger proofs.</div></div></div>
-  <div class="feature-item"><div class="feature-num" style="background: var(--ink-3);">03</div><div class="feature-content"><div class="feature-title">Tornado Cash core components:</div><div class="feature-desc">Commitment = H(nullifier, secret); Merkle tree for anonymity set; ZK proof of membership and knowledge of preimage; nullifier hash to prevent double‑spend.</div></div></div>
-  <div class="feature-item"><div class="feature-num" style="background: var(--ink-3);">04</div><div class="feature-content"><div class="feature-title">Aztec's privacy model:</div><div class="feature-desc">Encrypted UTXO notes, ZK proofs for state transitions, encrypted mempool. Contract state is private; only proofs and nullifiers are on‑chain.</div></div></div>
-  <div class="feature-item"><div class="feature-num" style="background: var(--ink-3);">05</div><div class="feature-content"><div class="feature-title">MST Privacy Stack:</div><div class="feature-desc">SARAL ZK‑identity proofs, WASMify ZK computation verification, shielded token pools with Groth16 SNARKs.</div></div></div>
+  <div class="feature-item">
+    <div class="feature-num" style="background: var(--blue);">L1</div>
+    <div class="feature-content">
+      <div class="feature-title">Circuit Layer (Circom / Noir)</div>
+      <div class="feature-desc">Developers write their ZK circuits in Circom (for Groth16/PLONK) or Noir (Aztec's DSL, supported via MST's interoperability bridge). The circuit defines the computation to be proven - for example, "the sender's balance is at least X" or "this credential was signed by an authorised issuer." MST provides a library of pre-built circuit templates for common patterns: range proofs, membership proofs, signature verification, and Merkle inclusion proofs.</div>
+    </div>
+  </div>
+  <div class="feature-item">
+    <div class="feature-num" style="background: var(--green);">L2</div>
+    <div class="feature-content">
+      <div class="feature-title">Proving Layer (Client-Side or WASMify)</div>
+      <div class="feature-desc">Once a circuit is compiled, proofs can be generated either on the user's device (for lightweight proofs like identity verification) or via WASMify workers (for computationally intensive proofs like batch transaction verification). MST's WASM-based prover runs in the browser, enabling fully client-side proof generation without sending private data to any server. For heavier computations, WASMify off-chain workers generate proofs and post only the proof and public outputs on-chain.</div>
+    </div>
+  </div>
+  <div class="feature-item">
+    <div class="feature-num" style="background: var(--orange);">L3</div>
+    <div class="feature-content">
+      <div class="feature-title">Verification Layer (On-Chain Smart Contracts)</div>
+      <div class="feature-desc">MST deploys verifier contracts for each proving system (Groth16Verifier, PLONKVerifier, etc.) as precompiled contracts on the MST chain. dApp developers simply call the verifier with the proof and public inputs; the contract returns true or false. Because verification is a precompile, gas costs are predictable and low - approximately 200,000 gas for a Groth16 proof verification, comparable to a simple token transfer.</div>
+    </div>
+  </div>
+</div>
+
+<h3 style="font-size:18px; margin-top:28px;">Developer Workflow: Step-by-Step</h3>
+<p>The following sequence outlines how an MST developer goes from idea to deployed ZK-powered dApp:</p>
+
+<div class="code-snippet"><pre>Step 1: Define the circuit (what you want to prove)
+  → Write a Circom file: myProof.circom
+  → Define private inputs (witness) and public outputs
+
+Step 2: Compile the circuit
+  → circom myProof.circom --r1cs --wasm --sym
+  → Produces: myProof.r1cs, myProof.wasm, myProof.sym
+
+Step 3: Generate the proving and verification keys
+  → snarkjs groth16 setup myProof.r1cs pot_final.ptau myProof_0000.zkey
+  → snarkjs zkey contribute myProof_0000.zkey myProof_final.zkey
+  → snarkjs zkey export verificationkey myProof_final.zkey vkey.json
+
+Step 4: Generate a proof (client-side or via WASMify)
+  → snarkjs groth16 prove myProof_final.zkey witness.wtns proof.json public.json
+
+Step 5: Deploy the verifier contract on MST
+  → snarkjs zkey export solidityverifier myProof_final.zkey Verifier.sol
+  → Deploy Verifier.sol to MST
+
+Step 6: Verify on-chain
+  → Your dApp calls Verifier.verifyProof(proof, publicInputs)
+  → Returns true if proof is valid, false otherwise</pre></div>
+
+<div class="callout key">
+  <div class="callout-label">🗝️ Privacy by Default, Transparency by Choice</div>
+  <p>MST's design philosophy for ZK integration is "privacy by default, transparency by choice." Every SARAL identity credential supports ZK proof generation out of the box. Every token contract can optionally enable a shielded pool. Every WASMify computation can be verified without revealing inputs. Developers do not need to be ZK experts to use these features - the SDK provides high-level APIs that abstract the circuit compilation and proof generation into simple function calls. For advanced developers who want to write custom circuits, MST supports the full Circom and snarkjs toolchain with comprehensive documentation and circuit templates.</p>
+</div>
+
+<!-- SECTION 8: ASSESSMENT PREP -->
+<div class="section-label">08 &nbsp; Assessment Preparation</div>
+<h2 class="section-title">Top Facts - Know These Cold</h2>
+
+<div class="feature-list">
+  <div class="feature-item"><div class="feature-num" style="background: var(--ink-3);">01</div><div class="feature-content"><div class="feature-title">ZK Proof Properties:</div><div class="feature-desc">Completeness (true → accepted), Soundness (false → rejected), Zero-Knowledge (verifier learns nothing else).</div></div></div>
+  <div class="feature-item"><div class="feature-num" style="background: var(--ink-3);">02</div><div class="feature-content"><div class="feature-title">zk-SNARK vs zk-STARK:</div><div class="feature-desc">SNARKs require trusted setup, are fast, small proofs. STARKs are transparent (no trusted setup), post-quantum secure, larger proofs.</div></div></div>
+  <div class="feature-item"><div class="feature-num" style="background: var(--ink-3);">03</div><div class="feature-content"><div class="feature-title">Tornado Cash core components:</div><div class="feature-desc">Commitment = H(nullifier, secret); Merkle tree for anonymity set; ZK proof of membership and knowledge of preimage; nullifier hash to prevent double-spend.</div></div></div>
+  <div class="feature-item"><div class="feature-num" style="background: var(--ink-3);">04</div><div class="feature-content"><div class="feature-title">Aztec's privacy model:</div><div class="feature-desc">Encrypted UTXO notes, ZK proofs for state transitions, encrypted mempool. Contract state is private; only proofs and nullifiers are on-chain.</div></div></div>
+  <div class="feature-item"><div class="feature-num" style="background: var(--ink-3);">05</div><div class="feature-content"><div class="feature-title">MST Privacy Stack:</div><div class="feature-desc">SARAL ZK-identity proofs, WASMify ZK computation verification, shielded token pools with Groth16 SNARKs.</div></div></div>
+  <div class="feature-item"><div class="feature-num" style="background: var(--ink-3);">06</div><div class="feature-content"><div class="feature-title">ZK Proof Systems:</div><div class="feature-desc">Groth16 (smallest proofs, circuit-specific setup), PLONK (universal setup), Halo 2 (no setup, recursive), STARKs (transparent, post-quantum, largest proofs).</div></div></div>
+  <div class="feature-item"><div class="feature-num" style="background: var(--ink-3);">07</div><div class="feature-content"><div class="feature-title">ZK-Rollup vs Optimistic Rollup:</div><div class="feature-desc">ZK-rollups use validity proofs for instant finality; optimistic rollups use fraud proofs with a 7-day challenge window. ZK-rollups offer stronger security but higher prover costs.</div></div></div>
+  <div class="feature-item"><div class="feature-num" style="background: var(--ink-3);">08</div><div class="feature-content"><div class="feature-title">Tornado Cash Sanctions:</div><div class="feature-desc">OFAC sanctioned Tornado Cash smart contract addresses in August 2022. Developer Alexey Pertsev was arrested. U.S. appeals court later ruled OFAC overstepped by sanctioning immutable code. Key lesson: design privacy tools with compliance hooks.</div></div></div>
 </div>
 
 <!-- ASSESSMENT -->
@@ -270,22 +508,29 @@ component main {public [root, nullifierHash]} = Withdraw(20);</pre></div>
 
 <!-- GLOSSARY -->
 <div class="section-label" style="margin-top:52px;">09 &nbsp; Glossary</div>
-<h2 class="section-title">Key Terms — Sub-Module 16.3</h2>
+<h2 class="section-title">Key Terms - Sub-Module 16.3</h2>
 <div class="glossary-grid">
-  <div class="glossary-item"><div class="glossary-term">Zero‑Knowledge Proof</div><div class="glossary-def">A cryptographic method to prove knowledge of a secret without revealing the secret itself.</div></div>
-  <div class="glossary-item"><div class="glossary-term">zk‑SNARK</div><div class="glossary-def">Succinct Non‑interactive ARgument of Knowledge — fast, small proofs requiring a trusted setup.</div></div>
-  <div class="glossary-item"><div class="glossary-term">zk‑STARK</div><div class="glossary-def">Scalable Transparent ARgument of Knowledge — transparent, post‑quantum secure, larger proofs.</div></div>
+  <div class="glossary-item"><div class="glossary-term">Zero-Knowledge Proof</div><div class="glossary-def">A cryptographic method to prove knowledge of a secret without revealing the secret itself.</div></div>
+  <div class="glossary-item"><div class="glossary-term">zk-SNARK</div><div class="glossary-def">Succinct Non-interactive ARgument of Knowledge - fast, small proofs requiring a trusted setup.</div></div>
+  <div class="glossary-item"><div class="glossary-term">zk-STARK</div><div class="glossary-def">Scalable Transparent ARgument of Knowledge - transparent, post-quantum secure, larger proofs.</div></div>
   <div class="glossary-item"><div class="glossary-term">Commitment</div><div class="glossary-def">A cryptographic hash of secret data, stored publicly, that hides the preimage.</div></div>
-  <div class="glossary-item"><div class="glossary-term">Nullifier</div><div class="glossary-def">A random number used to prevent double‑spending; its hash is revealed during withdrawal.</div></div>
+  <div class="glossary-item"><div class="glossary-term">Nullifier</div><div class="glossary-def">A random number used to prevent double-spending; its hash is revealed during withdrawal.</div></div>
   <div class="glossary-item"><div class="glossary-term">Merkle Tree</div><div class="glossary-def">A binary tree of hashes enabling efficient membership proofs without revealing the data set.</div></div>
-  <div class="glossary-item"><div class="glossary-term">Aztec Network</div><div class="glossary-def">A ZK‑rollup enabling private smart contracts with encrypted state and UTXO notes.</div></div>
-  <div class="glossary-item"><div class="glossary-term">Groth16</div><div class="glossary-def">A popular zk‑SNARK proving system with very fast verification, used by Tornado Cash and MST.</div></div>
-  <div class="glossary-item"><div class="glossary-term">Circom</div><div class="glossary-def">A domain‑specific language for writing arithmetic circuits that can be compiled into ZK proofs.</div></div>
+  <div class="glossary-item"><div class="glossary-term">Aztec Network</div><div class="glossary-def">A ZK-rollup enabling private smart contracts with encrypted state and UTXO notes.</div></div>
+  <div class="glossary-item"><div class="glossary-term">Groth16</div><div class="glossary-def">A popular zk-SNARK proving system with very fast verification, used by Tornado Cash and MST.</div></div>
+  <div class="glossary-item"><div class="glossary-term">Circom</div><div class="glossary-def">A domain-specific language for writing arithmetic circuits that can be compiled into ZK proofs.</div></div>
   <div class="glossary-item"><div class="glossary-term">Shielded Pool</div><div class="glossary-def">A smart contract that holds mixed funds, where withdrawals are proven via ZK proofs to preserve privacy.</div></div>
+  <div class="glossary-item"><div class="glossary-term">PLONK</div><div class="glossary-def">A universal zk-SNARK system with an updateable trusted setup that can be reused across different circuits, offering flexibility without per-circuit ceremonies.</div></div>
+  <div class="glossary-item"><div class="glossary-term">Halo 2</div><div class="glossary-def">A recursive proof composition system developed by Electric Coin Company that eliminates the need for any trusted setup, enabling proofs to verify other proofs.</div></div>
+  <div class="glossary-item"><div class="glossary-term">Trusted Setup Ceremony</div><div class="glossary-def">A multi-party computation protocol that generates the proving and verification keys for a zk-SNARK system. The ceremony produces "toxic waste" that must be destroyed - if any single participant is honest, the setup is secure.</div></div>
+  <div class="glossary-item"><div class="glossary-term">Toxic Waste</div><div class="glossary-def">The secret random values generated during a trusted setup ceremony. If these values are not destroyed and fall into the wrong hands, an attacker could forge valid-looking proofs for false statements.</div></div>
+  <div class="glossary-item"><div class="glossary-term">R1CS</div><div class="glossary-def">Rank-1 Constraint System - a mathematical representation of a computation as a system of equations. ZK circuits written in Circom are compiled into R1CS format before proof generation.</div></div>
+  <div class="glossary-item"><div class="glossary-term">Arithmetic Circuit</div><div class="glossary-def">A directed acyclic graph of addition and multiplication gates that represents the computation being proven. Every ZK proof ultimately reduces the statement to be proven into an arithmetic circuit over a finite field.</div></div>
+  <div class="glossary-item"><div class="glossary-term">Witness</div><div class="glossary-def">The set of all private inputs and intermediate values that satisfy a ZK circuit's constraints. The prover uses the witness to generate the proof, but the witness itself is never revealed to the verifier.</div></div>
 </div>
 
 <div class="page-footer">
-  <p>MasterStroke Academy — Professional Blockchain Developer Program</p>
-  <p>Module 16 · Sub-Module <strong>16.3</strong> &nbsp;·&nbsp; Next: Sub-Module 16.4 — Confidential Smart Contracts →</p>
+  <p>MasterStroke Academy - Professional Blockchain Developer Program</p>
+  <p>Module 16 · Sub-Module <strong>16.3</strong> &nbsp;·&nbsp; Next: Sub-Module 16.4 - Confidential Smart Contracts →</p>
 </div>
 

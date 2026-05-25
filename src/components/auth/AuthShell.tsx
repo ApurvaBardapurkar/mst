@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { ArrowLeft, GraduationCap } from "lucide-react";
 
 export function AuthShell({
   title,
@@ -10,19 +11,31 @@ export function AuthShell({
   children: React.ReactNode;
 }) {
   return (
-    <div className="mx-auto max-w-lg px-4 py-12">
-      <Link
-        href="/"
-        className="text-sm text-[var(--text-muted)] transition hover:text-mst-red"
-      >
-        ← Back to home
-      </Link>
-      <h1 className="mt-6 text-3xl font-black text-[var(--text)]">{title}</h1>
-      {subtitle && (
-        <p className="mt-2 text-sm text-[var(--text-muted)]">{subtitle}</p>
-      )}
-      <div className="mt-8 rounded-2xl border border-[var(--border)] bg-[var(--surface)] p-6 shadow-sm">
-        {children}
+    <div className="flex min-h-[calc(100vh-4rem)] items-center justify-center bg-[var(--bg)] px-4 py-12">
+      <div className="w-full max-w-md">
+        <Link
+          href="/"
+          className="inline-flex items-center gap-1.5 text-sm font-medium text-[var(--text-muted)] transition hover:text-mst-red"
+        >
+          <ArrowLeft size={14} />
+          Back to home
+        </Link>
+
+        <div className="mt-6 flex items-center gap-3">
+          <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-gradient-to-br from-mst-red to-red-700 shadow-lg shadow-mst-red/20">
+            <GraduationCap size={24} className="text-white" />
+          </div>
+          <div>
+            <h1 className="text-2xl font-black text-[var(--text)]">{title}</h1>
+            {subtitle && (
+              <p className="mt-0.5 text-xs text-[var(--text-muted)] max-w-sm">{subtitle}</p>
+            )}
+          </div>
+        </div>
+
+        <div className="mt-8 rounded-2xl border border-[var(--border)] bg-[var(--surface)] p-6 shadow-xl shadow-black/5">
+          {children}
+        </div>
       </div>
     </div>
   );
@@ -30,7 +43,7 @@ export function AuthShell({
 
 export function DemoFeeNote() {
   return (
-    <p className="rounded-lg border border-amber-500/30 bg-amber-500/10 px-4 py-3 text-sm text-amber-800 dark:text-amber-200">
+    <p className="rounded-xl border border-amber-500/30 bg-amber-500/10 px-4 py-3 text-sm text-amber-800 dark:text-amber-200">
       Fee display only. Payment gateway integration pending.
     </p>
   );
@@ -48,7 +61,7 @@ export function DemoFee({ amount }: { amount: number }) {
   return (
     <div className="rounded-xl border border-[var(--border)] bg-[var(--bg-muted)] px-4 py-3">
       <p className="text-xs font-bold uppercase tracking-wider text-[var(--text-muted)]">
-        Fee
+        Program Fee
       </p>
       <p className="mt-1 text-2xl font-black text-mst-red">
         ₹{amount.toLocaleString("en-IN")}
@@ -69,7 +82,7 @@ export function FieldLabel({
   return (
     <label
       htmlFor={htmlFor}
-      className="mb-1 block text-sm font-semibold text-[var(--text)]"
+      className="mb-1.5 block text-sm font-semibold text-[var(--text)]"
     >
       {children}
       {required && <span className="text-mst-red"> *</span>}
@@ -83,7 +96,7 @@ export function TextInput(
   return (
     <input
       {...props}
-      className={`w-full rounded-lg border border-[var(--border)] bg-[var(--bg)] px-3 py-2.5 text-sm text-[var(--text)] outline-none transition focus:border-mst-red focus:ring-1 focus:ring-mst-red ${props.className ?? ""}`}
+      className={`w-full rounded-xl border border-[var(--border)] bg-[var(--bg)] px-4 py-3 text-sm text-[var(--text)] outline-none transition placeholder:text-[var(--text-muted)]/50 focus:border-mst-red focus:ring-2 focus:ring-mst-red/20 ${props.className ?? ""}`}
     />
   );
 }
@@ -94,7 +107,7 @@ export function SelectInput(
   return (
     <select
       {...props}
-      className={`w-full rounded-lg border border-[var(--border)] bg-[var(--bg)] px-3 py-2.5 text-sm text-[var(--text)] outline-none transition focus:border-mst-red focus:ring-1 focus:ring-mst-red ${props.className ?? ""}`}
+      className={`w-full rounded-xl border border-[var(--border)] bg-[var(--bg)] px-4 py-3 text-sm text-[var(--text)] outline-none transition focus:border-mst-red focus:ring-2 focus:ring-mst-red/20 ${props.className ?? ""}`}
     />
   );
 }
@@ -110,7 +123,7 @@ export function SubmitButton({
     <button
       type="submit"
       disabled={disabled}
-      className="w-full rounded-full bg-mst-red py-3 text-sm font-semibold text-white transition hover:bg-mst-red-dark disabled:opacity-50"
+      className="w-full rounded-xl bg-gradient-to-r from-mst-red to-red-600 py-3.5 text-sm font-bold text-white shadow-lg shadow-mst-red/20 transition hover:shadow-mst-red/40 hover:brightness-110 disabled:opacity-50 disabled:cursor-not-allowed active:scale-[0.99]"
     >
       {children}
     </button>
@@ -130,10 +143,10 @@ export function TabButton({
     <button
       type="button"
       onClick={onClick}
-      className={`flex-1 rounded-lg px-3 py-2.5 text-sm font-semibold transition ${
+      className={`flex-1 rounded-xl px-3 py-2.5 text-sm font-bold transition ${
         active
-          ? "bg-mst-red text-white"
-          : "bg-[var(--bg-muted)] text-[var(--text-muted)] hover:text-[var(--text)]"
+          ? "bg-gradient-to-r from-mst-red to-red-600 text-white shadow-md shadow-mst-red/20"
+          : "bg-[var(--bg-muted)] text-[var(--text-muted)] hover:text-[var(--text)] hover:bg-[var(--bg-elevated)]"
       }`}
     >
       {children}

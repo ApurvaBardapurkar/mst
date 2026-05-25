@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Sub-Module 8.1 – Node.js, npm & VS Code Setup | MasterStroke Academy</title>
+<title>Sub-Module 8.1 - Node.js, npm & VS Code Setup | MasterStroke Academy</title>
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,600&family=JetBrains+Mono:wght@400;500;600&display=swap');
 
@@ -366,7 +366,7 @@
 <!-- ═══════════════ HEADER ═══════════════ -->
 <div class="module-badge">🎓 Module 8 &nbsp;·&nbsp; Sub-Module 8.1 of 8</div>
 <h1 class="module-title">Node.js, npm &amp; <span class="highlight">VS Code</span> Setup</h1>
-<p class="module-subtitle">Every great blockchain journey begins with the right tools. We install and configure the holy trinity of Web3 development — Node.js, npm, and Visual Studio Code — laying the foundation for Hardhat, Solidity, and your first dApp on MST.</p>
+<p class="module-subtitle">Every great blockchain journey begins with the right tools. We install and configure the holy trinity of Web3 development - Node.js, npm, and Visual Studio Code - laying the foundation for Hardhat, Solidity, and your first dApp on MST.</p>
 
 <div class="meta-bar">
   <div class="meta-chip">⏱ 30 Minutes</div>
@@ -397,7 +397,7 @@
     <div class="obj-icon">💻</div>
     <div class="obj-text">
       <strong>Configure Visual Studio Code for Solidity</strong>
-      Install essential extensions — Solidity, Prettier, ESLint, GitLens — and customize settings for linting, formatting, and syntax highlighting of .sol files.
+      Install essential extensions - Solidity, Prettier, ESLint, GitLens - and customize settings for linting, formatting, and syntax highlighting of .sol files.
     </div>
   </div>
   <div class="obj-card">
@@ -410,22 +410,22 @@
 </div>
 
 <!-- ═══════════════ 02 REAL‑WORLD STORY ═══════════════ -->
-<div class="section-label">02 &nbsp; Real‑World Introduction Story</div>
-<h2 class="section-title">The Developer Who Coded Without npm — A Cautionary Tale</h2>
+<div class="section-label">02 &nbsp; Real-World Introduction Story</div>
+<h2 class="section-title">The Developer Who Coded Without npm - A Cautionary Tale</h2>
 <div class="callout story">
   <div class="callout-label">📖 Story</div>
-  <p>In 2021, a solo developer in Chennai began building a DeFi dashboard using React and ethers.js. He manually downloaded the ethers.js file, placed it in a `/lib` folder, and referenced it with a script tag. Everything worked until he needed to add the OpenZeppelin library for token contracts. OpenZeppelin depends on Hardhat, which depends on dozens of other packages — a deep tree of dependencies. Without npm, he spent three days downloading files one by one, resolving versions by hand. The project became unmanageable. He abandoned it.</p>
+  <p>In 2021, a solo developer in Chennai began building a DeFi dashboard using React and ethers.js. He manually downloaded the ethers.js file, placed it in a `/lib` folder, and referenced it with a script tag. Everything worked until he needed to add the OpenZeppelin library for token contracts. OpenZeppelin depends on Hardhat, which depends on dozens of other packages - a deep tree of dependencies. Without npm, he spent three days downloading files one by one, resolving versions by hand. The project became unmanageable. He abandoned it.</p>
   <br>
   <p>Two months later, he revisited the project with a freshly installed Node.js and npm. He ran <code>npm install --save-dev hardhat @openzeppelin/contracts</code>. In fifteen seconds, every library was installed, version conflicts were resolved, and the project compiled on the first try. The toolchain had transformed a nightmare into a command.</p>
 </div>
-<p>This sub‑module ensures you never suffer that fate. You will set up Node.js, npm, and VS Code — the three tools that power 99% of modern blockchain development. Once installed, you can compile Solidity contracts, run automated tests, and deploy to MST Testnet with a single command. The initial setup takes 30 minutes; the productivity it unlocks lasts a lifetime.</p>
+<p>This sub-module ensures you never suffer that fate. You will set up Node.js, npm, and VS Code - the three tools that power 99% of modern blockchain development. Once installed, you can compile Solidity contracts, run automated tests, and deploy to MST Testnet with a single command. The initial setup takes 30 minutes; the productivity it unlocks lasts a lifetime.</p>
 
 <!-- ═══════════════ 03 BACKGROUND & HISTORY ═══════════════ -->
 <div class="section-label">03 &nbsp; Background &amp; History</div>
 <h2 class="section-title">Why JavaScript Conquered Blockchain Development</h2>
-<p>When Ethereum launched in 2015, smart contracts were written in Solidity, but the tooling around them was primitive. Developers compiled contracts in a browser‑based IDE (Remix) and deployed them manually. There was no testing framework, no package manager, and no reproducible build pipeline. Every developer reinvented the wheel.</p>
-<p>The breakthrough came in 2018–2019 with <strong>Hardhat</strong> (originally Buidler), a development environment built entirely on Node.js. Hardhat provided a local Ethereum network, a Solidity compiler, a testing framework, and a plugin system — all powered by Node.js and npm. Because Node.js uses JavaScript, and JavaScript was already the language of web frontends, the same developers who built dApp interfaces could now write their deployment scripts and tests in the same language. This convergence made blockchain development accessible to millions of JavaScript developers worldwide.</p>
-<p>Today, the standard Web3 stack is <strong>Node.js + npm + Hardhat + VS Code</strong>. Whether you're building on Ethereum, Polygon, BSC, or MST — any EVM‑compatible chain — you'll use the same tools. MST's full EVM compatibility means that every Hardhat plugin, every OpenZeppelin contract, and every npm library works out of the box. The toolchain you set up today will serve you across the entire blockchain ecosystem.</p>
+<p>When Ethereum launched in 2015, smart contracts were written in Solidity, but the tooling around them was primitive. Developers compiled contracts in a browser-based IDE (Remix) and deployed them manually. There was no testing framework, no package manager, and no reproducible build pipeline. Every developer reinvented the wheel.</p>
+<p>The breakthrough came in 2018 - 2019 with <strong>Hardhat</strong> (originally Buidler), a development environment built entirely on Node.js. Hardhat provided a local Ethereum network, a Solidity compiler, a testing framework, and a plugin system - all powered by Node.js and npm. Because Node.js uses JavaScript, and JavaScript was already the language of web frontends, the same developers who built dApp interfaces could now write their deployment scripts and tests in the same language. This convergence made blockchain development accessible to millions of JavaScript developers worldwide.</p>
+<p>Today, the standard Web3 stack is <strong>Node.js + npm + Hardhat + VS Code</strong>. Whether you're building on Ethereum, Polygon, BSC, or MST - any EVM-compatible chain - you'll use the same tools. MST's full EVM compatibility means that every Hardhat plugin, every OpenZeppelin contract, and every npm library works out of the box. The toolchain you set up today will serve you across the entire blockchain ecosystem.</p>
 
 <h3 style="font-size:18px; font-weight:700; margin:20px 0 8px; color:var(--ink);">A Brief History of the Holy Trinity</h3>
 <div class="timeline">
@@ -433,7 +433,7 @@
     <div class="tl-left"><div class="tl-dot"></div><div class="tl-line"></div></div>
     <div class="tl-right">
       <div class="tl-year">2009</div>
-      <div class="tl-body"><strong>Node.js created by Ryan Dahl.</strong> First runtime to bring JavaScript to the server. Built on Chrome's V8 engine. Enabled non‑blocking I/O, making it ideal for tools that interact with networks.</div>
+      <div class="tl-body"><strong>Node.js created by Ryan Dahl.</strong> First runtime to bring JavaScript to the server. Built on Chrome's V8 engine. Enabled non-blocking I/O, making it ideal for tools that interact with networks.</div>
     </div>
   </div>
   <div class="tl-item">
@@ -454,24 +454,24 @@
     <div class="tl-left"><div class="tl-dot"></div><div class="tl-line"></div></div>
     <div class="tl-right">
       <div class="tl-year">2018</div>
-      <div class="tl-body"><strong>Hardhat (then Buidler) launched.</strong> Node.js‑based Ethereum development environment. Defined the modern Solidity workflow: compile, test, deploy — all from JavaScript.</div>
+      <div class="tl-body"><strong>Hardhat (then Buidler) launched.</strong> Node.js-based Ethereum development environment. Defined the modern Solidity workflow: compile, test, deploy - all from JavaScript.</div>
     </div>
   </div>
   <div class="tl-item">
     <div class="tl-left"><div class="tl-dot"></div></div>
     <div class="tl-right">
       <div class="tl-year">Today</div>
-      <div class="tl-body"><strong>MST fully compatible.</strong> MST's EVM compatibility means the exact same Node.js + Hardhat + VS Code toolchain works for MST Testnet and mainnet. Deploy a contract on MST with the same scripts you'd use on Ethereum — just change the RPC URL.</div>
+      <div class="tl-body"><strong>MST fully compatible.</strong> MST's EVM compatibility means the exact same Node.js + Hardhat + VS Code toolchain works for MST Testnet and mainnet. Deploy a contract on MST with the same scripts you'd use on Ethereum - just change the RPC URL.</div>
     </div>
   </div>
 </div>
 
 <!-- ═══════════════ 04 BEGINNER‑FRIENDLY EXPLANATION ═══════════════ -->
-<div class="section-label">04 &nbsp; Beginner‑Friendly Explanation</div>
+<div class="section-label">04 &nbsp; Beginner-Friendly Explanation</div>
 <h2 class="section-title">The Kitchen, the Recipe Book, and the Chef's Knife</h2>
 <div class="callout analogy">
   <div class="callout-label">🍳 The Analogy</div>
-  <p>Think of Node.js as the <strong>kitchen</strong> — the environment where code runs. npm is the <strong>recipe book and grocery delivery service</strong> — it fetches all the ingredients (libraries) you need, in the right amounts (versions), and ensures they don't conflict. Visual Studio Code is the <strong>chef's knife</strong> — the tool that makes writing, editing, and organizing code fast and precise. You can cook without them, but you'll spend more time fighting the environment than creating the dish.</p>
+  <p>Think of Node.js as the <strong>kitchen</strong> - the environment where code runs. npm is the <strong>recipe book and grocery delivery service</strong> - it fetches all the ingredients (libraries) you need, in the right amounts (versions), and ensures they don't conflict. Visual Studio Code is the <strong>chef's knife</strong> - the tool that makes writing, editing, and organizing code fast and precise. You can cook without them, but you'll spend more time fighting the environment than creating the dish.</p>
 </div>
 <p>Let's break down what each tool actually does:</p>
 <div class="w5-grid">
@@ -479,33 +479,33 @@
     <div class="w5-label-cell"><div class="w5-letter">N</div><div class="w5-word">Node.js</div></div>
     <div class="w5-content">
       <div class="w5-q">What is Node.js?</div>
-      <div class="w5-a">Node.js is an open‑source, cross‑platform JavaScript runtime environment. It allows you to run JavaScript code outside a browser — on your computer or a server. In blockchain development, Node.js runs Hardhat (which compiles Solidity), executes test scripts, and powers deployment scripts. It's the engine that processes all the JavaScript files you'll write to manage smart contracts. Node.js comes with a built‑in package manager: npm.</div>
+      <div class="w5-a">Node.js is an open-source, cross-platform JavaScript runtime environment. It allows you to run JavaScript code outside a browser - on your computer or a server. In blockchain development, Node.js runs Hardhat (which compiles Solidity), executes test scripts, and powers deployment scripts. It's the engine that processes all the JavaScript files you'll write to manage smart contracts. Node.js comes with a built-in package manager: npm.</div>
     </div>
   </div>
   <div class="w5-row">
     <div class="w5-label-cell"><div class="w5-letter">P</div><div class="w5-word">npm</div></div>
     <div class="w5-content">
       <div class="w5-q">What is npm?</div>
-      <div class="w5-a">npm is the Node Package Manager. It is a command‑line tool and an online registry of over 2 million packages. When you type <code>npm install hardhat</code>, npm downloads Hardhat and every library that Hardhat depends on, placing them in a <code>node_modules</code> folder. It also creates a <code>package.json</code> file that records your project's dependencies. Any developer can clone your project, run <code>npm install</code>, and instantly have the exact same environment. npm also lets you run scripts (like <code>npm test</code> or <code>npm run compile</code>) defined in package.json.</div>
+      <div class="w5-a">npm is the Node Package Manager. It is a command-line tool and an online registry of over 2 million packages. When you type <code>npm install hardhat</code>, npm downloads Hardhat and every library that Hardhat depends on, placing them in a <code>node_modules</code> folder. It also creates a <code>package.json</code> file that records your project's dependencies. Any developer can clone your project, run <code>npm install</code>, and instantly have the exact same environment. npm also lets you run scripts (like <code>npm test</code> or <code>npm run compile</code>) defined in package.json.</div>
     </div>
   </div>
   <div class="w5-row">
     <div class="w5-label-cell"><div class="w5-letter">V</div><div class="w5-word">VS Code</div></div>
     <div class="w5-content">
       <div class="w5-q">What is Visual Studio Code?</div>
-      <div class="w5-a">Visual Studio Code is a free, open‑source code editor developed by Microsoft. It runs on Windows, macOS, and Linux. Its power comes from extensions — thousands of community‑built plugins that add language support, debugging, formatting, and linting. For Solidity development, the essential extensions are: <strong>Solidity by Juan Blanco</strong> (syntax highlighting, compilation, error checking), <strong>Prettier</strong> (automatic code formatting), and <strong>ESLint</strong> (code quality rules). VS Code also has a built‑in terminal, so you can run npm commands without leaving the editor.</div>
+      <div class="w5-a">Visual Studio Code is a free, open-source code editor developed by Microsoft. It runs on Windows, macOS, and Linux. Its power comes from extensions - thousands of community-built plugins that add language support, debugging, formatting, and linting. For Solidity development, the essential extensions are: <strong>Solidity by Juan Blanco</strong> (syntax highlighting, compilation, error checking), <strong>Prettier</strong> (automatic code formatting), and <strong>ESLint</strong> (code quality rules). VS Code also has a built-in terminal, so you can run npm commands without leaving the editor.</div>
     </div>
   </div>
 </div>
 
 <!-- ═══════════════ 05 INSTALLATION FLOWCHART & STEPS (INTERACTIVE) ═══════════════ -->
 <div class="section-label">05 &nbsp; Installation Flowchart &amp; Steps</div>
-<h2 class="section-title">The Complete Setup — From Zero to "Hello, Blockchain"</h2>
+<h2 class="section-title">The Complete Setup - From Zero to "Hello, Blockchain"</h2>
 
 <p>Follow this flowchart to get your environment ready. Click each step to reveal detailed instructions.</p>
 
 <div class="diagram-wrap">
-  <div class="diagram-title">FIGURE 8.1‑A · Setup Flowchart</div>
+  <div class="diagram-title">FIGURE 8.1-A · Setup Flowchart</div>
   <pre>
   ┌──────────────────────────────────────────────────────────┐
   │                    START                                 │
@@ -562,15 +562,15 @@
   <summary>📥 Step 1: Install Node.js (includes npm)</summary>
   <div class="content">
     <p><strong>Why Node.js?</strong> Hardhat, ethers.js, and most blockchain tools run on Node.js. It's the runtime that executes your deployment scripts and tests.</p>
-    <p><strong>Installation:</strong> Go to <code>nodejs.org</code> and download the LTS (Long‑Term Support) version. LTS is recommended for stability — currently Node 20.x or 22.x. The installer includes npm automatically.</p>
+    <p><strong>Installation:</strong> Go to <code>nodejs.org</code> and download the LTS (Long-Term Support) version. LTS is recommended for stability - currently Node 20.x or 22.x. The installer includes npm automatically.</p>
     <p><strong>Windows:</strong> Run the .msi installer. Accept the license, choose the default location, and ensure "Add to PATH" is checked. Restart your terminal after installation.</p>
     <p><strong>macOS:</strong> Use Homebrew: <code>brew install node</code>. Or download the .pkg from nodejs.org.</p>
     <p><strong>Linux (Ubuntu/Debian):</strong> Use the official NodeSource repository:
       <code>curl -fsSL https://deb.nodesource.com/setup_20.x | sudo -E bash -</code>
       <code>sudo apt-get install -y nodejs</code></p>
     <p><strong>Verify:</strong> Open a terminal (Command Prompt on Windows, Terminal on Mac/Linux) and run:
-      <code>node -v</code> — should print a version like <code>v20.11.0</code><br>
-      <code>npm -v</code> — should print a version like <code>10.2.4</code></p>
+      <code>node -v</code> - should print a version like <code>v20.11.0</code><br>
+      <code>npm -v</code> - should print a version like <code>10.2.4</code></p>
     <p>If both commands return version numbers, Node.js and npm are correctly installed.</p>
   </div>
 </details>
@@ -578,7 +578,7 @@
 <details>
   <summary>🖥️ Step 2: Install Visual Studio Code</summary>
   <div class="content">
-    <p><strong>Why VS Code?</strong> It is the most popular editor among blockchain developers due to its rich extension ecosystem, built‑in terminal, and Git integration.</p>
+    <p><strong>Why VS Code?</strong> It is the most popular editor among blockchain developers due to its rich extension ecosystem, built-in terminal, and Git integration.</p>
     <p><strong>Download:</strong> Visit <code>code.visualstudio.com</code> and download the installer for your operating system.</p>
     <p><strong>Installation:</strong> Run the installer. On Windows, check "Add to PATH" and "Open with Code" context menu options. On macOS, drag VS Code to the Applications folder.</p>
     <p><strong>Launch:</strong> Open VS Code. You'll see a Welcome page. We'll configure extensions in the next step.</p>
@@ -590,11 +590,11 @@
   <div class="content">
     <p>Extensions are the heart of VS Code's power. Click the Extensions icon on the left sidebar (or press Ctrl+Shift+X / Cmd+Shift+X) and search for each:</p>
     <ul style="margin-left:20px; color:var(--ink-2); font-size:15px; line-height:1.8;">
-      <li><strong>Solidity by Juan Blanco</strong> (solidity) — Syntax highlighting, compilation, code completion, error diagnostics. The most essential extension for .sol files. After installing, VS Code will automatically detect Solidity files and provide IntelliSense.</li>
-      <li><strong>Prettier – Code formatter</strong> (esbenp.prettier-vscode) — Automatically formats your code on save. Configure it to format Solidity files by adding to settings: <code>"[solidity]": { "editor.defaultFormatter": "esbenp.prettier-vscode" }</code></li>
-      <li><strong>ESLint</strong> (dbaeumer.vscode-eslint) — Linting for JavaScript. Catches errors in your Hardhat scripts and tests before you run them.</li>
-      <li><strong>GitLens</strong> (eamodio.gitlens) — Supercharges Git integration. Shows who last modified a line of code, commit history, and more — invaluable for collaborative projects.</li>
-      <li><strong>Material Icon Theme</strong> (optional) — Adds beautiful icons for different file types (.sol, .js, .json), making the file explorer more readable.</li>
+      <li><strong>Solidity by Juan Blanco</strong> (solidity) - Syntax highlighting, compilation, code completion, error diagnostics. The most essential extension for .sol files. After installing, VS Code will automatically detect Solidity files and provide IntelliSense.</li>
+      <li><strong>Prettier - Code formatter</strong> (esbenp.prettier-vscode) - Automatically formats your code on save. Configure it to format Solidity files by adding to settings: <code>"[solidity]": { "editor.defaultFormatter": "esbenp.prettier-vscode" }</code></li>
+      <li><strong>ESLint</strong> (dbaeumer.vscode-eslint) - Linting for JavaScript. Catches errors in your Hardhat scripts and tests before you run them.</li>
+      <li><strong>GitLens</strong> (eamodio.gitlens) - Supercharges Git integration. Shows who last modified a line of code, commit history, and more - invaluable for collaborative projects.</li>
+      <li><strong>Material Icon Theme</strong> (optional) - Adds beautiful icons for different file types (.sol, .js, .json), making the file explorer more readable.</li>
     </ul>
     <p>After installing, reload VS Code (Ctrl+Shift+P → "Developer: Reload Window").</p>
   </div>
@@ -605,9 +605,9 @@
   <div class="content">
     <p>Open VS Code's integrated terminal (Ctrl+` or View → Terminal).</p>
     <p>
-      <code>mkdir my-dapp</code> — create a new folder<br>
-      <code>cd my-dapp</code> — enter the folder<br>
-      <code>npm init -y</code> — initialize a new npm project with default values
+      <code>mkdir my-dapp</code> - create a new folder<br>
+      <code>cd my-dapp</code> - enter the folder<br>
+      <code>npm init -y</code> - initialize a new npm project with default values
     </p>
     <p>This creates a <code>package.json</code> file, the manifest of your project. It records your project's name, version, scripts, and dependencies. You'll see output like:</p>
     <pre style="background:var(--surface); padding:12px; border-radius:6px; font-family:var(--mono); font-size:13px; color:var(--ink-2);">
@@ -669,7 +669,7 @@ main().catch(console.error);
     </pre>
     <p>Run it from the terminal: <code>node test-connection.js</code></p>
     <p>You should see output like: <code>Connected to MST Testnet! Latest block: 2847653</code></p>
-    <p>If you see a block number, congratulations! Your entire toolchain — Node.js, npm, ethers.js — is working and connected to the MST blockchain.</p>
+    <p>If you see a block number, congratulations! Your entire toolchain - Node.js, npm, ethers.js - is working and connected to the MST blockchain.</p>
   </div>
 </details>
 
@@ -679,36 +679,36 @@ main().catch(console.error);
 <p>npm is far more than a simple installer. It is a complete dependency management system that solves the "dependency hell" problem that plagued software development for decades. Understanding its internals will save you countless hours of frustration.</p>
 
 <h3 style="font-size:18px; font-weight:700; margin:20px 0 8px; color:var(--ink);">The node_modules Folder and the Dependency Tree</h3>
-<p>When you run <code>npm install hardhat</code>, npm looks up "hardhat" in the npm registry, downloads the package, and places it in <code>node_modules/hardhat</code>. But Hardhat itself depends on other packages — solc (the Solidity compiler), mocha (test framework), chai (assertion library), and dozens more. npm recursively downloads all these transitive dependencies. The result is a <code>node_modules</code> folder that can contain hundreds of packages, even if you only directly installed one.</p>
+<p>When you run <code>npm install hardhat</code>, npm looks up "hardhat" in the npm registry, downloads the package, and places it in <code>node_modules/hardhat</code>. But Hardhat itself depends on other packages - solc (the Solidity compiler), mocha (test framework), chai (assertion library), and dozens more. npm recursively downloads all these transitive dependencies. The result is a <code>node_modules</code> folder that can contain hundreds of packages, even if you only directly installed one.</p>
 <p>This recursive installation means you never have to manually track what a package depends on. npm handles it automatically. When a package is updated on the registry, you run <code>npm update</code> and npm resolves the new dependency tree, respecting version constraints.</p>
 
 <h3 style="font-size:18px; font-weight:700; margin:20px 0 8px; color:var(--ink);">Semantic Versioning (SemVer)</h3>
-<p>npm packages use a three‑part version number: <strong>MAJOR.MINOR.PATCH</strong> (e.g., 2.22.0). The rules are:
+<p>npm packages use a three-part version number: <strong>MAJOR.MINOR.PATCH</strong> (e.g., 2.22.0). The rules are:
   <ul style="margin-left:24px; color:var(--ink-2); font-size:15px; line-height:1.8;">
-    <li><strong>PATCH</strong> (0.0.x): Backward‑compatible bug fixes. e.g., 2.22.1 fixes a bug in 2.22.0 without changing the API.</li>
-    <li><strong>MINOR</strong> (0.x.0): Backward‑compatible new features. e.g., 2.23.0 adds a new function but doesn't break existing code.</li>
+    <li><strong>PATCH</strong> (0.0.x): Backward-compatible bug fixes. e.g., 2.22.1 fixes a bug in 2.22.0 without changing the API.</li>
+    <li><strong>MINOR</strong> (0.x.0): Backward-compatible new features. e.g., 2.23.0 adds a new function but doesn't break existing code.</li>
     <li><strong>MAJOR</strong> (x.0.0): Incompatible API changes. e.g., 3.0.0 might rename functions or remove deprecated features. Upgrading may require code changes.</li>
   </ul>
 </p>
-<p>In package.json, the caret (^) prefix means "allow updates that do not change the leftmost non‑zero digit". So <code>^2.22.0</code> allows versions <code>2.x.x</code> but not <code>3.0.0</code>. The tilde (~) prefix is stricter: <code>~2.22.0</code> allows <code>2.22.x</code> only. Pinning an exact version (<code>2.22.0</code> without a prefix) ensures absolute reproducibility — critical for smart contract deployments where a version change could introduce a vulnerability.</p>
+<p>In package.json, the caret (^) prefix means "allow updates that do not change the leftmost non-zero digit". So <code>^2.22.0</code> allows versions <code>2.x.x</code> but not <code>3.0.0</code>. The tilde (~) prefix is stricter: <code>~2.22.0</code> allows <code>2.22.x</code> only. Pinning an exact version (<code>2.22.0</code> without a prefix) ensures absolute reproducibility - critical for smart contract deployments where a version change could introduce a vulnerability.</p>
 
-<h3 style="font-size:18px; font-weight:700; margin:20px 0 8px; color:var(--ink);">package‑lock.json — The Deterministic Install</h3>
-<p>When you run <code>npm install</code>, npm generates a <code>package‑lock.json</code> file. This file records the exact version of every package (and every transitive dependency) that was installed. When another developer clones your project and runs <code>npm install</code>, npm reads package‑lock.json and installs the identical versions — guaranteeing that everyone has the same environment. Always commit package‑lock.json to Git. It is your project's fingerprint.</p>
+<h3 style="font-size:18px; font-weight:700; margin:20px 0 8px; color:var(--ink);">package-lock.json - The Deterministic Install</h3>
+<p>When you run <code>npm install</code>, npm generates a <code>package‑lock.json</code> file. This file records the exact version of every package (and every transitive dependency) that was installed. When another developer clones your project and runs <code>npm install</code>, npm reads package-lock.json and installs the identical versions - guaranteeing that everyone has the same environment. Always commit package-lock.json to Git. It is your project's fingerprint.</p>
 
 <!-- ═══════════════ 07 COMPARISON TABLE ═══════════════ -->
 <div class="section-label">07 &nbsp; Comparison</div>
-<h2 class="section-title">npm vs Yarn vs pnpm — Which Package Manager to Use</h2>
+<h2 class="section-title">npm vs Yarn vs pnpm - Which Package Manager to Use</h2>
 <table class="compare-table">
   <thead>
     <tr><th>Feature</th><th>📦 npm</th><th>🧶 Yarn</th><th>💾 pnpm</th></tr>
   </thead>
   <tbody>
     <tr><td>Speed</td><td class="mid">Good (v7+ improved)</td><td class="mid">Fast (parallel installs)</td><td class="good">Very fast (hard links)</td></tr>
-    <tr><td>Disk efficiency</td><td class="bad">Duplicates in each project</td><td class="mid">Plug'n'Play (PnP) reduces duplication</td><td class="good">Content‑addressable store, no duplication</td></tr>
+    <tr><td>Disk efficiency</td><td class="bad">Duplicates in each project</td><td class="mid">Plug'n'Play (PnP) reduces duplication</td><td class="good">Content-addressable store, no duplication</td></tr>
     <tr><td>Default on Node.js</td><td class="good">Yes (bundled)</td><td class="bad">Must be installed separately</td><td class="bad">Must be installed separately</td></tr>
     <tr><td>Hardhat support</td><td class="good">Fully supported</td><td class="good">Fully supported</td><td class="good">Fully supported</td></tr>
     <tr><td>Beginner friendly</td><td class="good">Most documentation uses npm</td><td class="mid">Similar syntax</td><td class="mid">Commands similar, but store concept differs</td></tr>
-    <tr><td>Recommendation</td><td colspan="3">Stick with npm for this course — it's the default, most documented, and guaranteed to work with every tutorial.</td></tr>
+    <tr><td>Recommendation</td><td colspan="3">Stick with npm for this course - it's the default, most documented, and guaranteed to work with every tutorial.</td></tr>
   </tbody>
 </table>
 
@@ -745,36 +745,36 @@ main().catch(console.error);
   <div class="feature-item">
     <div class="feature-num" style="background: var(--ink-3);">1</div>
     <div class="feature-content">
-      <div class="feature-title">Ctrl+` — Toggle Integrated Terminal</div>
+      <div class="feature-title">Ctrl+` - Toggle Integrated Terminal</div>
       <div class="feature-desc">Opens or closes the terminal inside VS Code. You never need to leave the editor to run npm commands or Hardhat scripts.</div>
     </div>
   </div>
   <div class="feature-item">
     <div class="feature-num" style="background: var(--ink-3);">2</div>
     <div class="feature-content">
-      <div class="feature-title">Ctrl+P — Quick File Open</div>
+      <div class="feature-title">Ctrl+P - Quick File Open</div>
       <div class="feature-desc">Search and open any file in your project by typing part of its name. Indispensable in large projects with many contracts and scripts.</div>
     </div>
   </div>
   <div class="feature-item">
     <div class="feature-num" style="background: var(--ink-3);">3</div>
     <div class="feature-content">
-      <div class="feature-title">Ctrl+Shift+F — Global Search</div>
+      <div class="feature-title">Ctrl+Shift+F - Global Search</div>
       <div class="feature-desc">Search across all files in your project. Use it to find every occurrence of a function name or event across your entire codebase.</div>
     </div>
   </div>
   <div class="feature-item">
     <div class="feature-num" style="background: var(--ink-3);">4</div>
     <div class="feature-content">
-      <div class="feature-title">F5 or Debug Panel — Run and Debug</div>
-      <div class="feature-desc">VS Code has a built‑in debugger for Node.js. You can set breakpoints in your Hardhat scripts and step through them to debug deployment issues.</div>
+      <div class="feature-title">F5 or Debug Panel - Run and Debug</div>
+      <div class="feature-desc">VS Code has a built-in debugger for Node.js. You can set breakpoints in your Hardhat scripts and step through them to debug deployment issues.</div>
     </div>
   </div>
 </div>
 
 <!-- ═══════════════ 09 ASSESSMENT PREP ═══════════════ -->
 <div class="section-label">09 &nbsp; Assessment Preparation</div>
-<h2 class="section-title">Top Facts — Know These Cold for the Exam</h2>
+<h2 class="section-title">Top Facts - Know These Cold for the Exam</h2>
 <div class="feature-list">
   <div class="feature-item">
     <div class="feature-num" style="background: var(--ink-3); font-size:11px;">01</div>
@@ -786,8 +786,8 @@ main().catch(console.error);
   <div class="feature-item">
     <div class="feature-num" style="background: var(--ink-3); font-size:11px;">02</div>
     <div class="feature-content">
-      <div class="feature-title">package.json is the project manifest; package‑lock.json ensures deterministic installs</div>
-      <div class="feature-desc"><code>npm init -y</code> creates package.json. It lists dependencies and scripts. <code>npm install --save-dev hardhat</code> adds it as a devDependency. Always commit package‑lock.json.</div>
+      <div class="feature-title">package.json is the project manifest; package-lock.json ensures deterministic installs</div>
+      <div class="feature-desc"><code>npm init -y</code> creates package.json. It lists dependencies and scripts. <code>npm install --save-dev hardhat</code> adds it as a devDependency. Always commit package-lock.json.</div>
     </div>
   </div>
   <div class="feature-item">
@@ -822,7 +822,7 @@ main().catch(console.error);
   <div class="assessment-body">
 
     <div class="q-section-header">
-      <div class="q-section-title">Section A — Multiple Choice Questions</div>
+      <div class="q-section-title">Section A - Multiple Choice Questions</div>
       <div class="q-section-meta">5 Questions · 1 mark each · 5 marks total</div>
     </div>
 
@@ -858,7 +858,7 @@ main().catch(console.error);
       <div class="q-text">Which VS Code extension is essential for Solidity syntax highlighting and error diagnostics?</div>
       <ul class="options">
         <li class="correct"><span class="opt-key">A</span> Solidity by Juan Blanco ✅</li>
-        <li><span class="opt-key">B</span> Prettier – Code formatter</li>
+        <li><span class="opt-key">B</span> Prettier - Code formatter</li>
         <li><span class="opt-key">C</span> ESLint</li>
         <li><span class="opt-key">D</span> GitLens</li>
       </ul>
@@ -871,7 +871,7 @@ main().catch(console.error);
       <div class="q-text">What does the caret (^) prefix mean in a package.json version like <code>"ethers": "^6.13.0"</code>?</div>
       <ul class="options">
         <li><span class="opt-key">A</span> Install exactly version 6.13.0, no other version allowed.</li>
-        <li class="correct"><span class="opt-key">B</span> Allow updates that do not change the leftmost non‑zero digit — any 6.x.x version. ✅</li>
+        <li class="correct"><span class="opt-key">B</span> Allow updates that do not change the leftmost non-zero digit - any 6.x.x version. ✅</li>
         <li><span class="opt-key">C</span> Install the latest beta version of the package.</li>
         <li><span class="opt-key">D</span> Install the global version of the package.</li>
       </ul>
@@ -904,23 +904,23 @@ main().catch(console.error);
 
 <!-- ═══════════════ GLOSSARY ═══════════════ -->
 <div class="section-label" style="margin-top:52px;">10 &nbsp; Glossary</div>
-<h2 class="section-title">Key Terms — Sub-Module 8.1</h2>
+<h2 class="section-title">Key Terms - Sub-Module 8.1</h2>
 <div class="glossary-grid">
-  <div class="glossary-item"><div class="glossary-term">Node.js</div><div class="glossary-def">An open‑source JavaScript runtime built on Chrome's V8 engine. Executes JavaScript code outside a browser. Essential for running Hardhat, ethers.js, and deployment scripts.</div></div>
-  <div class="glossary-item"><div class="glossary-term">npm</div><div class="glossary-def">Node Package Manager. A command‑line tool and online registry for managing JavaScript libraries. Automatically resolves and installs dependencies.</div></div>
+  <div class="glossary-item"><div class="glossary-term">Node.js</div><div class="glossary-def">An open-source JavaScript runtime built on Chrome's V8 engine. Executes JavaScript code outside a browser. Essential for running Hardhat, ethers.js, and deployment scripts.</div></div>
+  <div class="glossary-item"><div class="glossary-term">npm</div><div class="glossary-def">Node Package Manager. A command-line tool and online registry for managing JavaScript libraries. Automatically resolves and installs dependencies.</div></div>
   <div class="glossary-item"><div class="glossary-term">package.json</div><div class="glossary-def">The manifest file of a Node.js project. Contains metadata, scripts, and dependency lists. Created by <code>npm init</code>.</div></div>
-  <div class="glossary-item"><div class="glossary-term">package‑lock.json</div><div class="glossary-def">Auto‑generated file that locks the exact version of every dependency. Ensures deterministic installs across different machines.</div></div>
+  <div class="glossary-item"><div class="glossary-term">package-lock.json</div><div class="glossary-def">Auto-generated file that locks the exact version of every dependency. Ensures deterministic installs across different machines.</div></div>
   <div class="glossary-item"><div class="glossary-term">devDependencies</div><div class="glossary-def">Packages needed only for development (testing, compilation), not for production. Installed with <code>--save-dev</code>. Hardhat and ethers are devDependencies.</div></div>
   <div class="glossary-item"><div class="glossary-term">SemVer</div><div class="glossary-def">Semantic Versioning: MAJOR.MINOR.PATCH format. Caret (^) allows compatible updates; tilde (~) allows patch updates. Critical for managing dependency risks.</div></div>
   <div class="glossary-item"><div class="glossary-term">VS Code</div><div class="glossary-def">Visual Studio Code: a free, extensible code editor. The preferred editor for Solidity development due to its rich extension marketplace.</div></div>
   <div class="glossary-item"><div class="glossary-term">Solidity Extension (Juan Blanco)</div><div class="glossary-def">VS Code extension that provides syntax highlighting, compilation, and error diagnostics for .sol files. The most essential extension for smart contract developers.</div></div>
   <div class="glossary-item"><div class="glossary-term">Prettier</div><div class="glossary-def">An opinionated code formatter that automatically formats code on save. Supports Solidity, JavaScript, and many other languages.</div></div>
-  <div class="glossary-item"><div class="glossary-term">LTS</div><div class="glossary-def">Long‑Term Support version of Node.js. Recommended for production and development stability. Even‑numbered major versions (18, 20, 22) are LTS.</div></div>
+  <div class="glossary-item"><div class="glossary-term">LTS</div><div class="glossary-def">Long-Term Support version of Node.js. Recommended for production and development stability. Even-numbered major versions (18, 20, 22) are LTS.</div></div>
 </div>
 
 <div class="page-footer">
-  <p>MasterStroke Academy — Professional Blockchain Developer Program</p>
-  <p>Module 8 · Sub-Module <strong>8.1</strong> of 8 &nbsp;·&nbsp; Next: Sub-Module 8.2 — Git & GitHub →</p>
+  <p>MasterStroke Academy - Professional Blockchain Developer Program</p>
+  <p>Module 8 · Sub-Module <strong>8.1</strong> of 8 &nbsp;·&nbsp; Next: Sub-Module 8.2 - Git & GitHub →</p>
 </div>
 
 </body>

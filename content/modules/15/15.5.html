@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Sub-Module 15.5 – Hands‑On: Build a Simple DAO | MasterStroke Academy</title>
+<title>Sub-Module 15.5 - Hands-On: Build a Simple DAO | MasterStroke Academy</title>
 <meta name="description" content="Put DAO theory into practice. Deploy a complete Governor and Timelock, create a governance token, submit proposals, vote, queue, and execute on MST Testnet — all for less than a rupee in gas. Your capstone DAO project starts here.">
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,600&family=JetBrains+Mono:wght@400;500;600&display=swap');
@@ -372,8 +372,8 @@
 <body>
 
 <div class="module-badge">🎓 Module 15 &nbsp;·&nbsp; Sub-Module 15.5 of 5</div>
-<h1 class="module-title">Hands‑On: Build a <span class="highlight">Simple DAO</span></h1>
-<p class="module-subtitle">Enough theory. Time to ship. In this capstone‑style coding project, you'll deploy a fully functional DAO on MST Testnet — governance token, Governor, Timelock, proposals, voting, and execution — all using OpenZeppelin contracts. When you're done, you'll have a live DAO that anyone can join, vote in, and govern. Total cost: less than a rupee.</p>
+<h1 class="module-title">Hands-On: Build a <span class="highlight">Simple DAO</span></h1>
+<p class="module-subtitle">Enough theory. Time to ship. In this capstone-style coding project, you'll deploy a fully functional DAO on MST Testnet - governance token, Governor, Timelock, proposals, voting, and execution - all using OpenZeppelin contracts. When you're done, you'll have a live DAO that anyone can join, vote in, and govern. Total cost: less than a rupee.</p>
 
 <div class="meta-bar">
   <div class="meta-chip">⏱ 30 Minutes</div>
@@ -389,14 +389,14 @@
   <div class="obj-card">
     <div class="obj-icon">🛠️</div>
     <div class="obj-text">
-      <strong>Deploy a complete on‑chain DAO using OpenZeppelin contracts</strong>
-      Set up an ERC20Votes governance token, a TimelockController, and a Governor contract — all connected and ready for proposals.
+      <strong>Deploy a complete on-chain DAO using OpenZeppelin contracts</strong>
+      Set up an ERC20Votes governance token, a TimelockController, and a Governor contract - all connected and ready for proposals.
     </div>
   </div>
   <div class="obj-card">
     <div class="obj-icon">🗳️</div>
     <div class="obj-text">
-      <strong>Submit proposals, cast votes, and execute them on‑chain</strong>
+      <strong>Submit proposals, cast votes, and execute them on-chain</strong>
       Go through the entire governance lifecycle: create a proposal, wait for the voting delay, vote, queue in the timelock, and execute the result.
     </div>
   </div>
@@ -404,47 +404,47 @@
     <div class="obj-icon">🧪</div>
     <div class="obj-text">
       <strong>Write comprehensive Hardhat tests for the DAO</strong>
-      Test every stage of the proposal lifecycle, including quorum, voting power, and execution — ensuring your DAO works before anyone uses it.
+      Test every stage of the proposal lifecycle, including quorum, voting power, and execution - ensuring your DAO works before anyone uses it.
     </div>
   </div>
   <div class="obj-card">
     <div class="obj-icon">🚀</div>
     <div class="obj-text">
       <strong>Deploy to MST Testnet and share your DAO with the world</strong>
-      Experience real‑world deployment at sub‑paisa cost, submit transaction logs as proof, and add a live DAO to your portfolio.
+      Experience real-world deployment at sub-paisa cost, submit transaction logs as proof, and add a live DAO to your portfolio.
     </div>
   </div>
 </div>
 
 <!-- 02 STORY -->
-<div class="section-label">02 &nbsp; Real‑World Introduction Story</div>
+<div class="section-label">02 &nbsp; Real-World Introduction Story</div>
 <h2 class="section-title">The DAO That Landed a Developer Her Dream Job</h2>
 <div class="callout story">
   <div class="callout-label">📖 Story</div>
-  <p>In 2023, Sneha was interviewing for a senior smart‑contract role at a DeFi protocol. The interviewer asked, "Have you ever deployed a DAO from scratch?" She hadn't. She knew the theory but had never wired up a Governor, a Timelock, and a token — and run a proposal through the full lifecycle. She spent the weekend following a tutorial, deploying to Goerli testnet. It worked, but the gas cost ₹2,000, and she could only afford one test transaction.</p>
+  <p>In 2023, Sneha was interviewing for a senior smart-contract role at a DeFi protocol. The interviewer asked, "Have you ever deployed a DAO from scratch?" She hadn't. She knew the theory but had never wired up a Governor, a Timelock, and a token - and run a proposal through the full lifecycle. She spent the weekend following a tutorial, deploying to Goerli testnet. It worked, but the gas cost ₹2,000, and she could only afford one test transaction.</p>
   <br>
-  <p>Then she discovered MST. She redeployed everything on MST Testnet for ₹0.04 total. She created proposals, voted, queued, and executed — over and over — until she understood every state. She screen‑recorded the entire process and added the transaction logs to her GitHub. At her next interview, she shared the live DAO on MST and walked the team through her code. They were impressed not only by her knowledge but by the fact that she had a working, deployed DAO that cost less than a rupee to run. She got the job.</p>
+  <p>Then she discovered MST. She redeployed everything on MST Testnet for ₹0.04 total. She created proposals, voted, queued, and executed - over and over - until she understood every state. She screen-recorded the entire process and added the transaction logs to her GitHub. At her next interview, she shared the live DAO on MST and walked the team through her code. They were impressed not only by her knowledge but by the fact that she had a working, deployed DAO that cost less than a rupee to run. She got the job.</p>
   <br>
-  <p>This sub‑module is your chance to do the same. By the end, you'll have a live, deployed DAO on MST Testnet — a powerful portfolio piece that proves you can build the core infrastructure of Web3.</p>
+  <p>This sub-module is your chance to do the same. By the end, you'll have a live, deployed DAO on MST Testnet - a powerful portfolio piece that proves you can build the core infrastructure of Web3.</p>
 </div>
 
 <!-- 03 BACKGROUND & HISTORY -->
 <div class="section-label">03 &nbsp; Background &amp; History</div>
 <h2 class="section-title">Why Building a DAO is the Ultimate Solidity Challenge</h2>
-<p>Building a DAO is the capstone of smart contract development because it integrates everything you've learned: tokens (ERC‑20 with voting extensions), access control (Timelock roles, Governor parameters), state machines (proposal lifecycle), and testing (time‑travel, snapshot queries). It's the project that shows you can not only write contracts, but architect a system.</p>
-<p>OpenZeppelin's Governor contracts, released in 2021, made building a DAO as easy as inheriting a few contracts and configuring parameters. Before that, every DAO wrote custom governance code — often with critical bugs. Today, the Governor + Timelock pattern is used by Uniswap, Compound, Aave, and thousands of other DAOs, securing over $25 billion in treasuries. When you build this project, you're building with the same audited contracts that power the largest protocols in DeFi.</p>
-<p>On MST, the economic advantage is transformative. On Ethereum, deploying the full DAO suite costs ₹5,000–₹10,000 in gas, and each proposal interaction costs ₹500–₹2,000. This prices out experimentation and learning. On MST, the full deployment costs less than ₹0.50, and every vote, queue, and execute costs ₹0.006. You can test, break, fix, and redeploy dozens of times — exactly how you learn best.</p>
+<p>Building a DAO is the capstone of smart contract development because it integrates everything you've learned: tokens (ERC-20 with voting extensions), access control (Timelock roles, Governor parameters), state machines (proposal lifecycle), and testing (time-travel, snapshot queries). It's the project that shows you can not only write contracts, but architect a system.</p>
+<p>OpenZeppelin's Governor contracts, released in 2021, made building a DAO as easy as inheriting a few contracts and configuring parameters. Before that, every DAO wrote custom governance code - often with critical bugs. Today, the Governor + Timelock pattern is used by Uniswap, Compound, Aave, and thousands of other DAOs, securing over $25 billion in treasuries. When you build this project, you're building with the same audited contracts that power the largest protocols in DeFi.</p>
+<p>On MST, the economic advantage is transformative. On Ethereum, deploying the full DAO suite costs ₹5,000-₹10,000 in gas, and each proposal interaction costs ₹500-₹2,000. This prices out experimentation and learning. On MST, the full deployment costs less than ₹0.50, and every vote, queue, and execute costs ₹0.006. You can test, break, fix, and redeploy dozens of times - exactly how you learn best.</p>
 
 <div class="highlight-strip">
   <strong>Key insight:</strong> This project isn't just a learning exercise. It's a template for any DAO you'll ever build on any EVM chain. The skills and code you gain here transfer directly to production.
 </div>
 
 <!-- 04 BEGINNER‑FRIENDLY EXPLANATION -->
-<div class="section-label">04 &nbsp; Beginner‑Friendly Explanation</div>
-<h2 class="section-title">The Three Contracts You'll Deploy — And How They Talk</h2>
+<div class="section-label">04 &nbsp; Beginner-Friendly Explanation</div>
+<h2 class="section-title">The Three Contracts You'll Deploy - And How They Talk</h2>
 <div class="callout analogy">
   <div class="callout-label">🏛️ The Analogy</div>
-  <p>Think of your DAO as a town hall. The <strong>Governance Token</strong> is the voter ID — it proves you're a citizen and how much voting power you have. The <strong>Governor</strong> contract is the town hall itself — it accepts proposals, counts votes, and announces results. The <strong>TimelockController</strong> is the safe that holds the town's money and can only be opened after a mandatory waiting period, giving everyone time to object. When a proposal passes, the Timelock waits, then automatically executes the town's decision.</p>
+  <p>Think of your DAO as a town hall. The <strong>Governance Token</strong> is the voter ID - it proves you're a citizen and how much voting power you have. The <strong>Governor</strong> contract is the town hall itself - it accepts proposals, counts votes, and announces results. The <strong>TimelockController</strong> is the safe that holds the town's money and can only be opened after a mandatory waiting period, giving everyone time to object. When a proposal passes, the Timelock waits, then automatically executes the town's decision.</p>
 </div>
 
 <p>Your project will deploy and connect these three contracts, then run a complete governance cycle. Here's what you'll build:</p>
@@ -453,7 +453,7 @@
     <div class="w5-label-cell"><div class="w5-letter">T</div><div class="w5-word">TOKEN</div></div>
     <div class="w5-content">
       <div class="w5-q">GovernanceToken.sol (ERC20Votes)</div>
-      <div class="w5-a">An ERC‑20 token with voting extensions. Holders can delegate their voting power to themselves or others. The token supply is minted to the deployer initially. It implements <code>ERC20Votes</code>, which tracks historical balances for snapshot‑based voting.</div>
+      <div class="w5-a">An ERC-20 token with voting extensions. Holders can delegate their voting power to themselves or others. The token supply is minted to the deployer initially. It implements <code>ERC20Votes</code>, which tracks historical balances for snapshot-based voting.</div>
     </div>
   </div>
   <div class="w5-row">
@@ -474,7 +474,7 @@
 
 <!-- 05 PROJECT SETUP & DEPLOYMENT WALKTHROUGH -->
 <div class="section-label">05 &nbsp; Project Setup &amp; Deployment</div>
-<h2 class="section-title">Step‑by‑Step: From Empty Folder to Live DAO</h2>
+<h2 class="section-title">Step-by-Step: From Empty Folder to Live DAO</h2>
 <p>Let's build the entire project. You can follow along, and at the end you'll submit your GitHub repo and transaction logs.</p>
 
 <details>
@@ -594,7 +594,7 @@ contract MyDAO is Governor, GovernorCountingSimple, GovernorVotes, GovernorVotes
     }
 }
     </pre>
-    <p>The parameters: 1‑day voting delay, 3‑day voting period, 4% quorum, and 10,000 token proposal threshold.</p>
+    <p>The parameters: 1-day voting delay, 3-day voting period, 4% quorum, and 10,000 token proposal threshold.</p>
   </div>
 </details>
 
@@ -660,7 +660,7 @@ npx hardhat run scripts/deploy.js --network mst_testnet
 </details>
 
 <div class="diagram-wrap">
-  <div class="diagram-title">FIGURE 15.5‑A · DAO Deployment Architecture</div>
+  <div class="diagram-title">FIGURE 15.5-A · DAO Deployment Architecture</div>
   <pre>
   ┌─────────────────────┐
   │   GovernanceToken    │  (ERC20Votes)
@@ -687,7 +687,7 @@ npx hardhat run scripts/deploy.js --network mst_testnet
 
 <!-- 06 PROPOSAL LIFECYCLE WALKTHROUGH -->
 <div class="section-label">06 &nbsp; Proposal Lifecycle Walkthrough</div>
-<h2 class="section-title">From Idea to Execution — Run Your DAO</h2>
+<h2 class="section-title">From Idea to Execution - Run Your DAO</h2>
 <p>Now that your DAO is deployed, let's run a proposal through the entire lifecycle. You'll need the Governor address, the token address, and a target contract to interact with (we'll use a simple <code>Box</code> contract that stores a value).</p>
 
 <details>
@@ -721,7 +721,7 @@ const receipt = await tx.wait();
 const proposalId = receipt.logs[0].topics[1]; // proposal ID
 console.log("Proposal created with ID:", proposalId);
     </pre>
-    <p>Run the script. The proposal enters the <strong>Pending</strong> state. Voting delay is 1 day (86400 seconds). You can fast‑forward time using Hardhat's <code>evm_increaseTime</code> for testing.</p>
+    <p>Run the script. The proposal enters the <strong>Pending</strong> state. Voting delay is 1 day (86400 seconds). You can fast-forward time using Hardhat's <code>evm_increaseTime</code> for testing.</p>
   </div>
 </details>
 
@@ -768,7 +768,7 @@ console.log("Box value:", val.toString()); // 42
 </details>
 
 <div class="diagram-wrap">
-  <div class="diagram-title">FIGURE 15.5‑B · Full Proposal Lifecycle Timeline</div>
+  <div class="diagram-title">FIGURE 15.5-B · Full Proposal Lifecycle Timeline</div>
   <pre>
   t=0: propose()         t=1 day: voting starts    t=4 days: voting ends
   ──────────────────────────────────────────────────────────────────▶
@@ -778,7 +778,7 @@ console.log("Box value:", val.toString()); // 42
                                                     t=4 days: queue()
                                                     t=6 days: execute()
   </pre>
-  <div class="diagram-caption">With 1‑day voting delay, 3‑day voting period, and 2‑day timelock, the full cycle takes 6 days.</div>
+  <div class="diagram-caption">With 1-day voting delay, 3-day voting period, and 2-day timelock, the full cycle takes 6 days.</div>
 </div>
 
 <!-- 07 TESTING YOUR DAO -->
@@ -898,14 +898,14 @@ describe("MyDAO", function () {
 </div>
 
 <!-- 09 MST‑SPECIFIC ADVANTAGES -->
-<div class="section-label">09 &nbsp; MST‑Specific Advantages</div>
-<h2 class="section-title">Why Building a DAO on MST Is a Game‑Changer</h2>
+<div class="section-label">09 &nbsp; MST-Specific Advantages</div>
+<h2 class="section-title">Why Building a DAO on MST Is a Game-Changer</h2>
 <div class="feature-list">
   <div class="feature-item">
     <div class="feature-num">1</div>
     <div class="feature-content">
       <div class="feature-title">Deploy for paise, not lakhs</div>
-      <div class="feature-desc">Deploying the full DAO suite (token, timelock, governor) costs ~₹0.30 on MST versus ₹5,000–₹10,000 on Ethereum. You can deploy dozens of iterations while learning without financial stress.</div>
+      <div class="feature-desc">Deploying the full DAO suite (token, timelock, governor) costs ~₹0.30 on MST versus ₹5,000-₹10,000 on Ethereum. You can deploy dozens of iterations while learning without financial stress.</div>
     </div>
   </div>
   <div class="feature-item">
@@ -918,8 +918,8 @@ describe("MyDAO", function () {
   <div class="feature-item">
     <div class="feature-num">3</div>
     <div class="feature-content">
-      <div class="feature-title">Fast block times → near‑instant finality</div>
-      <div class="feature-desc">MST's ~3‑second block time means that proposal states update almost immediately. No waiting minutes for confirmations — the DAO feels responsive.</div>
+      <div class="feature-title">Fast block times → near-instant finality</div>
+      <div class="feature-desc">MST's ~3-second block time means that proposal states update almost immediately. No waiting minutes for confirmations - the DAO feels responsive.</div>
     </div>
   </div>
   <div class="feature-item">
@@ -939,7 +939,7 @@ describe("MyDAO", function () {
     <div class="feature-num" style="background: var(--red);">⚠️</div>
     <div class="feature-content">
       <div class="feature-title">Forgetting to delegate tokens before voting</div>
-      <div class="feature-desc">In ERC20Votes, simply holding tokens does not give you voting power. You must call <code>delegate(address)</code> — either to yourself or to a representative. Many DAOs have failed proposals because holders forgot to delegate.</div>
+      <div class="feature-desc">In ERC20Votes, simply holding tokens does not give you voting power. You must call <code>delegate(address)</code> - either to yourself or to a representative. Many DAOs have failed proposals because holders forgot to delegate.</div>
     </div>
   </div>
   <div class="feature-item">
@@ -953,26 +953,26 @@ describe("MyDAO", function () {
     <div class="feature-num" style="background: var(--red);">⚠️</div>
     <div class="feature-content">
       <div class="feature-title">Setting the timelock minDelay too short</div>
-      <div class="feature-desc">A very short timelock (e.g., 1 hour) defeats the purpose — token holders have no time to exit. Use at least 24 hours for a meaningful delay. For testing on MST, you can use shorter delays, but for production, longer is safer.</div>
+      <div class="feature-desc">A very short timelock (e.g., 1 hour) defeats the purpose - token holders have no time to exit. Use at least 24 hours for a meaningful delay. For testing on MST, you can use shorter delays, but for production, longer is safer.</div>
     </div>
   </div>
 </div>
 
 <!-- 11 CASE STUDIES -->
-<div class="section-label">11 &nbsp; Real‑World Case Studies</div>
+<div class="section-label">11 &nbsp; Real-World Case Studies</div>
 <h2 class="section-title">DAOs That Started as Simple Projects</h2>
 <div class="feature-list">
   <div class="feature-item">
     <div class="feature-num" style="background: var(--blue);">🏦</div>
     <div class="feature-content">
       <div class="feature-title">Compound's Governor Alpha → OpenZeppelin Governor</div>
-      <div class="feature-desc">Compound launched the first widely‑used Governor contract in 2020. It became the blueprint. OpenZeppelin later generalized it into the modular framework you used in this project. Thousands of DAOs now use it, proving that simple, well‑designed contracts can have massive impact.</div>
+      <div class="feature-desc">Compound launched the first widely-used Governor contract in 2020. It became the blueprint. OpenZeppelin later generalized it into the modular framework you used in this project. Thousands of DAOs now use it, proving that simple, well-designed contracts can have massive impact.</div>
     </div>
   </div>
   <div class="feature-item">
     <div class="feature-num" style="background: var(--green);">⚖️</div>
     <div class="feature-content">
-      <div class="feature-title">Nouns DAO — Daily Auctions, Infinite Governance</div>
+      <div class="feature-title">Nouns DAO - Daily Auctions, Infinite Governance</div>
       <div class="feature-desc">Nouns DAO uses a similar Governor + Timelock architecture but with a twist: one NFT is auctioned every day, and the NFT holder gets one vote. This created a completely new governance model while relying on the same underlying contracts. Your project could be the seed for such an innovation.</div>
     </div>
   </div>
@@ -980,7 +980,7 @@ describe("MyDAO", function () {
 
 <!-- 12 ASSESSMENT PREP -->
 <div class="section-label">12 &nbsp; Assessment Preparation</div>
-<h2 class="section-title">Top Facts — Know These for Your Submission</h2>
+<h2 class="section-title">Top Facts - Know These for Your Submission</h2>
 <div class="feature-list">
   <div class="feature-item">
     <div class="feature-num" style="background: var(--ink-3); font-size:11px;">01</div>
@@ -999,7 +999,7 @@ describe("MyDAO", function () {
   <div class="feature-item">
     <div class="feature-num" style="background: var(--ink-3); font-size:11px;">03</div>
     <div class="feature-content">
-      <div class="feature-title">MST's low fees make iterative testing and real‑world usage practical.</div>
+      <div class="feature-title">MST's low fees make iterative testing and real-world usage practical.</div>
       <div class="feature-desc">Deploy and test for less than ₹0.50 total. Run dozens of proposals without worrying about gas.</div>
     </div>
   </div>
@@ -1023,15 +1023,15 @@ describe("MyDAO", function () {
       <div class="q-text">Deploy a fully functional DAO on MST Testnet using OpenZeppelin contracts. Submit your GitHub repository containing the contracts, deployment script, test suite, transaction logs, and a README.</div>
       <div class="code-completion">
         <div class="cc-header"><div class="cc-badge">💻 REQUIREMENTS</div></div>
-        <div class="cc-scenario">Your DAO must include a governance token, a Governor contract, and a TimelockController. You must demonstrate a complete proposal lifecycle — from creation to execution — interacting with a target contract of your choice.</div>
+        <div class="cc-scenario">Your DAO must include a governance token, a Governor contract, and a TimelockController. You must demonstrate a complete proposal lifecycle - from creation to execution - interacting with a target contract of your choice.</div>
         <div class="cc-code">
           <strong>Required deliverables:</strong><br>
-          (a) <code>contracts/GovernanceToken.sol</code> — ERC20Votes with initial supply.<br>
-          (b) <code>contracts/MyDAO.sol</code> — Governor with reasonable parameters (voting delay, period, quorum, threshold).<br>
-          (c) <code>scripts/deploy.js</code> — deploys all contracts, connects them, grants timelock roles.<br>
-          (d) <code>test/MyDAO.test.js</code> — at least 3 test cases demonstrating lifecycle, quorum failure, and execution.<br>
+          (a) <code>contracts/GovernanceToken.sol</code> - ERC20Votes with initial supply.<br>
+          (b) <code>contracts/MyDAO.sol</code> - Governor with reasonable parameters (voting delay, period, quorum, threshold).<br>
+          (c) <code>scripts/deploy.js</code> - deploys all contracts, connects them, grants timelock roles.<br>
+          (d) <code>test/MyDAO.test.js</code> - at least 3 test cases demonstrating lifecycle, quorum failure, and execution.<br>
           (e) Transaction logs (screenshots or text) from MST Testnet Explorer showing deployment and one successful proposal execution.<br>
-          (f) <code>README.md</code> — explains the project, setup instructions, and deployed addresses.
+          (f) <code>README.md</code> - explains the project, setup instructions, and deployed addresses.
         </div>
         <div class="cc-expected">
           <div class="cc-expected-label">📊 Marking Rubric (50 marks)</div>
@@ -1060,9 +1060,9 @@ describe("MyDAO", function () {
 
 <!-- GLOSSARY -->
 <div class="section-label" style="margin-top:52px;">13 &nbsp; Glossary</div>
-<h2 class="section-title">Key Terms — Sub-Module 15.5</h2>
+<h2 class="section-title">Key Terms - Sub-Module 15.5</h2>
 <div class="glossary-grid">
-  <div class="glossary-item"><div class="glossary-term">ERC20Votes</div><div class="glossary-def">An extension of ERC‑20 that enables delegation of voting power and snapshot‑based governance.</div></div>
+  <div class="glossary-item"><div class="glossary-term">ERC20Votes</div><div class="glossary-def">An extension of ERC-20 that enables delegation of voting power and snapshot-based governance.</div></div>
   <div class="glossary-item"><div class="glossary-term">Governor Contract</div><div class="glossary-def">OpenZeppelin's modular contract that manages the proposal lifecycle: creation, voting, queuing, and execution.</div></div>
   <div class="glossary-item"><div class="glossary-term">TimelockController</div><div class="glossary-def">A contract that enforces a mandatory delay between proposal approval and execution, providing a safety window.</div></div>
   <div class="glossary-item"><div class="glossary-term">Proposal Threshold</div><div class="glossary-def">The minimum number of tokens a user must hold (or have delegated) to submit a proposal.</div></div>
@@ -1071,8 +1071,8 @@ describe("MyDAO", function () {
 </div>
 
 <div class="page-footer">
-  <p>MasterStroke Academy — Professional Blockchain Developer Program</p>
-  <p>Module 15 · Sub-Module <strong>15.5</strong> of 5 &nbsp;·&nbsp; End of Module 15 — DAOs & Governance Complete ✅</p>
+  <p>MasterStroke Academy - Professional Blockchain Developer Program</p>
+  <p>Module 15 · Sub-Module <strong>15.5</strong> of 5 &nbsp;·&nbsp; End of Module 15 - DAOs & Governance Complete ✅</p>
 </div>
 
 </body>

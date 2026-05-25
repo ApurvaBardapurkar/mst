@@ -18,10 +18,9 @@ import {
   TextInput,
 } from "./AuthShell";
 
-const LOGIN_ROLES: { id: UserRole; label: string }[] = [
-  { id: "student", label: "Student" },
-  { id: "validator", label: "Validator" },
-  { id: "non-validator", label: "General User" },
+const LOGIN_ROLES: { id: UserRole; label: string; emoji: string }[] = [
+  { id: "student", label: "Student", emoji: "🎓" },
+  { id: "validator", label: "Validator", emoji: "🔐" },
 ];
 
 export function LoginForm({ initialRole = "student" }: { initialRole?: UserRole }) {
@@ -56,21 +55,32 @@ export function LoginForm({ initialRole = "student" }: { initialRole?: UserRole 
       title="Sign In"
       subtitle="Demo admin (abc@gmail.com / ABC123) works on every role tab for testing."
     >
-      <div className="mb-6 flex gap-2">
+      <div className="mb-6 grid grid-cols-2 gap-3">
         {LOGIN_ROLES.map((r) => (
-          <TabButton
+          <button
             key={r.id}
-            active={role === r.id}
+            type="button"
             onClick={() => setRole(r.id)}
+            className={`relative flex flex-col items-center gap-1.5 rounded-2xl border-2 px-4 py-4 text-center transition-all ${
+              role === r.id
+                ? "border-mst-red bg-mst-red/5 shadow-md shadow-mst-red/10"
+                : "border-[var(--border)] bg-[var(--bg)] hover:border-[var(--text-muted)]/40"
+            }`}
           >
-            {r.label}
-          </TabButton>
+            <span className="text-2xl">{r.emoji}</span>
+            <span className={`text-sm font-bold ${
+              role === r.id ? "text-mst-red" : "text-[var(--text)]"
+            }`}>
+              {r.label}
+            </span>
+            {role === r.id && (
+              <span className="absolute -right-1.5 -top-1.5 flex h-5 w-5 items-center justify-center rounded-full bg-mst-red text-[10px] text-white">
+                ✓
+              </span>
+            )}
+          </button>
         ))}
       </div>
-
-      <p className="mb-4 text-xs text-[var(--text-muted)]">
-        Signing in as <strong className="text-[var(--text)]">{roleLabel(role)}</strong>
-      </p>
 
       <form onSubmit={handleSubmit} className="space-y-4">
         <div>

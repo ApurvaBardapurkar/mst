@@ -5912,97 +5912,6 @@
         {
           "id": "12.1",
           "slug": "12-1",
-          "filename": "12..3.html",
-          "title": "NFTFi & Fractionalisation",
-          "subtitle": "Turn your NFT into collateral for a loan, or split a single high‑value NFT into thousands of ERC‑20 tokens so multiple people can own a piece of digital history. This is how NFTs become liquid assets in the DeFi ecosystem.",
-          "hasAssessment": false,
-          "totalMarks": 0,
-          "toc": [
-            {
-              "id": "section-0",
-              "title": "By the end of this sub-module, you will be able to…"
-            },
-            {
-              "id": "section-1",
-              "title": "The CryptoPunk That Bought a House"
-            },
-            {
-              "id": "section-2",
-              "title": "Turning Illiquid Collectibles into Financial Instruments"
-            },
-            {
-              "id": "section-3",
-              "title": "Collateralised Loans Without a Bank"
-            },
-            {
-              "id": "section-4",
-              "title": "How a Single NFT Becomes Thousands of ERC‑20 Tokens"
-            },
-            {
-              "id": "section-5",
-              "title": "Investing in a Collection Without Picking Winners"
-            },
-            {
-              "id": "section-6",
-              "title": "Why MST Is the Perfect Home for NFT Finance"
-            },
-            {
-              "id": "section-7",
-              "title": "What Can Go Wrong and How to Mitigate It"
-            },
-            {
-              "id": "section-8",
-              "title": "Top Facts — Know These Cold"
-            },
-            {
-              "id": "section-9",
-              "title": "Key Terms — Sub‑Module 12.3"
-            },
-            {
-              "id": "label-0",
-              "title": "Learning Objectives"
-            },
-            {
-              "id": "label-1",
-              "title": "Real‑World Story"
-            },
-            {
-              "id": "label-2",
-              "title": "What Is NFTFi? – The Marriage of NFTs and DeFi"
-            },
-            {
-              "id": "label-3",
-              "title": "NFT Lending – Borrowing and Lending Against NFTs"
-            },
-            {
-              "id": "label-4",
-              "title": "Fractionalisation – Splitting an NFT into Shares"
-            },
-            {
-              "id": "label-5",
-              "title": "NFT Index Tokens – A Basket of NFTs"
-            },
-            {
-              "id": "label-6",
-              "title": "NFTFi on MST Blockchain – The Low‑Fee Advantage"
-            },
-            {
-              "id": "label-7",
-              "title": "Risks and Considerations"
-            },
-            {
-              "id": "label-8",
-              "title": "Assessment Preparation"
-            },
-            {
-              "id": "label-9",
-              "title": "Glossary"
-            }
-          ]
-        },
-        {
-          "id": "12.1",
-          "slug": "12-1",
           "filename": "12.1.html",
           "title": "NFT Standards & Metadata",
           "subtitle": "How a unique digital cat sold for $600,000, why every NFT points to a JSON file on IPFS, and how ERC‑721 and ERC‑1155 turned digital ownership into a multi‑billion‑dollar ecosystem.",
@@ -6178,6 +6087,97 @@
             },
             {
               "id": "label-8",
+              "title": "Glossary"
+            }
+          ]
+        },
+        {
+          "id": "12.3",
+          "slug": "12-3",
+          "filename": "12..3.html",
+          "title": "NFTFi & Fractionalisation",
+          "subtitle": "Turn your NFT into collateral for a loan, or split a single high‑value NFT into thousands of ERC‑20 tokens so multiple people can own a piece of digital history. This is how NFTs become liquid assets in the DeFi ecosystem.",
+          "hasAssessment": false,
+          "totalMarks": 0,
+          "toc": [
+            {
+              "id": "section-0",
+              "title": "By the end of this sub-module, you will be able to…"
+            },
+            {
+              "id": "section-1",
+              "title": "The CryptoPunk That Bought a House"
+            },
+            {
+              "id": "section-2",
+              "title": "Turning Illiquid Collectibles into Financial Instruments"
+            },
+            {
+              "id": "section-3",
+              "title": "Collateralised Loans Without a Bank"
+            },
+            {
+              "id": "section-4",
+              "title": "How a Single NFT Becomes Thousands of ERC‑20 Tokens"
+            },
+            {
+              "id": "section-5",
+              "title": "Investing in a Collection Without Picking Winners"
+            },
+            {
+              "id": "section-6",
+              "title": "Why MST Is the Perfect Home for NFT Finance"
+            },
+            {
+              "id": "section-7",
+              "title": "What Can Go Wrong and How to Mitigate It"
+            },
+            {
+              "id": "section-8",
+              "title": "Top Facts — Know These Cold"
+            },
+            {
+              "id": "section-9",
+              "title": "Key Terms — Sub‑Module 12.3"
+            },
+            {
+              "id": "label-0",
+              "title": "Learning Objectives"
+            },
+            {
+              "id": "label-1",
+              "title": "Real‑World Story"
+            },
+            {
+              "id": "label-2",
+              "title": "What Is NFTFi? – The Marriage of NFTs and DeFi"
+            },
+            {
+              "id": "label-3",
+              "title": "NFT Lending – Borrowing and Lending Against NFTs"
+            },
+            {
+              "id": "label-4",
+              "title": "Fractionalisation – Splitting an NFT into Shares"
+            },
+            {
+              "id": "label-5",
+              "title": "NFT Index Tokens – A Basket of NFTs"
+            },
+            {
+              "id": "label-6",
+              "title": "NFTFi on MST Blockchain – The Low‑Fee Advantage"
+            },
+            {
+              "id": "label-7",
+              "title": "Risks and Considerations"
+            },
+            {
+              "id": "label-8",
+              "title": "Assessment Preparation"
+            },
+            {
+              "id": "label-9",
               "title": "Glossary"
             }
           ]

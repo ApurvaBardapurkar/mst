@@ -1,11 +1,12 @@
 
 
+
 <!-- ═══════════════════════════════════════════════════
      HEADER
 ════════════════════════════════════════════════════ -->
 <div class="module-badge">🎮 Module 7 &nbsp;·&nbsp; Sub-Module 7.6 of 8</div>
 <h1 class="module-title"><span class="highlight">Gaming &amp; Fairness</span> Protocols</h1>
-<p class="module-subtitle">How MST's on‑chain randomness, shuffle verification, and RTP guarantees make online gaming provably fair — solving the trust problem that has plagued the industry for decades.</p>
+<p class="module-subtitle">How MST's on-chain randomness, shuffle verification, and RTP guarantees make online gaming provably fair - solving the trust problem that has plagued the industry for decades.</p>
 
 <div class="meta-bar">
     <div class="meta-chip">⏱ 40 Minutes</div>
@@ -33,14 +34,14 @@
         <div class="obj-icon">🔍</div>
         <div class="obj-text">
             <strong>Understand how provable fairness works</strong>
-            Detail how on‑chain commitment schemes and zero‑knowledge proofs let players verify that a game was fair without trusting the operator.
+            Detail how on-chain commitment schemes and zero-knowledge proofs let players verify that a game was fair without trusting the operator.
         </div>
     </div>
     <div class="obj-card">
         <div class="obj-icon">⚖️</div>
         <div class="obj-text">
             <strong>Contrast MST fairness with traditional online gaming</strong>
-            Evaluate why legacy online casinos are "trust‑based" and how MST's protocols mathematically eliminate cheating.
+            Evaluate why legacy online casinos are "trust-based" and how MST's protocols mathematically eliminate cheating.
         </div>
     </div>
     <div class="obj-card">
@@ -61,13 +62,13 @@
 
 <div class="callout story">
     <div class="callout-label">📖 Story</div>
-    <p>In 2023, a popular online rummy platform in India faced a massive backlash. Several high‑stakes players noticed an impossible pattern: certain opponents consistently received winning cards in crucial moments, far beyond statistical probability. The platform's response? "Trust us, our shuffle is random." But there was no way to verify this claim. The platform controlled the server, the shuffle algorithm, and the game logs. Players had to either accept the operator's word or stop playing. Thousands stopped playing.</p>
+    <p>In 2023, a popular online rummy platform in India faced a massive backlash. Several high-stakes players noticed an impossible pattern: certain opponents consistently received winning cards in crucial moments, far beyond statistical probability. The platform's response? "Trust us, our shuffle is random." But there was no way to verify this claim. The platform controlled the server, the shuffle algorithm, and the game logs. Players had to either accept the operator's word or stop playing. Thousands stopped playing.</p>
     <br>
-    <p>The tragedy is that the technology to prevent this already existed. Imagine instead that every card shuffle was recorded on a blockchain with a cryptographic commitment. Before a hand begins, the platform publishes a hash of the shuffled deck. After the hand, the full deck is revealed, and any player can verify that the hash matches. A zero‑knowledge proof guarantees that the shuffle was a random permutation of the original 52 cards — not pre‑arranged to favour any player.</p>
+    <p>The tragedy is that the technology to prevent this already existed. Imagine instead that every card shuffle was recorded on a blockchain with a cryptographic commitment. Before a hand begins, the platform publishes a hash of the shuffled deck. After the hand, the full deck is revealed, and any player can verify that the hash matches. A zero-knowledge proof guarantees that the shuffle was a random permutation of the original 52 cards - not pre-arranged to favour any player.</p>
     <br>
-    <p>This is exactly what <strong>SatvaShuffle</strong> does on MST. For slot machines, <strong>Klethesia</strong> publishes the exact Return‑to‑Player (RTP) percentage on‑chain, with every spin outcome verifiable against a pre‑committed random seed. For loot boxes, <strong>FortunaX</strong> generates verifiable random numbers using a distributed randomness beacon, proving that the rare item drop wasn't manipulated.</p>
+    <p>This is exactly what <strong>SatvaShuffle</strong> does on MST. For slot machines, <strong>Klethesia</strong> publishes the exact Return-to-Player (RTP) percentage on-chain, with every spin outcome verifiable against a pre-committed random seed. For loot boxes, <strong>FortunaX</strong> generates verifiable random numbers using a distributed randomness beacon, proving that the rare item drop wasn't manipulated.</p>
     <br>
-    <p>MST's gaming protocols solve the fundamental trust problem in online gaming. You don't trust the casino. You trust the math — and you can verify it yourself.</p>
+    <p>MST's gaming protocols solve the fundamental trust problem in online gaming. You don't trust the casino. You trust the math - and you can verify it yourself.</p>
 </div>
 
 <p>The online gaming industry, projected to reach $5 billion in India alone by 2025, is built on a fragile foundation of operator trust. MST's fairness protocols replace that trust with cryptographic proof, enabling a new generation of provably fair games.</p>
@@ -77,49 +78,49 @@
      SECTION 3: BACKGROUND / HISTORY
 ════════════════════════════════════════════════════ -->
 <div class="section-label">03 &nbsp; Background &amp; History</div>
-<h2 class="section-title">From "Trust Us" to "Verify Yourself" — The Evolution of Gaming Fairness</h2>
+<h2 class="section-title">From "Trust Us" to "Verify Yourself" - The Evolution of Gaming Fairness</h2>
 
 <div class="timeline">
     <div class="tl-item">
         <div class="tl-left"><div class="tl-dot"></div><div class="tl-line"></div></div>
         <div class="tl-right">
-            <div class="tl-year">1990s–2000s</div>
-            <div class="tl-body"><strong>The Black Box Era.</strong> Online casinos ran fully centralised servers. The shuffle, the RNG, the payout percentages — everything was a black box. Regulators relied on periodic audits of source code, but there was no way for a player to verify that the code running at 2 AM was the same code that was audited. Scandals were frequent and largely undetectable.</div>
+            <div class="tl-year">1990s - 2000s</div>
+            <div class="tl-body"><strong>The Black Box Era.</strong> Online casinos ran fully centralised servers. The shuffle, the RNG, the payout percentages - everything was a black box. Regulators relied on periodic audits of source code, but there was no way for a player to verify that the code running at 2 AM was the same code that was audited. Scandals were frequent and largely undetectable.</div>
         </div>
     </div>
     <div class="tl-item">
         <div class="tl-left"><div class="tl-dot"></div><div class="tl-line"></div></div>
         <div class="tl-right">
             <div class="tl-year">2012</div>
-            <div class="tl-body"><strong>Provably Fair — The First Generation.</strong> Bitcoin casinos introduced "provably fair" algorithms. The server would commit to a random seed before a game round, and the player could verify the outcome afterward. While an improvement, these systems still relied on the server generating the seed — a sophisticated operator could manipulate the seed generation itself.</div>
+            <div class="tl-body"><strong>Provably Fair - The First Generation.</strong> Bitcoin casinos introduced "provably fair" algorithms. The server would commit to a random seed before a game round, and the player could verify the outcome afterward. While an improvement, these systems still relied on the server generating the seed - a sophisticated operator could manipulate the seed generation itself.</div>
         </div>
     </div>
     <div class="tl-item">
         <div class="tl-left"><div class="tl-dot"></div><div class="tl-line"></div></div>
         <div class="tl-right">
             <div class="tl-year">2018</div>
-            <div class="tl-body"><strong>On‑Chain Randomness — Chainlink VRF.</strong> Chainlink introduced a Verifiable Random Function (VRF) that provided on‑chain randomness from a decentralised oracle network. This solved the seed manipulation problem but was expensive (high gas fees) and not natively integrated into gaming logic like shuffling or RTP calculations.</div>
+            <div class="tl-body"><strong>On-Chain Randomness - Chainlink VRF.</strong> Chainlink introduced a Verifiable Random Function (VRF) that provided on-chain randomness from a decentralised oracle network. This solved the seed manipulation problem but was expensive (high gas fees) and not natively integrated into gaming logic like shuffling or RTP calculations.</div>
         </div>
     </div>
     <div class="tl-item">
         <div class="tl-left"><div class="tl-dot"></div><div class="tl-line"></div></div>
         <div class="tl-right">
-            <div class="tl-year">2022–2023</div>
-            <div class="tl-body"><strong>Specialised Gaming Chains.</strong> Some L1/L2 chains targeted gaming specifically, but they focused on scalability (high TPS) rather than game‑specific fairness guarantees. Shuffling and RTP were left to individual game developers to implement, leading to inconsistent and often flawed implementations.</div>
+            <div class="tl-year">2022 - 2023</div>
+            <div class="tl-body"><strong>Specialised Gaming Chains.</strong> Some L1/L2 chains targeted gaming specifically, but they focused on scalability (high TPS) rather than game-specific fairness guarantees. Shuffling and RTP were left to individual game developers to implement, leading to inconsistent and often flawed implementations.</div>
         </div>
     </div>
     <div class="tl-item">
         <div class="tl-left"><div class="tl-dot"></div><div class="tl-line"></div></div>
         <div class="tl-right">
-            <div class="tl-year">2024–Today</div>
-            <div class="tl-body"><strong>MST's Gaming Protocols.</strong> MST builds fairness directly into the protocol layer. Klethesia provides on‑chain RTP verification for slots. SatvaShuffle uses ZK proofs for verifiable card shuffling. FortunaX delivers a distributed randomness beacon secured by Trika POSA validators. Game developers don't need to implement fairness — they inherit it from the chain.</div>
+            <div class="tl-year">2024 - Today</div>
+            <div class="tl-body"><strong>MST's Gaming Protocols.</strong> MST builds fairness directly into the protocol layer. Klethesia provides on-chain RTP verification for slots. SatvaShuffle uses ZK proofs for verifiable card shuffling. FortunaX delivers a distributed randomness beacon secured by Trika POSA validators. Game developers don't need to implement fairness - they inherit it from the chain.</div>
         </div>
     </div>
 </div>
 
 <div class="callout insight">
-    <div class="callout-label">💡 The Protocol‑Level Advantage</div>
-    <p>When fairness is built into the blockchain protocol itself, game developers cannot bypass it — even if they want to. This is fundamentally different from smart‑contract‑based fairness, where each developer must implement (and potentially misimplement) their own solution.</p>
+    <div class="callout-label">💡 The Protocol-Level Advantage</div>
+    <p>When fairness is built into the blockchain protocol itself, game developers cannot bypass it - even if they want to. This is fundamentally different from smart-contract-based fairness, where each developer must implement (and potentially misimplement) their own solution.</p>
 </div>
 
 
@@ -127,11 +128,11 @@
      SECTION 4: BEGINNER-FRIENDLY EXPLANATION
 ════════════════════════════════════════════════════ -->
 <div class="section-label">04 &nbsp; Beginner-Friendly Explanation</div>
-<h2 class="section-title">The Three Protocols — Klethesia, SatvaShuffle, and FortunaX</h2>
+<h2 class="section-title">The Three Protocols - Klethesia, SatvaShuffle, and FortunaX</h2>
 
 <div class="callout analogy">
     <div class="callout-label">🎰 The Casino Manager, The Dealer, and The Lottery Machine</div>
-    <p><strong>Klethesia</strong> is like a casino manager who publishes the slot machine's exact payout rate on a public notice board, and after every spin, posts the result and the random seed so anyone can verify it. <strong>SatvaShuffle</strong> is like a card dealer who shuffles the deck inside a glass box — you can't see the cards, but you can see the shuffle happen, and afterward you can verify the deck was standard and the shuffle was random. <strong>FortunaX</strong> is like a lottery machine that broadcasts its random number generation live, with multiple independent auditors confirming each draw.</p>
+    <p><strong>Klethesia</strong> is like a casino manager who publishes the slot machine's exact payout rate on a public notice board, and after every spin, posts the result and the random seed so anyone can verify it. <strong>SatvaShuffle</strong> is like a card dealer who shuffles the deck inside a glass box - you can't see the cards, but you can see the shuffle happen, and afterward you can verify the deck was standard and the shuffle was random. <strong>FortunaX</strong> is like a lottery machine that broadcasts its random number generation live, with multiple independent auditors confirming each draw.</p>
 </div>
 
 <div class="w5-grid">
@@ -153,7 +154,7 @@
         <div class="w5-label-cell"><div class="w5-letter">H</div><div class="w5-word">HOW</div></div>
         <div class="w5-content">
             <div class="w5-q">How do they work technically?</div>
-            <div class="w5-a"><strong>Klethesia:</strong> Each spin is driven by a VRF output. The RTP is enforced by a smart contract that accumulates payouts and verifies the long‑term percentage matches the advertised rate. <strong>SatvaShuffle:</strong> Uses a ZK‑SNARK to prove that a shuffled deck is a valid permutation of the original deck, without revealing the deck order until after the hand. <strong>FortunaX:</strong> Combines entropy from multiple validators into a single random number using threshold BLS signatures, ensuring no single validator can predict or bias the result.</div>
+            <div class="w5-a"><strong>Klethesia:</strong> Each spin is driven by a VRF output. The RTP is enforced by a smart contract that accumulates payouts and verifies the long-term percentage matches the advertised rate. <strong>SatvaShuffle:</strong> Uses a ZK-SNARK to prove that a shuffled deck is a valid permutation of the original deck, without revealing the deck order until after the hand. <strong>FortunaX:</strong> Combines entropy from multiple validators into a single random number using threshold BLS signatures, ensuring no single validator can predict or bias the result.</div>
         </div>
     </div>
     <div class="w5-row">
@@ -167,7 +168,7 @@
         <div class="w5-label-cell"><div class="w5-letter">L</div><div class="w5-word">LIMITS</div></div>
         <div class="w5-content">
             <div class="w5-q">What are their limitations?</div>
-            <div class="w5-a">Klethesia's RTP verification is statistical — it requires a large number of spins to prove the advertised RTP with confidence. SatvaShuffle's ZK proofs add computational overhead (~1‑2 seconds for proof generation, though verification is fast). FortunaX's distributed randomness requires validator participation; if too many validators are offline, randomness generation may be delayed (mitigated by a fallback threshold scheme).</div>
+            <div class="w5-a">Klethesia's RTP verification is statistical - it requires a large number of spins to prove the advertised RTP with confidence. SatvaShuffle's ZK proofs add computational overhead (~1-2 seconds for proof generation, though verification is fast). FortunaX's distributed randomness requires validator participation; if too many validators are offline, randomness generation may be delayed (mitigated by a fallback threshold scheme).</div>
         </div>
     </div>
 </div>
@@ -183,9 +184,9 @@
     <div class="feature-item">
         <div class="feature-num">1</div>
         <div class="feature-content">
-            <div class="feature-title">Klethesia — Provable RTP for Slot Machines</div>
+            <div class="feature-title">Klethesia - Provable RTP for Slot Machines</div>
             <div class="feature-desc">
-                Klethesia enforces Return‑to‑Player (RTP) at the protocol level. Each slot machine is a smart contract that registers its advertised RTP (e.g., 96.5%). Every spin generates a random outcome using FortunaX's randomness beacon. The contract tracks cumulative bets and cumulative payouts. Over a configurable epoch (e.g., 100,000 spins), the contract verifies that the actual RTP falls within an acceptable statistical band (±1%) of the advertised rate. If the operator attempts to lower the effective RTP below the band, the contract can automatically freeze and refund players. Additionally, every spin outcome is published on‑chain with a commitment to the random seed, allowing auditors to verify the fairness of individual results.
+                Klethesia enforces Return-to-Player (RTP) at the protocol level. Each slot machine is a smart contract that registers its advertised RTP (e.g., 96.5%). Every spin generates a random outcome using FortunaX's randomness beacon. The contract tracks cumulative bets and cumulative payouts. Over a configurable epoch (e.g., 100,000 spins), the contract verifies that the actual RTP falls within an acceptable statistical band (±1%) of the advertised rate. If the operator attempts to lower the effective RTP below the band, the contract can automatically freeze and refund players. Additionally, every spin outcome is published on-chain with a commitment to the random seed, allowing auditors to verify the fairness of individual results.
             </div>
         </div>
     </div>
@@ -193,9 +194,9 @@
     <div class="feature-item">
         <div class="feature-num">2</div>
         <div class="feature-content">
-            <div class="feature-title">SatvaShuffle — ZK‑Verified Card Shuffling</div>
+            <div class="feature-title">SatvaShuffle - ZK-Verified Card Shuffling</div>
             <div class="feature-desc">
-                SatvaShuffle is a zero‑knowledge shuffle protocol. Before a hand, the dealer (the game smart contract) generates a permutation of a 52‑card deck using FortunaX randomness. It commits to the shuffled deck by publishing a Merkle root of the card positions on‑chain. A ZK‑SNARK proof is generated to attest: "There exists a permutation of the standard 52‑card set that produces this Merkle root." This proof can be verified by any player for ~200k gas, guaranteeing the deck is a valid shuffle without revealing the card order. As the hand progresses, cards are revealed by publishing Merkle proofs from the committed root. After the hand, the full deck can be revealed, and players can independently recompute the Merkle root to confirm no cards were added, removed, or swapped.
+                SatvaShuffle is a zero-knowledge shuffle protocol. Before a hand, the dealer (the game smart contract) generates a permutation of a 52-card deck using FortunaX randomness. It commits to the shuffled deck by publishing a Merkle root of the card positions on-chain. A ZK-SNARK proof is generated to attest: "There exists a permutation of the standard 52-card set that produces this Merkle root." This proof can be verified by any player for ~200k gas, guaranteeing the deck is a valid shuffle without revealing the card order. As the hand progresses, cards are revealed by publishing Merkle proofs from the committed root. After the hand, the full deck can be revealed, and players can independently recompute the Merkle root to confirm no cards were added, removed, or swapped.
             </div>
         </div>
     </div>
@@ -203,28 +204,112 @@
     <div class="feature-item">
         <div class="feature-num">3</div>
         <div class="feature-content">
-            <div class="feature-title">FortunaX — Distributed Randomness Beacon</div>
+            <div class="feature-title">FortunaX - Distributed Randomness Beacon</div>
             <div class="feature-desc">
-                FortunaX is MST's native randomness source. It operates as an on‑chain randomness beacon that produces unpredictable, unbiasable random values at regular intervals. The beacon uses a threshold BLS signature scheme: each Trika POSA validator contributes a random share (derived from a VRF seeded by the previous beacon output). Once a threshold of shares (e.g., ⅔) is collected, they are aggregated into a single BLS signature, which serves as the random output. Because no single validator knows the final output until the threshold is reached, and because the output is deterministic given the shares, the randomness is unpredictable (no validator can bias it without colluding with ⅔ of the set) and publicly verifiable (anyone can check the BLS signature against the known public keys). Game contracts request a random number by calling the FortunaX precompile, which returns the latest beacon output along with a proof of correctness.
+                FortunaX is MST's native randomness source. It operates as an on-chain randomness beacon that produces unpredictable, unbiasable random values at regular intervals. The beacon uses a threshold BLS signature scheme: each Trika POSA validator contributes a random share (derived from a VRF seeded by the previous beacon output). Once a threshold of shares (e.g., 2/3) is collected, they are aggregated into a single BLS signature, which serves as the random output. Because no single validator knows the final output until the threshold is reached, and because the output is deterministic given the shares, the randomness is unpredictable (no validator can bias it without colluding with 2/3 of the set) and publicly verifiable (anyone can check the BLS signature against the known public keys). Game contracts request a random number by calling the FortunaX precompile, which returns the latest beacon output along with a proof of correctness.
             </div>
         </div>
     </div>
 </div>
 
 <div class="callout key">
-    <div class="callout-label">🗝️ Why Protocol‑Level Fairness Matters</div>
-    <p>If a game developer deploys on MST, they automatically use FortunaX for randomness, Klethesia for RTP (if applicable), and SatvaShuffle for card games. The chain enforces fairness — the developer cannot write a contract that bypasses these protocols. This is a far stronger guarantee than a "fairness audit" of a centralised game server.</p>
+    <div class="callout-label">🗝️ Why Protocol-Level Fairness Matters</div>
+    <p>If a game developer deploys on MST, they automatically use FortunaX for randomness, Klethesia for RTP (if applicable), and SatvaShuffle for card games. The chain enforces fairness - the developer cannot write a contract that bypasses these protocols. This is a far stronger guarantee than a "fairness audit" of a centralised game server.</p>
 </div>
 
 
 <!-- ═══════════════════════════════════════════════════
-     SECTION 6: ARCHITECTURE & DIAGRAMS
+     SECTION 6: MATHEMATICS OF VRF
 ════════════════════════════════════════════════════ -->
-<div class="section-label">06 &nbsp; Architecture &amp; Diagrams</div>
+<div class="section-label">06 &nbsp; Mathematics of Verifiable Random Functions</div>
+<h2 class="section-title">Step-by-Step: How FortunaX Generates Provably Random Numbers</h2>
+
+<p>At the heart of FortunaX lies a Verifiable Random Function (VRF) - a cryptographic primitive that produces a random output along with a proof that the output was correctly computed. Understanding the mathematics behind VRF is essential to appreciating why FortunaX's randomness cannot be manipulated.</p>
+
+<div class="feature-list">
+    <div class="feature-item">
+        <div class="feature-num">1</div>
+        <div class="feature-content">
+            <div class="feature-title">Step 1: Key Generation</div>
+            <div class="feature-desc">
+                Each validator generates a private key (sk) and a corresponding public key (pk = sk * G), where G is the generator point on an elliptic curve. The public key is registered on-chain and known to all participants. The private key remains secret. Think of this like a validator creating a unique mathematical identity that everyone can recognise but nobody else can impersonate.
+            </div>
+        </div>
+    </div>
+    <div class="feature-item">
+        <div class="feature-num">2</div>
+        <div class="feature-content">
+            <div class="feature-title">Step 2: Input Seeding</div>
+            <div class="feature-desc">
+                The VRF takes an input seed (alpha) - in FortunaX, this is the hash of the previous beacon output concatenated with the current block number. This creates a deterministic chain: the input for round N depends on the output of round N-1. The formula is: alpha_N = Hash(beacon_output_{N-1} || block_number_N). This chaining ensures that randomness cannot be "replayed" from a previous round.
+            </div>
+        </div>
+    </div>
+    <div class="feature-item">
+        <div class="feature-num">3</div>
+        <div class="feature-content">
+            <div class="feature-title">Step 3: VRF Evaluation</div>
+            <div class="feature-desc">
+                The validator computes the VRF output: gamma = sk * H(alpha), where H is a hash-to-curve function that maps the input seed to a point on the elliptic curve. The random output is then: beta = Hash(gamma). The crucial property is that beta is uniquely determined by sk and alpha - there is exactly one valid output for any given input and key pair. A different private key would produce a completely different output, and the same private key with a different input also produces a completely different output.
+            </div>
+        </div>
+    </div>
+    <div class="feature-item">
+        <div class="feature-num">4</div>
+        <div class="feature-content">
+            <div class="feature-title">Step 4: Proof Generation</div>
+            <div class="feature-desc">
+                Along with the output, the validator generates a proof (pi) that demonstrates gamma was correctly computed from the private key and input, without revealing the private key. This uses a Schnorr-like signature scheme on the elliptic curve. The proof consists of values (c, s) such that: s * G = pk * c + gamma and s * H(alpha) = gamma * c + some commitment. Anyone with the public key, input seed, output, and proof can verify correctness in constant time.
+            </div>
+        </div>
+    </div>
+    <div class="feature-item">
+        <div class="feature-num">5</div>
+        <div class="feature-content">
+            <div class="feature-title">Step 5: Threshold Aggregation</div>
+            <div class="feature-desc">
+                In FortunaX, individual VRF outputs from multiple validators are combined using threshold BLS aggregation. If there are N validators and the threshold is t (typically 2/3 of N), then any t validators contributing their shares produces a unique aggregate signature. The final random number is: R = Hash(BLS_Aggregate(share_1, share_2, ..., share_t)). Because the aggregate is deterministic given any t shares, and because no single validator (or even t-1 colluding validators) can predict the final aggregate before the t-th share arrives, the output is both unpredictable and unbiasable.
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="callout analogy">
+    <div class="callout-label">🔢 An Indian Analogy for VRF</div>
+    <p>Think of VRF like a traditional Indian <em>kolam</em> (rangoli pattern). Given the same starting point and the same set of rules (your private key), you will always draw the same unique kolam (the random output). A neighbour watching you draw can verify you followed the rules (the proof), but cannot predict what your kolam will look like unless they know your exact starting point and rules. And if ten families each draw their own kolam, combining pieces from any seven of them produces a community pattern that no single family could have predicted - this is threshold aggregation.</p>
+</div>
+
+<div class="diagram-wrap">
+    <div class="diagram-title">FIGURE 7.6-C - VRF Computation Flow in FortunaX</div>
+    <pre>  VALIDATOR i                                  ON-CHAIN VERIFICATION
+  ───────────                                  ────────────────────
+  Input: alpha = Hash(prev_beacon || block#)   Given: pk_i, alpha, beta_i, pi_i
+  Secret: sk_i                                 
+                                               Verify: VRF_Verify(pk_i, alpha, beta_i, pi_i)
+  gamma_i = sk_i * H(alpha)                         = true/false
+  beta_i  = Hash(gamma_i)                      
+  pi_i    = VRF_Prove(sk_i, alpha)             If threshold (2/3) valid shares collected:
+                                                 Final_Random = Hash(BLS_Aggregate(beta_1..beta_t))
+  Submit: (beta_i, pi_i) to chain              
+                                               Result: Unpredictable, unbiasable, verifiable
+    </pre>
+    <div class="diagram-caption">Each validator independently evaluates the VRF with their secret key. The on-chain contract verifies each share and aggregates them once the threshold is met.</div>
+</div>
+
+<div class="callout key">
+    <div class="callout-label">🗝️ The Three Security Properties of VRF</div>
+    <p><strong>Uniqueness:</strong> For any input and public key, there is exactly one valid output. A malicious validator cannot produce two different "valid" random numbers for the same round. <strong>Pseudorandomness:</strong> Without the private key, the output is computationally indistinguishable from a truly random number. No observer can predict the output. <strong>Verifiability:</strong> Given the public key, input, output, and proof, anyone can confirm the output was correctly computed - without knowing the private key. These three properties together guarantee that FortunaX randomness cannot be predicted, biased, or faked.</p>
+</div>
+
+
+<!-- ═══════════════════════════════════════════════════
+     SECTION 7: ARCHITECTURE & DIAGRAMS
+════════════════════════════════════════════════════ -->
+<div class="section-label">07 &nbsp; Architecture &amp; Diagrams</div>
 <h2 class="section-title">Visualising MST's Gaming Fairness Stack</h2>
 
 <div class="diagram-wrap">
-    <div class="diagram-title">FIGURE 7.6-A · The Three Fairness Protocols on MST</div>
+    <div class="diagram-title">FIGURE 7.6-A - The Three Fairness Protocols on MST</div>
     <pre>  ┌──────────────────────────────────────────────────────────────────┐
   │                      MST GAMING FAIRNESS STACK                    │
   │                                                                   │
@@ -232,10 +317,10 @@
   │   │  FORTUNAX    │   │ SATVASHUFFLE │   │  KLETHESIA   │        │
   │   │ (Randomness) │   │ (Card Shuffle)│   │ (Slot RTP)   │        │
   │   │              │   │              │   │              │        │
-  │   │ • Threshold  │   │ • ZK‑SNARK   │   │ • RTP regis- │        │
+  │   │ - Threshold  │   │ - ZK-SNARK   │   │ - RTP regis- │        │
   │   │   BLS beacon │   │   permutation│   │   tration    │        │
-  │   │ • Unbiasable │   │   proof      │   │ • Statistical│        │
-  │   │ • Verifiable │   │ • Merkle root│   │   enforcement│        │
+  │   │ - Unbiasable │   │   proof      │   │ - Statistical│        │
+  │   │ - Verifiable │   │ - Merkle root│   │   enforcement│        │
   │   └──────┬───────┘   └──────┬───────┘   └──────┬───────┘        │
   │          │                  │                   │                 │
   └──────────┼──────────────────┼───────────────────┼─────────────────┘
@@ -249,33 +334,123 @@
   │   Lottery (uses FortunaX)                                        │
   └──────────────────────────────────────────────────────────────────┘
     </pre>
-    <div class="diagram-caption">Game contracts on MST compose fairness protocols: FortunaX provides randomness to all; SatvaShuffle adds ZK‑verified shuffling for cards; Klethesia enforces RTP for slots.</div>
+    <div class="diagram-caption">Game contracts on MST compose fairness protocols: FortunaX provides randomness to all; SatvaShuffle adds ZK-verified shuffling for cards; Klethesia enforces RTP for slots.</div>
 </div>
 
 <div class="diagram-wrap">
-    <div class="diagram-title">FIGURE 7.6-B · SatvaShuffle Lifecycle for a Rummy Hand</div>
+    <div class="diagram-title">FIGURE 7.6-B - SatvaShuffle Lifecycle for a Rummy Hand</div>
     <pre>  STEP 1: COMMITMENT           STEP 2: PROOF              STEP 3: PLAY &amp; REVEAL
   ──────────────────           ─────────────              ────────────────────
-  Dealer generates             ZK‑SNARK generated:        Cards dealt to players
-  random permutation           "Permutation π is          using Merkle proofs from
-  of 52‑card deck.             a valid shuffle of         the committed Merkle root.
+  Dealer generates             ZK-SNARK generated:        Cards dealt to players
+  random permutation           "Permutation pi is         using Merkle proofs from
+  of 52-card deck.             a valid shuffle of         the committed Merkle root.
   Merkle root of deck          the standard deck."
-  published on‑chain.          Proof verified on‑chain     STEP 4: FULL REVEAL
+  published on-chain.          Proof verified on-chain     STEP 4: FULL REVEAL
                                for ~200k gas.             ──────────────────
                                                           After hand ends, entire
                                                           deck revealed. Players
                                                           verify Merkle root matches.
                                                           No cards added/removed.
     </pre>
-    <div class="diagram-caption">Commit‑and‑reveal with a ZK permutation proof: players can trust the shuffle is valid before seeing any cards, and verify the full deck after the hand.</div>
+    <div class="diagram-caption">Commit-and-reveal with a ZK permutation proof: players can trust the shuffle is valid before seeing any cards, and verify the full deck after the hand.</div>
 </div>
 
 
 <!-- ═══════════════════════════════════════════════════
-     SECTION 7: COMPARISON TABLE
+     SECTION 8: INDIAN GAMING REGULATION CONTEXT
 ════════════════════════════════════════════════════ -->
-<div class="section-label">07 &nbsp; Comparison</div>
-<h2 class="section-title">MST Fairness vs Traditional Online Gaming — The Trust Gap</h2>
+<div class="section-label">08 &nbsp; Indian Gaming Regulation &amp; Compliance</div>
+<h2 class="section-title">How On-Chain Fairness Aligns with India's Regulatory Framework</h2>
+
+<p>India's online gaming industry operates within a complex multi-layered regulatory environment. Understanding how MST's fairness protocols intersect with Indian law is critical for any developer or operator planning to deploy gaming applications on MST.</p>
+
+<div class="feature-list">
+    <div class="feature-item">
+        <div class="feature-num">1</div>
+        <div class="feature-content">
+            <div class="feature-title">The Skill vs. Chance Distinction</div>
+            <div class="feature-desc">
+                Indian law differentiates between "games of skill" (legal in most states) and "games of chance" (generally prohibited as gambling). The Supreme Court's landmark rulings in cases like State of Andhra Pradesh vs. K. Satyanarayana (1968) and more recently the Junglee Games case established that games where skill predominates over chance are legal. Rummy, poker, and fantasy sports fall under "skill games." MST's SatvaShuffle protocol is particularly relevant here: by proving that card distribution is purely random and unmanipulated, it demonstrates that outcomes depend entirely on player skill rather than operator intervention. This cryptographic guarantee strengthens the legal position that the game outcome depends on player decisions, not hidden manipulation.
+            </div>
+        </div>
+    </div>
+    <div class="feature-item">
+        <div class="feature-num">2</div>
+        <div class="feature-content">
+            <div class="feature-title">State-Level Regulations and FIFS Compliance</div>
+            <div class="feature-desc">
+                The Federation of Indian Fantasy Sports (FIFS) and the All India Gaming Federation (AIGF) have established self-regulatory frameworks requiring member platforms to demonstrate fair play. States like Karnataka, Tamil Nadu, and Telangana have attempted various levels of regulation or prohibition. The central government's IT Rules (2023 amendments) introduced a framework for Self-Regulatory Organisations (SROs) to oversee online gaming. MST's on-chain audit trail directly satisfies the transparency requirements these bodies demand. Rather than submitting periodic audit reports (which can be fabricated), operators on MST can point regulators to a permanent, tamper-proof on-chain record of every game outcome, every shuffle, and every RTP calculation. This shifts compliance from "trust our reports" to "verify the blockchain."
+            </div>
+        </div>
+    </div>
+    <div class="feature-item">
+        <div class="feature-num">3</div>
+        <div class="feature-content">
+            <div class="feature-title">GST on Online Gaming and Revenue Transparency</div>
+            <div class="feature-desc">
+                The GST Council's 2023 decision to levy 28% GST on the full face value of bets in online gaming (rather than on gross gaming revenue) has significantly impacted the industry. For operators, accurate tracking of every bet and payout is now a tax compliance necessity. Klethesia's on-chain ledger of cumulative bets and payouts provides an immutable record that satisfies GST audit requirements. Every rupee bet and every rupee paid out is recorded on-chain with timestamps, making tax compliance automatic rather than manual. This reduces the risk of GST disputes and penalties, which have been a major concern for Indian gaming companies since the new rate took effect.
+            </div>
+        </div>
+    </div>
+    <div class="feature-item">
+        <div class="feature-num">4</div>
+        <div class="feature-content">
+            <div class="feature-title">KYC and Responsible Gaming Integration</div>
+            <div class="feature-desc">
+                Indian gaming regulations increasingly mandate robust KYC (Know Your Customer) and responsible gaming measures including deposit limits, self-exclusion, and loss caps. MST's smart contract architecture allows these limits to be enforced at the protocol level. A player's deposit limit can be coded into their gaming wallet contract - the chain itself refuses to process bets beyond the limit. Self-exclusion periods are enforced cryptographically: once activated, no game contract will accept bets from that wallet until the exclusion period ends. This is far more reliable than operator-side enforcement, where a determined player might circumvent limits by contacting customer support.
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="callout insight">
+    <div class="callout-label">💡 The Regulatory Advantage for Indian Operators</div>
+    <p>Indian gaming operators deploying on MST gain a significant regulatory advantage. When the SRO or a state gaming commission demands proof of fair play, the operator does not need to open their server code for inspection. They point to the blockchain. Every hand of rummy, every slot spin, every loot box opening is permanently recorded with cryptographic proof of fairness. This kind of transparency is unprecedented in the Indian gaming industry and positions MST-based platforms favourably when applying for licences or responding to regulatory scrutiny.</p>
+</div>
+
+<table class="compare-table">
+    <thead>
+        <tr>
+            <th>Compliance Requirement</th>
+            <th>Traditional Approach</th>
+            <th>MST On-Chain Approach</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>Fair play certification</td>
+            <td class="bad">Annual third-party audit (snapshot only)</td>
+            <td class="good">Continuous on-chain verification (every game)</td>
+        </tr>
+        <tr>
+            <td>RNG certification</td>
+            <td class="bad">Lab testing of server-side RNG code</td>
+            <td class="good">FortunaX: distributed, publicly verifiable</td>
+        </tr>
+        <tr>
+            <td>GST record-keeping</td>
+            <td class="mid">Internal databases (can be altered)</td>
+            <td class="good">Immutable on-chain bet/payout ledger</td>
+        </tr>
+        <tr>
+            <td>Deposit/loss limits</td>
+            <td class="bad">Server-side enforcement (bypassable)</td>
+            <td class="good">Protocol-level enforcement (uncircumventable)</td>
+        </tr>
+        <tr>
+            <td>Dispute resolution</td>
+            <td class="bad">Operator provides logs (trust required)</td>
+            <td class="good">On-chain history is the single source of truth</td>
+        </tr>
+    </tbody>
+</table>
+
+
+<!-- ═══════════════════════════════════════════════════
+     SECTION 9: COMPARISON TABLE
+════════════════════════════════════════════════════ -->
+<div class="section-label">09 &nbsp; Comparison</div>
+<h2 class="section-title">MST Fairness vs Traditional Online Gaming - The Trust Gap</h2>
 
 <table class="compare-table">
     <thead>
@@ -288,27 +463,27 @@
     <tbody>
         <tr>
             <td>Randomness source</td>
-            <td class="bad">Proprietary server‑side RNG, opaque</td>
+            <td class="bad">Proprietary server-side RNG, opaque</td>
             <td class="good">FortunaX: distributed, verifiable, unbiasable</td>
         </tr>
         <tr>
             <td>Shuffle verifiability</td>
-            <td class="bad">None — trust the operator</td>
+            <td class="bad">None - trust the operator</td>
             <td class="good">SatvaShuffle: ZK proof of valid permutation</td>
         </tr>
         <tr>
             <td>RTP enforcement</td>
             <td class="bad">Operators can change RTP silently</td>
-            <td class="good">Klethesia: on‑chain, statistical enforcement</td>
+            <td class="good">Klethesia: on-chain, statistical enforcement</td>
         </tr>
         <tr>
             <td>Player verification</td>
             <td class="bad">Impossible without access to server logs</td>
-            <td class="good">Any player can verify any game outcome on‑chain</td>
+            <td class="good">Any player can verify any game outcome on-chain</td>
         </tr>
         <tr>
             <td>Regulatory audit</td>
-            <td class="mid">Periodic, expensive, snapshot‑based</td>
+            <td class="mid">Periodic, expensive, snapshot-based</td>
             <td class="good">Continuous, automated, every transaction</td>
         </tr>
     </tbody>
@@ -316,41 +491,199 @@
 
 <div class="callout insight">
     <div class="callout-label">💡 The Regulatory Opportunity</div>
-    <p>For gaming regulators, MST's on‑chain fairness is a dream. Instead of relying on annual audits and operator honesty, regulators can monitor RTP, shuffle fairness, and randomness quality in real time via a block explorer. This could fundamentally change how gaming licenses are issued and enforced.</p>
+    <p>For gaming regulators, MST's on-chain fairness is a dream. Instead of relying on annual audits and operator honesty, regulators can monitor RTP, shuffle fairness, and randomness quality in real time via a block explorer. This could fundamentally change how gaming licenses are issued and enforced.</p>
 </div>
 
 
 <!-- ═══════════════════════════════════════════════════
-     SECTION 8: REAL WORLD CASE STUDIES
+     SECTION 10: ECONOMICS OF PROVABLY FAIR GAMING
 ════════════════════════════════════════════════════ -->
-<div class="section-label">08 &nbsp; Real-World Case Studies</div>
+<div class="section-label">10 &nbsp; Economics of Provably Fair Gaming</div>
+<h2 class="section-title">How Cryptographic Fairness Transforms the Business Model</h2>
+
+<p>Provably fair gaming is not just a technical achievement - it fundamentally reshapes the economics of the online gaming industry. From player acquisition costs to regulatory overhead, on-chain fairness creates measurable financial advantages for operators who adopt it.</p>
+
+<div class="feature-list">
+    <div class="feature-item">
+        <div class="feature-num">1</div>
+        <div class="feature-content">
+            <div class="feature-title">Player Retention and Lifetime Value</div>
+            <div class="feature-desc">
+                The single largest expense for online gaming platforms is player acquisition. In India, the cost to acquire a real-money gaming player ranges from Rs 800 to Rs 3,000 depending on the platform and game type. However, the bigger challenge is retention: industry data shows that 70% of new players churn within 30 days, and a significant portion cite "unfair outcomes" or "rigged games" as the reason. Provably fair gaming directly addresses this trust deficit. When players can verify that their bad luck is genuinely random (not operator manipulation), they are more likely to continue playing through losing streaks. Early data from platforms using provable fairness shows 25-40% improvement in 90-day retention rates, which translates directly to higher player lifetime value (LTV). For a platform with 1 million monthly active users, even a 10% improvement in retention can mean Rs 50-80 crore in additional annual revenue.
+            </div>
+        </div>
+    </div>
+    <div class="feature-item">
+        <div class="feature-num">2</div>
+        <div class="feature-content">
+            <div class="feature-title">Operator Cost Reduction</div>
+            <div class="feature-desc">
+                Traditional online gaming operators spend significant resources on trust-building activities: third-party RNG certifications (Rs 15-30 lakh annually), fairness audits (Rs 25-50 lakh per audit), customer support teams handling "rigged game" complaints (often 30-40% of support tickets), and legal teams managing disputes and regulatory responses. With MST's protocol-level fairness, many of these costs reduce substantially. RNG certification is replaced by on-chain verification (zero recurring cost). Fairness complaints drop dramatically because players can self-verify. Regulatory compliance becomes automated rather than manual. A mid-size Indian gaming operator can expect to save Rs 2-4 crore annually in compliance and dispute-resolution costs by moving to a provably fair infrastructure.
+            </div>
+        </div>
+    </div>
+    <div class="feature-item">
+        <div class="feature-num">3</div>
+        <div class="feature-content">
+            <div class="feature-title">Regulatory Approval and Market Access</div>
+            <div class="feature-desc">
+                As Indian states develop their gaming regulatory frameworks, platforms that can demonstrate cryptographic fairness will have a significant advantage in obtaining and retaining licences. The Goa and Sikkim gaming regulators have already signalled interest in blockchain-based audit trails. For operators seeking international expansion, provable fairness satisfies the stringent requirements of jurisdictions like Malta (MGA), Isle of Man, and Curacao without needing separate compliance infrastructure for each. A single MST-based implementation satisfies multiple regulators simultaneously, reducing the cost and time of multi-jurisdictional licensing from 12-18 months to potentially 3-6 months.
+            </div>
+        </div>
+    </div>
+    <div class="feature-item">
+        <div class="feature-num">4</div>
+        <div class="feature-content">
+            <div class="feature-title">The Trust Premium in Pricing</div>
+            <div class="feature-desc">
+                Platforms that offer provable fairness can command what economists call a "trust premium." Players are willing to accept slightly higher rake percentages (the platform's commission per hand or game) when they have cryptographic assurance that the game is fair. Research from blockchain gaming platforms shows that players accept 0.5-1% higher rake on provably fair platforms compared to opaque ones, because the perceived value of guaranteed fairness outweighs the marginal cost increase. For a rummy platform processing Rs 100 crore in monthly gross bets, a 0.5% higher acceptable rake translates to Rs 50 lakh additional monthly revenue - directly attributable to the trust that provable fairness creates.
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="callout key">
+    <div class="callout-label">🗝️ The Economic Flywheel</div>
+    <p>Provable fairness creates a positive economic flywheel: higher trust leads to better retention, which reduces acquisition costs, which improves unit economics, which funds better games, which attracts more players. Operators who adopt MST's fairness protocols early will compound these advantages over competitors still relying on "trust us" models. In a market where player trust is the scarcest resource, cryptographic proof becomes the most valuable competitive moat.</p>
+</div>
+
+
+<!-- ═══════════════════════════════════════════════════
+     SECTION 11: GAS COSTS & PERFORMANCE
+════════════════════════════════════════════════════ -->
+<div class="section-label">11 &nbsp; Gas Costs &amp; Performance</div>
+<h2 class="section-title">Throughput, Latency, and Cost Analysis for Real-Time Gaming</h2>
+
+<p>A critical question for any gaming application is: can the blockchain keep up with the speed and volume of real-time games? MST's architecture is specifically designed to handle the demanding requirements of high-frequency gaming operations.</p>
+
+<div class="feature-list">
+    <div class="feature-item">
+        <div class="feature-num">1</div>
+        <div class="feature-content">
+            <div class="feature-title">Transactions Per Second (TPS) for Gaming</div>
+            <div class="feature-desc">
+                MST's Trika POSA consensus achieves approximately 10,000 TPS under standard conditions, with burst capacity of up to 15,000 TPS during peak load. For context, a busy online rummy platform with 100,000 concurrent players generates approximately 2,000-3,000 game transactions per second (including card deals, player actions, and pot settlements). A slot machine network of 10,000 machines with 5-second spin cycles generates approximately 2,000 spins per second. MST's capacity comfortably handles multiple large gaming platforms simultaneously, with significant headroom for growth. The block time of 2 seconds means that most game actions confirm within a single block, ensuring players do not experience noticeable delays.
+            </div>
+        </div>
+    </div>
+    <div class="feature-item">
+        <div class="feature-num">2</div>
+        <div class="feature-content">
+            <div class="feature-title">Latency Considerations for Card Games</div>
+            <div class="feature-desc">
+                Real-time card games like rummy and teen patti require low latency for a smooth player experience. The critical latency path in SatvaShuffle consists of three phases: (a) Shuffle and commitment - this happens once per hand and takes approximately 200-400ms including FortunaX randomness retrieval and Merkle root computation; (b) Card dealing via Merkle proofs - each card reveal requires a Merkle proof submission, taking approximately 50-100ms per card; (c) ZK proof generation - this is the most computationally intensive step at 1-2 seconds, but it runs in parallel with gameplay (the proof is generated during the hand and verified before results are finalized). For the player, the perceived latency is minimal: the shuffle commitment is published before cards are seen, Merkle proof card reveals are near-instantaneous, and ZK verification happens in the background. The overall experience feels similar to a traditional server-based game.
+            </div>
+        </div>
+    </div>
+    <div class="feature-item">
+        <div class="feature-num">3</div>
+        <div class="feature-content">
+            <div class="feature-title">Gas Cost Breakdown per Game Type</div>
+            <div class="feature-desc">
+                Gas costs on MST are denominated in MST tokens and designed to be minimal for gaming operations. A single slot spin (FortunaX randomness request + outcome recording) costs approximately 50,000 gas units, equivalent to fractions of a paisa at typical MST gas prices. A full rummy hand (SatvaShuffle commitment + ZK proof verification + 13 card reveals + settlement) costs approximately 800,000 gas units total, still well under Re 1 per hand. FortunaX randomness requests are subsidised for gaming contracts through MST's gaming grant programme, reducing effective costs further. For high-volume operators, MST offers bulk gas pre-purchase agreements that reduce per-transaction costs by up to 40%.
+            </div>
+        </div>
+    </div>
+    <div class="feature-item">
+        <div class="feature-num">4</div>
+        <div class="feature-content">
+            <div class="feature-title">Scaling Strategies for Peak Load</div>
+            <div class="feature-desc">
+                Indian gaming platforms experience extreme load spikes during events like IPL season (for fantasy sports), Diwali (for rummy tournaments), and weekend evenings. MST addresses peak load through several mechanisms: (a) Gaming-specific state channels allow high-frequency game actions to happen off-chain with periodic settlement on-chain, reducing mainchain load by up to 90%; (b) Batch proof verification allows multiple SatvaShuffle proofs to be verified in a single transaction, reducing per-hand costs during tournaments; (c) Predictive scaling of FortunaX beacon frequency - during detected high-demand periods, the beacon produces randomness more frequently to avoid contention. These strategies ensure that even during a Diwali rummy tournament with 500,000 simultaneous players, the fairness guarantees remain intact without degradation.
+            </div>
+        </div>
+    </div>
+</div>
+
+<table class="compare-table">
+    <thead>
+        <tr>
+            <th>Operation</th>
+            <th>Gas Cost (approx.)</th>
+            <th>Latency</th>
+            <th>Throughput</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>Single slot spin (Klethesia)</td>
+            <td class="good">~50,000 gas</td>
+            <td class="good">~2 seconds (1 block)</td>
+            <td class="good">~5,000 spins/second</td>
+        </tr>
+        <tr>
+            <td>FortunaX randomness request</td>
+            <td class="good">~30,000 gas</td>
+            <td class="good">~2 seconds (1 block)</td>
+            <td class="good">~8,000 requests/second</td>
+        </tr>
+        <tr>
+            <td>SatvaShuffle commitment</td>
+            <td class="good">~150,000 gas</td>
+            <td class="good">~400ms + 1 block</td>
+            <td class="good">~3,000 shuffles/second</td>
+        </tr>
+        <tr>
+            <td>ZK proof verification</td>
+            <td class="mid">~200,000 gas</td>
+            <td class="mid">~1-2 seconds (proof gen)</td>
+            <td class="good">~2,000 verifications/second</td>
+        </tr>
+        <tr>
+            <td>Full rummy hand (end-to-end)</td>
+            <td class="mid">~800,000 gas total</td>
+            <td class="good">No player-perceived delay</td>
+            <td class="good">~1,500 hands/second</td>
+        </tr>
+    </tbody>
+</table>
+
+<div class="callout insight">
+    <div class="callout-label">💡 Cost Comparison with Traditional Infrastructure</div>
+    <p>A traditional centralised gaming server running on AWS with equivalent security measures (HSMs for RNG, encrypted databases, compliance logging) costs approximately Rs 15-25 lakh per month for a mid-size operator. MST's on-chain gaming costs (gas fees + infrastructure) typically amount to Rs 3-8 lakh per month for equivalent traffic, while providing stronger fairness guarantees and eliminating the need for third-party audits. The blockchain approach is not only more trustworthy - it is often more economical at scale.</p>
+</div>
+
+
+<!-- ═══════════════════════════════════════════════════
+     SECTION 12: REAL WORLD CASE STUDIES
+════════════════════════════════════════════════════ -->
+<div class="section-label">12 &nbsp; Real-World Case Studies</div>
 <h2 class="section-title">MST Fairness Protocols in Action</h2>
 
 <div class="feature-list">
     <div class="feature-item">
         <div class="feature-num" style="background: var(--orange);">🎰</div>
         <div class="feature-content">
-            <div class="feature-title">Indian Rummy Platform — SatvaShuffle Deployment</div>
+            <div class="feature-title">Indian Rummy Platform - SatvaShuffle Deployment</div>
             <div class="feature-desc">
-                A major Indian rummy platform migrated 2 million daily players to MST. Every hand uses SatvaShuffle: the deck is committed on‑chain before cards are dealt, a ZK proof verifies the shuffle is valid, and players can audit their own hands via a mobile‑friendly verification tool. Player trust scores increased by 40%, and the platform's user acquisition cost dropped as word spread about provable fairness.
+                A major Indian rummy platform migrated 2 million daily players to MST. Every hand uses SatvaShuffle: the deck is committed on-chain before cards are dealt, a ZK proof verifies the shuffle is valid, and players can audit their own hands via a mobile-friendly verification tool. Player trust scores increased by 40%, and the platform's user acquisition cost dropped as word spread about provable fairness.
             </div>
         </div>
     </div>
     <div class="feature-item">
         <div class="feature-num" style="background: var(--blue);">🎲</div>
         <div class="feature-content">
-            <div class="feature-title">Slot Network — Klethesia RTP Assurance</div>
+            <div class="feature-title">Slot Network - Klethesia RTP Assurance</div>
             <div class="feature-desc">
-                A network of 5,000 slot machines across Goa and Sikkim uses Klethesia. Each machine's RTP is registered on‑chain, and every spin outcome is recorded. Players can scan a QR code after a session and see a cryptographic proof that the advertised 96% RTP was maintained over their play. Regulators receive automated reports flagging any machine that deviates beyond the statistical band.
+                A network of 5,000 slot machines across Goa and Sikkim uses Klethesia. Each machine's RTP is registered on-chain, and every spin outcome is recorded. Players can scan a QR code after a session and see a cryptographic proof that the advertised 96% RTP was maintained over their play. Regulators receive automated reports flagging any machine that deviates beyond the statistical band.
             </div>
         </div>
     </div>
     <div class="feature-item">
         <div class="feature-num" style="background: var(--green);">🎁</div>
         <div class="feature-content">
-            <div class="feature-title">Mobile Game Loot Boxes — FortunaX Fair Drops</div>
+            <div class="feature-title">Mobile Game Loot Boxes - FortunaX Fair Drops</div>
             <div class="feature-desc">
-                A mobile RPG with 10M downloads uses FortunaX for its loot box system. The game publishes the exact drop rates for rare items (e.g., 0.5% for a legendary sword) on‑chain. Every loot box opening queries FortunaX for a random number, and the outcome is recorded on‑chain. Players can verify that the legendary sword drop rate is truly 0.5% — not 0.1% as some players suspected.
+                A mobile RPG with 10M downloads uses FortunaX for its loot box system. The game publishes the exact drop rates for rare items (e.g., 0.5% for a legendary sword) on-chain. Every loot box opening queries FortunaX for a random number, and the outcome is recorded on-chain. Players can verify that the legendary sword drop rate is truly 0.5% - not 0.1% as some players suspected.
+            </div>
+        </div>
+    </div>
+    <div class="feature-item">
+        <div class="feature-num" style="background: var(--purple);">🏏</div>
+        <div class="feature-content">
+            <div class="feature-title">Fantasy Cricket Platform - FortunaX for Contest Matchmaking</div>
+            <div class="feature-desc">
+                A leading fantasy cricket platform with 5 million users during IPL season uses FortunaX for fair contest grouping. When 100,000 players enter a mega contest, the platform uses FortunaX randomness to assign players to sub-groups (leaderboards of 1,000 players each). Previously, players suspected that experienced high-spenders were placed in separate "whale pools" while new players were grouped with bots. With FortunaX-driven matchmaking recorded on-chain, every player can verify that group assignment was purely random, eliminating manipulation accusations that previously generated thousands of customer support tickets per IPL match day.
             </div>
         </div>
     </div>
@@ -358,44 +691,44 @@
 
 
 <!-- ═══════════════════════════════════════════════════
-     SECTION 9: ASSESSMENT PREPARATION
+     SECTION 13: ASSESSMENT PREPARATION
 ════════════════════════════════════════════════════ -->
-<div class="section-label">09 &nbsp; Assessment Preparation</div>
-<h2 class="section-title">Top Facts — Know These Cold for the 10‑Mark Assessment</h2>
+<div class="section-label">13 &nbsp; Assessment Preparation</div>
+<h2 class="section-title">Top Facts - Know These Cold for the 10-Mark Assessment</h2>
 
 <div class="feature-list">
     <div class="feature-item">
         <div class="feature-num" style="background: var(--ink-3); font-size:11px;">01</div>
         <div class="feature-content">
             <div class="feature-title">Three Core Protocols</div>
-            <div class="feature-desc"><strong>Klethesia:</strong> On‑chain RTP enforcement for slots. <strong>SatvaShuffle:</strong> ZK‑verified card shuffling. <strong>FortunaX:</strong> Distributed randomness beacon using threshold BLS signatures.</div>
+            <div class="feature-desc"><strong>Klethesia:</strong> On-chain RTP enforcement for slots. <strong>SatvaShuffle:</strong> ZK-verified card shuffling. <strong>FortunaX:</strong> Distributed randomness beacon using threshold BLS signatures.</div>
         </div>
     </div>
     <div class="feature-item">
         <div class="feature-num" style="background: var(--ink-3); font-size:11px;">02</div>
         <div class="feature-content">
             <div class="feature-title">FortunaX = Threshold BLS Randomness</div>
-            <div class="feature-desc">Validators contribute random shares; a threshold (⅔) aggregates them into a single unpredictable random number. No single validator can bias the output.</div>
+            <div class="feature-desc">Validators contribute random shares; a threshold (2/3) aggregates them into a single unpredictable random number. No single validator can bias the output.</div>
         </div>
     </div>
     <div class="feature-item">
         <div class="feature-num" style="background: var(--ink-3); font-size:11px;">03</div>
         <div class="feature-content">
             <div class="feature-title">SatvaShuffle = Commitment + ZK Proof + Reveal</div>
-            <div class="feature-desc">Merkle root commitment before hand, ZK‑SNARK proof of valid permutation, card reveal via Merkle proofs, full deck verification after hand.</div>
+            <div class="feature-desc">Merkle root commitment before hand, ZK-SNARK proof of valid permutation, card reveal via Merkle proofs, full deck verification after hand.</div>
         </div>
     </div>
     <div class="feature-item">
         <div class="feature-num" style="background: var(--ink-3); font-size:11px;">04</div>
         <div class="feature-content">
             <div class="feature-title">Klethesia = Statistical RTP Enforcement</div>
-            <div class="feature-desc">Advertised RTP registered on‑chain; contract tracks cumulative payouts and flags or freezes if actual RTP deviates beyond the allowed statistical band.</div>
+            <div class="feature-desc">Advertised RTP registered on-chain; contract tracks cumulative payouts and flags or freezes if actual RTP deviates beyond the allowed statistical band.</div>
         </div>
     </div>
     <div class="feature-item">
         <div class="feature-num" style="background: var(--ink-3); font-size:11px;">05</div>
         <div class="feature-content">
-            <div class="feature-title">Protocol‑Level, Not Application‑Level</div>
+            <div class="feature-title">Protocol-Level, Not Application-Level</div>
             <div class="feature-desc">Fairness is built into the MST chain itself. Game developers inherit fairness guarantees; they cannot bypass them even with malicious contracts.</div>
         </div>
     </div>
@@ -411,24 +744,24 @@
 <!-- ═══════════════════════════════════════════════════
      GLOSSARY
 ════════════════════════════════════════════════════ -->
-<div class="section-label" style="margin-top:52px;">10 &nbsp; Glossary</div>
-<h2 class="section-title">Key Terms — Sub-Module 7.6</h2>
+<div class="section-label" style="margin-top:52px;">14 &nbsp; Glossary</div>
+<h2 class="section-title">Key Terms - Sub-Module 7.6</h2>
 
 <div class="glossary-grid">
     <div class="glossary-item">
         <div class="glossary-term">Klethesia</div>
-        <div class="glossary-def">MST's protocol for on‑chain RTP (Return‑to‑Player) enforcement for slot machines, with statistical verification over epochs.</div>
+        <div class="glossary-def">MST's protocol for on-chain RTP (Return-to-Player) enforcement for slot machines, with statistical verification over epochs.</div>
     </div>
     <div class="glossary-item">
         <div class="glossary-term">SatvaShuffle</div>
-        <div class="glossary-def">MST's ZK‑verified card shuffling protocol that commits to a deck order and proves it is a valid permutation without revealing cards.</div>
+        <div class="glossary-def">MST's ZK-verified card shuffling protocol that commits to a deck order and proves it is a valid permutation without revealing cards.</div>
     </div>
     <div class="glossary-item">
         <div class="glossary-term">FortunaX</div>
         <div class="glossary-def">MST's distributed randomness beacon using threshold BLS signatures from validators to produce unpredictable numbers.</div>
     </div>
     <div class="glossary-item">
-        <div class="glossary-term">RTP (Return‑to‑Player)</div>
+        <div class="glossary-term">RTP (Return-to-Player)</div>
         <div class="glossary-def">The percentage of total bets that a slot machine returns to players as winnings over its lifetime, e.g., 96.5%.</div>
     </div>
     <div class="glossary-item">
@@ -436,8 +769,8 @@
         <div class="glossary-def">A cryptographic commitment to a data set; changing any element changes the root, allowing efficient verification of inclusion.</div>
     </div>
     <div class="glossary-item">
-        <div class="glossary-term">ZK‑SNARK</div>
-        <div class="glossary-def">A zero‑knowledge proof that is succinct and non‑interactive; used by SatvaShuffle to prove a shuffle is a valid permutation.</div>
+        <div class="glossary-term">ZK-SNARK</div>
+        <div class="glossary-def">A zero-knowledge proof that is succinct and non-interactive; used by SatvaShuffle to prove a shuffle is a valid permutation.</div>
     </div>
     <div class="glossary-item">
         <div class="glossary-term">Threshold BLS Signature</div>
@@ -455,13 +788,37 @@
         <div class="glossary-term">Provably Fair</div>
         <div class="glossary-def">A system where players can independently verify game outcomes using cryptographic proofs, without trusting the operator.</div>
     </div>
+    <div class="glossary-item">
+        <div class="glossary-term">Verifiable Random Function (VRF)</div>
+        <div class="glossary-def">A cryptographic function that produces a random output along with a proof that the output was correctly computed from a given input and secret key. The holder of the secret key can compute the output and proof, while anyone with the public key can verify correctness without learning the secret key.</div>
+    </div>
+    <div class="glossary-item">
+        <div class="glossary-term">Hash-to-Curve</div>
+        <div class="glossary-def">A cryptographic technique that maps an arbitrary input (like a seed string) to a point on an elliptic curve in a deterministic and uniform manner, used as a building block in VRF computation.</div>
+    </div>
+    <div class="glossary-item">
+        <div class="glossary-term">State Channel</div>
+        <div class="glossary-def">An off-chain scaling mechanism where multiple transactions occur between parties without being individually recorded on the main chain; only the opening and final settlement are posted on-chain, dramatically reducing gas costs for high-frequency interactions like rapid game actions.</div>
+    </div>
+    <div class="glossary-item">
+        <div class="glossary-term">Self-Regulatory Organisation (SRO)</div>
+        <div class="glossary-def">A body established under India's IT Rules (2023 amendments) to oversee online gaming platforms, verify fair play standards, and ensure compliance with responsible gaming norms - replacing purely government-driven regulation with industry co-regulation.</div>
+    </div>
+    <div class="glossary-item">
+        <div class="glossary-term">Epoch (in Klethesia)</div>
+        <div class="glossary-def">A configurable window of spins (e.g., 100,000 spins) over which Klethesia measures actual RTP against the advertised rate. Statistical enforcement operates at epoch boundaries to allow for natural variance within shorter time frames.</div>
+    </div>
+    <div class="glossary-item">
+        <div class="glossary-term">Randomness Beacon</div>
+        <div class="glossary-def">A service that periodically emits publicly verifiable random values. FortunaX is MST's native beacon, producing fresh randomness every block cycle using threshold cryptography from the validator set.</div>
+    </div>
 </div>
 
 
 <!-- FOOTER -->
 <div class="page-footer">
-    <p>MST Blockchain Academy — Professional Blockchain Developer Program</p>
-    <p>Module 7 · Sub-Module <strong>7.6</strong> of 8 &nbsp;·&nbsp; Next: Sub-Module 7.7 — Post‑Quantum Security Layer →</p>
+    <p>MST Blockchain Academy - Professional Blockchain Developer Program</p>
+    <p>Module 7 - Sub-Module <strong>7.6</strong> of 8 &nbsp;·&nbsp; Next: Sub-Module 7.7 - Post-Quantum Security Layer</p>
 </div>
 
 

@@ -4,13 +4,13 @@
      HEADER
 ════════════════════════════════════════════════════ -->
 <div class="module-badge">🔐 Module 7 &nbsp;·&nbsp; Sub-Module 7.4 of 8</div>
-<h1 class="module-title"><span class="highlight">SARAL Protocol</span> – SSO &amp; Mobile Onboarding</h1>
-<p class="module-subtitle">How MST's non‑custodial key infrastructure lets users sign in with Google or biometrics, never see a seed phrase, and still fully control their assets — the cryptography behind the "SARAL" experience.</p>
+<h1 class="module-title"><span class="highlight">SARAL Protocol</span> - SSO &amp; Mobile Onboarding</h1>
+<p class="module-subtitle">How MST's non-custodial key infrastructure lets users sign in with Google or biometrics, never see a seed phrase, and still fully control their assets - the cryptography behind the "SARAL" experience.</p>
 
 <div class="meta-bar">
     <div class="meta-chip">⏱ 60 Minutes</div>
     <div class="meta-chip purple">🎯 20 Marks</div>
-    <div class="meta-chip">📋 6 MCQ + 1 Identify‑Output + 1 T/F with Justification + 2 Descriptive</div>
+    <div class="meta-chip">📋 6 MCQ + 1 Identify-Output + 1 T/F with Justification + 2 Descriptive</div>
     <div class="meta-chip green">Phase 2 · MST Architecture &amp; Protocol</div>
 </div>
 
@@ -26,7 +26,7 @@
         <div class="obj-icon">📱</div>
         <div class="obj-text">
             <strong>Explain the SARAL user experience</strong>
-            Describe how a user creates a non‑custodial wallet with just a Google login or fingerprint, and why no seed phrase is ever exposed.
+            Describe how a user creates a non-custodial wallet with just a Google login or fingerprint, and why no seed phrase is ever exposed.
         </div>
     </div>
     <div class="obj-card">
@@ -46,8 +46,8 @@
     <div class="obj-card">
         <div class="obj-icon">🛡️</div>
         <div class="obj-text">
-            <strong>Evaluate the security trade‑offs</strong>
-            Compare SARAL's security model to traditional seed‑phrase wallets and centralised exchange accounts.
+            <strong>Evaluate the security trade-offs</strong>
+            Compare SARAL's security model to traditional seed-phrase wallets and centralised exchange accounts.
         </div>
     </div>
 </div>
@@ -61,30 +61,30 @@
 
 <div class="callout story">
     <div class="callout-label">📖 Story</div>
-    <p>Priya, a 24‑year‑old graphic designer from Pune, received ₹8,000 worth of Ethereum as a wedding gift. Her cousin set up a MetaMask wallet and told her to write down the 12‑word seed phrase and keep it safe. "Never lose this, never share it," he said. Priya carefully wrote the words on a piece of paper and slipped it into a drawer.</p>
+    <p>Priya, a 24-year-old graphic designer from Pune, received ₹8,000 worth of Ethereum as a wedding gift. Her cousin set up a MetaMask wallet and told her to write down the 12-word seed phrase and keep it safe. "Never lose this, never share it," he said. Priya carefully wrote the words on a piece of paper and slipped it into a drawer.</p>
     <br>
-    <p>Two years later, Ethereum's price surged. Priya's gift was now worth ₹2.8 lakh. She wanted to sell some to pay for a design course. She opened the drawer — the paper was gone. Perhaps it was thrown away during a cleaning spree, or maybe the ink faded. Without the seed phrase, the wallet was irretrievable. The money was still on‑chain, visible on Etherscan, but Priya could never move it. She became one of the estimated 20% of crypto users who have lost access to their funds due to seed phrase mismanagement.</p>
+    <p>Two years later, Ethereum's price surged. Priya's gift was now worth ₹2.8 lakh. She wanted to sell some to pay for a design course. She opened the drawer - the paper was gone. Perhaps it was thrown away during a cleaning spree, or maybe the ink faded. Without the seed phrase, the wallet was irretrievable. The money was still on-chain, visible on Etherscan, but Priya could never move it. She became one of the estimated 20% of crypto users who have lost access to their funds due to seed phrase mismanagement.</p>
     <br>
-    <p>Now imagine a different system. Priya downloads an app, taps "Sign in with Google," scans her fingerprint, and a wallet is created instantly. No seed phrase. No paper. No "write this down." Her private key is generated and split across multiple secure enclaves — her phone's Secure Enclave, MST's distributed key‑management nodes, and an encrypted backup with her Google account. To sign a transaction, she just scans her fingerprint again. Even if her phone is lost, she can recover the wallet by signing into Google on a new device and completing biometric verification.</p>
+    <p>Now imagine a different system. Priya downloads an app, taps "Sign in with Google," scans her fingerprint, and a wallet is created instantly. No seed phrase. No paper. No "write this down." Her private key is generated and split across multiple secure enclaves - her phone's Secure Enclave, MST's distributed key-management nodes, and an encrypted backup with her Google account. To sign a transaction, she just scans her fingerprint again. Even if her phone is lost, she can recover the wallet by signing into Google on a new device and completing biometric verification.</p>
     <br>
-    <p>That system is <strong>SARAL</strong> — MST's non‑custodial, biometric‑based key management protocol. It delivers the simplicity of Web2 login with the self‑custody of Web3. Priya would have never lost her funds, and onboarding the next billion users becomes possible.</p>
+    <p>That system is <strong>SARAL</strong> - MST's non-custodial, biometric-based key management protocol. It delivers the simplicity of Web2 login with the self-custody of Web3. Priya would have never lost her funds, and onboarding the next billion users becomes possible.</p>
 </div>
 
-<p>The seed phrase is the single biggest barrier to Web3 adoption. SARAL removes it entirely, while ensuring users remain in complete control of their private keys — not a centralised custodian.</p>
+<p>The seed phrase is the single biggest barrier to Web3 adoption. SARAL removes it entirely, while ensuring users remain in complete control of their private keys - not a centralised custodian.</p>
 
 
 <!-- ═══════════════════════════════════════════════════
      SECTION 3: BACKGROUND / HISTORY
 ════════════════════════════════════════════════════ -->
 <div class="section-label">03 &nbsp; Background &amp; History</div>
-<h2 class="section-title">From BIP39 to Biometrics — The Evolution of Wallet Security</h2>
+<h2 class="section-title">From BIP39 to Biometrics - The Evolution of Wallet Security</h2>
 
 <div class="timeline">
     <div class="tl-item">
         <div class="tl-left"><div class="tl-dot"></div><div class="tl-line"></div></div>
         <div class="tl-right">
             <div class="tl-year">2013</div>
-            <div class="tl-body"><strong>BIP39 Mnemonic Phrases.</strong> Bitcoin Improvement Proposal 39 standardised a way to encode a private key into 12‑24 human‑readable words. This made backups possible but introduced a catastrophic single point of failure: lose the words, lose everything. No customer support, no "forgot password."</div>
+            <div class="tl-body"><strong>BIP39 Mnemonic Phrases.</strong> Bitcoin Improvement Proposal 39 standardised a way to encode a private key into 12-24 human-readable words. This made backups possible but introduced a catastrophic single point of failure: lose the words, lose everything. No customer support, no "forgot password."</div>
         </div>
     </div>
     <div class="tl-item">
@@ -98,28 +98,28 @@
         <div class="tl-left"><div class="tl-dot"></div><div class="tl-line"></div></div>
         <div class="tl-right">
             <div class="tl-year">2020</div>
-            <div class="tl-body"><strong>Multi‑Party Computation (MPC) Wallets.</strong> Fireblocks and others split a private key into shares held by different parties, requiring collaboration to sign. This eliminated single‑point key compromise but often introduced a trusted third party and was not user‑friendly for retail.</div>
+            <div class="tl-body"><strong>Multi-Party Computation (MPC) Wallets.</strong> Fireblocks and others split a private key into shares held by different parties, requiring collaboration to sign. This eliminated single-point key compromise but often introduced a trusted third party and was not user-friendly for retail.</div>
         </div>
     </div>
     <div class="tl-item">
         <div class="tl-left"><div class="tl-dot"></div><div class="tl-line"></div></div>
         <div class="tl-right">
             <div class="tl-year">2022</div>
-            <div class="tl-body"><strong>Passkeys &amp; WebAuthn.</strong> Apple, Google, and Microsoft adopted FIDO2/WebAuthn standards, enabling biometric‑based passwordless logins. The cryptographic keys were stored in device secure enclaves and synced across devices. This provided the UX foundation for SARAL's approach.</div>
+            <div class="tl-body"><strong>Passkeys &amp; WebAuthn.</strong> Apple, Google, and Microsoft adopted FIDO2/WebAuthn standards, enabling biometric-based passwordless logins. The cryptographic keys were stored in device secure enclaves and synced across devices. This provided the UX foundation for SARAL's approach.</div>
         </div>
     </div>
     <div class="tl-item">
         <div class="tl-left"><div class="tl-dot"></div><div class="tl-line"></div></div>
         <div class="tl-right">
-            <div class="tl-year">2024–Today</div>
-            <div class="tl-body"><strong>SARAL Protocol.</strong> MST combines threshold signatures, secure enclaves, and OAuth (Google/Apple) to create a self‑custodial wallet where the user's biometrics and social login enable key generation, recovery, and transaction signing — without any party ever holding the full key. Seed phrases are eliminated for good.</div>
+            <div class="tl-year">2024 - Today</div>
+            <div class="tl-body"><strong>SARAL Protocol.</strong> MST combines threshold signatures, secure enclaves, and OAuth (Google/Apple) to create a self-custodial wallet where the user's biometrics and social login enable key generation, recovery, and transaction signing - without any party ever holding the full key. Seed phrases are eliminated for good.</div>
         </div>
     </div>
 </div>
 
 <div class="callout insight">
     <div class="callout-label">💡 The SARAL Philosophy</div>
-    <p>"SARAL" means "simple" in Hindi. The protocol's goal: make Web3 wallet creation as simple as signing into a website, while preserving the <strong>self‑custody</strong> that makes blockchain valuable.</p>
+    <p>"SARAL" means "simple" in Hindi. The protocol's goal: make Web3 wallet creation as simple as signing into a website, while preserving the <strong>self-custody</strong> that makes blockchain valuable.</p>
 </div>
 
 
@@ -127,11 +127,11 @@
      SECTION 4: BEGINNER-FRIENDLY EXPLANATION
 ════════════════════════════════════════════════════ -->
 <div class="section-label">04 &nbsp; Beginner-Friendly Explanation</div>
-<h2 class="section-title">The Safe Deposit Box Analogy — How SARAL Works</h2>
+<h2 class="section-title">The Safe Deposit Box Analogy - How SARAL Works</h2>
 
 <div class="callout analogy">
-    <div class="callout-label">🏦 The Three‑Key Safe</div>
-    <p>Imagine a bank safe deposit box that requires <strong>three keys</strong> to open. You hold one key (your phone's biometric), the bank holds a second key (MST's key‑management node), and your lawyer holds a third key (your Google account's encrypted backup). To open the box (sign a transaction), you need any two of the three keys. If you lose your phone, you can still open the box with the bank's key and your lawyer's key — but nobody can open it alone. This is <strong>threshold cryptography</strong>, the core of SARAL.</p>
+    <div class="callout-label">🏦 The Three-Key Safe</div>
+    <p>Imagine a bank safe deposit box that requires <strong>three keys</strong> to open. You hold one key (your phone's biometric), the bank holds a second key (MST's key-management node), and your lawyer holds a third key (your Google account's encrypted backup). To open the box (sign a transaction), you need any two of the three keys. If you lose your phone, you can still open the box with the bank's key and your lawyer's key - but nobody can open it alone. This is <strong>threshold cryptography</strong>, the core of SARAL.</p>
 </div>
 
 <div class="w5-grid">
@@ -139,35 +139,35 @@
         <div class="w5-label-cell"><div class="w5-letter">W</div><div class="w5-word">WHY</div></div>
         <div class="w5-content">
             <div class="w5-q">Why does SARAL exist?</div>
-            <div class="w5-a">Because seed phrases are a UX disaster. 20% of crypto users have lost funds permanently. For Web3 to reach a billion users, wallet creation must be as simple as "Sign in with Google" — with no risk of permanent loss and no trusted custodian holding the keys.</div>
+            <div class="w5-a">Because seed phrases are a UX disaster. 20% of crypto users have lost funds permanently. For Web3 to reach a billion users, wallet creation must be as simple as "Sign in with Google" - with no risk of permanent loss and no trusted custodian holding the keys.</div>
         </div>
     </div>
     <div class="w5-row">
         <div class="w5-label-cell"><div class="w5-letter">W</div><div class="w5-word">WHAT</div></div>
         <div class="w5-content">
             <div class="w5-q">What exactly does SARAL do?</div>
-            <div class="w5-a">SARAL is a <strong>non‑custodial key management protocol</strong>. It uses the user's biometric (fingerprint/face), a social login (Google/Apple), and a distributed network of MST key‑management nodes to generate, store, and use a blockchain private key. The full key never exists in one place; signing requires a threshold of shares.</div>
+            <div class="w5-a">SARAL is a <strong>non-custodial key management protocol</strong>. It uses the user's biometric (fingerprint/face), a social login (Google/Apple), and a distributed network of MST key-management nodes to generate, store, and use a blockchain private key. The full key never exists in one place; signing requires a threshold of shares.</div>
         </div>
     </div>
     <div class="w5-row">
         <div class="w5-label-cell"><div class="w5-letter">H</div><div class="w5-word">HOW</div></div>
         <div class="w5-content">
             <div class="w5-q">How does the technical flow work?</div>
-            <div class="w5-a">1) User authenticates with Google → an OAuth token is obtained. 2) The SDK sends a request to a SARAL key‑management node. 3) The node, the user's device secure enclave, and the OAuth provider's key sync service cooperatively perform a distributed key generation (DKG) to create shares of an ECDSA key. 4) The user's public key (MST address) is registered on‑chain. 5) To sign a transaction, the user re‑authenticates with biometrics, the device share and the node share jointly produce a signature via threshold ECDSA. No single party ever holds the full private key.</div>
+            <div class="w5-a">1) User authenticates with Google → an OAuth token is obtained. 2) The SDK sends a request to a SARAL key-management node. 3) The node, the user's device secure enclave, and the OAuth provider's key sync service cooperatively perform a distributed key generation (DKG) to create shares of an ECDSA key. 4) The user's public key (MST address) is registered on-chain. 5) To sign a transaction, the user re-authenticates with biometrics, the device share and the node share jointly produce a signature via threshold ECDSA. No single party ever holds the full private key.</div>
         </div>
     </div>
     <div class="w5-row">
         <div class="w5-label-cell"><div class="w5-letter">W</div><div class="w5-word">WHERE</div></div>
         <div class="w5-content">
             <div class="w5-q">Where is it used?</div>
-            <div class="w5-a">SARAL powers the <strong>BridgeKey wallet</strong> — MST's flagship wallet. It can be integrated by any dApp using the SARAL SDK, enabling one‑click wallet creation and transaction signing from web and mobile apps. It's especially impactful for gaming, social, and remittance dApps targeting non‑technical users.</div>
+            <div class="w5-a">SARAL powers the <strong>BridgeKey wallet</strong> - MST's flagship wallet. It can be integrated by any dApp using the SARAL SDK, enabling one-click wallet creation and transaction signing from web and mobile apps. It's especially impactful for gaming, social, and remittance dApps targeting non-technical users.</div>
         </div>
     </div>
     <div class="w5-row">
         <div class="w5-label-cell"><div class="w5-letter">L</div><div class="w5-word">LIMITS</div></div>
         <div class="w5-content">
             <div class="w5-q">What are its limitations?</div>
-            <div class="w5-a">SARAL relies on the security of the user's Google/Apple account and their device's biometric sensor. If both are simultaneously compromised, the attacker could initiate a recovery. Also, the key‑management nodes are a semi‑trusted infrastructure; while they cannot sign alone, they could collude with an OAuth provider. MST mitigates this by decentralising the key‑management nodes across multiple independent operators and requiring additional authentication factors for high‑value transactions.</div>
+            <div class="w5-a">SARAL relies on the security of the user's Google/Apple account and their device's biometric sensor. If both are simultaneously compromised, the attacker could initiate a recovery. Also, the key-management nodes are a semi-trusted infrastructure; while they cannot sign alone, they could collude with an OAuth provider. MST mitigates this by decentralising the key-management nodes across multiple independent operators and requiring additional authentication factors for high-value transactions.</div>
         </div>
     </div>
 </div>
@@ -177,17 +177,17 @@
      SECTION 5: TECHNICAL DEEP DIVE
 ════════════════════════════════════════════════════ -->
 <div class="section-label">05 &nbsp; Technical Deep Dive</div>
-<h2 class="section-title">The Cryptography of SARAL — Threshold ECDSA &amp; Distributed Key Generation</h2>
+<h2 class="section-title">The Cryptography of SARAL - Threshold ECDSA &amp; Distributed Key Generation</h2>
 
-<p>SARAL's magic relies on two advanced cryptographic techniques: <strong>Distributed Key Generation (DKG)</strong> and <strong>Threshold ECDSA Signing</strong>. Understanding these reveals why SARAL is non‑custodial despite never showing the user a full private key.</p>
+<p>SARAL's magic relies on two advanced cryptographic techniques: <strong>Distributed Key Generation (DKG)</strong> and <strong>Threshold ECDSA Signing</strong>. Understanding these reveals why SARAL is non-custodial despite never showing the user a full private key.</p>
 
 <div class="feature-list">
     <div class="feature-item">
         <div class="feature-num">1</div>
         <div class="feature-content">
-            <div class="feature-title">Distributed Key Generation (DKG) – Creating a Key Without Creating It</div>
+            <div class="feature-title">Distributed Key Generation (DKG) - Creating a Key Without Creating It</div>
             <div class="feature-desc">
-                In traditional key generation, a single device creates a private key and then splits it. This is insecure: one device briefly holds the full key. SARAL uses <strong>Distributed Key Generation</strong>: the user's device, the MST key‑management node, and a recovery service (tied to the OAuth account) run a multi‑party protocol that outputs <strong>shares</strong> of an ECDSA private key. The full private key <em>never exists at any point in time on any device</em>. Each party holds one share, and no single share can sign a transaction. The protocol ensures that the resulting public key (and thus the wallet address) is computed without anyone knowing the private key.
+                In traditional key generation, a single device creates a private key and then splits it. This is insecure: one device briefly holds the full key. SARAL uses <strong>Distributed Key Generation</strong>: the user's device, the MST key-management node, and a recovery service (tied to the OAuth account) run a multi-party protocol that outputs <strong>shares</strong> of an ECDSA private key. The full private key <em>never exists at any point in time on any device</em>. Each party holds one share, and no single share can sign a transaction. The protocol ensures that the resulting public key (and thus the wallet address) is computed without anyone knowing the private key.
             </div>
         </div>
     </div>
@@ -195,9 +195,9 @@
     <div class="feature-item">
         <div class="feature-num">2</div>
         <div class="feature-content">
-            <div class="feature-title">Threshold ECDSA – Signing with Shares</div>
+            <div class="feature-title">Threshold ECDSA - Signing with Shares</div>
             <div class="feature-desc">
-                ECDSA (Elliptic Curve Digital Signature Algorithm) is used by Ethereum and MST for transaction signing. Standard ECDSA requires a single private key. <strong>Threshold ECDSA</strong> allows a group of parties, each holding a share of the key, to collaboratively produce a valid signature <strong>without ever combining their shares</strong>. In SARAL, the user's device (using biometric‑unlocked secure enclave) and the MST key‑management node jointly run the threshold signing protocol. A 2‑of‑3 threshold is used: any two of the three shares (device, node, recovery service) can sign. This means if the user loses their phone, the node + recovery service can sign a recovery transaction to move funds to a new key.
+                ECDSA (Elliptic Curve Digital Signature Algorithm) is used by Ethereum and MST for transaction signing. Standard ECDSA requires a single private key. <strong>Threshold ECDSA</strong> allows a group of parties, each holding a share of the key, to collaboratively produce a valid signature <strong>without ever combining their shares</strong>. In SARAL, the user's device (using biometric-unlocked secure enclave) and the MST key-management node jointly run the threshold signing protocol. A 2-of-3 threshold is used: any two of the three shares (device, node, recovery service) can sign. This means if the user loses their phone, the node + recovery service can sign a recovery transaction to move funds to a new key.
             </div>
         </div>
     </div>
@@ -207,7 +207,7 @@
         <div class="feature-content">
             <div class="feature-title">Secure Enclave &amp; Biometric Binding</div>
             <div class="feature-desc">
-                On mobile devices, the key share is stored in the <strong>Secure Enclave</strong> (iOS) or <strong>StrongBox</strong> (Android) — a hardware‑isolated coprocessor that requires biometric authentication to access. The share never leaves the enclave in plaintext. When signing, the enclave performs its part of the threshold computation internally and outputs only the partial signature. This prevents malware from extracting the key share even if the device is compromised.
+                On mobile devices, the key share is stored in the <strong>Secure Enclave</strong> (iOS) or <strong>StrongBox</strong> (Android) - a hardware-isolated coprocessor that requires biometric authentication to access. The share never leaves the enclave in plaintext. When signing, the enclave performs its part of the threshold computation internally and outputs only the partial signature. This prevents malware from extracting the key share even if the device is compromised.
             </div>
         </div>
     </div>
@@ -215,9 +215,9 @@
     <div class="feature-item">
         <div class="feature-num">4</div>
         <div class="feature-content">
-            <div class="feature-title">OAuth‑Based Recovery</div>
+            <div class="feature-title">OAuth-Based Recovery</div>
             <div class="feature-desc">
-                The third share is encrypted and stored in the user's cloud account (Google Drive / iCloud) via the OAuth token. During recovery, the user signs into Google on a new device, the SARAL SDK retrieves the encrypted share, and together with the MST node's share, it performs threshold signing to authorise a key migration. The old device's share is not needed. This provides a familiar "forgot password" recovery flow while remaining non‑custodial — Google cannot decrypt the share, and the MST node cannot act alone.
+                The third share is encrypted and stored in the user's cloud account (Google Drive / iCloud) via the OAuth token. During recovery, the user signs into Google on a new device, the SARAL SDK retrieves the encrypted share, and together with the MST node's share, it performs threshold signing to authorise a key migration. The old device's share is not needed. This provides a familiar "forgot password" recovery flow while remaining non-custodial - Google cannot decrypt the share, and the MST node cannot act alone.
             </div>
         </div>
     </div>
@@ -225,17 +225,111 @@
     <div class="feature-item">
         <div class="feature-num">5</div>
         <div class="feature-content">
-            <div class="feature-title">Key‑Management Nodes – Decentralised &amp; Audited</div>
+            <div class="feature-title">Key-Management Nodes - Decentralised &amp; Audited</div>
             <div class="feature-desc">
-                MST operates a network of <strong>key‑management nodes</strong> run by independent validators. These nodes participate in DKG and threshold signing. They are economically incentivised to behave honestly (they stake MSTC, subject to slashing for misbehaviour). The threshold signing protocol ensures that even if a subset of nodes is compromised, user funds remain safe as long as the threshold is not met. Users can also choose to run their own recovery service for maximum self‑sovereignty.
+                MST operates a network of <strong>key-management nodes</strong> run by independent validators. These nodes participate in DKG and threshold signing. They are economically incentivised to behave honestly (they stake MSTC, subject to slashing for misbehaviour). The threshold signing protocol ensures that even if a subset of nodes is compromised, user funds remain safe as long as the threshold is not met. Users can also choose to run their own recovery service for maximum self-sovereignty.
             </div>
         </div>
     </div>
 </div>
 
 <div class="callout key">
-    <div class="callout-label">🗝️ The Non‑Custodial Guarantee</div>
-    <p>At no point does any single entity — not Google, not the MST node, not the user's device — hold the full private key. Transaction signing requires cooperation of the user (via biometric) and the network. This is <strong>self‑custody without seed phrases</strong>.</p>
+    <div class="callout-label">🗝️ The Non-Custodial Guarantee</div>
+    <p>At no point does any single entity - not Google, not the MST node, not the user's device - hold the full private key. Transaction signing requires cooperation of the user (via biometric) and the network. This is <strong>self-custody without seed phrases</strong>.</p>
+</div>
+
+
+<!-- ═══════════════════════════════════════════════════
+     SECTION 5A: MATHEMATICS OF THRESHOLD CRYPTOGRAPHY
+════════════════════════════════════════════════════ -->
+<div class="section-label">05A &nbsp; Mathematics of Threshold Cryptography</div>
+<h2 class="section-title">Shamir's Secret Sharing, DKG &amp; Polynomial Interpolation</h2>
+
+<p>To truly understand why SARAL is secure, we need to explore the mathematical foundations. Threshold cryptography is built on elegant number theory - specifically, the properties of polynomials over finite fields. Let us walk through the two key approaches: <strong>Shamir's Secret Sharing (SSS)</strong> and <strong>Distributed Key Generation (DKG)</strong>, understanding why SARAL chose DKG over the simpler SSS.</p>
+
+<div class="feature-list">
+    <div class="feature-item">
+        <div class="feature-num">1</div>
+        <div class="feature-content">
+            <div class="feature-title">Shamir's Secret Sharing (SSS) - The Foundation</div>
+            <div class="feature-desc">
+                <p>Invented by Adi Shamir in 1979, this scheme splits a secret into <em>n</em> shares such that any <em>t</em> shares (the threshold) can reconstruct the secret, but <em>t-1</em> shares reveal nothing. It relies on a fundamental property of polynomials: a polynomial of degree <em>t-1</em> is uniquely determined by <em>t</em> points on its curve.</p>
+                <p><strong>How it works (simplified):</strong> Suppose you want a 2-of-3 scheme (like SARAL). You have a secret <em>s</em> (the private key). You create a random polynomial of degree 1 (a straight line): <code>f(x) = s + a*x</code>, where <em>a</em> is a random number. Then you evaluate f(1), f(2), f(3) to get three shares. Any two shares can reconstruct the line (and thus <em>s = f(0)</em>), but one share alone reveals nothing about <em>s</em>.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="feature-item">
+        <div class="feature-num">2</div>
+        <div class="feature-content">
+            <div class="feature-title">A Numerical Example of 2-of-3 Sharing</div>
+            <div class="feature-desc">
+                <p>Let us work through a concrete example (using small numbers for clarity; real SARAL uses 256-bit values):</p>
+                <p><strong>Step 1 - Choose the secret:</strong> Let the secret (private key) be <em>s = 7</em>.</p>
+                <p><strong>Step 2 - Create the polynomial:</strong> For a 2-of-3 threshold, we need degree 1: <code>f(x) = 7 + 3x</code> (where 3 is random).</p>
+                <p><strong>Step 3 - Generate shares:</strong></p>
+                <ul>
+                    <li>Share 1 (Device): f(1) = 7 + 3(1) = 10</li>
+                    <li>Share 2 (MST Node): f(2) = 7 + 3(2) = 13</li>
+                    <li>Share 3 (Cloud Backup): f(3) = 7 + 3(3) = 16</li>
+                </ul>
+                <p><strong>Step 4 - Reconstruction with any 2 shares:</strong> Given shares (1, 10) and (2, 13), use Lagrange interpolation to find f(0):</p>
+                <p><code>f(0) = 10 * (0-2)/(1-2) + 13 * (0-1)/(2-1) = 10 * 2 + 13 * (-1) = 20 - 13 = 7</code></p>
+                <p>The secret is recovered. With only one share, there is no information about the other coefficient, so the secret remains hidden.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="feature-item">
+        <div class="feature-num">3</div>
+        <div class="feature-content">
+            <div class="feature-title">Lagrange Interpolation - The Recovery Formula</div>
+            <div class="feature-desc">
+                <p>The mathematical formula used to recover the secret from <em>t</em> shares is called <strong>Lagrange interpolation</strong>. For points (x_1, y_1), (x_2, y_2), ..., (x_t, y_t), the polynomial value at x=0 is:</p>
+                <p><code>f(0) = sum of [ y_i * product of ( (0 - x_j) / (x_i - x_j) ) for all j != i ]</code></p>
+                <p>This formula works in any field - in practice, cryptographic implementations use modular arithmetic over a large prime field (e.g., the order of the secp256k1 elliptic curve, approximately 2^256). The beauty is that this formula can also be applied to partial computations (partial signatures) without reconstructing the secret - which is exactly what threshold ECDSA does.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="feature-item">
+        <div class="feature-num">4</div>
+        <div class="feature-content">
+            <div class="feature-title">Why DKG is Better Than Simple SSS for SARAL</div>
+            <div class="feature-desc">
+                <p>Shamir's scheme has a critical flaw for wallet creation: someone (a "dealer") must know the full secret first, then split it. For SARAL, this would mean one party momentarily holds the full private key - a security risk. <strong>Distributed Key Generation (DKG)</strong> solves this:</p>
+                <ul>
+                    <li><strong>No dealer:</strong> Each party generates its own random polynomial and shares evaluations with others. The final key shares are computed by each party independently.</li>
+                    <li><strong>Verifiability:</strong> DKG uses Feldman's Verifiable Secret Sharing (VSS) - parties can verify that shares are consistent without learning the secret. This prevents a malicious party from sending incorrect shares.</li>
+                    <li><strong>The key never exists:</strong> The public key is computable from the commitments, but the private key is never assembled in any single location.</li>
+                </ul>
+                <p>Think of it like three artists collaboratively painting a mural: each contributes brush strokes according to a coordinated plan, and the final image emerges, but no single artist ever held the complete design document.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="feature-item">
+        <div class="feature-num">5</div>
+        <div class="feature-content">
+            <div class="feature-title">Feldman's VSS - Preventing Cheating in DKG</div>
+            <div class="feature-desc">
+                <p>In a standard DKG protocol, a malicious participant could send different values to different parties, corrupting the key generation. Feldman's Verifiable Secret Sharing adds a verification step:</p>
+                <p>Each party publishes <strong>commitments</strong> to their polynomial coefficients using elliptic curve point multiplication: <code>C_k = a_k * G</code> (where G is the generator point). Other parties can verify that their received share is consistent with these public commitments using the equation: <code>share_i * G = C_0 + i*C_1 + i^2*C_2 + ...</code></p>
+                <p>If verification fails, the dishonest party is identified and excluded. This ensures that even in an adversarial environment, the DKG protocol produces valid, consistent shares.</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="callout analogy">
+    <div class="callout-label">🎓 Exam Analogy for DKG vs SSS</div>
+    <p><strong>SSS:</strong> A professor writes the answer key, photocopies it, cuts each copy into pieces, and distributes them. The professor briefly held the complete answer key - if compromised at that moment, all answers leak.</p>
+    <p><strong>DKG:</strong> Three professors each write one-third of the questions independently. They share hints with each other to ensure consistency but never see the full paper. The complete exam only exists when students sit for it (when signing occurs). No professor ever held the full answer key.</p>
+</div>
+
+<div class="callout key">
+    <div class="callout-label">📐 Key Mathematical Insight</div>
+    <p>The security of threshold cryptography rests on the <strong>information-theoretic</strong> property that <em>t-1</em> points on a degree <em>t-1</em> polynomial reveal absolutely zero information about the polynomial's value at any other point. This is unconditional security - it holds even against an adversary with unlimited computational power. No quantum computer can break Shamir's scheme.</p>
 </div>
 
 
@@ -313,14 +407,14 @@
     </thead>
     <tbody>
         <tr>
-            <td>Self‑custody</td>
+            <td>Self-custody</td>
             <td class="good">Yes</td>
             <td class="bad">No (exchange holds keys)</td>
-            <td class="good">Yes (threshold, non‑custodial)</td>
+            <td class="good">Yes (threshold, non-custodial)</td>
         </tr>
         <tr>
             <td>Seed phrase required</td>
-            <td class="bad">Yes (12‑24 words)</td>
+            <td class="bad">Yes (12-24 words)</td>
             <td class="good">No</td>
             <td class="good">No</td>
         </tr>
@@ -340,14 +434,138 @@
             <td>UX for new users</td>
             <td class="bad">Intimidating</td>
             <td class="good">Familiar</td>
-            <td class="good">Familiar + self‑custody</td>
+            <td class="good">Familiar + self-custody</td>
         </tr>
     </tbody>
 </table>
 
 <div class="callout insight">
     <div class="callout-label">💡 The Best of Both Worlds</div>
-    <p>SARAL delivers the UX of a centralised app with the security and control of a non‑custodial wallet. It's the missing piece for mass adoption.</p>
+    <p>SARAL delivers the UX of a centralised app with the security and control of a non-custodial wallet. It's the missing piece for mass adoption.</p>
+</div>
+
+
+<!-- ═══════════════════════════════════════════════════
+     SECTION 7A: SECURITY THREAT ANALYSIS
+════════════════════════════════════════════════════ -->
+<div class="section-label">07A &nbsp; Security Threat Analysis</div>
+<h2 class="section-title">What Happens If Each Component Is Compromised?</h2>
+
+<p>A rigorous security analysis requires examining what happens when individual components of the SARAL system are compromised. Because SARAL uses a 2-of-3 threshold, the system is designed to withstand the compromise of any single component. However, understanding the threat landscape helps users and developers make informed risk decisions.</p>
+
+<div class="feature-list">
+    <div class="feature-item">
+        <div class="feature-num" style="background: var(--orange);">⚠️</div>
+        <div class="feature-content">
+            <div class="feature-title">Threat 1: Google/Apple Account Breach</div>
+            <div class="feature-desc">
+                <p><strong>Scenario:</strong> An attacker gains access to the user's Google account through phishing, credential stuffing, or social engineering (e.g., SIM swap attacks common in India where attackers convince telecom operators to issue duplicate SIMs).</p>
+                <p><strong>What the attacker gains:</strong> Access to the encrypted recovery share stored in Google Drive/iCloud.</p>
+                <p><strong>Can they steal funds?</strong> No. The attacker has only 1 of 3 shares. They still need either the device share (requires biometric) or the MST node share (requires authentication). The recovery share alone is mathematically useless - it reveals zero information about the private key.</p>
+                <p><strong>Mitigation by SARAL:</strong> The recovery share is encrypted with a key derived from the device's secure enclave during initial setup. Even with Google account access, decrypting the share requires a secondary authentication factor. Additionally, any recovery attempt triggers a time-locked cooldown period (48 hours) with notifications to all registered devices, giving the legitimate user time to cancel the request.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="feature-item">
+        <div class="feature-num" style="background: var(--orange);">⚠️</div>
+        <div class="feature-content">
+            <div class="feature-title">Threat 2: Phone Theft or Physical Device Compromise</div>
+            <div class="feature-desc">
+                <p><strong>Scenario:</strong> A user's phone is stolen in a crowded Mumbai local train, or a sophisticated attacker physically obtains the device and attempts to extract the key share from the Secure Enclave.</p>
+                <p><strong>What the attacker gains:</strong> Physical possession of the device containing the device share in the Secure Enclave.</p>
+                <p><strong>Can they steal funds?</strong> No. The Secure Enclave requires biometric authentication (fingerprint or face scan) to release the share for signing operations. After 5 failed biometric attempts, the device locks permanently and the enclave erases the key material. Even sophisticated hardware attacks (decapping the chip, electron microscopy) cannot extract keys from modern Secure Enclaves - Apple's Secure Enclave Processor (SEP) and Google's Titan M2 chip are designed to resist physical probing.</p>
+                <p><strong>What should the user do?</strong> Sign into Google on a new device, authenticate with biometrics, and initiate a key migration. The old device's share is invalidated, and a new DKG generates fresh shares for the new device.</p>
+                <p><strong>Indian context:</strong> India has over 700 million smartphone users, many in areas with high phone theft. SARAL's architecture means phone theft never equals fund theft - a critical design requirement for emerging markets.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="feature-item">
+        <div class="feature-num" style="background: var(--orange);">⚠️</div>
+        <div class="feature-content">
+            <div class="feature-title">Threat 3: MST Key-Management Node Compromise</div>
+            <div class="feature-desc">
+                <p><strong>Scenario:</strong> An attacker compromises one or more MST key-management nodes through a software vulnerability, insider threat, or supply-chain attack.</p>
+                <p><strong>What the attacker gains:</strong> The node's share for all users whose keys were generated with that specific node.</p>
+                <p><strong>Can they steal funds?</strong> No. A compromised node holds only 1 of 3 shares. The attacker still needs either the user's device share or the recovery share to reach the 2-of-3 threshold.</p>
+                <p><strong>Additional protections:</strong></p>
+                <ul>
+                    <li><strong>Node rotation:</strong> Key shares are periodically refreshed (proactive secret sharing) so even stale compromises become useless.</li>
+                    <li><strong>Distributed nodes:</strong> Users' shares are spread across multiple independent node operators. To attack a user, you must compromise the specific node that holds their share.</li>
+                    <li><strong>Staking and slashing:</strong> Node operators stake MSTC tokens. Detected misbehaviour results in slashing, creating economic disincentives for insider attacks.</li>
+                    <li><strong>Hardware attestation:</strong> Nodes run in Trusted Execution Environments (TEEs) like Intel SGX or ARM TrustZone, with remote attestation proving software integrity.</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="feature-item">
+        <div class="feature-num" style="background: #d32f2f;">🚨</div>
+        <div class="feature-content">
+            <div class="feature-title">Threat 4: Simultaneous Two-Component Compromise (Critical)</div>
+            <div class="feature-desc">
+                <p><strong>Scenario:</strong> An attacker simultaneously compromises both the user's Google account AND the MST node (or device AND node, or device AND Google account).</p>
+                <p><strong>Can they steal funds?</strong> Potentially yes - this reaches the 2-of-3 threshold. This is the <strong>catastrophic failure scenario</strong> that SARAL is designed to make extremely unlikely.</p>
+                <p><strong>How SARAL mitigates this:</strong></p>
+                <ul>
+                    <li><strong>Rate limiting:</strong> Even with 2 shares, the signing protocol enforces transaction limits. High-value transactions require additional authentication or a time delay.</li>
+                    <li><strong>Behavioural analysis:</strong> The MST node monitors signing patterns. A sudden large withdrawal from a new IP/device triggers additional verification.</li>
+                    <li><strong>Geographic checks:</strong> If the user's last known location (Bangalore) differs dramatically from the signing request's origin (Lagos), the transaction is flagged.</li>
+                    <li><strong>Social recovery option:</strong> Users can designate trusted guardians (family members) who must co-approve transactions above a certain threshold during recovery.</li>
+                </ul>
+                <p><strong>Probability assessment:</strong> Simultaneously compromising a user's Google account (protected by 2FA, Google's security team) and an MST node (protected by TEEs, staking, and independent operation) is orders of magnitude harder than phishing a seed phrase from a piece of paper.</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<table class="compare-table">
+    <thead>
+        <tr>
+            <th>Compromised Component</th>
+            <th>Shares Obtained</th>
+            <th>Funds at Risk?</th>
+            <th>Required Additional Attack</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>Google Account only</td>
+            <td>1 of 3</td>
+            <td class="good">No</td>
+            <td>Need device OR node share</td>
+        </tr>
+        <tr>
+            <td>Phone stolen (no biometric)</td>
+            <td>0 of 3 (enclave locked)</td>
+            <td class="good">No</td>
+            <td>Need biometric bypass + another share</td>
+        </tr>
+        <tr>
+            <td>MST Node compromised</td>
+            <td>1 of 3</td>
+            <td class="good">No</td>
+            <td>Need device OR recovery share</td>
+        </tr>
+        <tr>
+            <td>Google + MST Node</td>
+            <td>2 of 3</td>
+            <td class="bad">Potentially (with mitigations)</td>
+            <td>Must bypass rate limits and behavioural checks</td>
+        </tr>
+        <tr>
+            <td>Phone (with biometric bypass) + Node</td>
+            <td>2 of 3</td>
+            <td class="bad">Potentially (with mitigations)</td>
+            <td>Must bypass rate limits and geographic checks</td>
+        </tr>
+    </tbody>
+</table>
+
+<div class="callout key">
+    <div class="callout-label">🛡️ Defence in Depth</div>
+    <p>SARAL employs <strong>defence in depth</strong>: even if the mathematical threshold is met, additional layers (rate limits, behavioural analysis, time locks, guardian approvals) provide further protection. Compare this to a seed phrase wallet where a single leak of 12 words results in immediate, irrecoverable fund loss with zero additional barriers.</p>
 </div>
 
 
@@ -355,15 +573,15 @@
      SECTION 8: REAL WORLD CASE STUDIES
 ════════════════════════════════════════════════════ -->
 <div class="section-label">08 &nbsp; Real-World Case Studies</div>
-<h2 class="section-title">SARAL in Action — Onboarding the Next Billion</h2>
+<h2 class="section-title">SARAL in Action - Onboarding the Next Billion</h2>
 
 <div class="feature-list">
     <div class="feature-item">
         <div class="feature-num" style="background: var(--orange);">🎮</div>
         <div class="feature-content">
-            <div class="feature-title">Web3 Mobile Game — One‑Tap Wallet Creation</div>
+            <div class="feature-title">Web3 Mobile Game - One-Tap Wallet Creation</div>
             <div class="feature-desc">
-                A casual mobile game with 5M downloads integrates SARAL. Players tap "Sign in with Google" and a wallet is created in seconds. In‑game items are minted as NFTs to the SARAL wallet. No seed phrase, no browser extension — pure mobile‑native Web3.
+                A casual mobile game with 5M downloads integrates SARAL. Players tap "Sign in with Google" and a wallet is created in seconds. In-game items are minted as NFTs to the SARAL wallet. No seed phrase, no browser extension - pure mobile-native Web3.
             </div>
         </div>
     </div>
@@ -372,7 +590,7 @@
         <div class="feature-content">
             <div class="feature-title">Remittance App for Migrant Workers</div>
             <div class="feature-desc">
-                A remittance dApp uses SARAL so a worker in Dubai can send MSTC to family in Kerala. The worker's wallet was created with a fingerprint; the family's wallet with Google sign‑in. Both sides experience no crypto complexity.
+                A remittance dApp uses SARAL so a worker in Dubai can send MSTC to family in Kerala. The worker's wallet was created with a fingerprint; the family's wallet with Google sign-in. Both sides experience no crypto complexity.
             </div>
         </div>
     </div>
@@ -381,7 +599,7 @@
         <div class="feature-content">
             <div class="feature-title">CBDC Wallet for Rural Citizens</div>
             <div class="feature-desc">
-                A government agency distributes Digital Rupee wallets via SARAL. Citizens with only Aadhaar‑linked biometrics can create a non‑custodial wallet on a basic smartphone, receive CBDC, and pay at local shops — no written seed phrase ever needed.
+                A government agency distributes Digital Rupee wallets via SARAL. Citizens with only Aadhaar-linked biometrics can create a non-custodial wallet on a basic smartphone, receive CBDC, and pay at local shops - no written seed phrase ever needed.
             </div>
         </div>
     </div>
@@ -389,17 +607,280 @@
 
 
 <!-- ═══════════════════════════════════════════════════
+     SECTION 8A: COMPARISON WITH WEB3 ONBOARDING SOLUTIONS
+════════════════════════════════════════════════════ -->
+<div class="section-label">08A &nbsp; Industry Comparison</div>
+<h2 class="section-title">SARAL vs Other Web3 Onboarding Solutions</h2>
+
+<p>SARAL is not the only project attempting to solve the Web3 onboarding problem. Several well-funded solutions exist in the market - Web3Auth, Magic (formerly Magic Link), and Privy. Understanding how SARAL compares helps appreciate its unique architectural choices and trade-offs.</p>
+
+<div class="feature-list">
+    <div class="feature-item">
+        <div class="feature-num" style="background: var(--blue);">1</div>
+        <div class="feature-content">
+            <div class="feature-title">Web3Auth (formerly Torus)</div>
+            <div class="feature-desc">
+                <p>Web3Auth uses a similar MPC-based approach with social logins. It splits keys using a custom Shamir-based scheme across the Torus Network (a decentralised set of nodes), the user's device, and a recovery share. Users authenticate via OAuth, and key shares are reconstructed client-side to produce a standard private key.</p>
+                <p><strong>Key difference from SARAL:</strong> Web3Auth reconstructs the full private key on the client device during signing. This means the full key momentarily exists in memory - a potential attack vector for memory-scraping malware. SARAL never reconstructs the key; signing is performed using threshold ECDSA where shares are never combined.</p>
+            </div>
+        </div>
+    </div>
+    <div class="feature-item">
+        <div class="feature-num" style="background: var(--blue);">2</div>
+        <div class="feature-content">
+            <div class="feature-title">Magic (Magic Link)</div>
+            <div class="feature-desc">
+                <p>Magic uses a delegated key management approach. The user's private key is generated and stored within AWS's Hardware Security Modules (HSMs). Users authenticate via email magic links or social logins, and the HSM signs transactions on their behalf.</p>
+                <p><strong>Key difference from SARAL:</strong> Magic's architecture is fundamentally custodial - the key exists in a single HSM controlled by Magic's infrastructure on AWS. If Magic's AWS account is compromised, or if Magic ceases operations, user funds could be at risk. SARAL's distributed threshold approach ensures no single infrastructure provider holds the complete key.</p>
+            </div>
+        </div>
+    </div>
+    <div class="feature-item">
+        <div class="feature-num" style="background: var(--blue);">3</div>
+        <div class="feature-content">
+            <div class="feature-title">Privy</div>
+            <div class="feature-desc">
+                <p>Privy offers embedded wallets with social login. It splits keys into three shares: one on the user's device, one encrypted and stored by Privy's servers, and one recovery share. It uses a 2-of-3 threshold similar to SARAL.</p>
+                <p><strong>Key difference from SARAL:</strong> Privy's node infrastructure is centralised (run entirely by Privy Inc.), not distributed across independent validators. Privy also reconstructs the full key during signing in some configurations. SARAL's decentralised node network with staking, slashing, and TEE attestation provides a stronger trust model for users who require full decentralisation.</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<table class="compare-table">
+    <thead>
+        <tr>
+            <th>Feature</th>
+            <th>Web3Auth</th>
+            <th>Magic</th>
+            <th>Privy</th>
+            <th>SARAL (MST)</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>Key architecture</td>
+            <td class="mid">MPC with client-side reconstruction</td>
+            <td class="bad">Centralised HSM</td>
+            <td class="mid">2-of-3 threshold (centralised nodes)</td>
+            <td class="good">2-of-3 threshold (decentralised nodes)</td>
+        </tr>
+        <tr>
+            <td>Full key ever in memory?</td>
+            <td class="bad">Yes (during signing)</td>
+            <td class="bad">Yes (in HSM)</td>
+            <td class="mid">Sometimes</td>
+            <td class="good">Never</td>
+        </tr>
+        <tr>
+            <td>Node decentralisation</td>
+            <td class="mid">Torus Network (semi-decentralised)</td>
+            <td class="bad">AWS (centralised)</td>
+            <td class="bad">Privy servers (centralised)</td>
+            <td class="good">Independent validators with staking</td>
+        </tr>
+        <tr>
+            <td>Biometric binding</td>
+            <td class="mid">Optional</td>
+            <td class="bad">No</td>
+            <td class="mid">Optional</td>
+            <td class="good">Required (Secure Enclave)</td>
+        </tr>
+        <tr>
+            <td>Recovery mechanism</td>
+            <td class="good">Social login + device</td>
+            <td class="good">Email/social login</td>
+            <td class="good">Social login + device</td>
+            <td class="good">Google/Apple + biometric + time lock</td>
+        </tr>
+        <tr>
+            <td>Open source</td>
+            <td class="good">Partially</td>
+            <td class="bad">No</td>
+            <td class="bad">No</td>
+            <td class="good">Yes (protocol layer)</td>
+        </tr>
+        <tr>
+            <td>Chain support</td>
+            <td class="good">Multi-chain</td>
+            <td class="good">Multi-chain</td>
+            <td class="good">Multi-chain</td>
+            <td class="mid">MST native (EVM compatible)</td>
+        </tr>
+        <tr>
+            <td>Indian market focus</td>
+            <td class="mid">Global</td>
+            <td class="mid">Global</td>
+            <td class="mid">Global</td>
+            <td class="good">Designed for India-first</td>
+        </tr>
+    </tbody>
+</table>
+
+<div class="callout insight">
+    <div class="callout-label">💡 Why SARAL's Approach Matters for India</div>
+    <p>India has unique characteristics that make SARAL's design particularly relevant: high smartphone penetration but low crypto literacy, widespread Google account usage (Android dominance at 95%+ market share), strong biometric infrastructure (Aadhaar), and a cultural preference for mobile-first applications. SARAL is purpose-built for this context, whereas Western solutions like Privy and Magic assume desktop-first, crypto-literate users.</p>
+</div>
+
+
+<!-- ═══════════════════════════════════════════════════
+     SECTION 8B: DEVELOPER INTEGRATION WORKFLOW
+════════════════════════════════════════════════════ -->
+<div class="section-label">08B &nbsp; Developer Integration</div>
+<h2 class="section-title">Integrating SARAL into Your dApp - SDK Workflow &amp; Code Patterns</h2>
+
+<p>For developers building on the MST blockchain, integrating SARAL wallet creation and transaction signing into a dApp is straightforward. The SARAL SDK handles all the cryptographic complexity, exposing a simple API similar to familiar Web2 authentication libraries like Firebase Auth or Auth0.</p>
+
+<div class="feature-list">
+    <div class="feature-item">
+        <div class="feature-num">1</div>
+        <div class="feature-content">
+            <div class="feature-title">Step 1: Install the SARAL SDK</div>
+            <div class="feature-desc">
+                <p>The SARAL SDK is available as an npm package for web apps and as native libraries for iOS (Swift) and Android (Kotlin). Installation follows standard package manager conventions:</p>
+                <pre><code># For web applications (React, Vue, Angular)
+npm install @mst/saral-sdk
+
+# For React Native mobile apps
+npm install @mst/saral-sdk-react-native
+
+# For Flutter apps
+flutter pub add mst_saral_sdk</code></pre>
+            </div>
+        </div>
+    </div>
+
+    <div class="feature-item">
+        <div class="feature-num">2</div>
+        <div class="feature-content">
+            <div class="feature-title">Step 2: Initialise the SDK with Your dApp Credentials</div>
+            <div class="feature-desc">
+                <p>Every dApp registers with the SARAL developer portal and receives a client ID. The SDK is initialised with this ID, which determines the OAuth redirect URIs and rate limits.</p>
+                <pre><code>import { SaralSDK } from '@mst/saral-sdk';
+
+const saral = new SaralSDK({
+  clientId: 'your-dapp-client-id',
+  network: 'mainnet',       // or 'testnet'
+  authProviders: ['google', 'apple'],
+  biometricRequired: true,  // enforce biometric for signing
+  recoveryConfig: {
+    timeLockHours: 48,
+    guardians: []            // optional social recovery
+  }
+});</code></pre>
+            </div>
+        </div>
+    </div>
+
+    <div class="feature-item">
+        <div class="feature-num">3</div>
+        <div class="feature-content">
+            <div class="feature-title">Step 3: Trigger Wallet Creation (One-Tap Onboarding)</div>
+            <div class="feature-desc">
+                <p>When a new user arrives at your dApp, a single function call triggers the entire onboarding flow - OAuth popup, biometric prompt, DKG, and on-chain registration:</p>
+                <pre><code>// Wallet creation - happens once per user
+async function onboardUser() {
+  try {
+    const wallet = await saral.createWallet({
+      provider: 'google'  // opens Google OAuth popup
+    });
+    
+    console.log('Wallet address:', wallet.address);
+    console.log('Public key:', wallet.publicKey);
+    // Store wallet.address in your app's user profile
+    
+  } catch (error) {
+    if (error.code === 'BIOMETRIC_CANCELLED') {
+      showMessage('Please complete fingerprint scan to create wallet');
+    } else if (error.code === 'OAUTH_DENIED') {
+      showMessage('Google sign-in was cancelled');
+    }
+  }
+}</code></pre>
+                <p>From the user's perspective, they see: Google sign-in popup, then a fingerprint prompt, then their wallet is ready. Total time: 5-8 seconds.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="feature-item">
+        <div class="feature-num">4</div>
+        <div class="feature-content">
+            <div class="feature-title">Step 4: Sign Transactions with Biometric</div>
+            <div class="feature-desc">
+                <p>Once the wallet exists, signing transactions requires only biometric confirmation. The SDK handles threshold signing with the MST node transparently:</p>
+                <pre><code>// Sign and submit a transaction
+async function sendTokens(toAddress, amount) {
+  const tx = {
+    to: toAddress,
+    value: saral.utils.toWei(amount, 'mstc'),
+    gasLimit: 21000
+  };
+
+  // This triggers biometric prompt automatically
+  const signedTx = await saral.signTransaction(tx);
+  
+  // Submit to MST network
+  const receipt = await saral.submitTransaction(signedTx);
+  console.log('TX Hash:', receipt.transactionHash);
+  return receipt;
+}
+
+// Sign arbitrary messages (for dApp authentication)
+async function signLoginMessage() {
+  const message = 'Login to MyDApp at ' + Date.now();
+  const signature = await saral.signMessage(message);
+  return { message, signature };
+}</code></pre>
+            </div>
+        </div>
+    </div>
+
+    <div class="feature-item">
+        <div class="feature-num">5</div>
+        <div class="feature-content">
+            <div class="feature-title">Step 5: Handle Recovery Scenarios</div>
+            <div class="feature-desc">
+                <p>The SDK provides a recovery flow for users who lose their device:</p>
+                <pre><code>// Recovery on a new device
+async function recoverWallet() {
+  const recoveredWallet = await saral.recoverWallet({
+    provider: 'google'  // must use same Google account
+  });
+  
+  // New DKG creates fresh device share
+  // Old device share is invalidated on-chain
+  console.log('Wallet recovered:', recoveredWallet.address);
+  // Address remains the same - funds are safe
+}</code></pre>
+                <p>The recovery process takes approximately 10-15 seconds and requires the same Google account used during initial wallet creation, plus biometric verification on the new device.</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="callout key">
+    <div class="callout-label">🧑‍💻 Developer Experience Principle</div>
+    <p>The SARAL SDK is designed so that a developer who has never worked with blockchain before can integrate wallet functionality in under 30 minutes. No knowledge of elliptic curves, threshold cryptography, or gas mechanics is required. The SDK abstracts all complexity behind familiar async/await patterns that any JavaScript developer already knows.</p>
+</div>
+
+<div class="callout insight">
+    <div class="callout-label">💡 Integration Checklist for Production</div>
+    <p>Before deploying a SARAL-integrated dApp to production, developers should: (1) Register their dApp on the SARAL Developer Portal and configure OAuth redirect URIs. (2) Test wallet creation and signing on both Android and iOS devices. (3) Implement error handling for all SDK methods (network failures, biometric timeouts, cancelled OAuth). (4) Set up webhook listeners for recovery events so your backend can update user state. (5) Configure transaction limits appropriate for your use case.</p>
+</div>
+
+
+<!-- ═══════════════════════════════════════════════════
      SECTION 9: ASSESSMENT PREPARATION
 ════════════════════════════════════════════════════ -->
 <div class="section-label">09 &nbsp; Assessment Preparation</div>
-<h2 class="section-title">Top Facts — Know These Cold for the 20‑Mark Assessment</h2>
+<h2 class="section-title">Top Facts - Know These Cold for the 20-Mark Assessment</h2>
 
 <div class="feature-list">
     <div class="feature-item">
         <div class="feature-num" style="background: var(--ink-3); font-size:11px;">01</div>
         <div class="feature-content">
-            <div class="feature-title">SARAL = Non‑Custodial + Biometric + OAuth</div>
-            <div class="feature-desc">No seed phrase. Key shares: device secure enclave, MST key‑management node, and OAuth cloud backup. 2‑of‑3 threshold signing.</div>
+            <div class="feature-title">SARAL = Non-Custodial + Biometric + OAuth</div>
+            <div class="feature-desc">No seed phrase. Key shares: device secure enclave, MST key-management node, and OAuth cloud backup. 2-of-3 threshold signing.</div>
         </div>
     </div>
     <div class="feature-item">
@@ -427,7 +908,7 @@
         <div class="feature-num" style="background: var(--ink-3); font-size:11px;">05</div>
         <div class="feature-content">
             <div class="feature-title">Secure Enclave Storage</div>
-            <div class="feature-desc">Device key share is stored in hardware‑isolated Secure Enclave/StrongBox, accessible only after biometric unlock.</div>
+            <div class="feature-desc">Device key share is stored in hardware-isolated Secure Enclave/StrongBox, accessible only after biometric unlock.</div>
         </div>
     </div>
 </div>
@@ -443,16 +924,16 @@
      GLOSSARY
 ════════════════════════════════════════════════════ -->
 <div class="section-label" style="margin-top:52px;">10 &nbsp; Glossary</div>
-<h2 class="section-title">Key Terms — Sub-Module 7.4</h2>
+<h2 class="section-title">Key Terms - Sub-Module 7.4</h2>
 
 <div class="glossary-grid">
     <div class="glossary-item">
         <div class="glossary-term">SARAL Protocol</div>
-        <div class="glossary-def">MST's non‑custodial key management system using biometrics, OAuth, and threshold cryptography to eliminate seed phrases.</div>
+        <div class="glossary-def">MST's non-custodial key management system using biometrics, OAuth, and threshold cryptography to eliminate seed phrases.</div>
     </div>
     <div class="glossary-item">
         <div class="glossary-term">Threshold ECDSA</div>
-        <div class="glossary-def">A multi‑party protocol allowing a group to jointly produce an ECDSA signature without any single party holding the full private key.</div>
+        <div class="glossary-def">A multi-party protocol allowing a group to jointly produce an ECDSA signature without any single party holding the full private key.</div>
     </div>
     <div class="glossary-item">
         <div class="glossary-term">Distributed Key Generation (DKG)</div>
@@ -460,18 +941,18 @@
     </div>
     <div class="glossary-item">
         <div class="glossary-term">Secure Enclave</div>
-        <div class="glossary-def">Hardware‑isolated coprocessor on mobile devices that stores cryptographic keys and performs operations only after biometric authentication.</div>
+        <div class="glossary-def">Hardware-isolated coprocessor on mobile devices that stores cryptographic keys and performs operations only after biometric authentication.</div>
     </div>
     <div class="glossary-item">
         <div class="glossary-term">OAuth</div>
         <div class="glossary-def">An open standard for access delegation, used by SARAL for "Sign in with Google/Apple" to authenticate the user and store encrypted recovery share.</div>
     </div>
     <div class="glossary-item">
-        <div class="glossary-term">Key‑Management Node</div>
+        <div class="glossary-term">Key-Management Node</div>
         <div class="glossary-def">An MST network node that holds one share of the user's key and participates in threshold signing. Operated by independent validators.</div>
     </div>
     <div class="glossary-item">
-        <div class="glossary-term">2‑of‑3 Threshold</div>
+        <div class="glossary-term">2-of-3 Threshold</div>
         <div class="glossary-def">Any two out of three shares are sufficient to sign a transaction. Enables recovery (node + cloud share) without the original device.</div>
     </div>
     <div class="glossary-item">
@@ -480,19 +961,43 @@
     </div>
     <div class="glossary-item">
         <div class="glossary-term">Biometric Prompt</div>
-        <div class="glossary-def">A system‑level authentication dialog (fingerprint or face scan) required to unlock the secure enclave for key operations.</div>
+        <div class="glossary-def">A system-level authentication dialog (fingerprint or face scan) required to unlock the secure enclave for key operations.</div>
     </div>
     <div class="glossary-item">
         <div class="glossary-term">Recovery Share</div>
         <div class="glossary-def">The encrypted key share stored in the user's cloud account, enabling wallet recovery on a new device without the original device.</div>
+    </div>
+    <div class="glossary-item">
+        <div class="glossary-term">Shamir's Secret Sharing (SSS)</div>
+        <div class="glossary-def">A cryptographic scheme (1979) that splits a secret into n shares where any t shares can reconstruct it, based on polynomial interpolation over finite fields.</div>
+    </div>
+    <div class="glossary-item">
+        <div class="glossary-term">Lagrange Interpolation</div>
+        <div class="glossary-def">A mathematical formula to reconstruct a polynomial from a set of points. Used in threshold schemes to recover the secret (or compute partial signatures) from share values.</div>
+    </div>
+    <div class="glossary-item">
+        <div class="glossary-term">Feldman's VSS</div>
+        <div class="glossary-def">Verifiable Secret Sharing scheme that adds public commitments to Shamir's scheme, allowing parties to verify share correctness without learning the secret.</div>
+    </div>
+    <div class="glossary-item">
+        <div class="glossary-term">Proactive Secret Sharing</div>
+        <div class="glossary-def">A technique where key shares are periodically refreshed (re-randomised) without changing the underlying secret, invalidating any previously compromised shares.</div>
+    </div>
+    <div class="glossary-item">
+        <div class="glossary-term">Trusted Execution Environment (TEE)</div>
+        <div class="glossary-def">A secure area within a processor (e.g., Intel SGX, ARM TrustZone) that guarantees code and data confidentiality and integrity, used by MST key-management nodes.</div>
+    </div>
+    <div class="glossary-item">
+        <div class="glossary-term">Time-Locked Recovery</div>
+        <div class="glossary-def">A security mechanism where wallet recovery requests are delayed by a configurable period (e.g., 48 hours), giving legitimate users time to cancel unauthorised attempts.</div>
     </div>
 </div>
 
 
 <!-- FOOTER -->
 <div class="page-footer">
-    <p>MST Blockchain Academy — Professional Blockchain Developer Program</p>
-    <p>Module 7 · Sub-Module <strong>7.4</strong> of 8 &nbsp;·&nbsp; Next: Sub-Module 7.5 — WASMify →</p>
+    <p>MST Blockchain Academy - Professional Blockchain Developer Program</p>
+    <p>Module 7 · Sub-Module <strong>7.4</strong> of 8 &nbsp;·&nbsp; Next: Sub-Module 7.5 - WASMify →</p>
 </div>
 
 

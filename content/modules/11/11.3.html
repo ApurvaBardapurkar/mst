@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Sub-Module 11.3 – Lending & Borrowing | MasterStroke Academy</title>
+<title>Sub-Module 11.3 - Lending & Borrowing | MasterStroke Academy</title>
 <meta name="description" content="Deep dive into decentralized lending and borrowing. Understand over-collateralization, Compound, Aave, health factors, liquidation, and why MST's sub‑paisa fees enable micro‑loans and daily compounding for everyone.">
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,600&family=JetBrains+Mono:wght@400;500;600&display=swap');
@@ -394,12 +394,12 @@
 
 <div class="module-badge">🎓 Module 11 &nbsp;·&nbsp; Sub-Module 11.3 of 6</div>
 <h1 class="module-title">Lending &amp; <span class="highlight">Borrowing</span></h1>
-<p class="module-subtitle">How to earn interest on your crypto and borrow against it without a credit check. Learn the mechanics of over‑collateralized loans, health factors, liquidations, and why MST's sub‑paisa fees open the door to micro‑lending and daily compounding for the entire world.</p>
+<p class="module-subtitle">How to earn interest on your crypto and borrow against it without a credit check. Learn the mechanics of over-collateralized loans, health factors, liquidations, and why MST's sub-paisa fees open the door to micro-lending and daily compounding for the entire world.</p>
 
 <div class="meta-bar">
   <div class="meta-chip">⏱ 50 Minutes</div>
   <div class="meta-chip purple">🎯 15 Marks</div>
-  <div class="meta-chip">📋 5 MCQ (5 marks) + 2 T/F with Justification (4 marks) + 1 Identify‑Output (6 marks)</div>
+  <div class="meta-chip">📋 5 MCQ (5 marks) + 2 T/F with Justification (4 marks) + 1 Identify-Output (6 marks)</div>
   <div class="meta-chip green">Phase 4 · DeFi & RWA Orbitals</div>
 </div>
 
@@ -410,7 +410,7 @@
   <div class="obj-card">
     <div class="obj-icon">🏦</div>
     <div class="obj-text">
-      <strong>Explain the over‑collateralization model</strong>
+      <strong>Explain the over-collateralization model</strong>
       Describe why DeFi lending requires deposits greater than the loan, how this replaces credit scores, and how it ensures protocol solvency.
     </div>
   </div>
@@ -425,46 +425,46 @@
     <div class="obj-icon">📈</div>
     <div class="obj-text">
       <strong>Compare Compound and Aave interest rate models</strong>
-      Understand utilization‑based interest curves, variable vs stable rates, and how governance sets risk parameters.
+      Understand utilization-based interest curves, variable vs stable rates, and how governance sets risk parameters.
     </div>
   </div>
   <div class="obj-card">
     <div class="obj-icon">⚡</div>
     <div class="obj-text">
-      <strong>Leverage MST's low fees for micro‑loans and compounding</strong>
-      See how sub‑paisa gas costs make small loans and frequent interest compounding economically viable, democratizing DeFi lending.
+      <strong>Leverage MST's low fees for micro-loans and compounding</strong>
+      See how sub-paisa gas costs make small loans and frequent interest compounding economically viable, democratizing DeFi lending.
     </div>
   </div>
 </div>
 
 <!-- 02 STORY -->
-<div class="section-label">02 &nbsp; Real‑World Introduction Story</div>
+<div class="section-label">02 &nbsp; Real-World Introduction Story</div>
 <h2 class="section-title">The Student Who Borrowed Without a Credit Score</h2>
 <div class="callout story">
   <div class="callout-label">📖 Story</div>
-  <p>Aarav, a 22‑year‑old engineering student in Delhi, needed ₹5,000 for a new laptop. He had no credit history, no collateral, and his bank offered a personal loan at 18% interest with a processing fee of ₹500. Frustrated, he discovered Aave on MST. He owned 0.5 ETH (worth ~₹50,000) that he'd saved from freelance work. Instead of selling it, he deposited his ETH into Aave as collateral and borrowed 5,000 USDC at just 3% APY. No credit check, no paperwork — just a smart contract.</p>
+  <p>Aarav, a 22-year-old engineering student in Delhi, needed ₹5,000 for a new laptop. He had no credit history, no collateral, and his bank offered a personal loan at 18% interest with a processing fee of ₹500. Frustrated, he discovered Aave on MST. He owned 0.5 ETH (worth ~₹50,000) that he'd saved from freelance work. Instead of selling it, he deposited his ETH into Aave as collateral and borrowed 5,000 USDC at just 3% APY. No credit check, no paperwork - just a smart contract.</p>
   <br>
-  <p>The loan was over‑collateralized: his ₹50,000 collateral backed a ₹5,000 loan (a 10% loan‑to‑value ratio, incredibly safe). He paid ₹0.006 in gas to deposit and ₹0.006 to borrow. On Ethereum, the same actions would have cost ₹1,500+ in gas — more than the interest on his loan. With MST, DeFi lending was actually cheaper than a bank. Aarav bought his laptop, and over the next six months, he repaid the loan in small increments, each costing a fraction of a paisa in gas. His ETH stayed untouched, continuing to grow in value. This is the power of decentralized lending on MST.</p>
+  <p>The loan was over-collateralized: his ₹50,000 collateral backed a ₹5,000 loan (a 10% loan-to-value ratio, incredibly safe). He paid ₹0.006 in gas to deposit and ₹0.006 to borrow. On Ethereum, the same actions would have cost ₹1,500+ in gas - more than the interest on his loan. With MST, DeFi lending was actually cheaper than a bank. Aarav bought his laptop, and over the next six months, he repaid the loan in small increments, each costing a fraction of a paisa in gas. His ETH stayed untouched, continuing to grow in value. This is the power of decentralized lending on MST.</p>
 </div>
 
 <!-- 03 BACKGROUND & HISTORY -->
 <div class="section-label">03 &nbsp; Background &amp; History</div>
-<h2 class="section-title">From Pawn Shops to Smart Contracts — The Evolution of Lending</h2>
-<p>Lending is one of the oldest financial activities. Traditional models require trust: a bank trusts you'll repay based on your credit score; a pawn shop trusts the gold you leave behind. DeFi lending takes the pawn shop model and automates it with smart contracts — but instead of gold, you deposit crypto assets as collateral. The smart contract enforces the rules: if your collateral value drops too low, your position is automatically liquidated (sold) to repay the loan. No lawyers, no collection agencies, just code.</p>
-<p>The first major DeFi lending protocol was <strong>Compound</strong>, launched in 2018 on Ethereum. Compound introduced the concept of <strong>cTokens</strong> — when you deposit ETH, you receive cETH in return, which automatically accrues interest. Compound's interest rates are determined by supply and demand, governed by a utilization‑based curve: as more of a pool is borrowed, the interest rate increases to attract more deposits and discourage further borrowing.</p>
-<p><strong>Aave</strong>, launched in 2020, built on Compound's foundation and added innovations: flash loans (uncollateralized loans repaid within a single transaction), variable and stable interest rates, and aToken (interest‑bearing tokens similar to cTokens). Aave also introduced <strong>health factors</strong> — a numerical representation of your loan's safety, making it easy to monitor.</p>
-<p>Today, Compound and Aave are deployed across multiple EVM chains. On MST, with its full EVM compatibility, these protocols can run with identical code — but with gas fees 100,000× lower. This transforms lending from a whale's game (where only large positions justify the gas) into an inclusive financial tool where anyone can deposit ₹100 and earn interest.</p>
+<h2 class="section-title">From Pawn Shops to Smart Contracts - The Evolution of Lending</h2>
+<p>Lending is one of the oldest financial activities. Traditional models require trust: a bank trusts you'll repay based on your credit score; a pawn shop trusts the gold you leave behind. DeFi lending takes the pawn shop model and automates it with smart contracts - but instead of gold, you deposit crypto assets as collateral. The smart contract enforces the rules: if your collateral value drops too low, your position is automatically liquidated (sold) to repay the loan. No lawyers, no collection agencies, just code.</p>
+<p>The first major DeFi lending protocol was <strong>Compound</strong>, launched in 2018 on Ethereum. Compound introduced the concept of <strong>cTokens</strong> - when you deposit ETH, you receive cETH in return, which automatically accrues interest. Compound's interest rates are determined by supply and demand, governed by a utilization-based curve: as more of a pool is borrowed, the interest rate increases to attract more deposits and discourage further borrowing.</p>
+<p><strong>Aave</strong>, launched in 2020, built on Compound's foundation and added innovations: flash loans (uncollateralized loans repaid within a single transaction), variable and stable interest rates, and aToken (interest-bearing tokens similar to cTokens). Aave also introduced <strong>health factors</strong> - a numerical representation of your loan's safety, making it easy to monitor.</p>
+<p>Today, Compound and Aave are deployed across multiple EVM chains. On MST, with its full EVM compatibility, these protocols can run with identical code - but with gas fees 100,000× lower. This transforms lending from a whale's game (where only large positions justify the gas) into an inclusive financial tool where anyone can deposit ₹100 and earn interest.</p>
 
 <div class="highlight-strip">
-  <strong>Key insight:</strong> In DeFi lending, <strong>code is the credit check</strong>. Your collateral — not your identity — secures the loan. This makes lending permissionless, global, and accessible to anyone with crypto.
+  <strong>Key insight:</strong> In DeFi lending, <strong>code is the credit check</strong>. Your collateral - not your identity - secures the loan. This makes lending permissionless, global, and accessible to anyone with crypto.
 </div>
 
 <!-- 04 BEGINNER‑FRIENDLY EXPLANATION -->
-<div class="section-label">04 &nbsp; Beginner‑Friendly Explanation</div>
-<h2 class="section-title">The Pawn Shop Analogy — How DeFi Lending Works</h2>
+<div class="section-label">04 &nbsp; Beginner-Friendly Explanation</div>
+<h2 class="section-title">The Pawn Shop Analogy - How DeFi Lending Works</h2>
 <div class="callout analogy">
   <div class="callout-label">🏪 The Analogy</div>
-  <p>Imagine a pawn shop run by a robot. You hand the robot a gold necklace worth ₹20,000. The robot inspects it, says "I'll lend you ₹10,000 against this, at 5% interest." You agree. The robot locks the necklace in a safe and gives you ₹10,000 cash. If you repay the ₹10,000 plus interest, the robot returns your necklace. If you don't repay, the robot eventually sells your necklace to recover the money. But there's a twist: the necklace's value fluctuates. If gold prices crash to ₹12,000, the robot gets nervous — your loan is now dangerously close to the necklace's value. The robot sends you a warning: "Add more collateral or repay part of the loan, or I'll sell your necklace to protect myself." If you don't act, the robot sells the necklace (liquidation) and keeps ₹10,000 + a penalty, returning any leftover to you.</p>
+  <p>Imagine a pawn shop run by a robot. You hand the robot a gold necklace worth ₹20,000. The robot inspects it, says "I'll lend you ₹10,000 against this, at 5% interest." You agree. The robot locks the necklace in a safe and gives you ₹10,000 cash. If you repay the ₹10,000 plus interest, the robot returns your necklace. If you don't repay, the robot eventually sells your necklace to recover the money. But there's a twist: the necklace's value fluctuates. If gold prices crash to ₹12,000, the robot gets nervous - your loan is now dangerously close to the necklace's value. The robot sends you a warning: "Add more collateral or repay part of the loan, or I'll sell your necklace to protect myself." If you don't act, the robot sells the necklace (liquidation) and keeps ₹10,000 + a penalty, returning any leftover to you.</p>
 </div>
 <p>In this analogy, the robot is the lending smart contract (like Aave or Compound). The gold necklace is your crypto collateral (ETH, WBTC, etc.). The ₹10,000 cash is the loan you take out (in a stablecoin like USDC). The robot's warning is the <strong>health factor</strong>. The forced sale is <strong>liquidation</strong>. Let's formalize these concepts:</p>
 
@@ -473,14 +473,14 @@
     <div class="w5-label-cell"><div class="w5-letter">C</div><div class="w5-word">COLLAT</div></div>
     <div class="w5-content">
       <div class="w5-q">What is collateral?</div>
-      <div class="w5-a"><strong>Collateral</strong> is the crypto asset you deposit into the protocol to secure your loan. It must be worth more than the loan (over‑collateralization). Common collaterals: ETH, WBTC, AAVE tokens, stablecoins. The protocol tracks the value of your collateral in real time using decentralized price oracles (like Chainlink). You can deposit multiple types of collateral in a single position.</div>
+      <div class="w5-a"><strong>Collateral</strong> is the crypto asset you deposit into the protocol to secure your loan. It must be worth more than the loan (over-collateralization). Common collaterals: ETH, WBTC, AAVE tokens, stablecoins. The protocol tracks the value of your collateral in real time using decentralized price oracles (like Chainlink). You can deposit multiple types of collateral in a single position.</div>
     </div>
   </div>
   <div class="w5-row">
     <div class="w5-label-cell"><div class="w5-letter">L</div><div class="w5-word">LTV</div></div>
     <div class="w5-content">
-      <div class="w5-q">What is Loan‑to‑Value (LTV)?</div>
-      <div class="w5-a">The <strong>Loan‑to‑Value ratio</strong> determines how much you can borrow against your collateral. For example, if ETH has a maximum LTV of 80%, you can borrow up to 80% of your ETH's value. If you deposit ₹1,00,000 worth of ETH, you can borrow up to ₹80,000. But you should never borrow the maximum — a small price drop would trigger liquidation. Most users keep their LTV well below the maximum.</div>
+      <div class="w5-q">What is Loan-to-Value (LTV)?</div>
+      <div class="w5-a">The <strong>Loan-to-Value ratio</strong> determines how much you can borrow against your collateral. For example, if ETH has a maximum LTV of 80%, you can borrow up to 80% of your ETH's value. If you deposit ₹1,00,000 worth of ETH, you can borrow up to ₹80,000. But you should never borrow the maximum - a small price drop would trigger liquidation. Most users keep their LTV well below the maximum.</div>
     </div>
   </div>
   <div class="w5-row">
@@ -494,7 +494,7 @@
     <div class="w5-label-cell"><div class="w5-letter">Q</div><div class="w5-word">LIQUID</div></div>
     <div class="w5-content">
       <div class="w5-q">What is liquidation?</div>
-      <div class="w5-a"><strong>Liquidation</strong> is the forced sale of your collateral to repay your loan when your health factor falls below 1. A liquidator (a bot or user) repays part of your loan and claims your collateral at a discount (the <strong>liquidation penalty</strong>, typically 5–10%). This incentivizes liquidators to keep the protocol solvent. You lose the liquidated collateral but keep any remaining collateral above the loan + penalty. Liquidation is the mechanism that ensures lenders never lose money — the protocol always has more collateral than loans outstanding.</div>
+      <div class="w5-a"><strong>Liquidation</strong> is the forced sale of your collateral to repay your loan when your health factor falls below 1. A liquidator (a bot or user) repays part of your loan and claims your collateral at a discount (the <strong>liquidation penalty</strong>, typically 5 - 10%). This incentivizes liquidators to keep the protocol solvent. You lose the liquidated collateral but keep any remaining collateral above the loan + penalty. Liquidation is the mechanism that ensures lenders never lose money - the protocol always has more collateral than loans outstanding.</div>
     </div>
   </div>
 </div>
@@ -503,10 +503,10 @@
 <div class="section-label">05 &nbsp; Technical Deep Dive</div>
 <h2 class="section-title">The Mathematical Engine Behind DeFi Lending</h2>
 
-<h3 style="font-size:18px; font-weight:700; margin:20px 0 8px; color:var(--ink);">Interest Rate Models — How Supply and Demand Set Rates</h3>
-<p>Both Compound and Aave use <strong>utilization‑based interest rate curves</strong>. The utilization rate U is the percentage of deposited assets that are currently borrowed:</p>
+<h3 style="font-size:18px; font-weight:700; margin:20px 0 8px; color:var(--ink);">Interest Rate Models - How Supply and Demand Set Rates</h3>
+<p>Both Compound and Aave use <strong>utilization-based interest rate curves</strong>. The utilization rate U is the percentage of deposited assets that are currently borrowed:</p>
 <p style="text-align:center; font-size:17px; font-weight:600; color:var(--ink);">U = Total Borrowed / Total Supplied</p>
-<p>When U is low (few borrowers), the interest rate is low to encourage borrowing. As U increases (more demand), the rate rises steeply — both to discourage further borrowing and to attract new depositors. The rate curve typically has a <strong>kink</strong> at an optimal utilization (often 80–90%). Below the kink, the rate increases slowly; above the kink, it jumps sharply to ensure liquidity remains available.</p>
+<p>When U is low (few borrowers), the interest rate is low to encourage borrowing. As U increases (more demand), the rate rises steeply - both to discourage further borrowing and to attract new depositors. The rate curve typically has a <strong>kink</strong> at an optimal utilization (often 80 - 90%). Below the kink, the rate increases slowly; above the kink, it jumps sharply to ensure liquidity remains available.</p>
 
 <p>For example, Compound's ETH market might have:</p>
 <ul style="margin:12px 0 12px 24px; color:var(--ink-2); font-size:15px; line-height:1.8;">
@@ -515,13 +515,13 @@
   <li>Kink: 80% (the optimal utilization)</li>
   <li>Jump multiplier: 200% (rate increase above the kink)</li>
 </ul>
-<p>If U = 80% (at the kink), borrow rate = 2% + 20% × 0.8 = 2% + 16% = 18% APY. If U = 95%, borrow rate = 2% + 20% × 0.8 + 200% × (0.95–0.80) = 2% + 16% + 30% = 48% APY. The sharp increase above the kink forces borrowers to repay or depositors to rush in.</p>
+<p>If U = 80% (at the kink), borrow rate = 2% + 20% × 0.8 = 2% + 16% = 18% APY. If U = 95%, borrow rate = 2% + 20% × 0.8 + 200% × (0.95 - 0.80) = 2% + 16% + 30% = 48% APY. The sharp increase above the kink forces borrowers to repay or depositors to rush in.</p>
 
-<h3 style="font-size:18px; font-weight:700; margin:20px 0 8px; color:var(--ink);">cTokens and aTokens — The Interest‑Bearing Receipts</h3>
-<p>When you deposit ETH into Compound, you receive <strong>cETH</strong>. This is an ERC‑20 token that represents your deposit plus accrued interest. The exchange rate between cETH and ETH increases over time. Initially, 1 ETH = 0.02 cETH (at the current exchange rate). Over time, 0.02 cETH becomes redeemable for 1.1 ETH. You don't need to claim interest manually — it's built into the cToken.</p>
+<h3 style="font-size:18px; font-weight:700; margin:20px 0 8px; color:var(--ink);">cTokens and aTokens - The Interest-Bearing Receipts</h3>
+<p>When you deposit ETH into Compound, you receive <strong>cETH</strong>. This is an ERC-20 token that represents your deposit plus accrued interest. The exchange rate between cETH and ETH increases over time. Initially, 1 ETH = 0.02 cETH (at the current exchange rate). Over time, 0.02 cETH becomes redeemable for 1.1 ETH. You don't need to claim interest manually - it's built into the cToken.</p>
 <p>Aave uses <strong>aTokens</strong> (aETH, aUSDC, etc.) which work similarly. Aave also offers the option of receiving interest in the same token or in the protocol's native token (like AAVE) as an incentive.</p>
 
-<h3 style="font-size:18px; font-weight:700; margin:20px 0 8px; color:var(--ink);">Health Factor Calculation — Step by Step</h3>
+<h3 style="font-size:18px; font-weight:700; margin:20px 0 8px; color:var(--ink);">Health Factor Calculation - Step by Step</h3>
 <p>Let's compute a health factor for a real scenario. Aarav deposits ₹1,00,000 worth of ETH. The maximum LTV for ETH is 80%, and the liquidation threshold is 85%. He borrows ₹50,000 USDC.</p>
 <ul style="margin:12px 0 12px 24px; color:var(--ink-2); font-size:15px; line-height:1.8;">
   <li>Collateral value = ₹1,00,000</li>
@@ -529,10 +529,10 @@
   <li>Borrowed value = ₹50,000</li>
   <li><strong>Health Factor = (₹1,00,000 × 0.85) / ₹50,000 = ₹85,000 / ₹50,000 = 1.70</strong></li>
 </ul>
-<p>A health factor of 1.70 means the collateral could drop 41% before liquidation (since ₹85,000 / 1.70 = ₹50,000). To find the liquidation price: the ETH price must fall such that collateral value × 0.85 = borrowed value. So collateral value = ₹50,000 / 0.85 ≈ ₹58,824. The ETH price must drop from ₹1,00,000 to ₹58,824 — a 41.2% drop.</p>
+<p>A health factor of 1.70 means the collateral could drop 41% before liquidation (since ₹85,000 / 1.70 = ₹50,000). To find the liquidation price: the ETH price must fall such that collateral value × 0.85 = borrowed value. So collateral value = ₹50,000 / 0.85 ≈ ₹58,824. The ETH price must drop from ₹1,00,000 to ₹58,824 - a 41.2% drop.</p>
 
 <div class="diagram-wrap">
-  <div class="diagram-title">FIGURE 11.3‑A · Health Factor and Liquidation Threshold</div>
+  <div class="diagram-title">FIGURE 11.3-A · Health Factor and Liquidation Threshold</div>
   <pre>
   Health Factor
     3.0 ┤  Very Safe (Collateral 3× needed)
@@ -548,14 +548,14 @@
 
 <!-- 06 COMPOUND VS AAVE COMPARISON -->
 <div class="section-label">06 &nbsp; Comparison</div>
-<h2 class="section-title">Compound vs Aave — Head‑to‑Head</h2>
+<h2 class="section-title">Compound vs Aave - Head-to-Head</h2>
 <table class="compare-table">
   <thead>
     <tr><th>Feature</th><th>🏦 Compound</th><th>👻 Aave</th></tr>
   </thead>
   <tbody>
-    <tr><td>Interest‑bearing token</td><td>cTokens (cETH, cUSDC)</td><td>aTokens (aETH, aUSDC)</td></tr>
-    <tr><td>Interest rate model</td><td>Utilization‑based, single rate per asset</td><td>Utilization‑based, offers variable and stable rates</td></tr>
+    <tr><td>Interest-bearing token</td><td>cTokens (cETH, cUSDC)</td><td>aTokens (aETH, aUSDC)</td></tr>
+    <tr><td>Interest rate model</td><td>Utilization-based, single rate per asset</td><td>Utilization-based, offers variable and stable rates</td></tr>
     <tr><td>Flash loans</td><td class="bad">Not natively supported</td><td class="good">Native flash loans, pioneered the concept</td></tr>
     <tr><td>Health factor display</td><td class="mid">Collateral factor (similar, but less intuitive)</td><td class="good">Explicit health factor number (1.0 = liquidation)</td></tr>
     <tr><td>Rate switching</td><td class="bad">Not available</td><td class="good">Borrowers can switch between variable and stable rates</td></tr>
@@ -605,15 +605,15 @@
   <div class="feature-item">
     <div class="feature-num">1</div>
     <div class="feature-content">
-      <div class="feature-title">Micro‑loans become viable</div>
-      <div class="feature-desc">Borrowing ₹500 on Ethereum costs ₹500+ in gas — more than the loan itself. On MST, borrowing ₹500 costs ₹0.006 in gas. This enables loans as small as ₹50, empowering millions who need tiny amounts of capital.</div>
+      <div class="feature-title">Micro-loans become viable</div>
+      <div class="feature-desc">Borrowing ₹500 on Ethereum costs ₹500+ in gas - more than the loan itself. On MST, borrowing ₹500 costs ₹0.006 in gas. This enables loans as small as ₹50, empowering millions who need tiny amounts of capital.</div>
     </div>
   </div>
   <div class="feature-item">
     <div class="feature-num">2</div>
     <div class="feature-content">
       <div class="feature-title">Frequent compounding and monitoring</div>
-      <div class="feature-desc">Lenders can compound their earnings daily by withdrawing and re‑depositing interest (or through auto‑compounding vaults). Each action costs a fraction of a paisa, compared to ₹500+ on Ethereum. This boosts effective APY dramatically.</div>
+      <div class="feature-desc">Lenders can compound their earnings daily by withdrawing and re-depositing interest (or through auto-compounding vaults). Each action costs a fraction of a paisa, compared to ₹500+ on Ethereum. This boosts effective APY dramatically.</div>
     </div>
   </div>
   <div class="feature-item">
@@ -627,20 +627,20 @@
     <div class="feature-num">4</div>
     <div class="feature-content">
       <div class="feature-title">Permissioned lending for institutions</div>
-      <div class="feature-desc">MST's hybrid zones allow KYC‑compliant lending pools for regulated institutions, while the public zone remains open for anyone. This bridges DeFi and traditional finance.</div>
+      <div class="feature-desc">MST's hybrid zones allow KYC-compliant lending pools for regulated institutions, while the public zone remains open for anyone. This bridges DeFi and traditional finance.</div>
     </div>
   </div>
 </div>
 
 <!-- 09 COMMON PITFALLS -->
 <div class="section-label">09 &nbsp; Common Pitfalls</div>
-<h2 class="section-title">Don't Get Liquidated — Avoid These Mistakes</h2>
+<h2 class="section-title">Don't Get Liquidated - Avoid These Mistakes</h2>
 <div class="feature-list">
   <div class="feature-item">
     <div class="feature-num" style="background: var(--red);">⚠️</div>
     <div class="feature-content">
       <div class="feature-title">Borrowing at max LTV</div>
-      <div class="feature-desc">If you borrow the maximum allowed (e.g., 80% of collateral), even a tiny price drop triggers liquidation. Always leave a comfortable buffer — keep LTV below 50% for volatile assets.</div>
+      <div class="feature-desc">If you borrow the maximum allowed (e.g., 80% of collateral), even a tiny price drop triggers liquidation. Always leave a comfortable buffer - keep LTV below 50% for volatile assets.</div>
     </div>
   </div>
   <div class="feature-item">
@@ -654,34 +654,34 @@
     <div class="feature-num" style="background: var(--red);">⚠️</div>
     <div class="feature-content">
       <div class="feature-title">Using volatile collateral for stable loans</div>
-      <div class="feature-desc">Borrowing a stablecoin against a volatile asset (like ETH) creates liquidation risk if the volatile asset crashes. Consider using stablecoins as collateral for lower risk, or over‑collateralize heavily.</div>
+      <div class="feature-desc">Borrowing a stablecoin against a volatile asset (like ETH) creates liquidation risk if the volatile asset crashes. Consider using stablecoins as collateral for lower risk, or over-collateralize heavily.</div>
     </div>
   </div>
 </div>
 
 <!-- 10 CASE STUDIES -->
-<div class="section-label">10 &nbsp; Real‑World Case Studies</div>
+<div class="section-label">10 &nbsp; Real-World Case Studies</div>
 <h2 class="section-title">How Lending Protocols Survived Market Crashes</h2>
 <div class="feature-list">
   <div class="feature-item">
     <div class="feature-num" style="background: var(--blue);">🏦</div>
     <div class="feature-content">
-      <div class="feature-title">Aave — Surviving the March 2020 Crash</div>
+      <div class="feature-title">Aave - Surviving the March 2020 Crash</div>
       <div class="feature-desc">During the March 2020 "Black Thursday" crash, ETH dropped over 50% in a day. Aave's liquidation mechanism processed thousands of liquidations, keeping the protocol solvent. However, network congestion on Ethereum caused some liquidations to fail, leading to a small deficit that the Aave Safety Module covered. On MST, with higher throughput and stable fees, such liquidations would process smoothly.</div>
     </div>
   </div>
   <div class="feature-item">
     <div class="feature-num" style="background: var(--green);">💵</div>
     <div class="feature-content">
-      <div class="feature-title">Compound — The COMP Token Revolution</div>
-      <div class="feature-desc">In June 2020, Compound launched its COMP governance token, distributing it to lenders and borrowers. This sparked "yield farming" — users borrowed and lent the same assets repeatedly to maximize COMP rewards, driving TVL from $100M to $1B+ in weeks. The lesson: token incentives can bootstrap liquidity, but must be designed carefully to avoid manipulation.</div>
+      <div class="feature-title">Compound - The COMP Token Revolution</div>
+      <div class="feature-desc">In June 2020, Compound launched its COMP governance token, distributing it to lenders and borrowers. This sparked "yield farming" - users borrowed and lent the same assets repeatedly to maximize COMP rewards, driving TVL from $100M to $1B+ in weeks. The lesson: token incentives can bootstrap liquidity, but must be designed carefully to avoid manipulation.</div>
     </div>
   </div>
 </div>
 
 <!-- 11 ASSESSMENT PREP -->
 <div class="section-label">11 &nbsp; Assessment Preparation</div>
-<h2 class="section-title">Top Facts — Know These for the Exam</h2>
+<h2 class="section-title">Top Facts - Know These for the Exam</h2>
 <div class="feature-list">
   <div class="feature-item">
     <div class="feature-num" style="background: var(--ink-3); font-size:11px;">01</div>
@@ -693,14 +693,14 @@
   <div class="feature-item">
     <div class="feature-num" style="background: var(--ink-3); font-size:11px;">02</div>
     <div class="feature-content">
-      <div class="feature-title">Interest rates are utilization‑based with a kink</div>
+      <div class="feature-title">Interest rates are utilization-based with a kink</div>
       <div class="feature-desc">Rates rise slowly below optimal utilization, then spike sharply above it to prevent liquidity shortages.</div>
     </div>
   </div>
   <div class="feature-item">
     <div class="feature-num" style="background: var(--ink-3); font-size:11px;">03</div>
     <div class="feature-content">
-      <div class="feature-title">MST's low fees enable micro‑loans and frequent compounding</div>
+      <div class="feature-title">MST's low fees enable micro-loans and frequent compounding</div>
       <div class="feature-desc">Borrow ₹500 for ₹0.006 in gas vs ₹500+ on Ethereum. Compound daily for pennies.</div>
     </div>
   </div>
@@ -716,21 +716,21 @@
 
     <!-- SECTION A: MCQ -->
     <div class="q-section-header">
-      <div class="q-section-title">Section A — Multiple Choice Questions</div>
+      <div class="q-section-title">Section A - Multiple Choice Questions</div>
       <div class="q-section-meta">5 Questions · 1 mark each · 5 marks total</div>
     </div>
 
     <!-- Q1 -->
     <div class="question-block">
       <div class="q-header"><div class="q-badge">Q1</div><div class="q-meta"><span class="q-type">MCQ</span><span class="q-diff easy">Easy</span><span class="q-marks">1 mark</span></div></div>
-      <div class="q-text">What is the primary purpose of over‑collateralization in DeFi lending?</div>
+      <div class="q-text">What is the primary purpose of over-collateralization in DeFi lending?</div>
       <ul class="options">
         <li class="correct"><span class="opt-key">A</span> To protect the protocol from borrower default by ensuring the collateral value exceeds the loan value. ✅</li>
         <li><span class="opt-key">B</span> To make loans more expensive.</li>
         <li><span class="opt-key">C</span> To require a credit check.</li>
         <li><span class="opt-key">D</span> To reduce the amount of crypto in circulation.</li>
       </ul>
-      <div class="answer-box"><div class="answer-box-label">✅ Correct: A</div><p>Over‑collateralization ensures the protocol always has more value locked than borrowed, so even if a borrower defaults, the collateral sale covers the debt.</p></div>
+      <div class="answer-box"><div class="answer-box-label">✅ Correct: A</div><p>Over-collateralization ensures the protocol always has more value locked than borrowed, so even if a borrower defaults, the collateral sale covers the debt.</p></div>
     </div>
 
     <!-- Q2 -->
@@ -749,7 +749,7 @@
     <!-- Q3 -->
     <div class="question-block">
       <div class="q-header"><div class="q-badge">Q3</div><div class="q-meta"><span class="q-type">MCQ</span><span class="q-diff easy">Easy</span><span class="q-marks">1 mark</span></div></div>
-      <div class="q-text">What happens to the interest rate in a utilization‑based model when utilization exceeds the optimal level (kink)?</div>
+      <div class="q-text">What happens to the interest rate in a utilization-based model when utilization exceeds the optimal level (kink)?</div>
       <ul class="options">
         <li class="correct"><span class="opt-key">A</span> It increases sharply to discourage borrowing and attract deposits. ✅</li>
         <li><span class="opt-key">B</span> It decreases to encourage more borrowing.</li>
@@ -764,12 +764,12 @@
       <div class="q-header"><div class="q-badge">Q4</div><div class="q-meta"><span class="q-type">MCQ</span><span class="q-diff easy">Easy</span><span class="q-marks">1 mark</span></div></div>
       <div class="q-text">Which of the following is a key advantage of deploying lending protocols on MST rather than Ethereum?</div>
       <ul class="options">
-        <li class="correct"><span class="opt-key">A</span> Extremely low gas fees make micro‑loans and frequent compounding economically viable. ✅</li>
+        <li class="correct"><span class="opt-key">A</span> Extremely low gas fees make micro-loans and frequent compounding economically viable. ✅</li>
         <li><span class="opt-key">B</span> MST does not require collateral for loans.</li>
         <li><span class="opt-key">C</span> MST uses a different interest rate model that guarantees profits.</li>
         <li><span class="opt-key">D</span> MST has no liquidation mechanism.</li>
       </ul>
-      <div class="answer-box"><div class="answer-box-label">✅ Correct: A</div><p>Sub‑paisa fees remove the economic barrier to small loans and active management, opening DeFi lending to a global audience.</p></div>
+      <div class="answer-box"><div class="answer-box-label">✅ Correct: A</div><p>Sub-paisa fees remove the economic barrier to small loans and active management, opening DeFi lending to a global audience.</p></div>
     </div>
 
     <!-- Q5 -->
@@ -787,7 +787,7 @@
 
     <!-- SECTION B: TRUE/FALSE WITH JUSTIFICATION -->
     <div class="q-section-header">
-      <div class="q-section-title">Section B — True / False with Mandatory Justification</div>
+      <div class="q-section-title">Section B - True / False with Mandatory Justification</div>
       <div class="q-section-meta">2 Questions · 2 marks each · 4 marks total</div>
     </div>
 
@@ -799,7 +799,7 @@
         <div class="tf-verdict false">FALSE</div>
         <div class="tf-must-write">📝 Sample Justification:</div>
         <div class="tf-sample">
-          This statement is <strong>FALSE</strong>. While the maximum LTV is 80%, borrowing at the maximum LTV leaves zero safety margin. A tiny price drop would immediately push the health factor below 1.0, triggering liquidation. For example, with a liquidation threshold of 85%, the health factor would be (₹1,00,000 × 0.85) / ₹80,000 = 1.0625 — just barely above 1.0. A 5% ETH price drop would cause liquidation. Prudent borrowers keep their LTV well below the maximum — typically 50% or less for volatile assets. So while you <em>can</em> borrow ₹80,000, it is not <em>safe</em>.
+          This statement is <strong>FALSE</strong>. While the maximum LTV is 80%, borrowing at the maximum LTV leaves zero safety margin. A tiny price drop would immediately push the health factor below 1.0, triggering liquidation. For example, with a liquidation threshold of 85%, the health factor would be (₹1,00,000 × 0.85) / ₹80,000 = 1.0625 - just barely above 1.0. A 5% ETH price drop would cause liquidation. Prudent borrowers keep their LTV well below the maximum - typically 50% or less for volatile assets. So while you <em>can</em> borrow ₹80,000, it is not <em>safe</em>.
         </div>
       </div>
       <div class="answer-box"><div class="answer-box-label">📊 Marks Breakdown</div><p><strong>1 mark:</strong> Correctly states FALSE. <strong>+1 mark:</strong> Justification explains that max LTV leaves no safety buffer, a small price drop triggers liquidation, and prudent LTV is much lower.</p></div>
@@ -813,7 +813,7 @@
         <div class="tf-verdict false">FALSE</div>
         <div class="tf-must-write">📝 Sample Justification:</div>
         <div class="tf-sample">
-          This statement is <strong>FALSE</strong>. Collateral requirements are a fundamental part of the protocol's risk model, not determined by gas fees. Lending protocols like Aave and Compound require over‑collateralization to protect lenders from defaults. Low gas fees make the protocol cheaper to use, but they do not eliminate the need for collateral. The only uncollateralized loans in DeFi are flash loans, which must be repaid within the same transaction — a completely different mechanism. Lower gas fees do not change the fact that borrowers could disappear with the funds if no collateral were required.
+          This statement is <strong>FALSE</strong>. Collateral requirements are a fundamental part of the protocol's risk model, not determined by gas fees. Lending protocols like Aave and Compound require over-collateralization to protect lenders from defaults. Low gas fees make the protocol cheaper to use, but they do not eliminate the need for collateral. The only uncollateralized loans in DeFi are flash loans, which must be repaid within the same transaction - a completely different mechanism. Lower gas fees do not change the fact that borrowers could disappear with the funds if no collateral were required.
         </div>
       </div>
       <div class="answer-box"><div class="answer-box-label">📊 Marks Breakdown</div><p><strong>1 mark:</strong> Correctly states FALSE. <strong>+1 mark:</strong> Justification explains that collateral is a risk requirement, not a gas issue; flash loans are the only exception but are not standard lending.</p></div>
@@ -821,12 +821,12 @@
 
     <!-- SECTION C: IDENTIFY‑OUTPUT (HEALTH FACTOR) -->
     <div class="q-section-header">
-      <div class="q-section-title">Section C — Identify‑Output (Health Factor Calculation)</div>
+      <div class="q-section-title">Section C - Identify-Output (Health Factor Calculation)</div>
       <div class="q-section-meta">1 Question · 6 marks</div>
     </div>
 
     <div class="question-block">
-      <div class="q-header"><div class="q-badge">Q8</div><div class="q-meta"><span class="q-type">Identify‑Output</span><span class="q-diff medium">Medium</span><span class="q-marks">6 marks</span></div></div>
+      <div class="q-header"><div class="q-badge">Q8</div><div class="q-meta"><span class="q-type">Identify-Output</span><span class="q-diff medium">Medium</span><span class="q-marks">6 marks</span></div></div>
       <div class="q-text">Calculate the health factor and determine liquidation risk for the following position.</div>
       <div class="identify-output">
         <div class="io-header"><div class="io-badge">📋 SCENARIO</div></div>
@@ -860,7 +860,7 @@
       <div class="score-label">Sub-Module 11.3 Assessment Summary</div>
       <div class="score-row">Section A: 5 × MCQ <span>(1 mark each) = 5 marks</span></div>
       <div class="score-row">Section B: 2 × T/F with Justification <span>(2 marks each) = 4 marks</span></div>
-      <div class="score-row">Section C: 1 × Identify‑Output <span>(6 marks) = 6 marks</span></div>
+      <div class="score-row">Section C: 1 × Identify-Output <span>(6 marks) = 6 marks</span></div>
     </div>
     <div class="score-badge"><div class="score-num">15</div><div class="score-text">Total Marks</div></div>
   </div>
@@ -868,19 +868,19 @@
 
 <!-- GLOSSARY -->
 <div class="section-label" style="margin-top:52px;">12 &nbsp; Glossary</div>
-<h2 class="section-title">Key Terms — Sub-Module 11.3</h2>
+<h2 class="section-title">Key Terms - Sub-Module 11.3</h2>
 <div class="glossary-grid">
-  <div class="glossary-item"><div class="glossary-term">Collateral</div><div class="glossary-def">Crypto assets deposited to secure a loan. Must exceed the loan value (over‑collateralization).</div></div>
-  <div class="glossary-item"><div class="glossary-term">Loan‑to‑Value (LTV)</div><div class="glossary-def">The ratio of borrowed amount to collateral value. Max LTV sets the borrowing limit (e.g., 80%).</div></div>
+  <div class="glossary-item"><div class="glossary-term">Collateral</div><div class="glossary-def">Crypto assets deposited to secure a loan. Must exceed the loan value (over-collateralization).</div></div>
+  <div class="glossary-item"><div class="glossary-term">Loan-to-Value (LTV)</div><div class="glossary-def">The ratio of borrowed amount to collateral value. Max LTV sets the borrowing limit (e.g., 80%).</div></div>
   <div class="glossary-item"><div class="glossary-term">Health Factor</div><div class="glossary-def">Aave's metric for loan safety: (Collateral × Liquidation Threshold) / Debt. Below 1.0 triggers liquidation.</div></div>
-  <div class="glossary-item"><div class="glossary-term">Liquidation</div><div class="glossary-def">Forced sale of collateral when a loan becomes under‑collateralized. A liquidator repays the debt and claims collateral at a discount.</div></div>
+  <div class="glossary-item"><div class="glossary-term">Liquidation</div><div class="glossary-def">Forced sale of collateral when a loan becomes under-collateralized. A liquidator repays the debt and claims collateral at a discount.</div></div>
   <div class="glossary-item"><div class="glossary-term">Utilization Rate</div><div class="glossary-def">Total borrowed / Total supplied. Determines the interest rate in Compound and Aave.</div></div>
-  <div class="glossary-item"><div class="glossary-term">cToken / aToken</div><div class="glossary-def">Interest‑bearing tokens received upon deposit, representing the deposit plus accrued interest.</div></div>
+  <div class="glossary-item"><div class="glossary-term">cToken / aToken</div><div class="glossary-def">Interest-bearing tokens received upon deposit, representing the deposit plus accrued interest.</div></div>
 </div>
 
 <div class="page-footer">
-  <p>MasterStroke Academy — Professional Blockchain Developer Program</p>
-  <p>Module 11 · Sub-Module <strong>11.3</strong> of 6 &nbsp;·&nbsp; Next: Sub-Module 11.4 — Staking & Yield Farming →</p>
+  <p>MasterStroke Academy - Professional Blockchain Developer Program</p>
+  <p>Module 11 · Sub-Module <strong>11.3</strong> of 6 &nbsp;·&nbsp; Next: Sub-Module 11.4 - Staking & Yield Farming →</p>
 </div>
 
 </body>

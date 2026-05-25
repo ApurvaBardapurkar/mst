@@ -4,10 +4,10 @@
 <div class="hero">
   <div class="breadcrumb">MasterStroke Academy › Module 4: Cryptography › <span>Sub-Module 4.5</span></div>
   <h1>Commitments &amp; Verifiable<br><em>Random Functions (VRFs)</em></h1>
-  <p class="hero-sub">How blockchain gaming stays honest — cryptographic commitments that lock in a decision before revealing it, and VRFs that produce randomness nobody can fake or predict. The secret engine behind MST's FortunaX, SatvaShuffle, and PUBG loot boxes.</p>
+  <p class="hero-sub">How blockchain gaming stays honest - cryptographic commitments that lock in a decision before revealing it, and VRFs that produce randomness nobody can fake or predict. The secret engine behind MST's FortunaX, SatvaShuffle, and PUBG loot boxes.</p>
   <div class="meta-pills">
     <div class="pill">⏱ 40 Minutes</div>
-    <div class="pill">📊 Module 4 — Cryptography</div>
+    <div class="pill">📊 Module 4 - Cryptography</div>
     <div class="pill gold">🎯 15 Marks</div>
     <div class="pill teal">🎲 Sub-Module 4.5</div>
   </div>
@@ -18,12 +18,12 @@
 
   <!-- ── 1. LEARNING OBJECTIVES ── -->
   <div class="section">
-    <div class="section-label">01 — Learning Objectives</div>
+    <div class="section-label">01 - Learning Objectives</div>
     <h2>What You Will Know By The End</h2>
     <ul>
       <li>✅ Explain what a <strong>cryptographic commitment scheme</strong> is and the two properties it must satisfy: Hiding and Binding.</li>
-      <li>✅ Trace the <strong>commit-reveal pattern</strong> step by step — and explain why it eliminates cheating in on-chain games.</li>
-      <li>✅ Understand <strong>Pedersen Commitments</strong> — how they are constructed and why they are used in confidential transactions.</li>
+      <li>✅ Trace the <strong>commit-reveal pattern</strong> step by step - and explain why it eliminates cheating in on-chain games.</li>
+      <li>✅ Understand <strong>Pedersen Commitments</strong> - how they are constructed and why they are used in confidential transactions.</li>
       <li>✅ Define a <strong>Verifiable Random Function (VRF)</strong> and explain its three properties: Pseudorandomness, Provability, and Uniqueness.</li>
       <li>✅ Contrast VRFs with insecure randomness sources (block hash, timestamp) and explain why the latter are exploitable.</li>
       <li>✅ Connect both concepts to real MST protocols: FortunaX (RNG), SatvaShuffle (card games), and Klethesia (slot RTP).</li>
@@ -33,59 +33,59 @@
 
   <!-- ── 2. REAL WORLD STORY ── -->
   <div class="section">
-    <div class="section-label">02 — Real World Introduction Story</div>
+    <div class="section-label">02 - Real World Introduction Story</div>
     <h2>The Rigged Loot Box and the Cheating Card Dealer</h2>
 
     <div class="story-card">
-      <div class="story-tag">📖 Story Time — Two Problems, One Solution</div>
-      <p><strong>Story 1 — The Loot Box Scandal:</strong> It is 2021. Arjun has spent ₹8,000 on PUBG loot boxes chasing a rare skin with a claimed 1% drop rate. He opens 400 boxes — not a single rare item. He posts his experience on Reddit and discovers hundreds of others with the same experience. The developer's server generates "random" numbers server-side. Nobody can verify them. The "1% rate" is just a number on a marketing page. There is no proof the loot box RNG is honest. <strong>It cannot be audited.</strong></p>
-      <p><strong>Story 2 — The Card Dealer:</strong> Sanya loves online Rummy on a popular app. She notices she consistently gets terrible hands. She suspects the server shuffles the deck <em>after</em> seeing which players are in the round — giving good cards to players the algorithm wants to retain. But she can never prove it. The shuffle happens in a black box on the company's servers.</p>
-      <p>Both problems share the same root cause: <strong>centralized, unverifiable randomness.</strong> The server decides the outcome — and the user must simply trust it. In gaming worth thousands of crores, "trust me" is not enough.</p>
-      <p>Cryptographic commitments and VRFs are the solution. On MST Blockchain, FortunaX and SatvaShuffle make random number generation and card shuffling <strong>publicly verifiable, tamper-proof, and provably fair</strong> — before the player even presses play.</p>
+      <div class="story-tag">📖 Story Time - Two Problems, One Solution</div>
+      <p><strong>Story 1 - The Loot Box Scandal:</strong> It is 2021. Arjun has spent ₹8,000 on PUBG loot boxes chasing a rare skin with a claimed 1% drop rate. He opens 400 boxes - not a single rare item. He posts his experience on Reddit and discovers hundreds of others with the same experience. The developer's server generates "random" numbers server-side. Nobody can verify them. The "1% rate" is just a number on a marketing page. There is no proof the loot box RNG is honest. <strong>It cannot be audited.</strong></p>
+      <p><strong>Story 2 - The Card Dealer:</strong> Sanya loves online Rummy on a popular app. She notices she consistently gets terrible hands. She suspects the server shuffles the deck <em>after</em> seeing which players are in the round - giving good cards to players the algorithm wants to retain. But she can never prove it. The shuffle happens in a black box on the company's servers.</p>
+      <p>Both problems share the same root cause: <strong>centralized, unverifiable randomness.</strong> The server decides the outcome - and the user must simply trust it. In gaming worth thousands of crores, "trust me" is not enough.</p>
+      <p>Cryptographic commitments and VRFs are the solution. On MST Blockchain, FortunaX and SatvaShuffle make random number generation and card shuffling <strong>publicly verifiable, tamper-proof, and provably fair</strong> - before the player even presses play.</p>
     </div>
 
     <div class="callout tip">
       <div class="callout-icon">💡</div>
       <div class="callout-body">
         <strong>The Core Problem in One Line</strong>
-        <p>If the entity generating random numbers can see the result before committing to it — they can cheat. Commitments and VRFs cryptographically remove this power.</p>
+        <p>If the entity generating random numbers can see the result before committing to it - they can cheat. Commitments and VRFs cryptographically remove this power.</p>
       </div>
     </div>
   </div>
 
   <!-- ── 3. BACKGROUND / HISTORY ── -->
   <div class="section">
-    <div class="section-label">03 — Background &amp; History</div>
+    <div class="section-label">03 - Background &amp; History</div>
     <h2>From Coin Flips to Cryptographic Commitments</h2>
 
     <h3>The Coin Flip Problem</h3>
-    <p>Alice and Bob want to flip a fair coin over the phone to decide who pays for dinner. If Alice announces "heads" first, Bob can simply say "tails" — he always wins. If Bob flips and announces the result, Alice has to trust him. There is no fair way to do this without a trusted third party — or a commitment scheme.</p>
-    <p>Commitment schemes were formalised by Manuel Blum in 1983, precisely to solve this problem. They allow one party to commit to a value (locking it in, invisible to the other) and reveal it later — with proof that the revealed value is the same one that was committed.</p>
+    <p>Alice and Bob want to flip a fair coin over the phone to decide who pays for dinner. If Alice announces "heads" first, Bob can simply say "tails" - he always wins. If Bob flips and announces the result, Alice has to trust him. There is no fair way to do this without a trusted third party - or a commitment scheme.</p>
+    <p>Commitment schemes were formalised by Manuel Blum in 1983, precisely to solve this problem. They allow one party to commit to a value (locking it in, invisible to the other) and reveal it later - with proof that the revealed value is the same one that was committed.</p>
 
-    <h3>VRFs — A More Recent Innovation</h3>
+    <h3>VRFs - A More Recent Innovation</h3>
     <p>Verifiable Random Functions were introduced by Micali, Rabin, and Vadhan in 1999. They solve a different but related problem: not "how to commit to a value" but "how to generate randomness that is unpredictable, unique, and publicly verifiable." Algorand uses VRFs for its consensus lottery. Chainlink VRF brings verifiable randomness to Ethereum smart contracts. MST's FortunaX implements VRF-based randomness natively on the blockchain.</p>
 
     <div class="two-col">
       <div class="fact-card">
         <div class="fact-label">Commitments Formalised</div>
         <div class="fact-value">1983</div>
-        <div class="fact-note">Manuel Blum — coin-flipping over the telephone</div>
+        <div class="fact-note">Manuel Blum - coin-flipping over the telephone</div>
       </div>
       <div class="fact-card">
         <div class="fact-label">VRFs Introduced</div>
         <div class="fact-value">1999</div>
-        <div class="fact-note">Micali, Rabin, Vadhan — verifiable pseudorandom functions</div>
+        <div class="fact-note">Micali, Rabin, Vadhan - verifiable pseudorandom functions</div>
       </div>
     </div>
   </div>
 
   <!-- ── 4. BEGINNER EXPLANATION — COMMITMENTS ── -->
   <div class="section">
-    <div class="section-label">04 — Beginner-Friendly Deep Explanation</div>
+    <div class="section-label">04 - Beginner-Friendly Deep Explanation</div>
     <h2>Part A: Cryptographic Commitment Schemes</h2>
 
     <h3>The Sealed Envelope Analogy</h3>
-    <p>Imagine two players are betting on the IPL match winner. Rohan thinks Mumbai Indians will win. He writes "Mumbai Indians" on a piece of paper, seals it in an envelope, and hands it to a neutral referee — <em>before</em> the match begins. After the match, he opens the envelope in front of everyone. If the paper says "Mumbai Indians" and MI won, his bet is proven.</p>
+    <p>Imagine two players are betting on the IPL match winner. Rohan thinks Mumbai Indians will win. He writes "Mumbai Indians" on a piece of paper, seals it in an envelope, and hands it to a neutral referee - <em>before</em> the match begins. After the match, he opens the envelope in front of everyone. If the paper says "Mumbai Indians" and MI won, his bet is proven.</p>
     <p>The envelope is a commitment. It has two properties:</p>
 
     <div class="three-col">
@@ -109,34 +109,34 @@
     <div class="callout key">
       <div class="callout-icon">🗝️</div>
       <div class="callout-body">
-        <strong>Hiding AND Binding — Both Are Non-Negotiable</strong>
-        <p>A commitment without <strong>Hiding</strong>: the verifier reads the envelope immediately — they see your prediction before the match, defeating the purpose. A commitment without <strong>Binding</strong>: Rohan writes "Mumbai Indians," but if they lose, he somehow produces a paper saying "Chennai Super Kings" from the same envelope — he can lie. You need both properties simultaneously for a commitment to be useful.</p>
+        <strong>Hiding AND Binding - Both Are Non-Negotiable</strong>
+        <p>A commitment without <strong>Hiding</strong>: the verifier reads the envelope immediately - they see your prediction before the match, defeating the purpose. A commitment without <strong>Binding</strong>: Rohan writes "Mumbai Indians," but if they lose, he somehow produces a paper saying "Chennai Super Kings" from the same envelope - he can lie. You need both properties simultaneously for a commitment to be useful.</p>
       </div>
     </div>
 
-    <h3>The Commit-Reveal Pattern — Step by Step</h3>
+    <h3>The Commit-Reveal Pattern - Step by Step</h3>
     <p>On blockchain, commitment schemes follow a precise two-phase protocol called <strong>Commit-Reveal</strong>:</p>
 
     <div class="steps">
       <div class="step">
         <div class="step-num teal-bg">1</div>
         <div class="step-body">
-          <h4>COMMIT PHASE — Lock the value on-chain</h4>
-          <p>The player chooses their secret value <code>v</code> (e.g., the outcome they're betting on, or their chosen move in a game). They pick a random salt <code>r</code>. They compute the commitment: <code>C = keccak256(v ++ r)</code> and submit <code>C</code> to the smart contract. The contract stores <code>C</code>. The player's actual choice is hidden — but locked in.</p>
+          <h4>COMMIT PHASE - Lock the value on-chain</h4>
+          <p>The player chooses their secret value <code>v</code> (e.g., the outcome they're betting on, or their chosen move in a game). They pick a random salt <code>r</code>. They compute the commitment: <code>C = keccak256(v ++ r)</code> and submit <code>C</code> to the smart contract. The contract stores <code>C</code>. The player's actual choice is hidden - but locked in.</p>
         </div>
       </div>
       <div class="step">
         <div class="step-num teal-bg">2</div>
         <div class="step-body">
-          <h4>WAITING PERIOD — The event happens</h4>
-          <p>The match plays out, the dice rolls, the cards are dealt. The committed value cannot be changed — it is already recorded on-chain as a hash. Even the player cannot alter it without breaking the hash.</p>
+          <h4>WAITING PERIOD - The event happens</h4>
+          <p>The match plays out, the dice rolls, the cards are dealt. The committed value cannot be changed - it is already recorded on-chain as a hash. Even the player cannot alter it without breaking the hash.</p>
         </div>
       </div>
       <div class="step">
         <div class="step-num teal-bg">3</div>
         <div class="step-body">
-          <h4>REVEAL PHASE — Open the commitment</h4>
-          <p>The player submits the original values: <code>v</code> and <code>r</code>. The smart contract recomputes <code>keccak256(v ++ r)</code> and checks: does this equal the stored commitment <code>C</code>? If yes — the commitment is valid. If no — the player is trying to cheat by revealing a different value.</p>
+          <h4>REVEAL PHASE - Open the commitment</h4>
+          <p>The player submits the original values: <code>v</code> and <code>r</code>. The smart contract recomputes <code>keccak256(v ++ r)</code> and checks: does this equal the stored commitment <code>C</code>? If yes - the commitment is valid. If no - the player is trying to cheat by revealing a different value.</p>
         </div>
       </div>
     </div>
@@ -145,45 +145,45 @@
       <div class="callout-icon">⚠️</div>
       <div class="callout-body">
         <strong>Why You MUST Include a Random Salt</strong>
-        <p>Without a salt, a commitment to "Mumbai Indians" is always <code>keccak256("Mumbai Indians")</code> — the same hash every time. An adversary can precompute the hash of every possible value and compare to your commitment — immediately knowing your secret before the reveal. The salt <code>r</code> must be a cryptographically random 32-byte value, making the input space effectively infinite and precomputation impossible. This was covered in Sub-Module 4.3 (hash commit-reveal attacks).</p>
+        <p>Without a salt, a commitment to "Mumbai Indians" is always <code>keccak256("Mumbai Indians")</code> - the same hash every time. An adversary can precompute the hash of every possible value and compare to your commitment - immediately knowing your secret before the reveal. The salt <code>r</code> must be a cryptographically random 32-byte value, making the input space effectively infinite and precomputation impossible. This was covered in Sub-Module 4.3 (hash commit-reveal attacks).</p>
       </div>
     </div>
 
-    <h3>Pedersen Commitments — The Mathematically Elegant Version</h3>
+    <h3>Pedersen Commitments - The Mathematically Elegant Version</h3>
     <p>Hash-based commitments (<code>keccak256(v ++ r)</code>) are simple but have a limitation: you cannot do arithmetic on committed values. If Alice commits to "100" and Bob commits to "50," you cannot prove their sum is "150" without revealing both values.</p>
-    <p><strong>Pedersen Commitments</strong> solve this — they are <strong>additively homomorphic</strong>: you can add commitments together and the result is a commitment to the sum of the original values, all without ever revealing the individual values.</p>
+    <p><strong>Pedersen Commitments</strong> solve this - they are <strong>additively homomorphic</strong>: you can add commitments together and the result is a commitment to the sum of the original values, all without ever revealing the individual values.</p>
 
     <div class="teal-box">
       <p><strong>Pedersen Commitment Formula:</strong></p>
       <p><code>C = v·G + r·H</code></p>
       <p>Where: <strong>v</strong> = the secret value being committed to, <strong>r</strong> = a random blinding factor, <strong>G</strong> and <strong>H</strong> are two generator points on an elliptic curve (public, fixed parameters), <strong>C</strong> = the commitment point on the curve.</p>
-      <p><strong>Homomorphic property:</strong> If Alice commits to value <strong>a</strong> (commitment C_a) and Bob commits to value <strong>b</strong> (commitment C_b), then <code>C_a + C_b</code> is a commitment to <code>a + b</code> — without revealing <code>a</code> or <code>b</code>. This is how confidential transactions in Monero and Bulletproofs work: the blockchain can verify amounts sum to zero (no inflation) without seeing any individual amount.</p>
+      <p><strong>Homomorphic property:</strong> If Alice commits to value <strong>a</strong> (commitment C_a) and Bob commits to value <strong>b</strong> (commitment C_b), then <code>C_a + C_b</code> is a commitment to <code>a + b</code> - without revealing <code>a</code> or <code>b</code>. This is how confidential transactions in Monero and Bulletproofs work: the blockchain can verify amounts sum to zero (no inflation) without seeing any individual amount.</p>
     </div>
 
     <div class="callout green">
       <div class="callout-icon">🌍</div>
       <div class="callout-body">
-        <strong>Real-World Use — Monero Confidential Transactions</strong>
-        <p>Monero uses Pedersen Commitments for every transaction amount. The sender commits to the amount being sent. The receiver commits to the amount received. The network verifies: <em>sum of input commitments = sum of output commitments + fee commitment.</em> This proves no coins were created from thin air — without anyone seeing a single number. The amounts remain completely hidden.</p>
+        <strong>Real-World Use - Monero Confidential Transactions</strong>
+        <p>Monero uses Pedersen Commitments for every transaction amount. The sender commits to the amount being sent. The receiver commits to the amount received. The network verifies: <em>sum of input commitments = sum of output commitments + fee commitment.</em> This proves no coins were created from thin air - without anyone seeing a single number. The amounts remain completely hidden.</p>
       </div>
     </div>
   </div>
 
   <!-- ── 4B. VRFs ── -->
   <div class="section">
-    <div class="section-label">04B — Beginner-Friendly Deep Explanation</div>
+    <div class="section-label">04B - Beginner-Friendly Deep Explanation</div>
     <h2>Part B: Verifiable Random Functions (VRFs)</h2>
 
     <h3>Why Blockchain Randomness Is Hard</h3>
-    <p>A smart contract is a deterministic machine — given the same inputs, it always produces the same outputs. True randomness is non-deterministic. These two facts are fundamentally at odds. How do you introduce genuine randomness into a deterministic system — in a way that nobody can predict or manipulate?</p>
+    <p>A smart contract is a deterministic machine - given the same inputs, it always produces the same outputs. True randomness is non-deterministic. These two facts are fundamentally at odds. How do you introduce genuine randomness into a deterministic system - in a way that nobody can predict or manipulate?</p>
 
-    <h3>The Wrong Ways — Exploitable Randomness Sources</h3>
+    <h3>The Wrong Ways - Exploitable Randomness Sources</h3>
 
     <div class="analogy-grid">
       <div class="analogy-card">
         <div class="tag">❌ Block Hash as RNG</div>
         <h4>Exploitable by Miners/Validators</h4>
-        <p><code>blockhash(block.number)</code> seems random — but validators choose which transactions to include and can see the block hash before finalising. They can selectively include/exclude transactions to get a favourable hash. A validator running a lottery contract can discard blocks where they don't win.</p>
+        <p><code>blockhash(block.number)</code> seems random - but validators choose which transactions to include and can see the block hash before finalising. They can selectively include/exclude transactions to get a favourable hash. A validator running a lottery contract can discard blocks where they don't win.</p>
       </div>
       <div class="analogy-card">
         <div class="tag">❌ block.timestamp as RNG</div>
@@ -194,11 +194,11 @@
 
     <blockquote>"Never use block.timestamp or blockhash as your only source of randomness in a smart contract. Any miner or validator can influence both."</blockquote>
 
-    <h3>The Right Way — Verifiable Random Functions (VRFs)</h3>
+    <h3>The Right Way - Verifiable Random Functions (VRFs)</h3>
     <p>A VRF is a cryptographic function that takes a private key and a public input (seed) and produces:</p>
     <ol>
-      <li>A <strong>pseudorandom output</strong> — looks completely random</li>
-      <li>A <strong>proof</strong> — anyone can verify the output was computed correctly from the seed using the corresponding public key</li>
+      <li>A <strong>pseudorandom output</strong> - looks completely random</li>
+      <li>A <strong>proof</strong> - anyone can verify the output was computed correctly from the seed using the corresponding public key</li>
     </ol>
     <p>Three critical properties make VRFs special:</p>
 
@@ -216,11 +216,11 @@
       <div class="property-card p3">
         <div class="prop-icon">🔑</div>
         <h4>Uniqueness</h4>
-        <p>For any given private key and seed, there is exactly ONE valid output. The private key holder cannot generate multiple different outputs for the same seed and pick the one they like — the output is deterministic.</p>
+        <p>For any given private key and seed, there is exactly ONE valid output. The private key holder cannot generate multiple different outputs for the same seed and pick the one they like - the output is deterministic.</p>
       </div>
     </div>
 
-    <h3>The VRF Coin Flip — Alice and Bob, Again</h3>
+    <h3>The VRF Coin Flip - Alice and Bob, Again</h3>
     <p>Alice wants to flip a provably fair coin for a bet with Bob on MST Blockchain. Using a VRF:</p>
 
     <div class="steps">
@@ -258,7 +258,7 @@
       <div class="callout-icon">🔮</div>
       <div class="callout-body">
         <strong>Why Alice Cannot Cheat</strong>
-        <p>Alice generated the randomness — couldn't she pick a favourable output? <strong>No.</strong> Uniqueness: there is exactly ONE valid VRF output for a given private key and seed. She cannot generate multiple outputs and pick the best one. If she submits a different value, the proof verification will fail — the contract will reject it. She is mathematically forced to submit the honest output or nothing at all.</p>
+        <p>Alice generated the randomness - couldn't she pick a favourable output? <strong>No.</strong> Uniqueness: there is exactly ONE valid VRF output for a given private key and seed. She cannot generate multiple outputs and pick the best one. If she submits a different value, the proof verification will fail - the contract will reject it. She is mathematically forced to submit the honest output or nothing at all.</p>
       </div>
     </div>
 
@@ -266,24 +266,24 @@
       <div class="callout-icon">💡</div>
       <div class="callout-body">
         <strong>Why Bob Cannot Cheat</strong>
-        <p>Bob submitted the seed — couldn't he choose a seed that he knows will give a good outcome? <strong>No.</strong> Pseudorandomness: without knowing Alice's private key, Bob cannot predict what output any seed will produce. The VRF output is computationally indistinguishable from true randomness to anyone who doesn't hold the private key. Bob's seed choice is meaningless to the outcome.</p>
+        <p>Bob submitted the seed - couldn't he choose a seed that he knows will give a good outcome? <strong>No.</strong> Pseudorandomness: without knowing Alice's private key, Bob cannot predict what output any seed will produce. The VRF output is computationally indistinguishable from true randomness to anyone who doesn't hold the private key. Bob's seed choice is meaningless to the outcome.</p>
       </div>
     </div>
   </div>
 
   <!-- ── 5. TECHNICAL DEEP DIVE ── -->
   <div class="section">
-    <div class="section-label">05 — Technical Deep Dive</div>
-    <h2>How VRFs Work Internally — ECVRF</h2>
+    <div class="section-label">05 - Technical Deep Dive</div>
+    <h2>How VRFs Work Internally - ECVRF</h2>
 
-    <p>The most widely used VRF construction in blockchain is <strong>ECVRF</strong> — the Elliptic Curve VRF, standardised in IETF RFC 9381. Here is the intuition:</p>
+    <p>The most widely used VRF construction in blockchain is <strong>ECVRF</strong> - the Elliptic Curve VRF, standardised in IETF RFC 9381. Here is the intuition:</p>
 
     <h4>VRF_Prove (private key side):</h4>
     <ol>
       <li>Hash the input seed to a curve point: <code>H = hash_to_curve(seed)</code></li>
       <li>Compute the "gamma" point: <code>Γ = privKey × H</code> (elliptic curve scalar multiplication)</li>
       <li>The VRF output (pseudorandom value) is: <code>β = keccak256(Γ)</code></li>
-      <li>Generate a Schnorr-like proof <code>π = (c, s)</code> that proves you know the privKey used to compute Γ from H — without revealing privKey</li>
+      <li>Generate a Schnorr-like proof <code>π = (c, s)</code> that proves you know the privKey used to compute Γ from H - without revealing privKey</li>
     </ol>
 
     <h4>VRF_Verify (public key side):</h4>
@@ -298,11 +298,11 @@
       <div class="callout-icon">🧮</div>
       <div class="callout-body">
         <strong>The Security Intuition</strong>
-        <p>Computing <code>Γ = privKey × H</code> is easy (just elliptic curve multiplication). Reversing it — finding privKey given only Γ and H — is the Elliptic Curve Discrete Logarithm Problem (ECDLP), which is computationally infeasible. This means nobody can forge the proof or predict the output without the private key. And since <code>privKey × H</code> has exactly one result for any H, the output is unique and cannot be cherry-picked.</p>
+        <p>Computing <code>Γ = privKey × H</code> is easy (just elliptic curve multiplication). Reversing it - finding privKey given only Γ and H - is the Elliptic Curve Discrete Logarithm Problem (ECDLP), which is computationally infeasible. This means nobody can forge the proof or predict the output without the private key. And since <code>privKey × H</code> has exactly one result for any H, the output is unique and cannot be cherry-picked.</p>
       </div>
     </div>
 
-    <h3>Commitment Schemes vs VRFs — When to Use Which</h3>
+    <h3>Commitment Schemes vs VRFs - When to Use Which</h3>
 
     <table class="compare-table">
       <thead>
@@ -362,17 +362,17 @@
 
   <!-- ── 6. DIAGRAMS ── -->
   <div class="section">
-    <div class="section-label">06 — Architecture &amp; Diagrams</div>
+    <div class="section-label">06 - Architecture &amp; Diagrams</div>
     <h2>Visual Walkthroughs</h2>
 
     <h3>Diagram 1: The Complete Commit-Reveal Scheme on MST</h3>
 
     <div class="diagram-wrap">
-      <div class="diagram-title">🔒 <span>Commit-Reveal Pattern</span> — Provably Fair Guessing Game on MST</div>
+      <div class="diagram-title">🔒 <span>Commit-Reveal Pattern</span> - Provably Fair Guessing Game on MST</div>
       <div class="diagram-body">
  ═══════════════════════════════════════════════════════════════════════════
  GAME: Player guesses whether a dice roll will be ODD or EVEN.
-       Game must be provably fair — neither player nor server can cheat.
+       Game must be provably fair - neither player nor server can cheat.
  ═══════════════════════════════════════════════════════════════════════════
 
  COMMIT PHASE (before dice is rolled):
@@ -421,10 +421,10 @@
  ═══════════════════════════════════════════════════════════════════════════</div>
     </div>
 
-    <h3>Diagram 2: VRF Flow — MST FortunaX Loot Box</h3>
+    <h3>Diagram 2: VRF Flow - MST FortunaX Loot Box</h3>
 
     <div class="diagram-wrap">
-      <div class="diagram-title">🎁 <span>VRF Loot Box (FortunaX)</span> — Provably Fair Drop Rate</div>
+      <div class="diagram-title">🎁 <span>VRF Loot Box (FortunaX)</span> - Provably Fair Drop Rate</div>
       <div class="diagram-body">
  ═══════════════════════════════════════════════════════════════════════════
  GOAL: Arjun opens a PUBG-style loot box on MST. The legendary skin
@@ -432,9 +432,9 @@
  ═══════════════════════════════════════════════════════════════════════════
 
  ACTORS:
-   MST FortunaX Oracle  — holds VRF private key (published on-chain)
-   LootBox Smart Contract — requests and uses randomness
-   Arjun — player opening the box
+   MST FortunaX Oracle  - holds VRF private key (published on-chain)
+   LootBox Smart Contract - requests and uses randomness
+   Arjun - player opening the box
 
  ─────────────────────────────────────────────────────────────────────────
  STEP 1: Arjun opens loot box
@@ -463,10 +463,10 @@
 
    roll = uint256(output) % 100  →  e.g., roll = 73
 
-   if roll &lt; 1:  legendary skin   (1% rate — rolls 0)
-   elif roll &lt; 5: rare skin        (4% rate — rolls 1-4)
-   elif roll &lt; 20: uncommon skin   (15% rate — rolls 5-19)
-   else:          common skin      (80% rate — rolls 20-99)
+   if roll &lt; 1:  legendary skin   (1% rate - rolls 0)
+   elif roll &lt; 5: rare skin        (4% rate - rolls 1-4)
+   elif roll &lt; 20: uncommon skin   (15% rate - rolls 5-19)
+   else:          common skin      (80% rate - rolls 20-99)
 
    Arjun got roll = 73 → common skin. This time. 😢
 
@@ -479,18 +479,18 @@
  ═══════════════════════════════════════════════════════════════════════════</div>
     </div>
 
-    <h3>Diagram 3: SatvaShuffle — Provably Fair Card Shuffle</h3>
+    <h3>Diagram 3: SatvaShuffle - Provably Fair Card Shuffle</h3>
 
     <div class="diagram-wrap">
-      <div class="diagram-title">🃏 <span>SatvaShuffle Protocol</span> — Verifiable Deck Shuffle for Poker/Rummy</div>
+      <div class="diagram-title">🃏 <span>SatvaShuffle Protocol</span> - Verifiable Deck Shuffle for Poker/Rummy</div>
       <div class="diagram-body">
  ═══════════════════════════════════════════════════════════════════════════
  PROBLEM: Sanya suspects the Rummy app shuffles the deck after seeing
           player balances and betting patterns. She cannot prove it.
- SOLUTION: SatvaShuffle — commit to the shuffle BEFORE the game starts.
+ SOLUTION: SatvaShuffle - commit to the shuffle BEFORE the game starts.
  ═══════════════════════════════════════════════════════════════════════════
 
- PHASE 1 — DECK COMMITMENT (before any player joins):
+ PHASE 1 - DECK COMMITMENT (before any player joins):
 
    Server generates: shuffle_seed using VRF (unpredictable)
    Server computes:  shuffled_deck = Fisher_Yates_shuffle(seed=vrf_output)
@@ -502,12 +502,12 @@
    │  SatvaShuffle.commitDeck(0x3f2a...c9b1) │  ← deck locked before game
    └──────────────────────────────────────────┘
 
- PHASE 2 — GAME PLAYS OUT:
+ PHASE 2 - GAME PLAYS OUT:
    Sanya, Priya, Rohan join the game.
    Cards are dealt from the committed (but hidden) shuffled deck.
    Players play their round normally.
 
- PHASE 3 — REVEAL (after game ends):
+ PHASE 3 - REVEAL (after game ends):
 
    Server reveals: shuffled_deck (all 52 cards in order) + salt
    Smart contract: recomputes keccak256(shuffled_deck ++ salt)
@@ -522,7 +522,7 @@
    The deck commitment was on-chain BEFORE she joined.
    The server committed to the shuffle order before knowing who would play.
    It is mathematically impossible to have adjusted the shuffle based
-   on player balances — the commitment proves the deck was fixed first.
+   on player balances - the commitment proves the deck was fixed first.
 
  ═══════════════════════════════════════════════════════════════════════════
  BONUS: The VRF shuffle seed proves the shuffle was random:
@@ -535,22 +535,22 @@
 
   <!-- ── 7. WORKFLOW ── -->
   <div class="section">
-    <div class="section-label">07 — Step-by-Step Workflow</div>
+    <div class="section-label">07 - Step-by-Step Workflow</div>
     <h2>The Five "W" Questions Answered</h2>
 
     <h3>❓ WHY Can't Blockchain Smart Contracts Generate Their Own Randomness?</h3>
-    <p>A smart contract is deterministic — every node running it must produce the same result to reach consensus. True randomness is, by definition, different each time. If a smart contract used a local random number generator, every node would get a different result and consensus would be impossible. All "randomness" that appears in a smart contract must come from an external source that all nodes can agree on — either a committed value (commit-reveal) or a VRF output verified on-chain.</p>
+    <p>A smart contract is deterministic - every node running it must produce the same result to reach consensus. True randomness is, by definition, different each time. If a smart contract used a local random number generator, every node would get a different result and consensus would be impossible. All "randomness" that appears in a smart contract must come from an external source that all nodes can agree on - either a committed value (commit-reveal) or a VRF output verified on-chain.</p>
 
     <h3>❓ WHAT Makes a VRF Different From Just Hashing the Block Hash?</h3>
-    <p>Hashing the block hash: <code>keccak256(blockhash)</code> — the validator who produces the block sees the block hash before it is finalised. They can try different nonces until they find a block hash that produces a favourable <code>keccak256(blockhash)</code> outcome. This is called a <strong>grinding attack</strong>. A VRF cannot be ground — Uniqueness ensures there is exactly ONE output per seed, and the private key holder cannot generate alternatives to try. The output is deterministic once the seed is committed.</p>
+    <p>Hashing the block hash: <code>keccak256(blockhash)</code> - the validator who produces the block sees the block hash before it is finalised. They can try different nonces until they find a block hash that produces a favourable <code>keccak256(blockhash)</code> outcome. This is called a <strong>grinding attack</strong>. A VRF cannot be ground - Uniqueness ensures there is exactly ONE output per seed, and the private key holder cannot generate alternatives to try. The output is deterministic once the seed is committed.</p>
 
     <h3>❓ HOW Does MST's FortunaX Combine Both Commitments and VRFs?</h3>
     <p>FortunaX uses a two-layer approach for maximum fairness:</p>
     <ul>
-      <li><strong>Layer 1 — VRF Randomness:</strong> The FortunaX oracle generates a VRF output from a public seed (recent block hash + request ID). This output is pseudorandom and verifiable.</li>
-      <li><strong>Layer 2 — Commit-Reveal:</strong> The player also contributes a committed random value (their own hash commitment). The final randomness is <code>keccak256(VRF_output ++ player_reveal)</code>. This ensures that even if the FortunaX oracle were somehow compromised, the player's commitment prevents the oracle from knowing the final outcome in advance.</li>
+      <li><strong>Layer 1 - VRF Randomness:</strong> The FortunaX oracle generates a VRF output from a public seed (recent block hash + request ID). This output is pseudorandom and verifiable.</li>
+      <li><strong>Layer 2 - Commit-Reveal:</strong> The player also contributes a committed random value (their own hash commitment). The final randomness is <code>keccak256(VRF_output ++ player_reveal)</code>. This ensures that even if the FortunaX oracle were somehow compromised, the player's commitment prevents the oracle from knowing the final outcome in advance.</li>
     </ul>
-    <p>This is called a <strong>dual-randomness model</strong> — neither party alone controls the outcome.</p>
+    <p>This is called a <strong>dual-randomness model</strong> - neither party alone controls the outcome.</p>
 
     <h3>❓ WHERE Else Are Commitment Schemes Used in Blockchain?</h3>
     <div class="game-grid">
@@ -562,7 +562,7 @@
       <div class="game-card gc2">
         <div class="gc-icon">🗳️</div>
         <h4>On-Chain Voting</h4>
-        <p>Voters commit to their vote (hidden) in round 1. All votes are revealed in round 2. This prevents last-minute vote changing based on watching others — and enables private voting.</p>
+        <p>Voters commit to their vote (hidden) in round 1. All votes are revealed in round 2. This prevents last-minute vote changing based on watching others - and enables private voting.</p>
       </div>
       <div class="game-card gc3">
         <div class="gc-icon">⚡</div>
@@ -578,7 +578,7 @@
 
     <h3>❓ WHAT Are the Limitations?</h3>
     <ul>
-      <li>⚠️ <strong>Commit-Reveal requires two transactions:</strong> The commit and reveal are separate on-chain transactions. This costs double the gas and introduces latency. If a player commits and then refuses to reveal (because the result went against them), the game must handle this "griefing" — usually via a timeout that forfeits the non-revealer's stake.</li>
+      <li>⚠️ <strong>Commit-Reveal requires two transactions:</strong> The commit and reveal are separate on-chain transactions. This costs double the gas and introduces latency. If a player commits and then refuses to reveal (because the result went against them), the game must handle this "griefing" - usually via a timeout that forfeits the non-revealer's stake.</li>
       <li>⚠️ <strong>VRF oracle is a trust dependency:</strong> The VRF private key holder must be trustworthy and available. If the oracle goes offline, no randomness is produced. Solutions: decentralised VRF (multiple oracles), threshold VRF (needs k-of-n oracles), or Chainlink VRF on Ethereum.</li>
       <li>⚠️ <strong>Pedersen Commitment binding is computational:</strong> It relies on the Discrete Logarithm Problem. A quantum computer could break it (though this requires a quantum computer vastly more powerful than what exists today).</li>
     </ul>
@@ -586,12 +586,12 @@
 
   <!-- ── 8. CODE EXAMPLES ── -->
   <div class="section">
-    <div class="section-label">08 — Code Examples</div>
+    <div class="section-label">08 - Code Examples</div>
     <h2>Implementing a Commitment Scheme in Solidity</h2>
 
-    <p>Here is a minimal but complete commit-reveal guessing game implemented in Solidity — the type of contract you will complete in the assessment. Study each line carefully.</p>
+    <p>Here is a minimal but complete commit-reveal guessing game implemented in Solidity - the type of contract you will complete in the assessment. Study each line carefully.</p>
 
-    <div class="code-label">CommitReveal.sol — Full Commit-Reveal Game</div>
+    <div class="code-label">CommitReveal.sol - Full Commit-Reveal Game</div>
     <div class="code-block no-top-radius">
 <span class="comment">// SPDX-License-Identifier: MIT</span>
 <span class="keyword">pragma</span> solidity ^0.8.20;
@@ -615,7 +615,7 @@
 
     <span class="comment">// ── PHASE 1: COMMIT ───────────────────────────────────────────</span>
     <span class="comment">// Player submits hash of their choice + salt.</span>
-    <span class="comment">// They do NOT submit the choice itself — only the hash.</span>
+    <span class="comment">// They do NOT submit the choice itself - only the hash.</span>
     <span class="keyword">function</span> <span class="func">commit</span>(<span class="type">bytes32</span> _commitment) <span class="keyword">external</span> {
         <span class="comment">// A player can only have one active commitment at a time</span>
         require(<span class="var">commitments</span>[msg.sender] == <span class="number">bytes32(0)</span>, <span class="string">"Already committed"</span>);
@@ -668,7 +668,7 @@
 
     <span class="comment">// ── HELPER: Generate commitment off-chain (view function) ──────</span>
     <span class="comment">// Players can call this to compute their commitment before submitting.</span>
-    <span class="comment">// In practice, this is done entirely client-side — never send your</span>
+    <span class="comment">// In practice, this is done entirely client-side - never send your</span>
     <span class="comment">// secret choice and salt to the blockchain before committing!</span>
     <span class="keyword">function</span> <span class="func">generateCommitment</span>(
         <span class="type">string</span> <span class="keyword">calldata</span> _choice,
@@ -681,24 +681,24 @@
 
     <h4>Line-by-Line Key Points:</h4>
     <ul>
-      <li><code>commitments[msg.sender] = bytes32(0)</code> — the zero bytes32 is used as a sentinel "no commitment" value. Always check this before committing and clear it after reveal.</li>
-      <li><code>require(block.number &gt; commitBlock[msg.sender])</code> — this prevents a front-runner from submitting a commit and reveal in the same transaction or same block, bypassing the hiding phase.</li>
-      <li><code>keccak256(abi.encodePacked(_choice, _salt))</code> — <code>abi.encodePacked</code> concatenates the values into bytes before hashing. Never use <code>abi.encode</code> for this — it pads values and may produce different results from off-chain computation.</li>
-      <li><code>revealed[msg.sender] = true</code> — without this, a player could call <code>reveal</code> multiple times (e.g., trying different choice+salt combinations until one matches). Always protect against replay.</li>
+      <li><code>commitments[msg.sender] = bytes32(0)</code> - the zero bytes32 is used as a sentinel "no commitment" value. Always check this before committing and clear it after reveal.</li>
+      <li><code>require(block.number &gt; commitBlock[msg.sender])</code> - this prevents a front-runner from submitting a commit and reveal in the same transaction or same block, bypassing the hiding phase.</li>
+      <li><code>keccak256(abi.encodePacked(_choice, _salt))</code> - <code>abi.encodePacked</code> concatenates the values into bytes before hashing. Never use <code>abi.encode</code> for this - it pads values and may produce different results from off-chain computation.</li>
+      <li><code>revealed[msg.sender] = true</code> - without this, a player could call <code>reveal</code> multiple times (e.g., trying different choice+salt combinations until one matches). Always protect against replay.</li>
     </ul>
 
     <div class="callout warn">
       <div class="callout-icon">⚠️</div>
       <div class="callout-body">
         <strong>abi.encodePacked Collision Risk</strong>
-        <p>Be careful with <code>abi.encodePacked</code> when hashing multiple dynamic types (strings, bytes). <code>encodePacked("AB", "C")</code> and <code>encodePacked("A", "BC")</code> produce the same bytes — a potential collision. For production commit-reveal with multiple inputs, prefer <code>keccak256(abi.encode(_choice, _salt))</code> which properly separates values. For the simple string+bytes32 pattern above, this is not an issue since bytes32 is fixed-length.</p>
+        <p>Be careful with <code>abi.encodePacked</code> when hashing multiple dynamic types (strings, bytes). <code>encodePacked("AB", "C")</code> and <code>encodePacked("A", "BC")</code> produce the same bytes - a potential collision. For production commit-reveal with multiple inputs, prefer <code>keccak256(abi.encode(_choice, _salt))</code> which properly separates values. For the simple string+bytes32 pattern above, this is not an issue since bytes32 is fixed-length.</p>
       </div>
     </div>
   </div>
 
   <!-- ── 10. CASE STUDIES ── -->
   <div class="section">
-    <div class="section-label">10 — Real World Case Studies</div>
+    <div class="section-label">10 - Real World Case Studies</div>
     <h2>Commitments and VRFs in Production</h2>
 
     <h3>Case Study 1: ENS Sealed-Bid Domain Auction</h3>
@@ -708,7 +708,7 @@
       <li><strong>Reveal phase (48 hours):</strong> You reveal your actual bid. ENS verifies your hash matches. The highest valid reveal wins.</li>
       <li><strong>Settlement:</strong> Winner pays their bid. Losers get refunds.</li>
     </ol>
-    <p>Without the commit-reveal scheme, the last bidder could always win by bidding just above the current highest — making fair auctions impossible on a public blockchain where all transactions are visible in the mempool.</p>
+    <p>Without the commit-reveal scheme, the last bidder could always win by bidding just above the current highest - making fair auctions impossible on a public blockchain where all transactions are visible in the mempool.</p>
 
     <h3>Case Study 2: Chainlink VRF on Ethereum</h3>
     <p>Chainlink VRF is the most widely used verifiable randomness solution on Ethereum. It uses ECVRF:</p>
@@ -721,30 +721,30 @@
     </ul>
     <p>Used by Axie Infinity, Sandbox, PoolTogether lottery, and dozens of NFT minting contracts. MST's FortunaX implements the same pattern natively on the MST chain.</p>
 
-    <h3>Case Study 3: Klethesia — Transparent Slot RTP on MST</h3>
-    <p>Klethesia is MST's protocol for slot game developers. Return-to-Player (RTP) percentages in slots are notoriously hard to verify — a slot claiming 96% RTP might actually pay 80% with nobody noticing. Klethesia solves this:</p>
+    <h3>Case Study 3: Klethesia - Transparent Slot RTP on MST</h3>
+    <p>Klethesia is MST's protocol for slot game developers. Return-to-Player (RTP) percentages in slots are notoriously hard to verify - a slot claiming 96% RTP might actually pay 80% with nobody noticing. Klethesia solves this:</p>
     <ul>
       <li>The slot's payout table and RTP calculation are published as a smart contract (immutable, auditable)</li>
       <li>Each spin uses FortunaX VRF for provably fair randomness</li>
       <li>Every spin's result, randomness proof, and payout are recorded on-chain</li>
-      <li>Anyone can aggregate 10,000 spins from MSTScan and compute the actual RTP — provably matching the claimed 96%</li>
+      <li>Anyone can aggregate 10,000 spins from MSTScan and compute the actual RTP - provably matching the claimed 96%</li>
     </ul>
     <p>This is the difference between "trust our website" and "verify it yourself on the blockchain." Klethesia makes the latter possible for the first time in online gaming history.</p>
   </div>
 
   <!-- ── 11. ASSESSMENT PREP ── -->
   <div class="section">
-    <div class="section-label">11 — Assessment Preparation</div>
+    <div class="section-label">11 - Assessment Preparation</div>
     <h2>Top Must-Know Facts Before the Test</h2>
 
     <ul class="must-know">
       <li>A commitment scheme has two properties: <strong>Hiding</strong> (verifier cannot learn the value before reveal) and <strong>Binding</strong> (prover cannot change the value after committing).</li>
       <li>The <strong>commit-reveal pattern</strong> has two phases: Commit (<code>C = keccak256(v ++ salt)</code> posted on-chain) and Reveal (submit <code>v</code> and <code>salt</code>; contract recomputes and verifies).</li>
-      <li>A <strong>random salt</strong> must be included in hash commitments — without it, an adversary can precompute hashes for all possible values and break hiding.</li>
+      <li>A <strong>random salt</strong> must be included in hash commitments - without it, an adversary can precompute hashes for all possible values and break hiding.</li>
       <li><strong>Pedersen Commitments</strong> are additively homomorphic: <code>Commit(a) + Commit(b) = Commit(a+b)</code> without revealing <code>a</code> or <code>b</code>. Used in Monero confidential transactions.</li>
       <li>A <strong>VRF (Verifiable Random Function)</strong> produces a pseudorandom output and a proof that the output was correctly generated from a given seed using a specific private key.</li>
-      <li>Three VRF properties: <strong>Pseudorandomness</strong> (output looks random without the private key), <strong>Provability</strong> (proof verifiable with public key), <strong>Uniqueness</strong> (one output per seed — cannot cherry-pick).</li>
-      <li><code>block.hash</code> and <code>block.timestamp</code> are <strong>not safe randomness sources</strong> — validators/miners can influence both through grinding attacks or timestamp manipulation.</li>
+      <li>Three VRF properties: <strong>Pseudorandomness</strong> (output looks random without the private key), <strong>Provability</strong> (proof verifiable with public key), <strong>Uniqueness</strong> (one output per seed - cannot cherry-pick).</li>
+      <li><code>block.hash</code> and <code>block.timestamp</code> are <strong>not safe randomness sources</strong> - validators/miners can influence both through grinding attacks or timestamp manipulation.</li>
       <li><strong>Grinding attack:</strong> A validator tries many different nonces to find a block hash that produces a favourable RNG outcome. VRF Uniqueness prevents this.</li>
       <li><strong>ECVRF</strong> (Elliptic Curve VRF) is based on ECDLP: compute <code>Γ = privKey × H</code> (easy), but recover privKey from Γ and H (impossible). The output is <code>keccak256(Γ)</code>.</li>
       <li>MST's <strong>FortunaX</strong> uses VRF for provably fair random number generation in loot boxes and lotteries. <strong>SatvaShuffle</strong> uses commit-reveal + VRF for card shuffles in Poker/Rummy. <strong>Klethesia</strong> makes slot RTP transparent and auditable.</li>
@@ -755,29 +755,29 @@
     <div class="callout warn">
       <div class="callout-icon">⚠️</div>
       <div class="callout-body">
-        <strong>Exam Trap — Hiding vs Binding</strong>
-        <p>Students frequently swap these: "Binding means I can't see the value" (wrong — that's Hiding). "Hiding means I can't change the value" (wrong — that's Binding). Remember: <strong>Hiding = hidden from verifier.</strong> <strong>Binding = binds the prover.</strong></p>
+        <strong>Exam Trap - Hiding vs Binding</strong>
+        <p>Students frequently swap these: "Binding means I can't see the value" (wrong - that's Hiding). "Hiding means I can't change the value" (wrong - that's Binding). Remember: <strong>Hiding = hidden from verifier.</strong> <strong>Binding = binds the prover.</strong></p>
       </div>
     </div>
   </div>
 
   <!-- ── 12. SECURITY NOTES ── -->
   <div class="section">
-    <div class="section-label">12 — Security Notes</div>
+    <div class="section-label">12 - Security Notes</div>
     <h2>Critical Security Principles</h2>
 
     <div class="callout warn">
       <div class="callout-icon">🔴</div>
       <div class="callout-body">
-        <strong>Never Commit Without a Salt — Small Input Spaces Are Broken</strong>
-        <p>If you commit to a value from a small set (e.g., "HEADS" or "TAILS" — only 2 possibilities), any observer can compute <code>keccak256("HEADS")</code> and <code>keccak256("TAILS")</code> and compare to your commitment — instantly revealing your choice. The salt must be a cryptographically random 32-byte value, generated fresh per commitment. Never reuse salts.</p>
+        <strong>Never Commit Without a Salt - Small Input Spaces Are Broken</strong>
+        <p>If you commit to a value from a small set (e.g., "HEADS" or "TAILS" - only 2 possibilities), any observer can compute <code>keccak256("HEADS")</code> and <code>keccak256("TAILS")</code> and compare to your commitment - instantly revealing your choice. The salt must be a cryptographically random 32-byte value, generated fresh per commitment. Never reuse salts.</p>
       </div>
     </div>
 
     <div class="callout warn">
       <div class="callout-icon">🔴</div>
       <div class="callout-body">
-        <strong>Commit-Reveal Griefing — Handle Non-Revealers</strong>
+        <strong>Commit-Reveal Griefing - Handle Non-Revealers</strong>
         <p>A player may commit, see the game outcome going against them, and refuse to reveal. This "griefing" attack prevents game resolution. Always implement a timeout: if a player does not reveal within N blocks after the event, their committed stake is forfeited and distributed to honest players. The timeout window must be long enough for honest players to reveal but short enough to prevent indefinite griefing.</p>
       </div>
     </div>
@@ -786,7 +786,7 @@
       <div class="callout-icon">🔴</div>
       <div class="callout-body">
         <strong>VRF Oracle Key Security Is Critical</strong>
-        <p>The VRF private key is the root of trust for all randomness the oracle generates. If this key is stolen, an attacker can predict all future VRF outputs (since they can compute <code>privKey × H</code> for any seed). The VRF private key must be stored in an HSM (Hardware Security Module) — never in a hot wallet or regular server memory. MST's FortunaX oracle uses HSM-backed key storage for exactly this reason.</p>
+        <p>The VRF private key is the root of trust for all randomness the oracle generates. If this key is stolen, an attacker can predict all future VRF outputs (since they can compute <code>privKey × H</code> for any seed). The VRF private key must be stored in an HSM (Hardware Security Module) - never in a hot wallet or regular server memory. MST's FortunaX oracle uses HSM-backed key storage for exactly this reason.</p>
       </div>
     </div>
 
@@ -794,29 +794,29 @@
       <div class="callout-icon">🛡️</div>
       <div class="callout-body">
         <strong>Front-Running Protection in Reveal Phase</strong>
-        <p>When a player submits their reveal transaction to the mempool, a watching bot can see the <code>(choice, salt)</code> before it is mined. If the game contract pays out based on the reveal alone, the bot can front-run the transaction — submitting a higher-gas transaction with the same reveal and stealing the payout. Prevent this by only paying to <code>msg.sender</code> of the original commit, and checking that the revealer is the original committer.</p>
+        <p>When a player submits their reveal transaction to the mempool, a watching bot can see the <code>(choice, salt)</code> before it is mined. If the game contract pays out based on the reveal alone, the bot can front-run the transaction - submitting a higher-gas transaction with the same reveal and stealing the payout. Prevent this by only paying to <code>msg.sender</code> of the original commit, and checking that the revealer is the original committer.</p>
       </div>
     </div>
   </div>
 
   <!-- ── 13. INDUSTRY INSIGHTS ── -->
   <div class="section">
-    <div class="section-label">13 — Industry Insights</div>
+    <div class="section-label">13 - Industry Insights</div>
     <h2>How the Industry Uses This Knowledge</h2>
 
     <h3>The ₹50,000 Crore Online Gaming Market in India</h3>
-    <p>India's online gaming market is one of the fastest growing in the world — projected to exceed ₹50,000 crore by 2025. Dream11, MPL, and dozens of fantasy sports and card game platforms process millions of transactions daily. The single biggest trust issue: players cannot verify that the RNG or shuffle is fair. <strong>Every major Indian gaming platform that moves to blockchain will need exactly the protocols taught in this sub-module.</strong> This is a direct career opportunity for MST Academy graduates.</p>
+    <p>India's online gaming market is one of the fastest growing in the world - projected to exceed ₹50,000 crore by 2025. Dream11, MPL, and dozens of fantasy sports and card game platforms process millions of transactions daily. The single biggest trust issue: players cannot verify that the RNG or shuffle is fair. <strong>Every major Indian gaming platform that moves to blockchain will need exactly the protocols taught in this sub-module.</strong> This is a direct career opportunity for MST Academy graduates.</p>
 
-    <h3>Polynomial Commitment Schemes — The Foundation of ZKPs</h3>
-    <p>Everything in Sub-Module 4.4 (ZKPs) relies on a more advanced form of commitment: <strong>polynomial commitments</strong> (KZG commitments in SNARKs, FRI in STARKs). These allow a prover to commit to an entire polynomial and later prove the evaluation at any point — without revealing the polynomial. This is how a ZK circuit's witness is committed to and verified. Understanding the simpler hash commitment and Pedersen commitment in this sub-module builds the intuition for polynomial commitments in advanced ZK work.</p>
+    <h3>Polynomial Commitment Schemes - The Foundation of ZKPs</h3>
+    <p>Everything in Sub-Module 4.4 (ZKPs) relies on a more advanced form of commitment: <strong>polynomial commitments</strong> (KZG commitments in SNARKs, FRI in STARKs). These allow a prover to commit to an entire polynomial and later prove the evaluation at any point - without revealing the polynomial. This is how a ZK circuit's witness is committed to and verified. Understanding the simpler hash commitment and Pedersen commitment in this sub-module builds the intuition for polynomial commitments in advanced ZK work.</p>
 
-    <h3>Threshold VRF — The Future of Decentralised Randomness</h3>
-    <p>A single-oracle VRF has one point of failure: the oracle's private key. The future is <strong>threshold VRF (tVRF)</strong> — where a group of k-of-n nodes must cooperate to produce a VRF output. No single node learns the full private key. Even if (n-k) nodes are compromised, the randomness remains unpredictable. This is the model used by Algorand's consensus (where the VRF is distributed across thousands of validators) and is on MST's roadmap for FortunaX v2.</p>
+    <h3>Threshold VRF - The Future of Decentralised Randomness</h3>
+    <p>A single-oracle VRF has one point of failure: the oracle's private key. The future is <strong>threshold VRF (tVRF)</strong> - where a group of k-of-n nodes must cooperate to produce a VRF output. No single node learns the full private key. Even if (n-k) nodes are compromised, the randomness remains unpredictable. This is the model used by Algorand's consensus (where the VRF is distributed across thousands of validators) and is on MST's roadmap for FortunaX v2.</p>
   </div>
 
   <!-- ── 14. GLOSSARY ── -->
   <div class="section">
-    <div class="section-label">14 — Glossary</div>
+    <div class="section-label">14 - Glossary</div>
     <h2>Key Terms You Must Know</h2>
 
     <div class="glossary-item">
@@ -829,11 +829,11 @@
     </div>
     <div class="glossary-item">
       <div class="glossary-term">Binding</div>
-      <div class="glossary-def">Commitment property: the prover cannot change the committed value after committing. They are bound to the original value — cannot open to a different one.</div>
+      <div class="glossary-def">Commitment property: the prover cannot change the committed value after committing. They are bound to the original value - cannot open to a different one.</div>
     </div>
     <div class="glossary-item">
       <div class="glossary-term">Commit-Reveal</div>
-      <div class="glossary-def">A two-phase on-chain protocol: Phase 1 — post commitment hash; Phase 2 — reveal original value + salt. Contract verifies hash matches. Used in games, auctions, and voting.</div>
+      <div class="glossary-def">A two-phase on-chain protocol: Phase 1 - post commitment hash; Phase 2 - reveal original value + salt. Contract verifies hash matches. Used in games, auctions, and voting.</div>
     </div>
     <div class="glossary-item">
       <div class="glossary-term">Salt</div>
@@ -841,7 +841,7 @@
     </div>
     <div class="glossary-item">
       <div class="glossary-term">Pedersen Commitment</div>
-      <div class="glossary-def">An elliptic curve commitment scheme: C = v·G + r·H. Additively homomorphic — commitments to values can be added to produce a commitment to the sum. Used in Monero and Bulletproofs.</div>
+      <div class="glossary-def">An elliptic curve commitment scheme: C = v·G + r·H. Additively homomorphic - commitments to values can be added to produce a commitment to the sum. Used in Monero and Bulletproofs.</div>
     </div>
     <div class="glossary-item">
       <div class="glossary-term">Homomorphic</div>
@@ -861,7 +861,7 @@
     </div>
     <div class="glossary-item">
       <div class="glossary-term">Grinding Attack</div>
-      <div class="glossary-def">An attack where a block producer tries many different nonces to find a block hash that produces a favourable random outcome. Prevented by VRF Uniqueness — only one output per seed exists.</div>
+      <div class="glossary-def">An attack where a block producer tries many different nonces to find a block hash that produces a favourable random outcome. Prevented by VRF Uniqueness - only one output per seed exists.</div>
     </div>
     <div class="glossary-item">
       <div class="glossary-term">ECVRF</div>
@@ -885,13 +885,13 @@
 
   <!-- ══════════════ ASSESSMENT ══════════════ -->
   <div class="assessment-header">
-    <h2>📝 Assessment — Sub-Module 4.5</h2>
+    <h2>📝 Assessment - Sub-Module 4.5</h2>
     <p>Commitments &amp; VRFs &nbsp;|&nbsp; Total: <strong>15 Marks</strong> &nbsp;|&nbsp; 10 Questions</p>
   </div>
   <div class="assessment-body">
 
     <p style="color:var(--text-muted); font-size:14px; margin-bottom:28px;">Marks breakdown: 3 × MCQ (1 mark each) = 3 marks &nbsp;|&nbsp; 2 × Code-Completion (7 + 5 marks) = 12 marks &nbsp;|&nbsp; 1 × True/False + justification (2 marks) &nbsp;|&nbsp; [Total = <strong>15 marks adjusted below</strong>].</p>
-    <p style="color:var(--text-muted); font-size:14px; margin-bottom:28px;"><strong>Corrected breakdown:</strong> Q1–Q3: 3 × MCQ = 3 marks | Q4: Code-Completion (7 marks) | Q5: Code-Completion (5 marks) | Q6–Q8: 3 × MCQ = 0 marks already counted | Adjusted: 3 × MCQ (1 each) + Code Q4 (7 marks) + Code Q5 (5 marks) = 15 marks ✅</p>
+    <p style="color:var(--text-muted); font-size:14px; margin-bottom:28px;"><strong>Corrected breakdown:</strong> Q1 - Q3: 3 × MCQ = 3 marks | Q4: Code-Completion (7 marks) | Q5: Code-Completion (5 marks) | Q6 - Q8: 3 × MCQ = 0 marks already counted | Adjusted: 3 × MCQ (1 each) + Code Q4 (7 marks) + Code Q5 (5 marks) = 15 marks ✅</p>
 
     <!-- Q1 -->
     <div class="q-block">
@@ -903,14 +903,14 @@
       </div>
       <div class="q-text">In a commitment scheme, which property ensures the prover cannot change their committed value after the commit phase?</div>
       <ul class="options">
-        <li>A) Hiding — the value is encrypted so it cannot be changed</li>
-        <li>B) Zero-Knowledge — the prover reveals nothing about the value</li>
-        <li class="correct">C) Binding — the prover is mathematically bound to the committed value and cannot open to a different one</li>
-        <li>D) Completeness — an honest prover always succeeds in committing</li>
+        <li>A) Hiding - the value is encrypted so it cannot be changed</li>
+        <li>B) Zero-Knowledge - the prover reveals nothing about the value</li>
+        <li class="correct">C) Binding - the prover is mathematically bound to the committed value and cannot open to a different one</li>
+        <li>D) Completeness - an honest prover always succeeds in committing</li>
       </ul>
       <div class="answer-box">
         <strong>✅ Correct Answer: C</strong>
-        <p><strong>Binding</strong> is the property that prevents the prover from changing their committed value. Once <code>C = keccak256(v ++ salt)</code> is posted on-chain, the prover cannot reveal a different value <code>v'</code> — because <code>keccak256(v' ++ salt) ≠ C</code> (collision resistance of the hash function enforces binding). If the prover tries to open with a different value, the contract's recomputed hash will not match the stored commitment, and the reveal is rejected. <strong>Hiding</strong> (Option A) is the separate property that prevents the verifier from learning the value before reveal — not about changing values.</p>
+        <p><strong>Binding</strong> is the property that prevents the prover from changing their committed value. Once <code>C = keccak256(v ++ salt)</code> is posted on-chain, the prover cannot reveal a different value <code>v'</code> - because <code>keccak256(v' ++ salt) ≠ C</code> (collision resistance of the hash function enforces binding). If the prover tries to open with a different value, the contract's recomputed hash will not match the stored commitment, and the reveal is rejected. <strong>Hiding</strong> (Option A) is the separate property that prevents the verifier from learning the value before reveal - not about changing values.</p>
       </div>
     </div>
 
@@ -926,12 +926,12 @@
       <ul class="options">
         <li>A) The result is always the same because blockhash is deterministic</li>
         <li>B) The computation is too slow for real-time gaming</li>
-        <li class="correct">C) A malicious validator can withhold their block if it produces an unfavourable result and try again with the next block — a grinding attack — biasing the dice outcome</li>
+        <li class="correct">C) A malicious validator can withhold their block if it produces an unfavourable result and try again with the next block - a grinding attack - biasing the dice outcome</li>
         <li>D) The modulo operation introduces statistical bias making 1 slightly more likely than 6</li>
       </ul>
       <div class="answer-box">
         <strong>✅ Correct Answer: C</strong>
-        <p>This is the classic <strong>block hash manipulation / grinding attack</strong>. The block hash is determined by the block producer (validator/miner). If a validator is also a player in this dice game (or is colluding with a player), they can compute what the dice result would be before finalising their block. If the result is unfavourable, they can simply discard the block and try a different nonce — changing the block hash — until they get a favourable dice result. This is trivially easy with only 6 possible outcomes. Option D is not the issue here — the modulo bias (result could be 1 more often than 6 since 2²⁵⁶ is not divisible by 6) is a minor and separate statistical issue. The grinding attack is the primary critical security vulnerability.</p>
+        <p>This is the classic <strong>block hash manipulation / grinding attack</strong>. The block hash is determined by the block producer (validator/miner). If a validator is also a player in this dice game (or is colluding with a player), they can compute what the dice result would be before finalising their block. If the result is unfavourable, they can simply discard the block and try a different nonce - changing the block hash - until they get a favourable dice result. This is trivially easy with only 6 possible outcomes. Option D is not the issue here - the modulo bias (result could be 1 more often than 6 since 2²⁵⁶ is not divisible by 6) is a minor and separate statistical issue. The grinding attack is the primary critical security vulnerability.</p>
       </div>
     </div>
 
@@ -948,11 +948,11 @@
         <li>A) C_A × C_B is a commitment to 300 × 150 = 45,000 (multiplicative homomorphism)</li>
         <li class="correct">B) C_A + C_B is a valid commitment to 450, without revealing 300 or 150 individually (additive homomorphism)</li>
         <li>C) C_A - C_B is a commitment to 150, but only if the blinding factors cancel out exactly</li>
-        <li>D) Pedersen Commitments are not homomorphic — you cannot perform operations on commitments</li>
+        <li>D) Pedersen Commitments are not homomorphic - you cannot perform operations on commitments</li>
       </ul>
       <div class="answer-box">
         <strong>✅ Correct Answer: B</strong>
-        <p>Pedersen Commitments are <strong>additively homomorphic</strong>. If <code>C_A = 300·G + r_A·H</code> and <code>C_B = 150·G + r_B·H</code>, then <code>C_A + C_B = (300+150)·G + (r_A+r_B)·H = 450·G + r_AB·H</code> — which is a valid Pedersen Commitment to 450 with blinding factor <code>r_AB = r_A + r_B</code>. Nobody learned 300 or 150 — only that their sum is 450 (which the verifier can confirm). This is the mathematical foundation of Monero's confidential transactions: input commitments + output commitments + fee commitment sum to zero, proving no coins were created, without revealing any amount. Option A is multiplicative — Pedersen Commitments are not multiplicatively homomorphic (that would require more complex structures like Paillier encryption).</p>
+        <p>Pedersen Commitments are <strong>additively homomorphic</strong>. If <code>C_A = 300·G + r_A·H</code> and <code>C_B = 150·G + r_B·H</code>, then <code>C_A + C_B = (300+150)·G + (r_A+r_B)·H = 450·G + r_AB·H</code> - which is a valid Pedersen Commitment to 450 with blinding factor <code>r_AB = r_A + r_B</code>. Nobody learned 300 or 150 - only that their sum is 450 (which the verifier can confirm). This is the mathematical foundation of Monero's confidential transactions: input commitments + output commitments + fee commitment sum to zero, proving no coins were created, without revealing any amount. Option A is multiplicative - Pedersen Commitments are not multiplicatively homomorphic (that would require more complex structures like Paillier encryption).</p>
       </div>
     </div>
 
@@ -975,7 +975,7 @@
     <span style="color:#FF79C6;">mapping</span>(<span style="color:#8BE9FD;">address</span> =&gt; <span style="color:#8BE9FD;">bool</span>)    <span style="color:#FF79C6;">public</span> revealed;
 
     <span style="color:#FF79C6;">function</span> <span style="color:#50FA7B;">commit</span>(<span style="color:#8BE9FD;">bytes32</span> _commitment) <span style="color:#FF79C6;">external</span> {
-        <span style="color:#6A737D;">/* BUG 1: No check for existing commitment — player can overwrite */</span>
+        <span style="color:#6A737D;">/* BUG 1: No check for existing commitment - player can overwrite */</span>
         commitments[msg.sender] = _commitment;
         commitBlock[msg.sender] = block.number;
     }
@@ -983,9 +983,9 @@
     <span style="color:#FF79C6;">function</span> <span style="color:#50FA7B;">reveal</span>(<span style="color:#8BE9FD;">string</span> <span style="color:#FF79C6;">calldata</span> _choice, <span style="color:#8BE9FD;">bytes32</span> _salt) <span style="color:#FF79C6;">external</span> {
         require(commitments[msg.sender] != <span style="color:#BD93F9;">bytes32(0)</span>, <span style="color:#F1FA8C;">"No commitment"</span>);
 
-        <span style="color:#6A737D;">/* BUG 2: Missing block.number check — allows same-block reveal */</span>
+        <span style="color:#6A737D;">/* BUG 2: Missing block.number check - allows same-block reveal */</span>
 
-        <span style="color:#6A737D;">/* BUG 3: Missing revealed check — allows multiple reveals */</span>
+        <span style="color:#6A737D;">/* BUG 3: Missing revealed check - allows multiple reveals */</span>
 
         <span style="color:#8BE9FD;">bytes32</span> computedHash = <span style="color:#50FA7B;">keccak256</span>(
             abi.<span style="color:#50FA7B;">encodePacked</span>(_choice) <span style="color:#6A737D;">/* BUG 4: salt not included in hash */</span>
@@ -999,14 +999,14 @@
 
         <span style="color:#FF79C6;">if</span> (isValid) {
             <span style="color:#6A737D;">/* BUG 7: payable(msg.sender).transfer(1 ether) 
-               — but contract has no receive() function and no ETH */</span>
+but contract has no receive() function and no ETH */</span>
             payable(msg.sender).<span style="color:#50FA7B;">transfer</span>(<span style="color:#BD93F9;">1 ether</span>);
         }
     }
 }</div>
 
       <div class="code-answer-box">
-        <strong>✅ All 7 Fixes — 1 Mark Each</strong>
+        <strong>✅ All 7 Fixes - 1 Mark Each</strong>
         <pre><span style="color:#50FA7B;">// FIX 1 — Prevent overwriting an existing commitment</span>
 require(commitments[msg.sender] == bytes32(0), "Already committed");
 <span style="color:#6A737D;">// Without this, a player can commit "HEADS", see the result go bad,
@@ -1069,7 +1069,7 @@ receive() external payable {}
         <div class="q-difficulty medium">● Medium</div>
         <div class="q-marks">5 marks</div>
       </div>
-      <div class="q-text">Complete the missing lines in the following VRF consumer contract. Each <code>___FILL___</code> represents exactly one missing expression or statement. (1 mark each — 5 blanks total.)</div>
+      <div class="q-text">Complete the missing lines in the following VRF consumer contract. Each <code>___FILL___</code> represents exactly one missing expression or statement. (1 mark each - 5 blanks total.)</div>
 
       <div class="q-code-snippet"><span style="color:#FF79C6;">pragma</span> solidity ^0.8.20;
 
@@ -1130,7 +1130,7 @@ receive() external payable {}
 }</div>
 
       <div class="code-answer-box">
-        <strong>✅ All 5 Answers — 1 Mark Each</strong>
+        <strong>✅ All 5 Answers - 1 Mark Each</strong>
         <pre><span style="color:#50FA7B;">// BLANK 1 — Unique seed from block hash + caller + nonce</span>
 bytes32 seed = keccak256(abi.encodePacked(blockhash(block.number - 1), msg.sender, nonce));
 <span style="color:#6A737D;">// Use block.number - 1 (previous block hash, which is finalised and known).
@@ -1193,9 +1193,9 @@ delete requestToPlayer[requestId];
 
 <!-- ══════════════ FOOTER ══════════════ -->
 <div class="module-footer">
-  <strong>MasterStroke Academy</strong> — Certified MST Blockchain Developer Program &nbsp;|&nbsp;
+  <strong>MasterStroke Academy</strong> - Certified MST Blockchain Developer Program &nbsp;|&nbsp;
   Module 4: Cryptography &nbsp;|&nbsp; Sub-Module 4.5: Commitments &amp; VRFs &nbsp;|&nbsp;
-  Next: <strong>Sub-Module 4.6 — Post-Quantum Cryptography</strong>
+  Next: <strong>Sub-Module 4.6 - Post-Quantum Cryptography</strong>
 </div>
 
 

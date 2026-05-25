@@ -2,7 +2,7 @@
 
 <div class="module-badge">🧪 Module 16 &nbsp;·&nbsp; Sub-Module 16.5</div>
 <h1 class="module-title">Independent Exercise: <span class="highlight">ZK Age Verification</span></h1>
-<p class="module-subtitle">Build a zero‑knowledge circuit that proves you are over 18 — without revealing your exact birthdate, Aadhaar number, or even your name. From Circom to a working proof on MST.</p>
+<p class="module-subtitle">Build a zero-knowledge circuit that proves you are over 18 - without revealing your exact birthdate, Aadhaar number, or even your name. From Circom to a working proof on MST.</p>
 
 <div class="meta-bar">
   <div class="meta-chip">⏱ 50 Minutes</div>
@@ -19,7 +19,7 @@
     <div class="obj-icon">🔢</div>
     <div class="obj-text">
       <strong>Model age verification as a cryptographic problem</strong>
-      Convert the real‑world requirement "prove age ≥ 18" into a set of arithmetic constraints suitable for a ZK circuit.
+      Convert the real-world requirement "prove age ≥ 18" into a set of arithmetic constraints suitable for a ZK circuit.
     </div>
   </div>
   <div class="obj-card">
@@ -33,56 +33,129 @@
     <div class="obj-icon">🔏</div>
     <div class="obj-text">
       <strong>Generate and verify a Groth16 proof</strong>
-      Use the Circom + snarkjs toolchain to produce a proof that can be verified on‑chain (MST) without revealing the birthdate.
+      Use the Circom + snarkjs toolchain to produce a proof that can be verified on-chain (MST) without revealing the birthdate.
     </div>
   </div>
   <div class="obj-card">
     <div class="obj-icon">🇮🇳</div>
     <div class="obj-text">
       <strong>Integrate with Indian identity systems</strong>
-      Design the complete flow where a user proves age from a DigiLocker/Aadhaar‑issued VC, using SARAL for DID management.
+      Design the complete flow where a user proves age from a DigiLocker/Aadhaar-issued VC, using SARAL for DID management.
     </div>
   </div>
 </div>
 
 <!-- SECTION 2: REAL-WORLD INTRODUCTION STORY -->
 <div class="section-label">02 &nbsp; Real-World Introduction Story</div>
-<h2 class="section-title">The Bar That Asked for Aadhaar — and Got Sued</h2>
+<h2 class="section-title">The Bar That Asked for Aadhaar - and Got Sued</h2>
 
 <div class="callout story">
   <div class="callout-label">📖 Story</div>
-  <p>In 2025, a popular microbrewery in Bengaluru introduced a digital ID check at the entrance. Patrons had to scan their Aadhaar QR code; the system would verify age and allow entry. Within a month, a privacy activist filed a PIL: the bar now possessed a database of Aadhaar numbers, names, and birthdates of thousands of customers — linked to their drinking habits. The Supreme Court, recalling its 2017 right‑to‑privacy judgment, ordered the bar to delete the data and find a less invasive method. The bar's dilemma was real: how do you verify someone is over 18 without collecting their birthdate? The answer: <strong>Zero‑Knowledge Age Verification</strong>.</p>
+  <p>In 2025, a popular microbrewery in Bengaluru introduced a digital ID check at the entrance. Patrons had to scan their Aadhaar QR code; the system would verify age and allow entry. Within a month, a privacy activist filed a PIL: the bar now possessed a database of Aadhaar numbers, names, and birthdates of thousands of customers - linked to their drinking habits. The Supreme Court, recalling its 2017 right-to-privacy judgment, ordered the bar to delete the data and find a less invasive method. The bar's dilemma was real: how do you verify someone is over 18 without collecting their birthdate? The answer: <strong>Zero-Knowledge Age Verification</strong>.</p>
   <br>
-  <p>Here's how it works with MST. The customer opens their SARAL wallet, which holds a Verifiable Credential issued by UIDAI (or DigiLocker) containing their birthdate. At the bar, the customer does not show the credential or reveal any data. Instead, their wallet generates a <strong>ZK proof</strong> that the statement "I am ≥ 18 years old" is true, given the birthdate in the credential and today's date. The proof is a tiny blob (~200 bytes) that the bar's tablet verifies in milliseconds. The bar learns exactly one bit: "This person is an adult." It learns nothing else — not the birthdate, not the Aadhaar number, not even the exact age. The customer's privacy is preserved; the bar's legal obligation is satisfied. The activist withdraws the PIL.</p>
+  <p>Here's how it works with MST. The customer opens their SARAL wallet, which holds a Verifiable Credential issued by UIDAI (or DigiLocker) containing their birthdate. At the bar, the customer does not show the credential or reveal any data. Instead, their wallet generates a <strong>ZK proof</strong> that the statement "I am ≥ 18 years old" is true, given the birthdate in the credential and today's date. The proof is a tiny blob (~200 bytes) that the bar's tablet verifies in milliseconds. The bar learns exactly one bit: "This person is an adult." It learns nothing else - not the birthdate, not the Aadhaar number, not even the exact age. The customer's privacy is preserved; the bar's legal obligation is satisfied. The activist withdraws the PIL.</p>
   <br>
-  <p>This sub‑module is your hands‑on exercise to build that circuit. You will write the Circom code that proves age ≥ 18, generate a Groth16 proof, and understand how this primitive integrates with MST's identity layer. By the end, you will have a working ZK circuit that you can use as the foundation for any privacy‑preserving eligibility check — voting, alcohol sales, driving licences, senior citizen discounts, and more.</p>
+  <p>This sub-module is your hands-on exercise to build that circuit. You will write the Circom code that proves age ≥ 18, generate a Groth16 proof, and understand how this primitive integrates with MST's identity layer. By the end, you will have a working ZK circuit that you can use as the foundation for any privacy-preserving eligibility check - voting, alcohol sales, driving licences, senior citizen discounts, and more.</p>
 </div>
 
-<!-- SECTION 3: BACKGROUND — RANGE PROOFS & AGE VERIFICATION -->
+<!-- SECTION 3: BACKGROUND - RANGE PROOFS & AGE VERIFICATION -->
 <div class="section-label">03 &nbsp; Background &amp; Mathematics</div>
 <h2 class="section-title">From Dates to Arithmetic Circuits</h2>
 <p>Age verification is a classic <strong>range proof</strong> problem. You need to prove that a hidden number <em>birthDate</em> (expressed as days since a reference point, e.g., Unix epoch) satisfies the inequality:</p>
 <div class="diagram-wrap">
   <pre>todayDate − birthDate ≥ 6570 days  (≈ 18 years × 365 days, simplified)</pre>
 </div>
-<p>In a ZK circuit, we cannot directly use inequality (<code>&lt;</code>, <code>&gt;</code>) because they are not natively supported in R1CS (Rank‑1 Constraint System). Instead, we perform the subtraction and then prove that the result is less than some maximum bound and that no underflow occurred. The standard approach is to use a <strong>comparator circuit</strong> that decomposes the numbers into bits and checks the subtraction using a <strong>LessThan</strong> template from circomlib.</p>
+<p>In a ZK circuit, we cannot directly use inequality (<code>&lt;</code>, <code>&gt;</code>) because they are not natively supported in R1CS (Rank-1 Constraint System). Instead, we perform the subtraction and then prove that the result is less than some maximum bound and that no underflow occurred. The standard approach is to use a <strong>comparator circuit</strong> that decomposes the numbers into bits and checks the subtraction using a <strong>LessThan</strong> template from circomlib.</p>
 
 <div class="callout insight">
   <div class="callout-label">💡 Why 6570 days?</div>
-  <p>We can choose any reference point, but using a fixed <strong>threshold date</strong> simplifies the circuit. For example, if today is 01‑Jan‑2026, the threshold for being 18 is 01‑Jan‑2008. Instead of computing the difference between two dynamic dates, we pre‑compute the threshold date and prove that <code>birthDate ≤ thresholdDate</code>. This is a simpler inequality to express in a circuit. However, for generality, we'll build a circuit that takes <code>today</code> and <code>birthDate</code> as inputs and computes the difference, then checks it's ≥ 6570. Both approaches are valid; the fixed‑threshold method is more gas‑efficient because the threshold can be a hardcoded constant.</p>
+  <p>We can choose any reference point, but using a fixed <strong>threshold date</strong> simplifies the circuit. For example, if today is 01-Jan-2026, the threshold for being 18 is 01-Jan-2008. Instead of computing the difference between two dynamic dates, we pre-compute the threshold date and prove that <code>birthDate ≤ thresholdDate</code>. This is a simpler inequality to express in a circuit. However, for generality, we'll build a circuit that takes <code>today</code> and <code>birthDate</code> as inputs and computes the difference, then checks it's ≥ 6570. Both approaches are valid; the fixed-threshold method is more gas-efficient because the threshold can be a hardcoded constant.</p>
 </div>
 
 <h3>3.1 The LessThan Template</h3>
-<p>Circomlib provides a <code>LessThan(n)</code> template that takes two n‑bit numbers and outputs 1 if the first is strictly less than the second. Internally, it uses a long subtraction with bit decomposition and a check that the final borrow is 0. You will use this template. For age verification, we need to check that <code>today - birthDate &gt;= 6570</code>. We can compute <code>diff = today - birthDate</code> and then check that <code>6570 - 1 &lt; diff</code> (i.e., <code>diff &gt;= 6570</code>). To avoid negative numbers, we first assert that <code>today &gt;= birthDate</code> using another LessThan call. This is a crucial step: if birthDate is in the future, the proof must fail.</p>
+<p>Circomlib provides a <code>LessThan(n)</code> template that takes two n-bit numbers and outputs 1 if the first is strictly less than the second. Internally, it uses a long subtraction with bit decomposition and a check that the final borrow is 0. You will use this template. For age verification, we need to check that <code>today - birthDate &gt;= 6570</code>. We can compute <code>diff = today - birthDate</code> and then check that <code>6570 - 1 &lt; diff</code> (i.e., <code>diff &gt;= 6570</code>). To avoid negative numbers, we first assert that <code>today &gt;= birthDate</code> using another LessThan call. This is a crucial step: if birthDate is in the future, the proof must fail.</p>
 
 <h3>3.2 Preventing Date Manipulation</h3>
 <p>The circuit's public output is a single bit <code>isAdult</code>. The verifier (the bar's tablet) must be convinced that the proof was generated with the correct <code>today</code>. If the prover can choose an arbitrary <code>today</code>, they could set it to a future date and appear older. The solution is to bind <code>today</code> to a trusted timestamp. In practice, the verifier provides the current date as a public input to the circuit, or the circuit uses the blockchain's <code>block.timestamp</code> (with caveats about miner manipulation). In our exercise, we'll make <code>today</code> a public input that the verifier checks against a recent block timestamp or a trusted server.</p>
 
-<!-- SECTION 4: TECHNICAL DEEP DIVE — BUILDING THE CIRCUIT -->
+<h3>3.3 Understanding R1CS (Rank-1 Constraint Systems)</h3>
+<p>Before we write the Circom circuit, it helps to understand what happens <em>beneath</em> the Circom compiler. When you compile a Circom file, the compiler translates your high-level code into an <strong>R1CS</strong> - a Rank-1 Constraint System. This is the mathematical representation that the proving system (Groth16, PLONK, etc.) actually works with. Think of R1CS as the "machine code" of zero-knowledge proofs: you write in Circom (a high-level language), and the compiler produces R1CS (the low-level instruction set).</p>
+
+<div class="callout analogy">
+  <div class="callout-label">🧩 Analogy - R1CS as a Sudoku Puzzle</div>
+  <p>Imagine you want to prove to a friend that you solved a Sudoku puzzle without showing the solution. R1CS is like converting every Sudoku rule ("each row has 1-9 without repetition", "each column has 1-9 without repetition", etc.) into individual mathematical equations. Each equation constrains one small part of the puzzle. If you can satisfy <em>all</em> the equations simultaneously, you must have a valid solution. The prover demonstrates that they know values (the "witness") that satisfy every constraint, without revealing those values.</p>
+</div>
+
+<p>An R1CS constraint has the form:</p>
+<div class="diagram-wrap">
+  <pre>A * B = C</pre>
+</div>
+<p>Here, A, B, and C are <strong>linear combinations</strong> of the circuit's variables (signals in Circom). Every computation in your circuit - addition, multiplication, comparison - gets broken down into constraints of this form. The key insight is that multiplication requires its own constraint, while addition is "free" (it can be folded into the linear combination). This is why ZK circuit designers count "multiplication gates" or "constraints" as a measure of circuit complexity.</p>
+
+<h3>3.4 Worked Example - From Arithmetic to R1CS</h3>
+<p>Let us walk through a simplified example. Suppose we want to prove that we know a secret number <code>x</code> such that <code>x * x - x = 42</code> (i.e., x^2 - x = 42). Here is how this single equation becomes R1CS constraints:</p>
+
+<div class="feature-list">
+  <div class="feature-item">
+    <div class="feature-num" style="background: var(--ink-3);">Step 1</div>
+    <div class="feature-content">
+      <div class="feature-title">Flatten the expression into intermediate variables</div>
+      <div class="feature-desc">We introduce an intermediate variable <code>v1 = x * x</code>. Now our computation has two parts: (a) <code>v1 = x * x</code>, and (b) <code>v1 - x = 42</code>. Each multiplication becomes one constraint.</div>
+    </div>
+  </div>
+  <div class="feature-item">
+    <div class="feature-num" style="background: var(--ink-3);">Step 2</div>
+    <div class="feature-content">
+      <div class="feature-title">Express each step as A * B = C</div>
+      <div class="feature-desc">Constraint 1: <code>(x) * (x) = (v1)</code>. This captures the squaring operation. Constraint 2: <code>(v1 - x) * (1) = (42)</code>. Multiplying by 1 is a standard trick to express a linear check as an R1CS constraint. Now we have two constraints that together enforce <code>x^2 - x = 42</code>.</div>
+    </div>
+  </div>
+  <div class="feature-item">
+    <div class="feature-num" style="background: var(--ink-3);">Step 3</div>
+    <div class="feature-content">
+      <div class="feature-title">Write the witness vector</div>
+      <div class="feature-desc">The witness is the complete set of values: <code>[1, x, v1]</code> where the leading 1 is a constant always included. If <code>x = 7</code>, then <code>v1 = 49</code>, and the witness is <code>[1, 7, 49]</code>. The prover knows this witness; the verifier does not. Both constraints evaluate correctly with these values: <code>7 * 7 = 49</code> (check) and <code>49 - 7 = 42</code> (check).</div>
+    </div>
+  </div>
+</div>
+
+<div class="callout insight">
+  <div class="callout-label">💡 Why This Matters for Age Verification</div>
+  <p>In our age verification circuit, the Circom compiler performs this same flattening process automatically. The <code>LessThan</code> template alone generates dozens of R1CS constraints because it decomposes numbers into individual bits and checks each bit position. A typical age verification circuit with 32-bit comparisons produces roughly 200-300 R1CS constraints. The more constraints, the larger the proving key and the longer proof generation takes - but verification time remains nearly constant (~1 ms for Groth16), which is why this scheme is practical for on-chain verification.</p>
+</div>
+
+<div class="diagram-wrap">
+  <div class="diagram-title">FIGURE 16.5-R1CS - How Circom Compiles to R1CS</div>
+  <pre>  ┌───────────────────────┐
+  │  Circom Source Code    │   .circom file
+  │  (AgeVerification)     │   (human-readable)
+  └──────────┬────────────┘
+             │ circom compiler
+             ▼
+  ┌───────────────────────┐
+  │  R1CS File             │   .r1cs binary
+  │  (constraints matrix)  │   (A * B = C for every gate)
+  └──────────┬────────────┘
+             │
+             ▼
+  ┌───────────────────────┐
+  │  WASM Module           │   .wasm file
+  │  (witness generator)   │   (computes all signals from inputs)
+  └──────────┬────────────┘
+             │ + input.json
+             ▼
+  ┌───────────────────────┐
+  │  Witness File          │   .wtns binary
+  │  (all signal values)   │   (satisfies every R1CS constraint)
+  └───────────────────────┘</pre>
+  <div class="diagram-caption">The Circom compiler produces two outputs: an R1CS (the constraint system) and a WASM module (the witness calculator). Together, they enable proof generation. The .r1cs tells the prover what constraints must hold; the .wasm computes the actual values that satisfy them.</div>
+</div>
+
+<!-- SECTION 4: TECHNICAL DEEP DIVE - BUILDING THE CIRCUIT -->
 <div class="section-label">04 &nbsp; Technical Deep Dive</div>
 <h2 class="section-title">The AgeVerification Circuit in Circom</h2>
 
-<p>Let's write the circuit step‑by‑step. We'll use a reference point of days since 01‑Jan‑1970 (Unix epoch). The inputs will be:</p>
+<p>Let's write the circuit step-by-step. We'll use a reference point of days since 01-Jan-1970 (Unix epoch). The inputs will be:</p>
 <ul>
   <li><strong>Private inputs:</strong> <code>birthDay</code> (the user's birthdate as days since epoch).</li>
   <li><strong>Public inputs:</strong> <code>today</code> (the current date in days since epoch), <code>threshold</code> (the minimum required age in days, e.g., 6570).</li>
@@ -148,7 +221,7 @@ component main {public [today, threshold]} = AgeVerification();</pre>
 <h3>4.1 Explanation of Constraints</h3>
 <p><strong>Birthdate validity:</strong> The <code>validBirth</code> signal is the sum of the LessThan output and the equality output. Since both are boolean (0 or 1), their sum is 1 only if exactly one condition holds (or both if birthDay &lt; today and birthDay == today is impossible). Actually if birthDay &lt; today, LessThan gives 1, IsEqual gives 0, sum=1. If birthDay == today, LessThan gives 0, IsEqual gives 1, sum=1. If birthDay &gt; today (future), both give 0, sum=0, and the constraint <code>validBirth === 1</code> fails. Perfect.</p>
 <p><strong>Difference:</strong> The subtraction <code>today - birthDay</code> is safe because we have already proven <code>birthDay &lt;= today</code>, so no underflow.</p>
-<p><strong>Age threshold:</strong> To check <code>diff &gt;= threshold</code>, we use the trick: <code>threshold - 1 &lt; diff</code>. If <code>threshold - 1</code> is strictly less than <code>diff</code>, then <code>diff</code> is at least <code>threshold</code>. The LessThan component outputs 1 if the first input is less than the second. So we set <code>ageCheck.in[0] = thresholdMinusOne</code> and <code>ageCheck.in[1] = diff</code>. If <code>thresholdMinusOne &lt; diff</code>, out=1, and <code>isAdult = 1</code>. If <code>diff == threshold - 1</code>, then thresholdMinusOne is not less, out=0, isAdult=0 — exactly what we want (age is not yet 18 if exactly 17 years and 364 days).</p>
+<p><strong>Age threshold:</strong> To check <code>diff &gt;= threshold</code>, we use the trick: <code>threshold - 1 &lt; diff</code>. If <code>threshold - 1</code> is strictly less than <code>diff</code>, then <code>diff</code> is at least <code>threshold</code>. The LessThan component outputs 1 if the first input is less than the second. So we set <code>ageCheck.in[0] = thresholdMinusOne</code> and <code>ageCheck.in[1] = diff</code>. If <code>thresholdMinusOne &lt; diff</code>, out=1, and <code>isAdult = 1</code>. If <code>diff == threshold - 1</code>, then thresholdMinusOne is not less, out=0, isAdult=0 - exactly what we want (age is not yet 18 if exactly 17 years and 364 days).</p>
 
 <h3>4.2 Generating the Proof with snarkjs</h3>
 <p>After writing the circuit, you compile it to an R1CS, generate a proving key, and use snarkjs to produce a Groth16 proof. The verifier contract on MST will check the proof with the public inputs <code>today</code> and <code>threshold</code>. The verifier does not see <code>birthDay</code>.</p>
@@ -157,7 +230,7 @@ component main {public [today, threshold]} = AgeVerification();</pre>
   <div class="diagram-title">FIGURE 16.5-A · Full ZK Age Verification Flow</div>
   <pre>  ┌──────────────┐      ┌──────────────┐      ┌──────────────────┐
   │ User's SARAL  │      │ Verifier App  │      │ MST Verifier     │
-  │ Wallet        │      │ (Bar Tablet)  │      │ Contract (on‑chain)│
+  │ Wallet        │      │ (Bar Tablet)  │      │ Contract (on-chain)│
   └──────┬───────┘      └──────┬───────┘      └────────┬─────────┘
          │                     │                         │
          │ 1. Request today's  │                         │
@@ -172,7 +245,7 @@ component main {public [today, threshold]} = AgeVerification();</pre>
          │ 3. Send proof +     │                         │
          │    public inputs    │                         │
          │─────────────────────▶                         │
-         │                     │ 4. Verify proof on‑chain │
+         │                     │ 4. Verify proof on-chain │
          │                     │─────────────────────────▶
          │                     │                         │
          │                     │ 5. Contract returns      │
@@ -182,19 +255,438 @@ component main {public [today, threshold]} = AgeVerification();</pre>
          │ 6. Access granted   │                         │
          │   (isAdult == 1)    │                         │
   </pre>
-  <div class="diagram-caption">The verifier contract only learns the public inputs and the proof. Birthdate remains completely hidden. The contract can be a simple Groth16 verifier, pre‑deployed on MST.</div>
+  <div class="diagram-caption">The verifier contract only learns the public inputs and the proof. Birthdate remains completely hidden. The contract can be a simple Groth16 verifier, pre-deployed on MST.</div>
+</div>
+
+<h3>4.3 Complete snarkjs Workflow - Step-by-Step Commands</h3>
+<p>Now that you understand the circuit and its constraints, let us walk through the entire workflow from source code to a verified proof. You will need Node.js (v16+), Circom (v2.0+), and snarkjs installed globally. Open a terminal in your project directory and follow each step in order.</p>
+
+<div class="feature-list">
+  <div class="feature-item">
+    <div class="feature-num" style="background: var(--ink-3);">Step 1</div>
+    <div class="feature-content">
+      <div class="feature-title">Compile the Circom circuit</div>
+      <div class="feature-desc">The compiler produces two critical files: the R1CS (constraint system) and the WASM module (witness generator). The <code>--sym</code> flag generates a symbol file for debugging.</div>
+    </div>
+  </div>
+</div>
+
+<div class="code-snippet">
+  <div class="diagram-title">Terminal - Compile the circuit</div>
+<pre># Create a project directory
+mkdir age-verify && cd age-verify
+
+# Save your circuit code as ageVerification.circom
+# Then compile it:
+circom ageVerification.circom --r1cs --wasm --sym -o build/
+
+# Expected output:
+# template instances: 3
+# non-linear constraints: ~250
+# linear constraints: 0
+# public inputs: 2
+# private inputs: 1
+# public outputs: 1
+# wires: ~280
+# labels: ~300</pre>
+</div>
+
+<div class="feature-list">
+  <div class="feature-item">
+    <div class="feature-num" style="background: var(--ink-3);">Step 2</div>
+    <div class="feature-content">
+      <div class="feature-title">Powers of Tau ceremony (Phase 1 trusted setup)</div>
+      <div class="feature-desc">Groth16 requires a trusted setup. Phase 1 is circuit-independent - it generates universal parameters. For production, you would use an existing community ceremony (e.g., Hermez's or Zcash's). For development, we generate our own. The parameter <code>12</code> means up to 2^12 = 4096 constraints.</div>
+    </div>
+  </div>
+</div>
+
+<div class="code-snippet">
+  <div class="diagram-title">Terminal - Powers of Tau (Phase 1)</div>
+<pre># Start a new Powers of Tau ceremony (BN128 curve, 2^12 max constraints)
+snarkjs powersoftau new bn128 12 pot12_0000.ptau -v
+
+# Contribute randomness (in production, multiple parties contribute)
+snarkjs powersoftau contribute pot12_0000.ptau pot12_0001.ptau \
+  --name="First contribution" -v -e="some random text for entropy"
+
+# Prepare Phase 2
+snarkjs powersoftau prepare phase2 pot12_0001.ptau pot12_final.ptau -v</pre>
+</div>
+
+<div class="feature-list">
+  <div class="feature-item">
+    <div class="feature-num" style="background: var(--ink-3);">Step 3</div>
+    <div class="feature-content">
+      <div class="feature-title">Circuit-specific setup (Phase 2 trusted setup)</div>
+      <div class="feature-desc">Phase 2 is specific to your circuit. It produces the proving key (zkey) and the verification key. In production, this phase also requires multiple contributors to ensure no single party can forge proofs.</div>
+    </div>
+  </div>
+</div>
+
+<div class="code-snippet">
+  <div class="diagram-title">Terminal - Phase 2 Setup</div>
+<pre># Generate the initial zkey (circuit-specific)
+snarkjs groth16 setup build/ageVerification.r1cs pot12_final.ptau \
+  ageVerification_0000.zkey
+
+# Contribute to Phase 2
+snarkjs zkey contribute ageVerification_0000.zkey ageVerification_0001.zkey \
+  --name="Phase2 contribution" -v -e="more random entropy"
+
+# Export the final verification key (JSON)
+snarkjs zkey export verificationkey ageVerification_0001.zkey \
+  verification_key.json</pre>
+</div>
+
+<div class="feature-list">
+  <div class="feature-item">
+    <div class="feature-num" style="background: var(--ink-3);">Step 4</div>
+    <div class="feature-content">
+      <div class="feature-title">Create the input file (input.json)</div>
+      <div class="feature-desc">The input file contains both private and public inputs. The prover knows all values; the verifier only sees the public ones after verification. Here, we compute the birthdate and today's date as days since Unix epoch.</div>
+    </div>
+  </div>
+</div>
+
+<div class="code-snippet">
+  <div class="diagram-title">input.json - Example for someone born 15-Aug-2000</div>
+<pre>{
+  "birthDay": 11184,
+  "today": 20454,
+  "threshold": 6570
+}
+
+// How to compute these values:
+// birthDay: Date(2000-08-15) => days since 1970-01-01 = 11184
+// today:    Date(2026-01-15) => days since 1970-01-01 = 20454
+// threshold: 18 years * 365 days = 6570 (simplified)
+// diff = 20454 - 11184 = 9270 days (about 25.4 years) => isAdult = 1</pre>
+</div>
+
+<div class="callout tip">
+  <div class="callout-label">🛠️ Computing Days Since Epoch in JavaScript</div>
+<pre>// Quick helper to convert a date to days-since-epoch
+function dateToDays(dateStr) {
+  const ms = new Date(dateStr).getTime();
+  return Math.floor(ms / (1000 * 60 * 60 * 24));
+}
+
+console.log(dateToDays("2000-08-15")); // 11184
+console.log(dateToDays("2026-01-15")); // 20454</pre>
+</div>
+
+<div class="feature-list">
+  <div class="feature-item">
+    <div class="feature-num" style="background: var(--ink-3);">Step 5</div>
+    <div class="feature-content">
+      <div class="feature-title">Generate the witness</div>
+      <div class="feature-desc">The WASM module produced during compilation computes all intermediate signals from your inputs. The output is a binary <code>.wtns</code> file containing every signal value (the "witness") that satisfies the R1CS constraints.</div>
+    </div>
+  </div>
+</div>
+
+<div class="code-snippet">
+  <div class="diagram-title">Terminal - Witness Generation</div>
+<pre># Generate the witness using the WASM module
+node build/ageVerification_js/generate_witness.js \
+  build/ageVerification_js/ageVerification.wasm \
+  input.json \
+  witness.wtns
+
+# If successful, no error is printed and witness.wtns is created.
+# If birthDay > today, the witness generation FAILS (constraint violation).</pre>
+</div>
+
+<div class="feature-list">
+  <div class="feature-item">
+    <div class="feature-num" style="background: var(--ink-3);">Step 6</div>
+    <div class="feature-content">
+      <div class="feature-title">Generate the Groth16 proof</div>
+      <div class="feature-desc">The prover combines the witness and the proving key to produce the proof. The output is a <code>proof.json</code> file (the cryptographic proof) and a <code>public.json</code> file (the public inputs and outputs).</div>
+    </div>
+  </div>
+</div>
+
+<div class="code-snippet">
+  <div class="diagram-title">Terminal - Proof Generation</div>
+<pre># Generate the proof
+snarkjs groth16 prove ageVerification_0001.zkey witness.wtns \
+  proof.json public.json
+
+# Inspect the public outputs
+cat public.json
+# Expected output: ["1", "20454", "6570"]
+# The "1" is isAdult (the circuit's output signal).
+# "20454" is today, "6570" is threshold - both public inputs.</pre>
+</div>
+
+<div class="feature-list">
+  <div class="feature-item">
+    <div class="feature-num" style="background: var(--ink-3);">Step 7</div>
+    <div class="feature-content">
+      <div class="feature-title">Verify the proof (off-chain)</div>
+      <div class="feature-desc">Before deploying on-chain, you can verify the proof locally using snarkjs. This confirms the proof is valid against the verification key and the public inputs.</div>
+    </div>
+  </div>
+</div>
+
+<div class="code-snippet">
+  <div class="diagram-title">Terminal - Verification</div>
+<pre># Verify the proof off-chain
+snarkjs groth16 verify verification_key.json public.json proof.json
+
+# Expected output:
+# [INFO]  snarkJS: OK!
+
+# If the proof is invalid (e.g., tampered), you get:
+# [ERROR] snarkJS: Invalid proof</pre>
+</div>
+
+<div class="callout insight">
+  <div class="callout-label">💡 What Happens If We Change birthDay?</div>
+  <p>Try modifying <code>input.json</code> to set <code>birthDay</code> to a recent date, say <code>19700</code> (about 2023). Now <code>diff = 20454 - 19700 = 754</code> days, which is far less than the threshold of 6570. The witness generation will succeed, but <code>isAdult</code> will be <code>0</code>. The proof will still be valid - it honestly proves "this person is NOT an adult." The circuit does not reject the proof; it simply outputs 0. The verifier's application logic must check that <code>public.json[0] == "1"</code> before granting access. This is a common source of bugs: verifying the proof is valid but forgetting to check the actual output value.</p>
 </div>
 
 <!-- SECTION 5: INTEGRATION WITH INDIAN IDENTITY STACK -->
 <div class="section-label">05 &nbsp; Integration with Indian Identity Systems</div>
 <h2 class="section-title">From Aadhaar XML to ZK Proof</h2>
-<p>The circuit above assumes <code>birthDay</code> is already extracted from a trusted credential. In practice, the user's Aadhaar XML (or DigiLocker VC) contains the birthdate in YYYY‑MM‑DD format. The SARAL wallet can parse this, convert it to days‑since‑epoch, and feed it into the circuit. Importantly, the user must also prove that the <code>birthDay</code> used in the circuit corresponds to the birthdate in the credential — otherwise they could input any birthdate. This requires a <strong>linked proof</strong>: the circuit also takes as private input the Aadhaar VC and its signature, verifies the signature inside the circuit, and extracts the birthdate. That's more complex, but for simplicity, in this exercise we assume the wallet has already authenticated the credential, and we only prove age from the extracted birthdate. In production, you'd combine the VC verification and age proof into one circuit.</p>
+<p>The circuit above assumes <code>birthDay</code> is already extracted from a trusted credential. In practice, the user's Aadhaar XML (or DigiLocker VC) contains the birthdate in YYYY-MM-DD format. The SARAL wallet can parse this, convert it to days-since-epoch, and feed it into the circuit. Importantly, the user must also prove that the <code>birthDay</code> used in the circuit corresponds to the birthdate in the credential - otherwise they could input any birthdate. This requires a <strong>linked proof</strong>: the circuit also takes as private input the Aadhaar VC and its signature, verifies the signature inside the circuit, and extracts the birthdate. That's more complex, but for simplicity, in this exercise we assume the wallet has already authenticated the credential, and we only prove age from the extracted birthdate. In production, you'd combine the VC verification and age proof into one circuit.</p>
 
 <p>MST's SARAL protocol can store the birthdate VC in the wallet, and the wallet's WASMify module can handle the conversion and proof generation. The verifier contract on MST can be invoked by any dApp (bar, liquor shop, voting booth) with a simple call to <code>verifyAgeProof(proof, pubInputs)</code>.</p>
 
+<!-- SECTION 5B: SOLIDITY VERIFIER CONTRACT -->
+<div class="section-label">05-B &nbsp; On-Chain Verifier Contract</div>
+<h2 class="section-title">Deploying the Verifier on MST</h2>
+<p>Once you have a working proof, the next step is on-chain verification. snarkjs can auto-generate a Solidity smart contract that verifies Groth16 proofs for your specific circuit. This contract embeds the verification key and exposes a single function that any dApp can call.</p>
+
+<h3>5B.1 Generating the Solidity Verifier</h3>
+<div class="code-snippet">
+  <div class="diagram-title">Terminal - Export Solidity Verifier</div>
+<pre># Generate the Solidity verifier contract
+snarkjs zkey export solidityverifier ageVerification_0001.zkey \
+  AgeVerifier.sol
+
+# This creates a Solidity file with:
+# - The verification key hardcoded as constants
+# - A verifyProof() function that takes proof points and public inputs
+# - Pairing library for BN128 elliptic curve operations</pre>
+</div>
+
+<h3>5B.2 Understanding the Auto-Generated Contract</h3>
+<p>The generated contract looks complex, but the interface is simple. Below is a simplified view of its structure with the key function that your dApp will call:</p>
+
+<div class="code-snippet">
+  <div class="diagram-title">Simplified Solidity Verifier (AgeVerifier.sol)</div>
+<pre>// SPDX-License-Identifier: GPL-3.0
+pragma solidity >=0.7.0 &lt;0.9.0;
+
+contract Groth16Verifier {
+    // --- Verification key constants (auto-generated) ---
+    uint256 constant alphax = 0x...; // Elliptic curve points
+    uint256 constant alphay = 0x...; // from trusted setup
+    // ... (dozens more constants for beta, gamma, delta, IC)
+
+    // --- Pairing check function (internal) ---
+    function _pairingProd4(...) internal view returns (bool) {
+        // Uses EIP-197 precompiled contract for BN128 pairing
+        // Gas cost: ~45,000 per pairing check
+    }
+
+    // --- THE FUNCTION YOUR DAPP CALLS ---
+    function verifyProof(
+        uint[2] calldata _pA,      // Proof point A
+        uint[2][2] calldata _pB,   // Proof point B
+        uint[2] calldata _pC,      // Proof point C
+        uint[3] calldata _pubSignals // [isAdult, today, threshold]
+    ) public view returns (bool) {
+        // Checks that:
+        // e(A, B) == e(alpha, beta) * e(IC, gamma) * e(C, delta)
+        // where IC encodes the public inputs
+        return _pairingProd4(...);
+    }
+}</pre>
+</div>
+
+<div class="callout tip">
+  <div class="callout-label">🛠️ Calling the Verifier from Your dApp</div>
+  <p>In your dApp's front-end or back-end, you would call the verifier like this:</p>
+<pre>// JavaScript (ethers.js) - calling the verifier on MST
+const verifier = new ethers.Contract(VERIFIER_ADDRESS, abi, provider);
+
+// proof and publicSignals come from snarkjs output
+const calldata = await snarkjs.groth16.exportSolidityCallData(
+  proof, publicSignals
+);
+
+// Parse the calldata
+const [pA, pB, pC, pubSignals] = JSON.parse("[" + calldata + "]");
+
+// Call the on-chain verifier
+const isValid = await verifier.verifyProof(pA, pB, pC, pubSignals);
+
+if (isValid && pubSignals[0] === "1") {
+  console.log("Age verified! Grant access.");
+} else {
+  console.log("Verification failed or user is underage.");
+}</pre>
+</div>
+
+<h3>5B.3 Deployment on MST</h3>
+<p>To deploy the verifier contract on MST, you use the standard deployment workflow. The contract is stateless (it only reads the verification key constants and computes a pairing check), so it requires no constructor arguments and minimal gas to deploy. Once deployed, any number of dApps can reference the same verifier contract address - you do not need a separate contract for each bar, liquor shop, or voting booth.</p>
+
+<div class="feature-list">
+  <div class="feature-item">
+    <div class="feature-num" style="background: var(--ink-3);">1</div>
+    <div class="feature-content">
+      <div class="feature-title">Compile the contract</div>
+      <div class="feature-desc">Use <code>solc</code> or Hardhat/Foundry to compile <code>AgeVerifier.sol</code>. Ensure the Solidity version matches the pragma in the generated file (typically 0.8.x).</div>
+    </div>
+  </div>
+  <div class="feature-item">
+    <div class="feature-num" style="background: var(--ink-3);">2</div>
+    <div class="feature-content">
+      <div class="feature-title">Deploy to MST testnet first</div>
+      <div class="feature-desc">Use Hardhat's deploy script or Foundry's <code>forge create</code> to deploy the contract to MST's testnet. Record the contract address for your dApp configuration.</div>
+    </div>
+  </div>
+  <div class="feature-item">
+    <div class="feature-num" style="background: var(--ink-3);">3</div>
+    <div class="feature-content">
+      <div class="feature-title">Verify and register</div>
+      <div class="feature-desc">Verify the contract source on MST's block explorer so that anyone can audit the verification logic. Register the contract address in your SARAL configuration so wallets know where to send proofs.</div>
+    </div>
+  </div>
+</div>
+
+<div class="callout insight">
+  <div class="callout-label">💡 Gas Cost Considerations</div>
+  <p>On-chain Groth16 verification on EVM-compatible chains like MST costs approximately 230,000-250,000 gas. This is because the verifier performs four elliptic curve pairing operations using the EIP-197 precompile. At typical MST gas prices, this translates to a fraction of a rupee per verification - far cheaper than the manual ID check process it replaces. For comparison, a simple ERC-20 token transfer costs about 65,000 gas. So a ZK proof verification is roughly 4x the cost of a token transfer, which is remarkably affordable for the privacy guarantees it provides.</p>
+</div>
+
+<!-- SECTION 5C: EXTENDING THE CIRCUIT -->
+<div class="section-label">05-C &nbsp; Extending the Circuit</div>
+<h2 class="section-title">Beyond Age - Other Privacy-Preserving Proofs</h2>
+<p>The age verification circuit is a foundation that can be adapted for many other privacy-preserving eligibility checks. The core pattern - "prove a private value satisfies a public condition without revealing the value" - applies broadly across Indian governance, finance, and social welfare scenarios. Below are four concrete extensions, each building on the same Circom + snarkjs + MST stack.</p>
+
+<div class="w5-grid">
+  <div class="w5-card">
+    <div class="w5-icon">💰</div>
+    <div class="w5-title">Income Bracket Proof</div>
+    <div class="w5-desc">Prove your annual income falls within a range (e.g., below Rs. 8 lakh for EWS reservation) without revealing the exact figure. The circuit takes the income as a private input and checks <code>income &lt; upperBound</code> and <code>income &gt;= lowerBound</code>. The Verifiable Credential could be an ITR (Income Tax Return) document issued via DigiLocker. This eliminates the need for income certificate forgery checks that plague government subsidy programs - a problem that costs the Indian exchequer an estimated Rs. 1,500 crore annually in fraudulent claims.</div>
+  </div>
+  <div class="w5-card">
+    <div class="w5-icon">🏠</div>
+    <div class="w5-title">Residency Proof</div>
+    <div class="w5-desc">Prove you reside in a specific state or district without revealing your full address. The circuit takes the state code (or district code) as a private input and checks it against a set of valid codes. This is useful for state-specific subsidies (e.g., Karnataka's Gruha Lakshmi scheme), college admissions with domicile requirements, or even election eligibility. The proof reveals only "this person is a resident of Karnataka" without exposing their exact locality, PIN code, or house number - crucial for protecting against stalking and targeted crime.</div>
+  </div>
+  <div class="w5-card">
+    <div class="w5-icon">📜</div>
+    <div class="w5-title">Credential Validity Proof</div>
+    <div class="w5-desc">Prove that a professional credential (medical licence, driving licence, engineering degree) is currently valid without revealing the credential number or holder's identity. The circuit checks that the credential's expiry date is in the future and that the issuer's digital signature is valid. This is especially relevant for India's healthcare sector, where the National Medical Commission could issue ZK-verifiable credentials to doctors, allowing hospitals to confirm a doctor's registration status without accessing the full NMC database.</div>
+  </div>
+  <div class="w5-card">
+    <div class="w5-icon">🗳️</div>
+    <div class="w5-title">Voting Eligibility Proof</div>
+    <div class="w5-desc">Prove you are a registered voter in a constituency without revealing your voter ID or EPIC number. The circuit takes the voter roll Merkle proof as a private input and verifies membership in the constituency's voter set. Combined with a nullifier (a unique hash derived from your identity), the system can ensure one-person-one-vote while maintaining ballot secrecy. This is the foundation of ZK voting systems like MACI (Minimum Anti-Collusion Infrastructure), adapted for Indian electoral requirements.</div>
+  </div>
+</div>
+
+<h3>5C.1 Circuit Design Pattern for Range Proofs</h3>
+<p>All the above use cases follow a common pattern. The table below summarises how each maps to circuit inputs and constraints:</p>
+
+<div class="diagram-wrap">
+  <div class="diagram-title">TABLE 16.5-B - Mapping Use Cases to Circuit Design</div>
+  <pre>
+  ┌─────────────────────┬──────────────────┬──────────────────┬───────────────────────┐
+  │ Use Case            │ Private Input    │ Public Input     │ Constraint            │
+  ├─────────────────────┼──────────────────┼──────────────────┼───────────────────────┤
+  │ Age Verification    │ birthDay         │ today, threshold │ today-birthDay        │
+  │                     │                  │                  │   >= threshold        │
+  ├─────────────────────┼──────────────────┼──────────────────┼───────────────────────┤
+  │ Income Bracket      │ annualIncome     │ lowerBound,      │ lowerBound <= income  │
+  │                     │                  │ upperBound       │   < upperBound        │
+  ├─────────────────────┼──────────────────┼──────────────────┼───────────────────────┤
+  │ Residency Proof     │ stateCode        │ allowedStateCode │ stateCode ==          │
+  │                     │                  │                  │   allowedStateCode    │
+  ├─────────────────────┼──────────────────┼──────────────────┼───────────────────────┤
+  │ Credential Validity │ expiryDate,      │ today            │ expiryDate > today    │
+  │                     │ issuerSig        │                  │ AND sig is valid      │
+  ├─────────────────────┼──────────────────┼──────────────────┼───────────────────────┤
+  │ Voter Eligibility   │ voterID,         │ merkleRoot,      │ Merkle proof valid    │
+  │                     │ merkleProof      │ nullifierHash    │ AND nullifier correct │
+  └─────────────────────┴──────────────────┴──────────────────┴───────────────────────┘</pre>
+  <div class="diagram-caption">Each use case follows the same architecture: private inputs from a Verifiable Credential, public inputs from the verifier or blockchain, and arithmetic constraints enforced by the ZK circuit.</div>
+</div>
+
+<!-- SECTION 5D: PERFORMANCE BENCHMARKS -->
+<div class="section-label">05-D &nbsp; Performance Benchmarks</div>
+<h2 class="section-title">How Fast Is It? Real Numbers for Real Circuits</h2>
+<p>Performance matters in practice. If proof generation takes 30 seconds, no one will wait at a bar entrance. If verification costs millions of gas, no dApp will use it. Below are benchmark numbers for typical ZK circuits running on consumer hardware (Intel i7, 16 GB RAM) and MST's EVM. These numbers give you a practical sense of what is achievable.</p>
+
+<div class="diagram-wrap">
+  <div class="diagram-title">TABLE 16.5-C - Performance Benchmarks by Circuit Complexity</div>
+  <pre>
+  ┌───────────────────────────┬──────────────┬──────────────┬──────────────┬──────────────┐
+  │ Circuit                   │ Constraints  │ Proof Gen    │ Proof Size   │ Verify Gas   │
+  ├───────────────────────────┼──────────────┼──────────────┼──────────────┼──────────────┤
+  │ Age Verification          │ ~250         │ ~0.5 sec     │ 192 bytes    │ ~230K gas    │
+  │ (32-bit comparator)       │              │              │              │              │
+  ├───────────────────────────┼──────────────┼──────────────┼──────────────┼──────────────┤
+  │ Income Range Proof        │ ~500         │ ~0.8 sec     │ 192 bytes    │ ~230K gas    │
+  │ (two comparators)         │              │              │              │              │
+  ├───────────────────────────┼──────────────┼──────────────┼──────────────┼──────────────┤
+  │ Merkle Membership         │ ~10,000      │ ~3 sec       │ 192 bytes    │ ~250K gas    │
+  │ (depth-20 Poseidon tree)  │              │              │              │              │
+  ├───────────────────────────┼──────────────┼──────────────┼──────────────┼──────────────┤
+  │ VC Signature Verify       │ ~50,000      │ ~12 sec      │ 192 bytes    │ ~250K gas    │
+  │ (EdDSA + Poseidon hash)   │              │              │              │              │
+  ├───────────────────────────┼──────────────┼──────────────┼──────────────┼──────────────┤
+  │ Full VC-bound Age Proof   │ ~55,000      │ ~14 sec      │ 192 bytes    │ ~250K gas    │
+  │ (signature + age check)   │              │              │              │              │
+  └───────────────────────────┴──────────────┴──────────────┴──────────────┴──────────────┘</pre>
+  <div class="diagram-caption">Groth16 proof size is always constant (192 bytes = 3 elliptic curve points) regardless of circuit size. Proof generation time scales roughly linearly with constraint count. Verification gas is nearly constant because the verifier always performs the same number of pairing operations.</div>
+</div>
+
+<div class="callout insight">
+  <div class="callout-label">💡 The Groth16 Sweet Spot</div>
+  <p>Notice the remarkable property of Groth16: <strong>proof size and verification cost are constant</strong>, no matter how complex the circuit. Whether you are proving age (250 constraints) or verifying a full credential signature (55,000 constraints), the proof is always 192 bytes and verification costs roughly 230,000-250,000 gas. The only thing that changes is the prover's computation time. This makes Groth16 ideal for on-chain verification where gas costs are the bottleneck. The trade-off is the trusted setup requirement - each circuit needs its own ceremony. Newer systems like PLONK offer a universal setup (one ceremony for all circuits) but produce slightly larger proofs (~400-600 bytes) and cost more gas to verify (~300,000-350,000 gas).</p>
+</div>
+
+<h3>5D.1 Mobile Performance Considerations</h3>
+<p>In the Indian context, many users will generate proofs on mobile devices (Android smartphones in the Rs. 8,000-15,000 range). Here, proof generation for the basic age circuit takes approximately 2-4 seconds using the WASM prover in a WebView or React Native app. For the full VC-bound proof with signature verification, mobile proof generation can take 30-60 seconds on mid-range devices. To optimise for mobile:</p>
+
+<div class="feature-list">
+  <div class="feature-item">
+    <div class="feature-num" style="background: var(--ink-3);">1</div>
+    <div class="feature-content">
+      <div class="feature-title">Use the native C++ prover via rapidsnark</div>
+      <div class="feature-desc">The <code>rapidsnark</code> library is a C++ implementation of the Groth16 prover that is 5-10x faster than the JavaScript/WASM prover. It can be compiled for Android (ARM64) and integrated into the SARAL wallet as a native module. With rapidsnark, even the full VC-bound proof completes in under 5 seconds on a mid-range phone.</div>
+    </div>
+  </div>
+  <div class="feature-item">
+    <div class="feature-num" style="background: var(--ink-3);">2</div>
+    <div class="feature-content">
+      <div class="feature-title">Pre-compute the witness off the critical path</div>
+      <div class="feature-desc">The SARAL wallet can compute the witness (all intermediate signal values) in the background as soon as the user opens the app, before they even scan the bar's QR code. When the actual verification request arrives, only the proof generation step remains, cutting perceived latency in half.</div>
+    </div>
+  </div>
+  <div class="feature-item">
+    <div class="feature-num" style="background: var(--ink-3);">3</div>
+    <div class="feature-content">
+      <div class="feature-title">Cache the proving key in local storage</div>
+      <div class="feature-desc">The proving key (<code>.zkey</code> file) for the age verification circuit is approximately 15-20 MB. Downloading it every time would be impractical on Indian mobile networks. The SARAL wallet should download the key once during setup and cache it locally. Updates to the key (if the circuit changes) can be handled via a versioned CDN.</div>
+    </div>
+  </div>
+</div>
+
+<h3>5D.2 Proof Aggregation for High-Throughput Scenarios</h3>
+<p>Consider a large music festival in Goa with 10,000 attendees, each needing age verification at the gate. Verifying 10,000 individual proofs on-chain would cost roughly 2.3 billion gas - impractical even on MST. <strong>Proof aggregation</strong> solves this by combining multiple proofs into a single proof that can be verified in one on-chain transaction. The aggregated proof says "all 10,000 attendees are adults" and costs the same ~250,000 gas as a single verification.</p>
+<p>Aggregation works by creating a "recursive" circuit: a circuit that verifies other proofs. The aggregator collects individual proofs off-chain, feeds them into the recursive circuit, and produces one combined proof. Tools like SnarkPack and Halo2 support this pattern. While more complex to implement, proof aggregation is essential for any deployment that must handle hundreds or thousands of verifications per hour.</p>
+
 <!-- SECTION 6: COMMON PITFALLS & BEST PRACTICES -->
 <div class="section-label">06 &nbsp; Common Pitfalls &amp; Best Practices</div>
-<h2 class="section-title">What Can Go Wrong — and How to Avoid It</h2>
+<h2 class="section-title">What Can Go Wrong - and How to Avoid It</h2>
 <div class="feature-list">
   <div class="feature-item">
     <div class="feature-num" style="background: var(--red);">⚠️</div>
@@ -214,20 +706,44 @@ component main {public [today, threshold]} = AgeVerification();</pre>
     <div class="feature-num" style="background: var(--red);">⚠️</div>
     <div class="feature-content">
       <div class="feature-title">Integer overflow</div>
-      <div class="feature-desc">Days‑since‑epoch for a birthdate in 1970 is small, but for safety use 64‑bit numbers (the LessThan template parameter). Circom signals are field elements (prime p ~ 2^254), so overflow is not a risk, but bit‑width affects constraints.</div>
+      <div class="feature-desc">Days-since-epoch for a birthdate in 1970 is small, but for safety use 64-bit numbers (the LessThan template parameter). Circom signals are field elements (prime p ~ 2^254), so overflow is not a risk, but bit-width affects constraints.</div>
+    </div>
+  </div>
+  <div class="feature-item">
+    <div class="feature-num" style="background: var(--red);">⚠️</div>
+    <div class="feature-content">
+      <div class="feature-title">Forgetting to check the output signal</div>
+      <div class="feature-desc">A valid proof does not mean the user is an adult. The proof might honestly say <code>isAdult = 0</code>. Always check that <code>publicSignals[0] == 1</code> in your application logic after verifying the proof. Many developers verify the proof but forget to inspect the output - a critical security bug.</div>
+    </div>
+  </div>
+  <div class="feature-item">
+    <div class="feature-num" style="background: var(--red);">⚠️</div>
+    <div class="feature-content">
+      <div class="feature-title">Reusing a ceremony across circuits</div>
+      <div class="feature-desc">Phase 1 (Powers of Tau) is universal, but Phase 2 is circuit-specific. If you modify even one constraint in your Circom code, you must re-run Phase 2 to generate a new proving key. Reusing an old zkey with a modified circuit will produce invalid proofs or, worse, proofs that verify but are unsound.</div>
+    </div>
+  </div>
+  <div class="feature-item">
+    <div class="feature-num" style="background: var(--red);">⚠️</div>
+    <div class="feature-content">
+      <div class="feature-title">Leaking information through timing</div>
+      <div class="feature-desc">If proof generation takes noticeably different amounts of time for different birthdates (e.g., faster for older people), an observer could estimate the user's age from the generation time. In practice, Groth16 proof generation time depends on the number of constraints (which is fixed for a given circuit), not on the input values. However, witness generation in JavaScript might have timing side-channels. Use constant-time libraries when possible.</div>
     </div>
   </div>
 </div>
 
 <!-- SECTION 7: ASSESSMENT PREPARATION -->
 <div class="section-label">07 &nbsp; Assessment Preparation</div>
-<h2 class="section-title">Top Facts — Know These Cold</h2>
+<h2 class="section-title">Top Facts - Know These Cold</h2>
 <div class="feature-list">
   <div class="feature-item"><div class="feature-num" style="background: var(--ink-3);">01</div><div class="feature-content"><div class="feature-title">Range proof:</div><div class="feature-desc">Proving that a hidden number lies within a range without revealing it. Age verification uses a range proof: age ∈ [18, ∞).</div></div></div>
-  <div class="feature-item"><div class="feature-num" style="background: var(--ink-3);">02</div><div class="feature-content"><div class="feature-title">LessThan template:</div><div class="feature-desc">From circomlib, checks a &lt; b for n‑bit numbers. Used to build comparisons. For &gt;=, use (threshold-1) &lt; x.</div></div></div>
+  <div class="feature-item"><div class="feature-num" style="background: var(--ink-3);">02</div><div class="feature-content"><div class="feature-title">LessThan template:</div><div class="feature-desc">From circomlib, checks a &lt; b for n-bit numbers. Used to build comparisons. For &gt;=, use (threshold-1) &lt; x.</div></div></div>
   <div class="feature-item"><div class="feature-num" style="background: var(--ink-3);">03</div><div class="feature-content"><div class="feature-title">Public vs Private inputs:</div><div class="feature-desc">Birthdate is private; today and threshold are public. The verifier must enforce today's value. Public inputs are visible to the verifier but not necessarily to the blockchain (unless output).</div></div></div>
-  <div class="feature-item"><div class="feature-num" style="background: var(--ink-3);">04</div><div class="feature-content"><div class="feature-title">Groth16 proof:</div><div class="feature-desc">~200 bytes, verification in ~1ms. Requires a trusted setup ceremony. MST's verifier contract uses pre‑compiled pairing checks.</div></div></div>
+  <div class="feature-item"><div class="feature-num" style="background: var(--ink-3);">04</div><div class="feature-content"><div class="feature-title">Groth16 proof:</div><div class="feature-desc">~200 bytes, verification in ~1ms. Requires a trusted setup ceremony. MST's verifier contract uses pre-compiled pairing checks.</div></div></div>
   <div class="feature-item"><div class="feature-num" style="background: var(--ink-3);">05</div><div class="feature-content"><div class="feature-title">Binding to VC:</div><div class="feature-desc">In production, the circuit also verifies the VC signature to ensure the birthdate is from an authorised issuer (UIDAI). This can be done by hashing the VC and checking against the issuer's public key.</div></div></div>
+  <div class="feature-item"><div class="feature-num" style="background: var(--ink-3);">06</div><div class="feature-content"><div class="feature-title">R1CS constraint count:</div><div class="feature-desc">The age verification circuit produces approximately 250 R1CS constraints. Each LessThan(32) template generates roughly 100 constraints (32 bit-decomposition checks plus auxiliary constraints). More constraints mean a larger proving key and slower proof generation, but verification cost remains constant.</div></div></div>
+  <div class="feature-item"><div class="feature-num" style="background: var(--ink-3);">07</div><div class="feature-content"><div class="feature-title">Trusted setup phases:</div><div class="feature-desc">Phase 1 (Powers of Tau) is circuit-independent and can be reused. Phase 2 is circuit-specific and must be re-run if the circuit changes. Both phases require multiple honest participants to ensure soundness. The "1-of-N" security assumption means only one participant needs to be honest.</div></div></div>
+  <div class="feature-item"><div class="feature-num" style="background: var(--ink-3);">08</div><div class="feature-content"><div class="feature-title">Proof size is constant:</div><div class="feature-desc">Groth16 proofs are always 192 bytes (three BN128 curve points: A, B, C). This is true regardless of circuit complexity - a 250-constraint circuit and a 1-million-constraint circuit produce identical proof sizes. This constant size is Groth16's defining advantage over other proof systems.</div></div></div>
 </div>
 
 <!-- ASSESSMENT -->
@@ -235,18 +751,24 @@ component main {public [today, threshold]} = AgeVerification();</pre>
 
 <!-- GLOSSARY -->
 <div class="section-label" style="margin-top:52px;">08 &nbsp; Glossary</div>
-<h2 class="section-title">Key Terms — Sub-Module 16.5</h2>
+<h2 class="section-title">Key Terms - Sub-Module 16.5</h2>
 <div class="glossary-grid">
-  <div class="glossary-item"><div class="glossary-term">Range Proof</div><div class="glossary-def">A cryptographic proof that a secret number lies within a specific range without revealing the number itself. Age verification is a one‑sided range proof (≥ threshold).</div></div>
-  <div class="glossary-item"><div class="glossary-term">LessThan Template</div><div class="glossary-def">A Circom template that proves a &lt; b for two n‑bit numbers. Foundation of inequality checks in ZK circuits.</div></div>
-  <div class="glossary-item"><div class="glossary-term">snarkjs</div><div class="glossary-def">JavaScript/WASM library for trusted setup, proof generation, and verification of Groth16 zk‑SNARKs, compatible with Circom outputs.</div></div>
+  <div class="glossary-item"><div class="glossary-term">Range Proof</div><div class="glossary-def">A cryptographic proof that a secret number lies within a specific range without revealing the number itself. Age verification is a one-sided range proof (≥ threshold).</div></div>
+  <div class="glossary-item"><div class="glossary-term">LessThan Template</div><div class="glossary-def">A Circom template that proves a &lt; b for two n-bit numbers. Foundation of inequality checks in ZK circuits.</div></div>
+  <div class="glossary-item"><div class="glossary-term">snarkjs</div><div class="glossary-def">JavaScript/WASM library for trusted setup, proof generation, and verification of Groth16 zk-SNARKs, compatible with Circom outputs.</div></div>
   <div class="glossary-item"><div class="glossary-term">Public Input</div><div class="glossary-def">A value that is known to both prover and verifier. In age verification, today and threshold are public; birthdate is private.</div></div>
-  <div class="glossary-item"><div class="glossary-term">Groth16</div><div class="glossary-def">A widely used zk‑SNARK proving system with very small proofs (~200 bytes) and millisecond verification, requiring a circuit‑specific trusted setup.</div></div>
-  <div class="glossary-item"><div class="glossary-term">VC‑Binding</div><div class="glossary-def">The technique of proving that a ZK circuit's private inputs are derived from a valid Verifiable Credential, preventing input forgery.</div></div>
+  <div class="glossary-item"><div class="glossary-term">Groth16</div><div class="glossary-def">A widely used zk-SNARK proving system with very small proofs (~200 bytes) and millisecond verification, requiring a circuit-specific trusted setup.</div></div>
+  <div class="glossary-item"><div class="glossary-term">VC-Binding</div><div class="glossary-def">The technique of proving that a ZK circuit's private inputs are derived from a valid Verifiable Credential, preventing input forgery.</div></div>
+  <div class="glossary-item"><div class="glossary-term">R1CS (Rank-1 Constraint System)</div><div class="glossary-def">The low-level mathematical representation of a ZK circuit. Every computation is flattened into constraints of the form A * B = C, where A, B, and C are linear combinations of circuit variables. The Circom compiler produces R1CS automatically from your high-level code.</div></div>
+  <div class="glossary-item"><div class="glossary-term">Witness Generation</div><div class="glossary-def">The process of computing all intermediate signal values in a circuit from the provided inputs. The WASM module produced by the Circom compiler performs this computation. The resulting witness file (.wtns) contains every value needed to satisfy the R1CS constraints.</div></div>
+  <div class="glossary-item"><div class="glossary-term">Powers of Tau</div><div class="glossary-def">Phase 1 of the Groth16 trusted setup ceremony. It generates universal parameters (toxic waste) that are circuit-independent. Multiple participants contribute randomness; as long as at least one participant is honest and destroys their secret, the ceremony is secure. Community ceremonies (e.g., Hermez, Zcash) have had thousands of contributors.</div></div>
+  <div class="glossary-item"><div class="glossary-term">Phase 2 Ceremony</div><div class="glossary-def">The circuit-specific portion of the Groth16 trusted setup. It takes the Phase 1 output and the circuit's R1CS to produce the proving key (zkey) and verification key. Like Phase 1, multiple contributors enhance security. Each new circuit requires its own Phase 2 ceremony.</div></div>
+  <div class="glossary-item"><div class="glossary-term">Verifier Contract</div><div class="glossary-def">A Solidity smart contract auto-generated by snarkjs that can verify Groth16 proofs on-chain. It embeds the verification key as constants and uses EIP-197 precompiled contracts for BN128 elliptic curve pairing checks. Verification costs approximately 230,000-250,000 gas on EVM chains.</div></div>
+  <div class="glossary-item"><div class="glossary-term">Proof Aggregation</div><div class="glossary-def">The technique of combining multiple individual ZK proofs into a single proof that can be verified in one operation. Uses recursive circuits (circuits that verify other proofs) to achieve constant verification cost regardless of how many original proofs are aggregated. Essential for high-throughput deployments.</div></div>
 </div>
 
 <div class="page-footer">
-  <p>MasterStroke Academy — Professional Blockchain Developer Program</p>
-  <p>Module 16 · Sub-Module <strong>16.5</strong> &nbsp;·&nbsp; End of Module 16 — Congratulations! Next: Module 17 — Post‑Quantum Security →</p>
+  <p>MasterStroke Academy - Professional Blockchain Developer Program</p>
+  <p>Module 16 · Sub-Module <strong>16.5</strong> &nbsp;·&nbsp; End of Module 16 - Congratulations! Next: Module 17 - Post-Quantum Security →</p>
 </div>
 

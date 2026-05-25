@@ -7,7 +7,7 @@ export default async function LoginPage({
   searchParams: Promise<{ role?: string }>;
 }) {
   const { role: roleParam } = await searchParams;
-  const valid: UserRole[] = ["student", "validator", "non-validator"];
+  const valid: UserRole[] = ["student", "validator"];
   const initialRole = valid.includes(roleParam as UserRole)
     ? (roleParam as UserRole)
     : "student";
