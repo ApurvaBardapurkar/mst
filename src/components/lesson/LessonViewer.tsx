@@ -118,8 +118,13 @@ export function LessonViewer({
     value
       .trim()
       .toLowerCase()
-      .replace(/[“”"']/g, "")
-      .replace(/\s+/g, " ");
+      .replace(/[“”"'\u200B-\u200F]/g, "")
+      .replace(/[^a-z0-9\s-]/g, "")
+      .replace(/\s+/g, " ")
+      .trim();
+
+  const slugifyText = (value: string) =>
+    normalizeText(value).replace(/\s+/g, "-");
 
   const scrollToHeading = (id: string) => {
     const container = articleRef.current;
@@ -145,44 +150,66 @@ export function LessonViewer({
   }, [moduleId, submodule.slug]);
 
   useEffect(() => {
-    const content = articleRef.current?.querySelector(".lesson-content") ?? document.querySelector(".lesson-content");
+    const content = articleRef.current?.querySelector(".lesson-content");
     if (!content) return;
 
     const headings = Array.from(
       content.querySelectorAll("h1, h2, h3, h4, h5, h6")
     ) as HTMLElement[];
+    if (headings.length === 0) {
+      setValidToc([]);
+      return;
+    }
 
-    headings.forEach((heading) => {
-      heading.style.scrollMarginTop = "5rem";
-      heading.style.padding = "0.5rem 0";
-      heading.style.transition = "border-color 0.2s ease, background-color 0.2s ease";
-      heading.style.borderLeft = "4px solid transparent";
-      heading.style.borderRadius = "0.5rem";
-    });
+    const headingRecords = headings
+      .map((heading, index) => {
+        const headingText = normalizeText(heading.textContent || "");
+        if (!headingText) return null;
+        const defaultId = `lesson-heading-${index}-${slugifyText(headingText)}`;
+        heading.id ||= defaultId;
+        heading.style.scrollMarginTop = "5rem";
+        heading.style.padding = "0.5rem 0";
+        heading.style.transition = "border-color 0.2s ease, background-color 0.2s ease";
+        heading.style.borderLeft = "4px solid transparent";
+        heading.style.borderRadius = "0.5rem";
 
-    const normalizeHeading = (value: string) =>
-      normalizeText(value.replace(/[\s\n]+/g, " ").replace(/^[^a-z0-9]+|[^a-z0-9]+$/gi, ""));
+        return {
+          heading,
+          id: heading.id,
+          text: headingText,
+          title: heading.textContent?.trim() ?? "",
+        };
+      })
+      .filter((record): record is { heading: HTMLElement; id: string; text: string; title: string } => Boolean(record));
 
-    const matchedItems = submodule.toc.filter((item) => {
-      const normalizedItem = normalizeHeading(item.title);
-      const match = headings.find((heading) => {
-        const headingText = normalizeHeading(heading.textContent || "");
-        return (
-          headingText === normalizedItem ||
-          headingText.startsWith(normalizedItem) ||
-          normalizedItem.startsWith(headingText) ||
-          headingText.includes(normalizedItem) ||
-          normalizedItem.includes(headingText)
-        );
-      });
-      if (match) {
-        match.id = item.id;
-        return true;
-      }
-      return false;
-    });
+    const matchedItems = submodule.toc
+      .map((item) => {
+        const normalizedItem = normalizeText(item.title);
+        const match = headingRecords.find((record) => {
+          return (
+            record.text === normalizedItem ||
+            record.text.startsWith(normalizedItem) ||
+            normalizedItem.startsWith(record.text)
+          );
+        });
+        if (match) {
+          match.heading.id = item.id;
+          return { id: item.id, title: item.title };
+        }
+        return null;
+      })
+      .filter((item): item is { id: string; title: string } => Boolean(item));
 
-    setValidToc(matchedItems);
+    if (matchedItems.length > 0) {
+      setValidToc(matchedItems);
+    } else {
+      setValidToc(
+        headingRecords.map((record) => ({
+          id: record.id,
+          title: record.title,
+        }))
+      );
+    }
 
     const observer = new IntersectionObserver(
       (entries) => {
@@ -200,9 +227,9 @@ export function LessonViewer({
       }
     );
 
-    headings.forEach((heading) => {
-      if (heading.id) {
-        observer.observe(heading);
+    headingRecords.forEach((record) => {
+      if (record.id) {
+        observer.observe(record.heading);
       }
     });
 
@@ -233,7 +260,7 @@ export function LessonViewer({
 
   return (
     <div className="flex min-h-[calc(100vh-4rem)] bg-[var(--bg)]">
-      <aside className="hidden w-72 shrink-0 border-r border-[var(--border)] bg-[var(--sidebar-bg)] lg:sticky lg:top-20 lg:flex lg:h-[calc(100vh-5rem)] lg:flex-col lg:overflow-y-auto">
+      <aside className="hidden w-72 shrink-0 border-r border-[var(--border)] bg-[var(--sidebar-bg)] lg:sticky lg:top-20 lg:self-start lg:flex lg:h-[calc(100vh-5rem)] lg:flex-col lg:overflow-y-auto">
         <div className="border-b border-[var(--border)] p-5">
           <Link
             href="/learn"
