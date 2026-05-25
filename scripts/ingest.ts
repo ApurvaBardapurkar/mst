@@ -312,7 +312,13 @@ function listModuleFiles(moduleDir: string): string[] {
   if (!fs.existsSync(moduleDir)) return [];
   return fs
     .readdirSync(moduleDir)
-    .filter((f) => f.endsWith(".html") && !f.includes("NICE"))
+    .filter(
+      (f) =>
+        f.endsWith(".html") &&
+        !f.includes("NICE") &&
+        !f.includes("-lesson") &&
+        !f.includes("-lesson.html")
+    )
     .sort((a, b) => a.localeCompare(b, undefined, { numeric: true }));
 }
 
