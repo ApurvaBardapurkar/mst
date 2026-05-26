@@ -22,14 +22,20 @@ import {
   TextInput,
 } from "./AuthShell";
 
-type SelectedRole = "student" | "validator";
+type UserType = "student" | "validator" | "normal";
 
 const VALIDATOR_ID_PLACEHOLDER_URL = "https://example.com/validator-id-card.pdf";
+
+const USER_TYPES: { id: UserType; label: string; emoji: string; desc: string; price: number }[] = [
+  { id: "student", label: "Student", emoji: "🎓", desc: "Enroll in courses & earn certifications", price: DEMO_FEES.student },
+  { id: "validator", label: "Validator", emoji: "🔐", desc: "Validate transactions & earn rewards", price: DEMO_FEES.validator },
+  { id: "normal", label: "Normal User", emoji: "👤", desc: "Access all courses & content", price: DEMO_FEES.normal },
+];
 
 export function RegisterForm() {
   const router = useRouter();
   const { refresh } = useAuth();
-  const [role, setRole] = useState<SelectedRole>("student");
+  const [userType, setUserType] = useState<UserType>("student");
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
 
@@ -42,6 +48,8 @@ export function RegisterForm() {
   const [validatorIdFile, setValidatorIdFile] = useState<File | null>(null);
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
+
+  const selectedType = USER_TYPES.find((t) => t.id === userType)!;
 
   function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
@@ -58,27 +66,7 @@ export function RegisterForm() {
       | { ok: true; user: { role: string } }
       | { ok: false; error: string };
 
-    if (role === "student") {
-      if (!studentIdFile) {
-        setLoading(false);
-        setError("Student ID card upload is required.");
-        return;
-      }
-      if (college === "Other" && !collegeOther.trim()) {
-        setLoading(false);
-        setError("Please enter your college name.");
-        return;
-      }
-      result = registerStudent({
-        fullName,
-        email,
-        phone,
-        password,
-        college,
-        collegeOther: college === "Other" ? collegeOther : undefined,
-        idCardFileName: studentIdFile.name,
-      });
-    } else {
+    if (userType === "validator") {
       if (!validatorIdFile) {
         setLoading(false);
         setError("Validator ID card upload is required.");
@@ -90,6 +78,26 @@ export function RegisterForm() {
         phone,
         password,
         idCardFileName: validatorIdFile.name,
+      });
+    } else {
+      if (userType === "student" && !studentIdFile) {
+        setLoading(false);
+        setError("Student ID card upload is required.");
+        return;
+      }
+      if (userType === "student" && college === "Other" && !collegeOther.trim()) {
+        setLoading(false);
+        setError("Please enter your college name.");
+        return;
+      }
+      result = registerStudent({
+        fullName,
+        email,
+        phone,
+        password,
+        college: userType === "student" ? college : "N/A",
+        collegeOther: userType === "student" && college === "Other" ? collegeOther : undefined,
+        idCardFileName: userType === "student" ? studentIdFile!.name : "normal-user",
       });
     }
 
@@ -107,231 +115,121 @@ export function RegisterForm() {
   return (
     <AuthShell
       title="Create Account"
-      subtitle="Choose your path and get started."
+      subtitle="Choose your role and get started."
     >
-      <div className="mb-6 space-y-4">
+      <div className="mb-5">
         <DemoFeeNote />
-
-        <div>
-          <FieldLabel required>I am registering as a</FieldLabel>
-          <div className="mt-2 grid grid-cols-2 gap-3">
-            <button
-              type="button"
-              onClick={() => { setRole("student"); setError(""); }}
-              className={`group relative flex flex-col items-center gap-2 rounded-2xl border-2 px-4 py-5 text-center transition-all ${
-                role === "student"
-                  ? "border-mst-red bg-mst-red/5 shadow-md shadow-mst-red/10"
-                  : "border-[var(--border)] bg-[var(--bg)] hover:border-[var(--text-muted)]/40 hover:bg-[var(--bg-muted)]"
-              }`}
-            >
-              <span className="text-3xl">🎓</span>
-              <span className={`text-sm font-bold ${
-                role === "student" ? "text-mst-red" : "text-[var(--text)]"
-              }`}>
-                Student
-              </span>
-              <span className="text-[11px] leading-tight text-[var(--text-muted)]">
-                Enroll in courses & earn certifications
-              </span>
-              {role === "student" && (
-                <span className="absolute -right-1.5 -top-1.5 flex h-5 w-5 items-center justify-center rounded-full bg-mst-red text-[10px] text-white">
-                  ✓
-                </span>
-              )}
-            </button>
-
-            <button
-              type="button"
-              onClick={() => { setRole("validator"); setError(""); }}
-              className={`group relative flex flex-col items-center gap-2 rounded-2xl border-2 px-4 py-5 text-center transition-all ${
-                role === "validator"
-                  ? "border-mst-red bg-mst-red/5 shadow-md shadow-mst-red/10"
-                  : "border-[var(--border)] bg-[var(--bg)] hover:border-[var(--text-muted)]/40 hover:bg-[var(--bg-muted)]"
-              }`}
-            >
-              <span className="text-3xl">🔐</span>
-              <span className={`text-sm font-bold ${
-                role === "validator" ? "text-mst-red" : "text-[var(--text)]"
-              }`}>
-                Validator
-              </span>
-              <span className="text-[11px] leading-tight text-[var(--text-muted)]">
-                Validate transactions & earn rewards
-              </span>
-              {role === "validator" && (
-                <span className="absolute -right-1.5 -top-1.5 flex h-5 w-5 items-center justify-center rounded-full bg-mst-red text-[10px] text-white">
-                  ✓
-                </span>
-              )}
-            </button>
-          </div>
-        </div>
       </div>
 
       <form onSubmit={handleSubmit} className="space-y-4">
+        {/* Role selection */}
         <div>
-          <FieldLabel htmlFor="fullName" required>
-            Full Name
-          </FieldLabel>
-          <TextInput
-            id="fullName"
-            required
-            value={fullName}
-            onChange={(e) => setFullName(e.target.value)}
-            placeholder="Your full name"
-          />
+          <FieldLabel required>I am registering as</FieldLabel>
+          <div className="mt-2 grid grid-cols-3 gap-2">
+            {USER_TYPES.map((t) => (
+              <button
+                key={t.id}
+                type="button"
+                onClick={() => { setUserType(t.id); setError(""); }}
+                className={`relative flex flex-col items-center gap-1 rounded-xl border-2 px-2 py-3 text-center transition-all ${
+                  userType === t.id
+                    ? "border-mst-red bg-mst-red/5 shadow-md shadow-mst-red/10"
+                    : "border-[var(--border)] bg-[var(--bg)] hover:border-[var(--text-muted)]/40"
+                }`}
+              >
+                <span className="text-xl">{t.emoji}</span>
+                <span className={`text-xs font-bold ${
+                  userType === t.id ? "text-mst-red" : "text-[var(--text)]"
+                }`}>
+                  {t.label}
+                </span>
+                <span className="text-[10px] leading-tight text-[var(--text-muted)]">
+                  Rs {t.price.toLocaleString("en-IN")}
+                </span>
+                {userType === t.id && (
+                  <span className="absolute -right-1 -top-1 flex h-4 w-4 items-center justify-center rounded-full bg-mst-red text-[8px] text-white">
+                    ✓
+                  </span>
+                )}
+              </button>
+            ))}
+          </div>
         </div>
 
+        {/* Common fields */}
         <div>
-          <FieldLabel htmlFor="email" required>
-            Email
-          </FieldLabel>
-          <TextInput
-            id="email"
-            type="email"
-            required
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            placeholder="you@example.com"
-          />
+          <FieldLabel htmlFor="fullName" required>Full Name</FieldLabel>
+          <TextInput id="fullName" required value={fullName} onChange={(e) => setFullName(e.target.value)} placeholder="Your full name" />
+        </div>
+        <div>
+          <FieldLabel htmlFor="email" required>Email</FieldLabel>
+          <TextInput id="email" type="email" required value={email} onChange={(e) => setEmail(e.target.value)} placeholder="you@example.com" />
+        </div>
+        <div>
+          <FieldLabel htmlFor="phone" required>Phone Number</FieldLabel>
+          <TextInput id="phone" type="tel" required value={phone} onChange={(e) => setPhone(e.target.value)} placeholder="+91 XXXXX XXXXX" />
         </div>
 
-        <div>
-          <FieldLabel htmlFor="phone" required>
-            Phone Number
-          </FieldLabel>
-          <TextInput
-            id="phone"
-            type="tel"
-            required
-            value={phone}
-            onChange={(e) => setPhone(e.target.value)}
-            placeholder="+91 XXXXX XXXXX"
-          />
-        </div>
-
-        {role === "student" && (
+        {/* Student-specific fields */}
+        {userType === "student" && (
           <>
             <div>
-              <FieldLabel htmlFor="college" required>
-                College
-              </FieldLabel>
-              <SelectInput
-                id="college"
-                value={college}
-                onChange={(e) => setCollege(e.target.value)}
-              >
+              <FieldLabel htmlFor="college" required>College</FieldLabel>
+              <SelectInput id="college" value={college} onChange={(e) => setCollege(e.target.value)}>
                 {COLLEGES.map((c) => (
-                  <option key={c} value={c}>
-                    {c}
-                  </option>
+                  <option key={c} value={c}>{c}</option>
                 ))}
               </SelectInput>
             </div>
             {college === "Other" && (
               <div>
-                <FieldLabel htmlFor="collegeOther" required>
-                  Enter College Name
-                </FieldLabel>
-                <TextInput
-                  id="collegeOther"
-                  required
-                  value={collegeOther}
-                  onChange={(e) => setCollegeOther(e.target.value)}
-                  placeholder="Your college name"
-                />
+                <FieldLabel htmlFor="collegeOther" required>Enter College Name</FieldLabel>
+                <TextInput id="collegeOther" required value={collegeOther} onChange={(e) => setCollegeOther(e.target.value)} placeholder="Your college name" />
               </div>
             )}
             <div>
-              <FieldLabel htmlFor="studentId" required>
-                Student ID Card Upload
-              </FieldLabel>
-              <TextInput
-                id="studentId"
-                type="file"
-                accept="image/*,.pdf"
-                required
-                onChange={(e) =>
-                  setStudentIdFile(e.target.files?.[0] ?? null)
-                }
-              />
+              <FieldLabel htmlFor="studentId" required>Student ID Card Upload</FieldLabel>
+              <TextInput id="studentId" type="file" accept="image/*,.pdf" required onChange={(e) => setStudentIdFile(e.target.files?.[0] ?? null)} />
               {studentIdFile && (
-                <p className="mt-1 text-xs text-[var(--text-muted)]">
-                  Selected: {studentIdFile.name}
-                </p>
+                <p className="mt-1 text-xs text-[var(--text-muted)]">Selected: {studentIdFile.name}</p>
               )}
             </div>
-            <DemoFee amount={DEMO_FEES.student} />
             <HighlightBox>
-              Internship Opportunity available for eligible students who meet
-              the required assessment criteria.
+              Internship Opportunity available for eligible students who meet the required assessment criteria.
             </HighlightBox>
           </>
         )}
 
-        {role === "validator" && (
+        {/* Validator-specific fields */}
+        {userType === "validator" && (
           <>
             <div>
-              <FieldLabel htmlFor="validatorId" required>
-                Validator ID Card Upload
-              </FieldLabel>
-              <TextInput
-                id="validatorId"
-                type="file"
-                accept="image/*,.pdf"
-                required
-                onChange={(e) =>
-                  setValidatorIdFile(e.target.files?.[0] ?? null)
-                }
-              />
+              <FieldLabel htmlFor="validatorId" required>Validator ID Card Upload</FieldLabel>
+              <TextInput id="validatorId" type="file" accept="image/*,.pdf" required onChange={(e) => setValidatorIdFile(e.target.files?.[0] ?? null)} />
               {validatorIdFile && (
-                <p className="mt-1 text-xs text-[var(--text-muted)]">
-                  Selected: {validatorIdFile.name}
-                </p>
+                <p className="mt-1 text-xs text-[var(--text-muted)]">Selected: {validatorIdFile.name}</p>
               )}
             </div>
             <p className="text-sm text-[var(--text-muted)]">
               Don&apos;t have a Validator ID Card?{" "}
-              <a
-                href={VALIDATOR_ID_PLACEHOLDER_URL}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="font-semibold text-mst-red hover:underline"
-              >
+              <a href={VALIDATOR_ID_PLACEHOLDER_URL} target="_blank" rel="noopener noreferrer" className="font-semibold text-mst-red hover:underline">
                 Download Validator ID Card
               </a>
             </p>
-            <DemoFee amount={DEMO_FEES.validator} />
           </>
         )}
 
+        {/* Fee display */}
+        <DemoFee amount={selectedType.price} />
+
+        {/* Password */}
         <div>
-          <FieldLabel htmlFor="password" required>
-            Password
-          </FieldLabel>
-          <TextInput
-            id="password"
-            type="password"
-            required
-            minLength={6}
-            autoComplete="new-password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-          />
+          <FieldLabel htmlFor="password" required>Password</FieldLabel>
+          <TextInput id="password" type="password" required minLength={6} autoComplete="new-password" value={password} onChange={(e) => setPassword(e.target.value)} />
         </div>
         <div>
-          <FieldLabel htmlFor="confirmPassword" required>
-            Confirm Password
-          </FieldLabel>
-          <TextInput
-            id="confirmPassword"
-            type="password"
-            required
-            minLength={6}
-            autoComplete="new-password"
-            value={confirmPassword}
-            onChange={(e) => setConfirmPassword(e.target.value)}
-          />
+          <FieldLabel htmlFor="confirmPassword" required>Confirm Password</FieldLabel>
+          <TextInput id="confirmPassword" type="password" required minLength={6} autoComplete="new-password" value={confirmPassword} onChange={(e) => setConfirmPassword(e.target.value)} />
         </div>
 
         {error && (
@@ -341,7 +239,7 @@ export function RegisterForm() {
         )}
 
         <SubmitButton disabled={loading}>
-          {loading ? "Creating account…" : "Complete Registration"}
+          {loading ? "Creating account..." : "Complete Registration"}
         </SubmitButton>
       </form>
 

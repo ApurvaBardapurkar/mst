@@ -26,7 +26,7 @@ import {
   isSubmoduleLocked,
   getModuleStatus,
 } from "@/lib/progress";
-import { getLessonDisplayTitle } from "@/lib/display-titles";
+import { getLessonDisplayTitle, getCardSubmoduleTitle } from "@/lib/display-titles";
 
 function estimateReadTime(html: string): number {
   const text = html.replace(/<[^>]*>/g, " ").replace(/\s+/g, " ").trim();
@@ -339,17 +339,16 @@ export function LessonViewer({
     normalizeText(value).replace(/\s+/g, "-");
 
   const scrollToHeading = useCallback((id: string) => {
-    const article = articleRef.current;
-    if (!article) return;
-
     let target: HTMLElement | null = document.getElementById(id);
 
     if (!target) {
-      try { target = article.querySelector(`[id="${id}"]`) as HTMLElement | null; } catch { /* */ }
+      const container = articleRef.current || document;
+      try { target = container.querySelector(`[id="${id}"]`) as HTMLElement | null; } catch { /* */ }
     }
 
     if (!target) {
-      const allH = article.querySelectorAll("h1,h2,h3,h4,h5,h6,.section-title,.sub-title");
+      const searchRoot = articleRef.current || document;
+      const allH = searchRoot.querySelectorAll("h1,h2,h3,h4,h5,h6,.section-title,.sub-title");
       const norm = id.toLowerCase().replace(/[^a-z0-9]/g, "");
       for (const h of allH) {
         const hId = (h.id || "").toLowerCase().replace(/[^a-z0-9]/g, "");
@@ -363,8 +362,11 @@ export function LessonViewer({
 
     if (!target) return;
 
-    target.style.scrollMarginTop = "2rem";
-    target.scrollIntoView({ behavior: "smooth", block: "start" });
+    const navbarHeight = 64;
+    const headerHeight = 100;
+    const offset = navbarHeight + headerHeight + 16;
+    const targetTop = target.getBoundingClientRect().top + window.scrollY - offset;
+    window.scrollTo({ top: Math.max(0, targetTop), behavior: "smooth" });
 
     setActiveHeading(id);
   }, []);
@@ -419,7 +421,7 @@ export function LessonViewer({
         if (!headingText || headingText.length < 3) return null;
         const defaultId = `lesson-heading-${index}-${slugifyText(headingText).slice(0, 40)}`;
         if (!heading.id) heading.id = defaultId;
-        heading.style.scrollMarginTop = "5rem";
+        heading.style.scrollMarginTop = "12rem";
         return {
           heading,
           id: heading.id,
@@ -580,25 +582,29 @@ export function LessonViewer({
             const subLocked = mounted && isSubmoduleLocked(moduleLocked, subIdx, moduleId, mod.submodules);
             return (
               <div key={sub.slug}>
-                {subLocked ? (
-                  <div className="flex items-center gap-2 rounded-xl px-3 py-2 text-xs font-medium text-white/25 cursor-not-allowed border border-transparent">
-                    <Lock size={10} />
-                    <span className="font-bold">{sub.id}</span>
-                    <span className="ml-0.5">{sub.title.length > 30 ? sub.title.slice(0, 30) + "..." : sub.title}</span>
-                  </div>
-                ) : (
-                  <Link
-                    href={`/module/${moduleId}/${sub.slug}`}
-                    className={`block rounded-xl px-3 py-2 text-xs font-medium transition ${
-                      sub.slug === submodule.slug
-                        ? "bg-mst-red/15 text-mst-red border border-mst-red/20"
-                        : "text-white/60 hover:bg-white/5 hover:text-white border border-transparent"
-                    }`}
-                  >
-                    <span className="font-bold">{sub.id}</span>
-                    <span className="ml-1.5">{sub.title.length > 30 ? sub.title.slice(0, 30) + "..." : sub.title}</span>
-                  </Link>
-                )}
+                {(() => {
+                  const cleanTitle = getCardSubmoduleTitle(sub.title);
+                  const displayTitle = cleanTitle.length > 25 ? cleanTitle.slice(0, 25) + "..." : cleanTitle;
+                  return subLocked ? (
+                    <div className="flex items-center gap-2 rounded-xl px-3 py-2 text-xs font-medium text-white/25 cursor-not-allowed border border-transparent">
+                      <Lock size={10} />
+                      <span className="font-bold">{sub.id}</span>
+                      <span className="ml-0.5">{displayTitle}</span>
+                    </div>
+                  ) : (
+                    <Link
+                      href={`/module/${moduleId}/${sub.slug}`}
+                      className={`block rounded-xl px-3 py-2 text-xs font-medium transition ${
+                        sub.slug === submodule.slug
+                          ? "bg-mst-red/15 text-mst-red border border-mst-red/20"
+                          : "text-white/60 hover:bg-white/5 hover:text-white border border-transparent"
+                      }`}
+                    >
+                      <span className="font-bold">{sub.id}</span>
+                      <span className="ml-1.5">{displayTitle}</span>
+                    </Link>
+                  );
+                })()}
               </div>
             );
           })}

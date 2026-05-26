@@ -67,7 +67,8 @@ export const BLOCKCHAIN_LEVELS: BlockchainLevel[] = [
 
 export const DEMO_FEES = {
   student: 2999,
-  validator: 3999,
+  validator: 2999,
+  normal: 6999,
   nonValidator: 8999,
 } as const;
 
@@ -146,13 +147,6 @@ export function login(
 
   if (found.password !== password) {
     return { ok: false, error: "Incorrect password." };
-  }
-
-  if (requestedRole && found.role !== requestedRole && found.role !== "admin") {
-    return {
-      ok: false,
-      error: `This account is registered as ${roleLabel(found.role)}. Use the correct login tab or register.`,
-    };
   }
 
   setSession(found);
