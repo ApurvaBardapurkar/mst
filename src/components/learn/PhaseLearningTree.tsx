@@ -9,7 +9,6 @@ import {
   useReactFlow,
   type Node,
   type Edge,
-  MarkerType,
 } from "@xyflow/react";
 import "@xyflow/react/dist/style.css";
 import { useEffect, useMemo, memo, useCallback } from "react";
@@ -320,17 +319,8 @@ export function PhaseLearningTree({
       target: e.target,
       type: "smoothstep",
       animated: selectedModuleId === null,
-      style: {
-        stroke: isLight ? "#9ca3af" : "#4b5563",
-        strokeWidth: selectedModuleId ? 2 : 2.5,
-        opacity: selectedModuleId ? 0.35 : 0.85,
-      },
-      markerEnd: {
-        type: MarkerType.ArrowClosed,
-        color: isLight ? "#9ca3af" : "#4b5563",
-        width: 14,
-        height: 14,
-      },
+      data: { kind: "module" },
+      className: `web3-edge ${selectedModuleId ? "web3-edge--muted" : "web3-edge--idle"}`,
     }));
 
     if (selectedModule && selectedModuleId) {
@@ -383,13 +373,8 @@ export function PhaseLearningTree({
             target: `sub-${selectedModuleId}-${sub.slug}`,
             type: "smoothstep",
             animated: true,
-            style: { stroke: color, strokeWidth: 2.5 },
-            markerEnd: {
-              type: MarkerType.ArrowClosed,
-              color,
-              width: 14,
-              height: 14,
-            },
+            data: { kind: "active" },
+            className: "web3-edge web3-edge--active",
           });
 
           if (subIdx > 0) {
@@ -399,11 +384,9 @@ export function PhaseLearningTree({
               source: `sub-${selectedModuleId}-${prev.slug}`,
               target: `sub-${selectedModuleId}-${sub.slug}`,
               type: "smoothstep",
-              style: {
-                stroke: color + "80",
-                strokeWidth: 1.5,
-                strokeDasharray: "6 4",
-              },
+              animated: true,
+              data: { kind: "path" },
+              className: "web3-edge web3-edge--path",
             });
           }
         });

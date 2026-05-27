@@ -3060,7 +3060,46 @@ body {
 }
 
 .learn-tree-canvas .react-flow__edge-path {
-  transition: stroke 0.4s ease, stroke-width 0.4s ease;
+  transition: stroke 0.35s ease, stroke-width 0.35s ease, opacity 0.35s ease;
+}
+
+.web3-edge.web3-edge--idle .react-flow__edge-path {
+  stroke: rgba(148, 163, 184, 0.6);
+  stroke-width: 2px;
+}
+
+.web3-edge.web3-edge--muted .react-flow__edge-path {
+  stroke: rgba(75, 85, 99, 0.5);
+  stroke-width: 1.75px;
+  stroke-dasharray: 6 6;
+}
+
+.web3-edge.web3-edge--active .react-flow__edge-path {
+  stroke: #fb923c;
+  stroke-width: 3px;
+  filter: drop-shadow(0 0 8px rgba(251, 146, 60, 0.8));
+}
+
+.web3-edge.web3-edge--path .react-flow__edge-path {
+  stroke: #38bdf8;
+  stroke-width: 2.25px;
+  stroke-dasharray: 10 8;
+  animation: web3-edge-pulse 1.4s ease-in-out infinite;
+}
+
+@keyframes web3-edge-pulse {
+  0% {
+    stroke-dashoffset: 0;
+    opacity: 0.5;
+  }
+  50% {
+    stroke-dashoffset: 12;
+    opacity: 1;
+  }
+  100% {
+    stroke-dashoffset: 24;
+    opacity: 0.7;
+  }
 }
 
 .learn-content-panel {
