@@ -2,8 +2,13 @@
 
 import Link from "next/link";
 import { useMemo, useState } from "react";
-import type { Curriculum, ModuleMeta, Phase } from "@/lib/types";
+import type { Curriculum, ModuleMeta, Phase, SubmoduleMeta } from "@/lib/types";
 import { getCardSubmoduleTitle } from "@/lib/display-titles";
+import { Typewriter } from "@/components/marketing/Typewriter";
+import { AnimatedCounter } from "@/components/marketing/AnimatedCounter";
+import { useInView } from "@/components/marketing/useInView";
+import { RevealSection } from "@/components/marketing/RevealSection";
+import { MarketingHeroBackground } from "@/components/marketing/MarketingHeroBackground";
 import {
   ASSESSMENT_TYPES,
   OUTCOMES,
@@ -15,15 +20,20 @@ import {
   ArrowRight,
   Award,
   BookOpen,
+  Blocks,
   ChevronDown,
   ChevronRight,
   Clock,
   Code2,
+  Cpu,
   FileText,
   Globe,
   GraduationCap,
   Layers,
+  PlayCircle,
+  Rocket,
   Shield,
+  Sparkles,
   Star,
   Target,
   Zap,
@@ -40,36 +50,28 @@ const OUTCOME_ICONS = {
   globe: Globe,
 } as const;
 
-function StatCard({
-  value,
-  label,
-  accent = false,
-}: {
-  value: string;
-  label: string;
-  accent?: boolean;
-}) {
-  return (
-    <div
-      className={`rounded-2xl border p-5 text-center transition hover:-translate-y-0.5 ${
-        accent
-          ? "border-mst-red/30 bg-mst-red/5"
-          : "border-[var(--border)] bg-[var(--surface)]"
-      }`}
-    >
-      <div
-        className={`text-3xl font-black tracking-tight sm:text-4xl ${
-          accent ? "text-gradient-red" : "text-[var(--text)]"
-        }`}
-      >
-        {value}
-      </div>
-      <div className="mt-1 text-xs font-semibold uppercase tracking-wider text-[var(--text-muted)]">
-        {label}
-      </div>
-    </div>
-  );
-}
+const PHASE_ICONS = [Blocks, Cpu, Layers, Rocket];
+const PHASE_COLORS = [
+  "var(--accent-blue)",
+  "var(--mst-red)",
+  "var(--accent-purple)",
+  "var(--accent-green)",
+];
+
+const OUTCOME_GRADIENTS = [
+  "from-blue-500/20 to-cyan-500/10",
+  "from-mst-red/20 to-orange-500/10",
+  "from-purple-500/20 to-pink-500/10",
+  "from-emerald-500/20 to-teal-500/10",
+];
+
+const NAV_SECTIONS = [
+  { id: "outcomes", label: "Outcomes" },
+  { id: "curriculum", label: "Curriculum" },
+  { id: "modules", label: "Modules" },
+  { id: "assessment", label: "Assessment" },
+  { id: "credential", label: "Credential" },
+];
 
 function Expandable({
   open,
@@ -77,43 +79,110 @@ function Expandable({
   header,
   children,
   accent,
+  className = "",
 }: {
   open: boolean;
   onToggle: () => void;
   header: React.ReactNode;
   children: React.ReactNode;
   accent?: string;
+  className?: string;
 }) {
   return (
     <div
-      className="overflow-hidden rounded-2xl border border-[var(--border)] bg-[var(--surface)] transition hover:border-[var(--border-strong)]"
-      style={accent ? { borderLeftWidth: 4, borderLeftColor: accent } : undefined}
+      className={`group overflow-hidden rounded-2xl border border-[var(--border)] bg-[var(--surface)]/80 backdrop-blur-sm transition-all duration-300 hover:border-[var(--border-strong)] hover:shadow-lg ${className}`}
+      style={
+        accent
+          ? {
+              borderLeftWidth: 4,
+              borderLeftColor: accent,
+              boxShadow: open ? `0 8px 32px ${accent}18` : undefined,
+            }
+          : undefined
+      }
     >
       <button
         type="button"
         onClick={onToggle}
-        className="flex w-full items-center gap-4 px-5 py-4 text-left transition hover:bg-[var(--bg-muted)]"
+        className="flex w-full items-center gap-4 px-5 py-4 text-left transition hover:bg-[var(--bg-muted)]/80"
       >
-        <ChevronDown
-          className={`h-5 w-5 shrink-0 text-[var(--text-muted)] transition-transform ${
-            open ? "rotate-180" : ""
-          }`}
-        />
+        <div
+          className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl transition"
+          style={{
+            backgroundColor: accent ? `${accent}22` : "var(--bg-muted)",
+          }}
+        >
+          <ChevronDown
+            className={`h-5 w-5 transition-transform duration-300 ${
+              open ? "rotate-180" : ""
+            }`}
+            style={{ color: accent ?? "var(--text-muted)" }}
+          />
+        </div>
         <div className="min-w-0 flex-1">{header}</div>
       </button>
-      {open && (
-        <div className="border-t border-[var(--border)] px-5 py-4">{children}</div>
-      )}
+      <div
+        className={`grid transition-all duration-500 ease-in-out ${
+          open ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0"
+        }`}
+      >
+        <div className="overflow-hidden">
+          <div className="border-t border-[var(--border)] px-5 py-4">{children}</div>
+        </div>
+      </div>
     </div>
   );
 }
 
-const PHASE_COLORS = [
-  "var(--accent-blue)",
-  "var(--mst-red)",
-  "var(--accent-purple)",
-  "var(--accent-green)",
-];
+function SubmoduleCard({
+  mod,
+  sub,
+  accent,
+}: {
+  mod: ModuleMeta;
+  sub: SubmoduleMeta;
+  accent?: string;
+}) {
+  const title = getCardSubmoduleTitle(sub.title);
+  const desc =
+    sub.subtitle?.trim() ||
+    `Deep dive into ${title.toLowerCase()} with hands-on examples.`;
+
+  return (
+    <Link
+      href={`/module/${mod.id}/${sub.slug}`}
+      className="group relative overflow-hidden rounded-xl border border-[var(--border)] bg-[var(--bg)] p-4 transition-all duration-300 hover:-translate-y-0.5 hover:border-mst-red/40 hover:shadow-md"
+    >
+      <div
+        className="pointer-events-none absolute -right-8 -top-8 h-24 w-24 rounded-full opacity-0 blur-2xl transition group-hover:opacity-30"
+        style={{ backgroundColor: accent ?? "var(--mst-red)" }}
+      />
+      <div className="relative flex items-start gap-3">
+        <span
+          className="shrink-0 rounded-lg px-2 py-1 font-mono text-xs font-bold"
+          style={{
+            color: accent ?? "var(--mst-red)",
+            backgroundColor: `${accent ?? "var(--mst-red)"}18`,
+          }}
+        >
+          {sub.id}
+        </span>
+        <div className="min-w-0 flex-1">
+          <p className="font-semibold text-[var(--text)] transition group-hover:text-mst-red">
+            {title}
+          </p>
+          <p className="mt-1.5 line-clamp-3 text-xs leading-relaxed text-[var(--text-muted)]">
+            {desc}
+          </p>
+          <span className="mt-3 inline-flex items-center gap-1 text-xs font-semibold text-mst-red opacity-0 transition group-hover:opacity-100">
+            <PlayCircle className="h-3.5 w-3.5" />
+            Open lesson
+          </span>
+        </div>
+      </div>
+    </Link>
+  );
+}
 
 function PhaseSection({
   phase,
@@ -125,10 +194,13 @@ function PhaseSection({
   index: number;
 }) {
   const [open, setOpen] = useState(index === 0);
-  const [openModules, setOpenModules] = useState<Set<number>>(new Set());
+  const [openModules, setOpenModules] = useState<Set<number>>(
+    () => new Set(index === 0 && modules[0] ? [modules[0].id] : [])
+  );
   const meta = PHASE_HOURS[phase.id];
   const subCount = modules.reduce((n, m) => n + m.submodules.length, 0);
   const color = PHASE_COLORS[index] ?? "var(--mst-red)";
+  const PhaseIcon = PHASE_ICONS[index] ?? Blocks;
 
   const toggleModule = (id: number) => {
     setOpenModules((prev) => {
@@ -140,91 +212,98 @@ function PhaseSection({
   };
 
   return (
-    <Expandable
-      open={open}
-      onToggle={() => setOpen((v) => !v)}
-      accent={color}
-      header={
-        <div className="flex flex-wrap items-center justify-between gap-3">
-          <div>
-            <p className="text-xs font-bold uppercase tracking-widest text-[var(--text-muted)]">
-              Phase {index + 1}
-            </p>
-            <h3 className="text-lg font-bold text-[var(--text)]">{phase.title}</h3>
-          </div>
-          <div className="flex flex-wrap gap-2 text-xs font-semibold">
-            <span className="rounded-full bg-[var(--bg-muted)] px-3 py-1 text-[var(--text-muted)]">
-              {modules.length} modules
-            </span>
-            <span className="rounded-full bg-[var(--bg-muted)] px-3 py-1 text-[var(--text-muted)]">
-              {subCount} submodules
-            </span>
-            {meta && (
-              <span className="rounded-full bg-mst-red/10 px-3 py-1 text-mst-red">
-                ~{meta.hours} hrs
-              </span>
-            )}
-          </div>
-        </div>
-      }
-    >
-      <div className="space-y-3">
-        {modules.map((mod) => (
-          <Expandable
-            key={mod.id}
-            open={openModules.has(mod.id)}
-            onToggle={() => toggleModule(mod.id)}
-            header={
-              <div>
-                <p className="text-xs font-bold text-mst-red">
-                  Module {String(mod.id).padStart(2, "0")}
-                </p>
-                <p className="font-semibold text-[var(--text)]">{mod.title}</p>
-                <p className="mt-1 line-clamp-2 text-sm text-[var(--text-muted)]">
-                  {mod.description}
-                </p>
+    <RevealSection delay={index * 80}>
+      <Expandable
+        open={open}
+        onToggle={() => setOpen((v) => !v)}
+        accent={color}
+        header={
+          <div className="flex flex-wrap items-center justify-between gap-3">
+            <div className="flex items-start gap-4">
+              <div
+                className="hidden h-12 w-12 shrink-0 items-center justify-center rounded-xl sm:flex"
+                style={{ backgroundColor: `${color}22` }}
+              >
+                <PhaseIcon className="h-6 w-6" style={{ color }} />
               </div>
-            }
-          >
-            <div className="overflow-x-auto">
-              <table className="w-full min-w-[480px] text-left text-sm">
-                <thead>
-                  <tr className="border-b border-[var(--border)] text-xs uppercase tracking-wider text-[var(--text-muted)]">
-                    <th className="pb-2 pr-4 font-semibold">#</th>
-                    <th className="pb-2 pr-4 font-semibold">Submodule</th>
-                    <th className="pb-2 font-semibold">Focus</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {mod.submodules.map((sub) => (
-                    <tr
-                      key={sub.slug}
-                      className="border-b border-[var(--border)]/60 last:border-0"
-                    >
-                      <td className="py-2.5 pr-4 font-mono text-xs text-mst-red">
-                        {sub.id}
-                      </td>
-                      <td className="py-2.5 pr-4 font-medium text-[var(--text)]">
-                        {getCardSubmoduleTitle(sub.title)}
-                      </td>
-                      <td className="py-2.5 text-[var(--text-muted)]">
-                        {sub.subtitle?.trim() ? (
-                          <span className="line-clamp-3">{sub.subtitle}</span>
-                        ) : (
-                          <span className="italic opacity-60">
-                            Focus lesson on {getCardSubmoduleTitle(sub.title)}
-                          </span>
-                        )}
-                      </td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
+              <div>
+                <p
+                  className="text-xs font-bold uppercase tracking-widest"
+                  style={{ color }}
+                >
+                  Phase {index + 1}
+                </p>
+                <h3 className="text-lg font-bold text-[var(--text)] sm:text-xl">
+                  {phase.title}
+                </h3>
+              </div>
             </div>
-          </Expandable>
-        ))}
-      </div>
-    </Expandable>
+            <div className="flex flex-wrap gap-2 text-xs font-semibold">
+              <span className="rounded-full border border-[var(--border)] bg-[var(--bg-muted)] px-3 py-1 text-[var(--text-muted)]">
+                {modules.length} modules
+              </span>
+              <span className="rounded-full border border-[var(--border)] bg-[var(--bg-muted)] px-3 py-1 text-[var(--text-muted)]">
+                {subCount} submodules
+              </span>
+              {meta && (
+                <span
+                  className="rounded-full px-3 py-1"
+                  style={{ backgroundColor: `${color}18`, color }}
+                >
+                  ~{meta.hours} hrs
+                </span>
+              )}
+            </div>
+          </div>
+        }
+      >
+        <div className="space-y-3">
+          {modules.map((mod) => (
+            <Expandable
+              key={mod.id}
+              open={openModules.has(mod.id)}
+              onToggle={() => toggleModule(mod.id)}
+              header={
+                <div className="flex flex-wrap items-start justify-between gap-3">
+                  <div>
+                    <p className="text-xs font-bold text-mst-red">
+                      Module {String(mod.id).padStart(2, "0")}
+                    </p>
+                    <p className="font-semibold text-[var(--text)]">{mod.title}</p>
+                    <p className="mt-1 line-clamp-2 text-sm text-[var(--text-muted)]">
+                      {mod.description}
+                    </p>
+                  </div>
+                  <span className="rounded-full bg-[var(--bg-muted)] px-3 py-1 text-xs font-semibold text-[var(--text-muted)]">
+                    {mod.submodules.length} lessons
+                  </span>
+                </div>
+              }
+            >
+              <div className="grid gap-3 sm:grid-cols-2">
+                {mod.submodules.map((sub) => (
+                  <SubmoduleCard
+                    key={sub.slug}
+                    mod={mod}
+                    sub={sub}
+                    accent={color}
+                  />
+                ))}
+              </div>
+              <div className="mt-4 text-right">
+                <Link
+                  href={`/module/${mod.id}`}
+                  className="inline-flex items-center gap-1 text-xs font-semibold text-mst-red transition hover:gap-2"
+                >
+                  View module hub
+                  <ArrowRight className="h-3.5 w-3.5" />
+                </Link>
+              </div>
+            </Expandable>
+          ))}
+        </div>
+      </Expandable>
+    </RevealSection>
   );
 }
 
@@ -251,92 +330,166 @@ export function AcademyOverview({ curriculum }: AcademyOverviewProps) {
     0
   );
 
+  const statsRef = useInView(0.25);
+
   return (
     <div className="overflow-hidden bg-[var(--bg)]">
       {/* Hero */}
-      <section className="bg-grid relative border-b border-[var(--border)]">
-        <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-transparent to-[var(--bg)]" />
-        <div className="relative mx-auto max-w-6xl px-4 py-20 sm:px-6 sm:py-28">
-          <div className="mx-auto max-w-3xl text-center">
-            <p className="inline-flex items-center gap-2 rounded-full border border-[var(--border)] bg-[var(--surface)] px-4 py-1.5 text-xs font-semibold uppercase tracking-widest text-mst-red">
-              <GraduationCap className="h-3.5 w-3.5" />
+      <section className="bg-grid relative min-h-[85vh] overflow-hidden border-b border-[var(--border)]">
+        <MarketingHeroBackground tall />
+
+        <div className="relative mx-auto max-w-7xl px-4 pb-20 pt-24 sm:px-6 sm:pb-24 sm:pt-32 lg:pt-36">
+          <div className="mx-auto max-w-4xl text-center animate-fade-in">
+            <p className="inline-flex items-center gap-2 rounded-full border border-mst-red/30 bg-gradient-to-r from-mst-red/15 via-[var(--surface)]/50 to-[var(--accent-purple)]/15 px-5 py-2 text-xs font-bold uppercase tracking-[0.2em] text-mst-red shadow-lg backdrop-blur-md">
+              <Sparkles className="h-4 w-4 animate-pulse-subtle" />
               Programme Overview
             </p>
-            <h1 className="mt-8 text-4xl font-black leading-tight tracking-tight text-[var(--text)] sm:text-5xl">
-              MST Blockchain Academy{" "}
-              <span className="text-gradient-red">Full Curriculum</span>
+
+            <h1 className="text-display mt-10 font-black text-[var(--text)]">
+              Full{" "}
+              <Typewriter
+                strings={[
+                  "Curriculum Map",
+                  "Learning Path",
+                  "Module Directory",
+                  "130+ Hour Syllabus",
+                ]}
+                speedMs={38}
+                pauseMs={900}
+                className="text-gradient-red animate-gradient"
+              />
             </h1>
-            <p className="mx-auto mt-6 max-w-2xl text-lg leading-relaxed text-[var(--text-muted)]">
-              A structured, college-integrated programme — from internet
-              fundamentals to capstone deployment, security audits, and Demo Day.
+
+            <p className="animate-slide-up stagger-2 mx-auto mt-8 max-w-2xl text-xl leading-relaxed text-[var(--text-muted)] sm:text-2xl">
+              Every phase, module, and submodule — from internet foundations to
+              capstone deployment, security audits, and Demo Day.
             </p>
+
+            <div className="animate-slide-up stagger-3 mt-12 flex flex-wrap items-center justify-center gap-4">
+              <Link
+                href="/learn"
+                className="group relative inline-flex items-center gap-2 overflow-hidden rounded-full bg-gradient-to-r from-mst-red to-red-600 px-10 py-4 text-lg font-bold text-white shadow-xl shadow-mst-red/30 transition hover:shadow-2xl"
+              >
+                <span className="btn-shimmer absolute inset-0" />
+                <span className="relative flex items-center gap-2">
+                  <BookOpen className="h-5 w-5" />
+                  Open Learning Tree
+                  <ArrowRight className="h-5 w-5 transition-transform group-hover:translate-x-1" />
+                </span>
+              </Link>
+              <Link
+                href="/register"
+                className="inline-flex items-center gap-2 rounded-full border-2 border-[var(--border-strong)] bg-[var(--surface)]/80 px-10 py-4 text-lg font-bold text-[var(--text)] backdrop-blur-md transition hover:border-mst-red"
+              >
+                Enroll Now
+              </Link>
+            </div>
           </div>
 
-          <div className="mx-auto mt-12 grid max-w-4xl grid-cols-2 gap-4 sm:grid-cols-4">
-            <StatCard value={String(PROGRAMME_STATS.phases)} label="Phases" accent />
-            <StatCard value={String(PROGRAMME_STATS.modules)} label="Modules" />
-            <StatCard value={`${totalSubmodules}+`} label="Submodules" />
-            <StatCard value={`${PROGRAMME_STATS.hours}+`} label="Hours" accent />
+          {/* Stats */}
+          <div
+            ref={statsRef.ref}
+            className="relative mx-auto mt-16 grid max-w-5xl grid-cols-2 gap-5 sm:grid-cols-4"
+          >
+            {[
+              { end: PROGRAMME_STATS.phases, suffix: "", label: "Phases" },
+              { end: PROGRAMME_STATS.modules, suffix: "", label: "Modules" },
+              { end: totalSubmodules, suffix: "+", label: "Submodules" },
+              { end: PROGRAMME_STATS.hours, suffix: "+", label: "Hours" },
+            ].map((stat, i) => (
+              <div
+                key={stat.label}
+                className={`rounded-3xl border border-[var(--border)] bg-[var(--surface)]/70 p-6 text-center backdrop-blur-xl transition duration-300 hover:-translate-y-2 hover:border-mst-red/40 hover:shadow-2xl ${
+                  statsRef.visible ? "animate-scale-in" : "opacity-0"
+                }`}
+                style={{ animationDelay: `${i * 0.12}s` }}
+              >
+                <p className="text-4xl font-black text-gradient-red sm:text-5xl">
+                  {statsRef.visible ? (
+                    <AnimatedCounter end={stat.end} suffix={stat.suffix} />
+                  ) : (
+                    "0"
+                  )}
+                </p>
+                <p className="mt-2 text-sm font-bold uppercase tracking-widest text-[var(--text-muted)]">
+                  {stat.label}
+                </p>
+              </div>
+            ))}
           </div>
+        </div>
+      </section>
 
-          <div className="mt-10 flex flex-wrap justify-center gap-2">
-            {PROGRAMME_BADGES.map((badge) => (
+      {/* Badge marquee */}
+      <section className="overflow-hidden border-b border-[var(--border)] bg-[var(--surface)] py-6">
+        <div className="relative">
+          <div className="pointer-events-none absolute left-0 top-0 z-10 h-full w-20 bg-gradient-to-r from-[var(--surface)] to-transparent" />
+          <div className="pointer-events-none absolute right-0 top-0 z-10 h-full w-20 bg-gradient-to-l from-[var(--surface)] to-transparent" />
+          <div className="marquee-track gap-3 px-3">
+            {[...PROGRAMME_BADGES, ...PROGRAMME_BADGES].map((badge, i) => (
               <span
-                key={badge}
-                className="rounded-full border border-[var(--border)] bg-[var(--surface)] px-3 py-1.5 text-xs font-semibold text-[var(--text-muted)]"
+                key={`${badge}-${i}`}
+                className="shrink-0 rounded-full border border-mst-red/20 bg-gradient-to-r from-mst-red/5 to-transparent px-4 py-1.5 text-xs font-semibold text-[var(--text-muted)]"
               >
                 {badge}
               </span>
             ))}
           </div>
-
-          <div className="mt-10 flex flex-wrap items-center justify-center gap-4">
-            <Link
-              href="/register"
-              className="group inline-flex items-center gap-2 rounded-full bg-mst-red px-8 py-3.5 font-semibold text-white shadow-lg shadow-mst-red/20 transition hover:bg-mst-red-dark"
-            >
-              Enroll Now
-              <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
-            </Link>
-            <Link
-              href="/learn"
-              className="inline-flex items-center gap-2 rounded-full border border-[var(--border-strong)] bg-[var(--surface)] px-8 py-3.5 font-semibold text-[var(--text)] transition hover:border-mst-red"
-            >
-              <BookOpen className="h-4 w-4" />
-              Open Learning Tree
-            </Link>
-          </div>
         </div>
       </section>
 
+      {/* Sticky nav */}
+      <nav className="sticky top-16 z-40 border-b border-[var(--border)] bg-[var(--nav-bg)]/95 backdrop-blur-xl">
+        <div className="mx-auto flex max-w-6xl gap-1 overflow-x-auto px-4 py-2 sm:px-6">
+          {NAV_SECTIONS.map((s) => (
+            <a
+              key={s.id}
+              href={`#${s.id}`}
+              className="shrink-0 rounded-lg px-3 py-2 text-xs font-semibold text-[var(--nav-text)]/70 transition hover:bg-white/10 hover:text-[var(--nav-text)] sm:text-sm"
+            >
+              {s.label}
+            </a>
+          ))}
+        </div>
+      </nav>
+
       {/* Outcomes */}
-      <section id="outcomes" className="border-b border-[var(--border)] py-20">
+      <section id="outcomes" className="border-b border-[var(--border)] py-24 sm:py-32">
         <div className="mx-auto max-w-6xl px-4 sm:px-6">
-          <div className="mb-12 text-center">
-            <h2 className="text-3xl font-black text-[var(--text)] sm:text-4xl">
-              What You Will Achieve
+          <RevealSection className="mx-auto max-w-2xl text-center">
+            <p className="text-xs font-bold uppercase tracking-widest text-mst-red">
+              Graduate Outcomes
+            </p>
+            <h2 className="mt-3 text-3xl font-black text-[var(--text)] sm:text-4xl">
+              What you will{" "}
+              <span className="text-gradient-red">achieve</span>
             </h2>
             <p className="mx-auto mt-3 max-w-2xl text-[var(--text-muted)]">
-              Graduate with production skills, a portfolio project, and a path to
-              grants and on-chain credentials.
+              Production skills, a portfolio project, and a path to grants and
+              on-chain credentials.
             </p>
-          </div>
-          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-            {OUTCOMES.map((o) => {
+          </RevealSection>
+
+          <div className="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+            {OUTCOMES.map((o, i) => {
               const Icon = OUTCOME_ICONS[o.icon as keyof typeof OUTCOME_ICONS];
               return (
-                <div
-                  key={o.title}
-                  className="rounded-2xl border border-[var(--border)] bg-[var(--surface)] p-6 transition hover:-translate-y-1 hover:border-mst-red/30 hover:shadow-lg"
-                >
-                  <div className="mb-4 flex h-11 w-11 items-center justify-center rounded-xl bg-mst-red/10 text-mst-red">
-                    <Icon className="h-5 w-5" />
+                <RevealSection key={o.title} delay={i * 60}>
+                  <div className="group relative overflow-hidden rounded-2xl border border-[var(--border)] bg-[var(--surface)] p-6 transition-all duration-300 hover:-translate-y-1 hover:border-mst-red/30 hover:shadow-xl">
+                    <div
+                      className={`absolute inset-0 bg-gradient-to-br ${OUTCOME_GRADIENTS[i]} opacity-0 transition group-hover:opacity-100`}
+                    />
+                    <div className="relative">
+                      <div className="mb-4 flex h-11 w-11 items-center justify-center rounded-xl bg-mst-red/10 ring-1 ring-mst-red/20">
+                        <Icon className="h-5 w-5 text-mst-red" />
+                      </div>
+                      <h3 className="font-bold text-[var(--text)]">{o.title}</h3>
+                      <p className="mt-2 text-sm leading-relaxed text-[var(--text-muted)]">
+                        {o.description}
+                      </p>
+                    </div>
                   </div>
-                  <h3 className="font-bold text-[var(--text)]">{o.title}</h3>
-                  <p className="mt-2 text-sm leading-relaxed text-[var(--text-muted)]">
-                    {o.description}
-                  </p>
-                </div>
+                </RevealSection>
               );
             })}
           </div>
@@ -344,23 +497,33 @@ export function AcademyOverview({ curriculum }: AcademyOverviewProps) {
       </section>
 
       {/* Curriculum */}
-      <section id="curriculum" className="border-b border-[var(--border)] bg-[var(--bg-elevated)] py-20">
-        <div className="mx-auto max-w-6xl px-4 sm:px-6">
-          <div className="mb-12 flex flex-wrap items-end justify-between gap-4">
+      <section
+        id="curriculum"
+        className="relative border-b border-[var(--border)] bg-[var(--bg-elevated)] py-24 sm:py-32"
+      >
+        <div className="pointer-events-none absolute right-0 top-0 h-96 w-96 rounded-full bg-mst-red/5 blur-3xl" />
+        <div className="relative mx-auto max-w-6xl px-4 sm:px-6">
+          <RevealSection className="mb-12 flex flex-wrap items-end justify-between gap-4">
             <div>
-              <h2 className="text-3xl font-black text-[var(--text)] sm:text-4xl">
-                Curriculum by Phase
+              <p className="text-xs font-bold uppercase tracking-widest text-mst-red">
+                Syllabus
+              </p>
+              <h2 className="mt-2 text-3xl font-black text-[var(--text)] sm:text-4xl">
+                Curriculum by phase
               </h2>
               <p className="mt-3 max-w-xl text-[var(--text-muted)]">
-                Expand each phase to browse modules and every submodule with its
-                learning focus.
+                Expand phases and modules to explore every lesson with its
+                focus description — click any card to start learning.
               </p>
             </div>
-            <div className="flex items-center gap-2 rounded-full border border-[var(--border)] bg-[var(--surface)] px-4 py-2 text-sm font-semibold text-[var(--text-muted)]">
+            <div className="flex items-center gap-2 rounded-full border border-[var(--border)] bg-[var(--surface)] px-4 py-2 text-sm font-semibold shadow-sm">
               <Clock className="h-4 w-4 text-mst-red" />
-              {PROGRAMME_STATS.hours}+ total hours
+              <span className="text-[var(--text-muted)]">
+                {PROGRAMME_STATS.hours}+ total hours
+              </span>
             </div>
-          </div>
+          </RevealSection>
+
           <div className="space-y-4">
             {phasesWithModules.map(({ phase, modules }, i) => (
               <PhaseSection key={phase.id} phase={phase} modules={modules} index={i} />
@@ -370,69 +533,104 @@ export function AcademyOverview({ curriculum }: AcademyOverviewProps) {
       </section>
 
       {/* Module directory */}
-      <section id="modules" className="border-b border-[var(--border)] py-20">
+      <section id="modules" className="border-b border-[var(--border)] py-24 sm:py-32">
         <div className="mx-auto max-w-6xl px-4 sm:px-6">
-          <h2 className="text-3xl font-black text-[var(--text)] sm:text-4xl">
-            Module Directory
-          </h2>
-          <p className="mt-3 text-[var(--text-muted)]">
-            All {PROGRAMME_STATS.modules} modules at a glance.
-          </p>
-          <div className="mt-8 overflow-x-auto rounded-2xl border border-[var(--border)]">
-            <table className="w-full min-w-[640px] text-left text-sm">
-              <thead className="bg-[var(--surface)] text-xs uppercase tracking-wider text-[var(--text-muted)]">
-                <tr>
-                  <th className="px-5 py-3 font-semibold">Module</th>
-                  <th className="px-5 py-3 font-semibold">Title</th>
-                  <th className="px-5 py-3 font-semibold">Phase</th>
-                  <th className="px-5 py-3 font-semibold">Submodules</th>
-                </tr>
-              </thead>
-              <tbody>
-                {curriculum.modules.map((mod, i) => {
-                  const phaseIdx = curriculum.phases.findIndex((p) =>
-                    p.modules.includes(mod.id)
-                  );
-                  return (
-                    <tr
-                      key={mod.id}
-                      className={`border-t border-[var(--border)] ${
-                        i % 2 === 0 ? "bg-[var(--bg)]" : "bg-[var(--surface)]/50"
-                      }`}
-                    >
-                      <td className="px-5 py-3 font-mono font-bold text-mst-red">
+          <RevealSection>
+            <p className="text-xs font-bold uppercase tracking-widest text-mst-red">
+              Directory
+            </p>
+            <h2 className="mt-2 text-3xl font-black text-[var(--text)] sm:text-4xl">
+              All {PROGRAMME_STATS.modules} modules
+            </h2>
+            <p className="mt-3 text-[var(--text-muted)]">
+              Quick reference — jump straight to any module hub.
+            </p>
+          </RevealSection>
+
+          <div className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+            {curriculum.modules.map((mod, i) => {
+              const phaseIdx = curriculum.phases.findIndex((p) =>
+                p.modules.includes(mod.id)
+              );
+              const color = PHASE_COLORS[phaseIdx] ?? "var(--mst-red)";
+              const PhaseIcon = PHASE_ICONS[phaseIdx] ?? Blocks;
+
+              return (
+                <RevealSection key={mod.id} delay={(i % 6) * 50}>
+                  <Link
+                    href={`/module/${mod.id}`}
+                    className="group relative flex h-full flex-col overflow-hidden rounded-2xl border border-[var(--border)] bg-[var(--surface)] p-5 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl"
+                    style={{ borderColor: "var(--border)" }}
+                    onMouseEnter={(e) => {
+                      e.currentTarget.style.borderColor = `${color}66`;
+                    }}
+                    onMouseLeave={(e) => {
+                      e.currentTarget.style.borderColor = "var(--border)";
+                    }}
+                  >
+                    <div
+                      className="pointer-events-none absolute -right-6 -top-6 h-24 w-24 rounded-full opacity-0 blur-2xl transition group-hover:opacity-25"
+                      style={{ backgroundColor: color }}
+                    />
+                    <div className="relative flex items-start justify-between gap-3">
+                      <div
+                        className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl"
+                        style={{ backgroundColor: `${color}22` }}
+                      >
+                        <PhaseIcon className="h-5 w-5" style={{ color }} />
+                      </div>
+                      <span
+                        className="font-mono text-lg font-black"
+                        style={{ color }}
+                      >
                         {String(mod.id).padStart(2, "0")}
-                      </td>
-                      <td className="px-5 py-3 font-medium text-[var(--text)]">
-                        {mod.title}
-                      </td>
-                      <td className="px-5 py-3 text-[var(--text-muted)]">
-                        Phase {phaseIdx + 1}
-                      </td>
-                      <td className="px-5 py-3 text-[var(--text-muted)]">
-                        {mod.submodules.length}
-                      </td>
-                    </tr>
-                  );
-                })}
-              </tbody>
-            </table>
+                      </span>
+                    </div>
+                    <p
+                      className="relative mt-3 text-xs font-bold uppercase tracking-wider"
+                      style={{ color }}
+                    >
+                      Phase {phaseIdx + 1}
+                    </p>
+                    <h3 className="relative mt-1 font-bold text-[var(--text)] transition group-hover:text-mst-red">
+                      {mod.title}
+                    </h3>
+                    <p className="relative mt-2 line-clamp-2 flex-1 text-sm text-[var(--text-muted)]">
+                      {mod.description}
+                    </p>
+                    <div className="relative mt-4 flex items-center justify-between border-t border-[var(--border)] pt-3 text-xs font-semibold text-[var(--text-muted)]">
+                      <span>{mod.submodules.length} submodules</span>
+                      <span className="flex items-center gap-1 text-mst-red opacity-0 transition group-hover:opacity-100">
+                        Open
+                        <ArrowRight className="h-3.5 w-3.5" />
+                      </span>
+                    </div>
+                  </Link>
+                </RevealSection>
+              );
+            })}
           </div>
         </div>
       </section>
 
       {/* Assessment */}
-      <section id="assessment" className="border-b border-[var(--border)] bg-[var(--bg-elevated)] py-20">
-        <div className="mx-auto max-w-6xl px-4 sm:px-6">
+      <section
+        id="assessment"
+        className="relative border-b border-[var(--border)] bg-[var(--bg-elevated)] py-24 sm:py-32"
+      >
+        <div className="pointer-events-none absolute left-0 bottom-0 h-96 w-96 rounded-full bg-[var(--accent-purple)]/10 blur-3xl" />
+        <div className="relative mx-auto max-w-6xl px-4 sm:px-6">
           <div className="grid gap-12 lg:grid-cols-2">
-            <div>
-              <h2 className="text-3xl font-black text-[var(--text)] sm:text-4xl">
-                Assessment Framework
+            <RevealSection>
+              <p className="text-xs font-bold uppercase tracking-widest text-mst-red">
+                Evaluation
+              </p>
+              <h2 className="mt-2 text-3xl font-black text-[var(--text)] sm:text-4xl">
+                Assessment framework
               </h2>
               <p className="mt-4 leading-relaxed text-[var(--text-muted)]">
-                Every submodule includes rigorous assessments. You must score at
-                least{" "}
-                <strong className="text-[var(--text)]">
+                Every submodule includes rigorous assessments. Score at least{" "}
+                <strong className="text-gradient-red">
                   {PROGRAMME_STATS.passThreshold}%
                 </strong>{" "}
                 to unlock the next lesson. Full-screen lockdown mode ensures
@@ -447,131 +645,155 @@ export function AcademyOverview({ curriculum }: AcademyOverviewProps) {
                 ].map((item) => (
                   <li
                     key={item}
-                    className="flex items-start gap-3 text-sm text-[var(--text-muted)]"
+                    className="flex items-start gap-3 rounded-xl border border-[var(--border)] bg-[var(--surface)] px-4 py-3 text-sm text-[var(--text-muted)]"
                   >
                     <ChevronRight className="mt-0.5 h-4 w-4 shrink-0 text-mst-red" />
                     {item}
                   </li>
                 ))}
               </ul>
-            </div>
-            <div className="space-y-3">
-              {ASSESSMENT_TYPES.map((a) => (
-                <div
-                  key={a.type}
-                  className="rounded-xl border border-[var(--border)] bg-[var(--surface)] p-4"
-                >
-                  <div className="flex items-center justify-between gap-4">
-                    <span className="font-semibold text-[var(--text)]">{a.type}</span>
-                    <span className="rounded-full bg-mst-red/10 px-3 py-0.5 text-sm font-bold text-mst-red">
-                      {a.pct}%
-                    </span>
+            </RevealSection>
+
+            <div className="space-y-4">
+              {ASSESSMENT_TYPES.map((a, i) => (
+                <RevealSection key={a.type} delay={i * 70}>
+                  <div className="rounded-xl border border-[var(--border)] bg-[var(--surface)] p-4 transition hover:border-mst-red/20 hover:shadow-md">
+                    <div className="flex items-center justify-between gap-4">
+                      <span className="font-semibold text-[var(--text)]">
+                        {a.type}
+                      </span>
+                      <span className="rounded-full bg-gradient-to-r from-mst-red/20 to-red-600/10 px-3 py-0.5 text-sm font-bold text-mst-red">
+                        {a.pct}%
+                      </span>
+                    </div>
+                    <p className="mt-1 text-sm text-[var(--text-muted)]">{a.desc}</p>
+                    <div className="mt-3 h-1.5 overflow-hidden rounded-full bg-[var(--bg-muted)]">
+                      <div
+                        className="h-full rounded-full bg-gradient-to-r from-mst-red to-red-500 transition-all duration-1000"
+                        style={{ width: `${a.pct}%` }}
+                      />
+                    </div>
                   </div>
-                  <p className="mt-1 text-sm text-[var(--text-muted)]">{a.desc}</p>
-                </div>
+                </RevealSection>
               ))}
             </div>
           </div>
         </div>
       </section>
 
-      {/* Credential & grants (no wallet/validator vanity stats) */}
-      <section id="credential" className="border-b border-[var(--border)] py-20">
+      {/* Credential */}
+      <section id="credential" className="border-b border-[var(--border)] py-24 sm:py-32">
         <div className="mx-auto max-w-6xl px-4 sm:px-6">
-          <div className="grid gap-8 lg:grid-cols-2">
-            <div className="rounded-2xl border border-[var(--border)] bg-[var(--surface)] p-8">
-              <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-mst-red/10 text-mst-red">
-                <Award className="h-6 w-6" />
-              </div>
-              <h3 className="text-xl font-bold text-[var(--text)]">
-                On-Chain Credential
-              </h3>
-              <p className="mt-3 text-sm leading-relaxed text-[var(--text-muted)]">
-                Complete all phases, pass every assessment, and submit your
-                capstone to receive a verifiable certificate recorded on MST
-                Blockchain — proof of job-ready Web3 skills.
-              </p>
-            </div>
-            <div className="rounded-2xl border border-[var(--border)] bg-[var(--surface)] p-8">
-              <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-mst-red/10 text-mst-red">
-                <Zap className="h-6 w-6" />
-              </div>
-              <h3 className="text-xl font-bold text-[var(--text)]">
-                Grant Funding Path
-              </h3>
-              <p className="mt-3 text-sm leading-relaxed text-[var(--text-muted)]">
-                Top capstone projects may qualify for MST ecosystem grants to
-                continue building after graduation. Pitch at Demo Day and
-                compete for funding to launch your startup MVP.
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
+          <RevealSection className="mb-10 text-center">
+            <p className="text-xs font-bold uppercase tracking-widest text-mst-red">
+              After Graduation
+            </p>
+            <h2 className="mt-2 text-3xl font-black text-[var(--text)] sm:text-4xl">
+              Credential & funding path
+            </h2>
+          </RevealSection>
 
-      {/* Quick facts */}
-      <section className="border-b border-[var(--border)] bg-[var(--bg-elevated)] py-16">
-        <div className="mx-auto max-w-6xl px-4 sm:px-6">
-          <div className="grid gap-6 sm:grid-cols-3">
+          <div className="grid gap-6 lg:grid-cols-2">
             {[
               {
-                icon: Layers,
-                title: "4 Phases",
-                desc: "Foundations → Tooling → MVP Build → Capstone",
+                icon: Award,
+                title: "On-Chain Credential",
+                desc: "Complete all phases, pass every assessment, and submit your capstone to receive a verifiable certificate recorded on MST Blockchain — proof of job-ready Web3 skills.",
+                gradient: "from-amber-500/10 to-mst-red/10",
               },
               {
-                icon: Target,
-                title: `${PROGRAMME_STATS.passThreshold}% Pass Rule`,
-                desc: "Must pass each submodule assessment to progress",
+                icon: Zap,
+                title: "Grant Funding Path",
+                desc: "Top capstone projects may qualify for MST ecosystem grants. Pitch at Demo Day and compete for funding to launch your startup MVP.",
+                gradient: "from-purple-500/10 to-cyan-500/10",
               },
-              {
-                icon: FileText,
-                title: "College Integrated",
-                desc: "Structured syllabus aligned with academic standards",
-              },
-            ].map((f) => (
-              <div
-                key={f.title}
-                className="flex gap-4 rounded-2xl border border-[var(--border)] bg-[var(--surface)] p-5"
-              >
-                <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-mst-red/10 text-mst-red">
-                  <f.icon className="h-5 w-5" />
+            ].map((card, i) => (
+              <RevealSection key={card.title} delay={i * 100}>
+                <div
+                  className={`relative overflow-hidden rounded-2xl border border-[var(--border)] bg-gradient-to-br ${card.gradient} p-8 transition hover:-translate-y-1 hover:shadow-xl`}
+                >
+                  <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-mst-red/10 text-mst-red ring-1 ring-mst-red/20">
+                    <card.icon className="h-6 w-6" />
+                  </div>
+                  <h3 className="text-xl font-bold text-[var(--text)]">{card.title}</h3>
+                  <p className="mt-3 text-sm leading-relaxed text-[var(--text-muted)]">
+                    {card.desc}
+                  </p>
                 </div>
-                <div>
-                  <p className="font-bold text-[var(--text)]">{f.title}</p>
-                  <p className="mt-1 text-sm text-[var(--text-muted)]">{f.desc}</p>
-                </div>
-              </div>
+              </RevealSection>
             ))}
           </div>
+
+          <RevealSection className="mt-12">
+            <div className="grid gap-6 sm:grid-cols-3">
+              {[
+                {
+                  icon: Layers,
+                  title: "4 Phases",
+                  desc: "Foundations → Tooling → MVP Build → Capstone",
+                },
+                {
+                  icon: Target,
+                  title: `${PROGRAMME_STATS.passThreshold}% Pass Rule`,
+                  desc: "Must pass each submodule assessment to progress",
+                },
+                {
+                  icon: FileText,
+                  title: "College Integrated",
+                  desc: "Structured syllabus aligned with academic standards",
+                },
+              ].map((f, i) => (
+                <div
+                  key={f.title}
+                  className="flex gap-4 rounded-2xl border border-[var(--border)] bg-[var(--surface)] p-5 transition hover:border-mst-red/30"
+                  style={{ animationDelay: `${i * 0.1}s` }}
+                >
+                  <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-mst-red/10 text-mst-red">
+                    <f.icon className="h-5 w-5" />
+                  </div>
+                  <div>
+                    <p className="font-bold text-[var(--text)]">{f.title}</p>
+                    <p className="mt-1 text-sm text-[var(--text-muted)]">{f.desc}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </RevealSection>
         </div>
       </section>
 
       {/* CTA */}
-      <section className="py-20">
-        <div className="mx-auto max-w-3xl px-4 text-center sm:px-6">
-          <h2 className="text-3xl font-black text-[var(--text)]">
-            Ready to start your Web3 journey?
-          </h2>
-          <p className="mt-4 text-[var(--text-muted)]">
-            Enroll today and access the full learning tree, assessments, and
-            live code execution.
-          </p>
-          <div className="mt-8 flex flex-wrap justify-center gap-4">
-            <Link
-              href="/register"
-              className="inline-flex items-center gap-2 rounded-full bg-mst-red px-8 py-3.5 font-semibold text-white transition hover:bg-mst-red-dark"
-            >
-              Create Account
-              <ArrowRight className="h-4 w-4" />
-            </Link>
-            <Link
-              href="/"
-              className="inline-flex items-center gap-2 rounded-full border border-[var(--border-strong)] px-8 py-3.5 font-semibold text-[var(--text)] transition hover:border-mst-red"
-            >
-              Back to Home
-            </Link>
-          </div>
+      <section className="relative overflow-hidden">
+        <MarketingHeroBackground />
+        <div className="relative mx-auto max-w-3xl px-4 py-24 text-center sm:px-6 sm:py-32">
+          <RevealSection>
+            <div className="mx-auto mb-6 flex h-16 w-16 items-center justify-center rounded-2xl bg-gradient-to-br from-mst-red to-red-700 shadow-lg shadow-mst-red/30">
+              <GraduationCap className="h-8 w-8 text-white" />
+            </div>
+            <h2 className="text-3xl font-black text-[var(--text)] sm:text-4xl">
+              Ready to start{" "}
+              <span className="text-gradient-red">learning</span>?
+            </h2>
+            <p className="mx-auto mt-4 max-w-xl text-[var(--text-muted)]">
+              Enroll today and access the full learning tree, assessments, and
+              live code execution.
+            </p>
+            <div className="mt-10 flex flex-wrap items-center justify-center gap-4">
+              <Link
+                href="/register"
+                className="group inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-mst-red to-red-600 px-8 py-3.5 font-semibold text-white shadow-lg shadow-mst-red/25 transition hover:shadow-xl"
+              >
+                Create Account
+                <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
+              </Link>
+              <Link
+                href="/"
+                className="inline-flex items-center gap-2 rounded-full border border-[var(--border-strong)] bg-[var(--surface)] px-8 py-3.5 font-semibold text-[var(--text)] transition hover:border-mst-red"
+              >
+                Back to Home
+              </Link>
+            </div>
+          </RevealSection>
         </div>
       </section>
     </div>
