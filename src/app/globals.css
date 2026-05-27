@@ -3041,3 +3041,28 @@ body {
 ::-webkit-scrollbar-thumb:hover {
   background: var(--text-muted);
 }
+
+/* ─── Learning tree ─────────────────────────────────── */
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.learn-phase-heading {
+  animation: fadeIn 0.6s ease-out forwards;
+}
+
+.learn-tree-canvas .react-flow__edge-path {
+  transition: stroke 0.4s ease, stroke-width 0.4s ease;
+}
+
+.learn-content-panel {
+  animation: fadeIn 0.35s ease-out forwards;
+}

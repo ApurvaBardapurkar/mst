@@ -27,6 +27,7 @@ import {
   getModuleStatus,
 } from "@/lib/progress";
 import { getLessonDisplayTitle, getCardSubmoduleTitle } from "@/lib/display-titles";
+import { stripEmojis } from "@/lib/strip-emojis";
 
 function estimateReadTime(html: string): number {
   const text = html.replace(/<[^>]*>/g, " ").replace(/\s+/g, " ").trim();
@@ -75,7 +76,7 @@ function CodeBlock({ code, language }: { code: string; language: string }) {
 }
 
 function cleanHtml(html: string): string {
-  return html
+  return stripEmojis(html)
     .replace(/<p>\s*[-–—]\s+/g, "<p>• ")
     .replace(/<li>\s*[-–—]\s+/g, "<li>")
     .replace(/>\s*-\s{2,}/g, "> ")

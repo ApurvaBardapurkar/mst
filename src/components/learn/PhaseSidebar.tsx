@@ -3,44 +3,7 @@
 import { Layers } from "lucide-react";
 import type { Phase } from "@/lib/types";
 import { setActivePhaseId } from "@/lib/progress";
-
-const PHASE_META: Record<
-  string,
-  { short: string; color: string; bgLight: string; bgDark: string; icon: string; label: string }
-> = {
-  "phase-1": {
-    short: "P1",
-    color: "#3b82f6",
-    bgLight: "from-blue-50 to-blue-100",
-    bgDark: "from-blue-950/50 to-blue-900/30",
-    icon: "🌐",
-    label: "Foundation",
-  },
-  "phase-2": {
-    short: "P2",
-    color: "#a855f7",
-    bgLight: "from-purple-50 to-purple-100",
-    bgDark: "from-purple-950/50 to-purple-900/30",
-    icon: "⚡",
-    label: "Tooling",
-  },
-  "phase-3": {
-    short: "P3",
-    color: "#22c55e",
-    bgLight: "from-green-50 to-green-100",
-    bgDark: "from-green-950/50 to-green-900/30",
-    icon: "🚀",
-    label: "Build",
-  },
-  "phase-4": {
-    short: "P4",
-    color: "#e31e24",
-    bgLight: "from-red-50 to-red-100",
-    bgDark: "from-red-950/50 to-red-900/30",
-    icon: "🎯",
-    label: "Launch",
-  },
-};
+import { getPhaseMeta } from "@/lib/curriculum-meta";
 
 interface PhaseSidebarProps {
   phases: Phase[];
@@ -63,15 +26,9 @@ export function PhaseSidebar({
       </p>
 
       {phases.map((phase, i) => {
-        const meta = PHASE_META[phase.id] || {
-          short: `P${i + 1}`,
-          color: "#e31e24",
-          bgLight: "from-red-50 to-red-100",
-          bgDark: "from-red-950/50 to-red-900/30",
-          icon: "•",
-          label: `Phase ${i + 1}`,
-        };
+        const meta = getPhaseMeta(phase.id, i);
         const isActive = phase.id === activePhaseId;
+        const Icon = meta.Icon;
 
         return (
           <button
@@ -94,12 +51,18 @@ export function PhaseSidebar({
                     boxShadow: `0 4px 24px ${meta.color}30`,
                     borderColor: meta.color + "50",
                   }
-                : {
-                    background: "var(--surface)",
-                  }
+                : { background: "var(--surface)" }
             }
           >
-            <span className="text-2xl drop-shadow-sm">{meta.icon}</span>
+            <span
+              className="flex h-9 w-9 items-center justify-center rounded-xl transition-colors"
+              style={{
+                background: isActive ? meta.color + "18" : "var(--bg-muted)",
+                color: isActive ? meta.color : "var(--text-muted)",
+              }}
+            >
+              <Icon size={18} strokeWidth={2.25} />
+            </span>
             <span
               className="mt-1.5 text-[10px] font-black tracking-wider transition-colors"
               style={{ color: isActive ? meta.color : "var(--text-muted)" }}
@@ -113,16 +76,10 @@ export function PhaseSidebar({
               {meta.label}
             </span>
             {isActive && (
-              <>
-                <span
-                  className="absolute -right-[3px] top-1/2 h-8 w-1.5 -translate-y-1/2 rounded-full shadow-sm"
-                  style={{ backgroundColor: meta.color }}
-                />
-                <span
-                  className="absolute -left-[3px] top-1/2 h-8 w-1.5 -translate-y-1/2 rounded-full opacity-30"
-                  style={{ backgroundColor: meta.color }}
-                />
-              </>
+              <span
+                className="absolute -right-[3px] top-1/2 h-8 w-1.5 -translate-y-1/2 rounded-full shadow-sm"
+                style={{ backgroundColor: meta.color }}
+              />
             )}
           </button>
         );
