@@ -2,12 +2,20 @@
 
 import { useState, useEffect, useCallback, useMemo } from "react";
 import { ChevronDown, ChevronRight, BookOpen, Trophy } from "lucide-react";
-import type { Curriculum } from "@/lib/types";
-import { getActivePhaseId } from "@/lib/progress";
+import type { Curriculum, SubmoduleMeta } from "@/lib/types";
+import {
+  getActivePhaseId,
+  getModuleStatus,
+  getModuleProgressPercent,
+  getSubmoduleProgress,
+  isSubmoduleLocked,
+} from "@/lib/progress";
 import { getPhaseMeta } from "@/lib/curriculum-meta";
 import { PhaseSidebar } from "./PhaseSidebar";
 import { PhaseLearningTree } from "./PhaseLearningTree";
 import { LessonContentPanel } from "./LessonContentPanel";
+import { getCardSubmoduleTitle } from "@/lib/display-titles";
+import { stripEmojis } from "@/lib/strip-emojis";
 
 type TreeStep = "heading" | "modules" | "content";
 
@@ -74,6 +82,16 @@ export function LearnExperience({ curriculum }: { curriculum: Curriculum }) {
     );
   }
 
+  const selectedModule = selectedModuleId
+    ? curriculum.modules.find((m) => m.id === selectedModuleId) ?? null
+    : null;
+  const selectedModuleSlugs = selectedModule?.submodules.map((s) => s.slug) ?? [];
+  const selectedModuleStatus = selectedModule
+    ? getModuleStatus(selectedModule.id, allModuleIds, selectedModuleSlugs, (id) => moduleSlugMap[id] ?? [])
+    : "locked";
+  const selectedModuleProgress = selectedModule
+    ? getModuleProgressPercent(selectedModule.id, selectedModuleSlugs)
+    : 0;
   const showContent = treeStep === "content" && selectedSubmoduleSlug && selectedModuleId;
 
   return (
@@ -190,16 +208,10 @@ export function LearnExperience({ curriculum }: { curriculum: Curriculum }) {
                   allModuleIds={allModuleIds}
                   moduleSlugMap={moduleSlugMap}
                   selectedModuleId={selectedModuleId}
-                  selectedSubmoduleSlug={selectedSubmoduleSlug}
                   onModuleSelect={(id) => {
                     setSelectedModuleId(id);
                     setSelectedSubmoduleSlug(null);
                     setTreeStep("modules");
-                  }}
-                  onSubmoduleSelect={(moduleId, slug) => {
-                    setSelectedModuleId(moduleId);
-                    setSelectedSubmoduleSlug(slug);
-                    setTreeStep("content");
                   }}
                 />
               </div>
@@ -227,11 +239,95 @@ export function LearnExperience({ curriculum }: { curriculum: Curriculum }) {
         </div>
 
         {/* Lesson panel */}
+        {selectedModule && !showContent && (
+          <div className="flex min-h-[280px] flex-1 flex-col border-l border-[var(--border)] bg-[var(--surface)] lg:max-w-[42%]">
+            <div className="border-b border-[var(--border)] px-5 py-4">
+              <p className="text-[10px] font-bold uppercase tracking-widest text-mst-red">
+                Module {selectedModule.id}
+              </p>
+              <h2 className="mt-2 text-xl font-black text-[var(--text)]">
+                {stripEmojis(selectedModule.title)}
+              </h2>
+              <p className="mt-3 text-sm text-[var(--text-muted)]">
+                {selectedModule.description}
+              </p>
+              <div className="mt-4 flex flex-wrap gap-2 text-[13px] text-[var(--text-muted)]">
+                <span className="rounded-full border border-[var(--border)] bg-[var(--bg-muted)] px-3 py-2">
+                  {selectedModule.submodules.length} lessons
+                </span>
+                <span className="rounded-full border border-[var(--border)] bg-[var(--bg-muted)] px-3 py-2">
+                  {selectedModuleProgress}% progress
+                </span>
+                <span className="rounded-full border border-[var(--border)] bg-[var(--bg-muted)] px-3 py-2">
+                  {selectedModuleStatus === "locked" ? "Locked" : selectedModuleStatus === "active" ? "Active" : "Completed"}
+                </span>
+              </div>
+            </div>
+            <div className="flex-1 overflow-y-auto px-5 py-5">
+              <div className="mb-5 flex items-center justify-between gap-4">
+                <div>
+                  <p className="text-sm font-bold text-[var(--text)]">Lessons in this module</p>
+                  <p className="text-sm text-[var(--text-muted)]">Select a lesson to open the full content panel.</p>
+                </div>
+              </div>
+              <div className="grid gap-3">
+                {selectedModule.submodules.map((submodule, index) => {
+                  const progress = getSubmoduleProgress(selectedModule.id, submodule.slug);
+                  const locked = isSubmoduleLocked(
+                    selectedModuleStatus === "locked",
+                    index,
+                    selectedModule.id,
+                    selectedModule.submodules
+                  );
+                  const done = progress.lessonComplete && progress.assessmentComplete;
+                  const title = getCardSubmoduleTitle(submodule.title);
+                  return (
+                    <button
+                      type="button"
+                      key={submodule.slug}
+                      onClick={() => {
+                        if (!locked) {
+                          setSelectedSubmoduleSlug(submodule.slug);
+                          setTreeStep("content");
+                        }
+                      }}
+                      disabled={locked}
+                      className={`flex w-full items-center justify-between gap-3 rounded-3xl border px-4 py-4 text-left transition ${
+                        locked
+                          ? "cursor-not-allowed border-[var(--border)] bg-[var(--bg)]/80 text-[var(--text-muted)]"
+                          : done
+                            ? "border-green-500/30 bg-green-500/10 text-[var(--text)] hover:border-green-500/50"
+                            : "border-[var(--border)] bg-[var(--surface)] text-[var(--text)] hover:border-mst-red/30"
+                      }`}
+                    >
+                      <div>
+                        <p className="font-semibold">{title}</p>
+                        <p className="mt-1 text-sm text-[var(--text-muted)]">
+                          {locked ? "Unlock the previous lesson first" : "Open lesson"}
+                        </p>
+                      </div>
+                      <div className={`shrink-0 rounded-full px-3 py-1 text-[12px] font-bold text-white ${
+                        done
+                          ? "bg-green-500"
+                          : locked
+                            ? "bg-[var(--border)] text-[var(--text-muted)]"
+                            : "bg-mst-red"
+                      }`}>
+                        {done ? "Done" : locked ? "Locked" : "Open"}
+                      </div>
+                    </button>
+                  );
+                })}
+              </div>
+            </div>
+          </div>
+        )}
+
         {showContent && (
           <div className="h-[45vh] min-h-[280px] flex-1 lg:h-full lg:max-w-[42%]">
             <LessonContentPanel
-              moduleId={selectedModuleId}
-              slug={selectedSubmoduleSlug}
+              moduleId={selectedModuleId!}
+              slug={selectedSubmoduleSlug!}
               onClose={() => {
                 setSelectedSubmoduleSlug(null);
                 setTreeStep("modules");

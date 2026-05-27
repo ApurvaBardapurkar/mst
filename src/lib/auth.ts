@@ -2,8 +2,6 @@
 
 export type UserRole = "student" | "validator" | "non-validator" | "admin";
 
-export type BlockchainLevel = "Beginner" | "Intermediate" | "Expert";
-
 export interface AuthUser {
   id: string;
   email: string;
@@ -11,9 +9,7 @@ export interface AuthUser {
   fullName: string;
   role: UserRole;
   phone?: string;
-  college?: string;
-  collegeOther?: string;
-  blockchainLevel?: BlockchainLevel;
+  packageType?: "full" | "course-only";
   registeredAt: string;
 }
 
@@ -22,9 +18,7 @@ export interface RegisterStudentInput {
   email: string;
   phone: string;
   password: string;
-  college: string;
-  collegeOther?: string;
-  idCardFileName: string;
+  packageType?: "full" | "course-only";
 }
 
 export interface RegisterValidatorInput {
@@ -32,7 +26,6 @@ export interface RegisterValidatorInput {
   email: string;
   phone: string;
   password: string;
-  idCardFileName: string;
 }
 
 export interface RegisterNonValidatorInput {
@@ -40,7 +33,7 @@ export interface RegisterNonValidatorInput {
   email: string;
   phone: string;
   password: string;
-  blockchainLevel: BlockchainLevel;
+  packageType?: "full" | "course-only";
 }
 
 const SESSION_KEY = "mst-academy-session";
@@ -49,27 +42,11 @@ const USERS_KEY = "mst-academy-users";
 export const DEMO_ADMIN_EMAIL = "abc@gmail.com";
 export const DEMO_ADMIN_PASSWORD = "ABC123";
 
-export const COLLEGES = [
-  "MIT WPU",
-  "DY Patil University",
-  "PCCOE",
-  "VIIT",
-  "Sinhgad College",
-  "MIT ADT University",
-  "Other",
-] as const;
-
-export const BLOCKCHAIN_LEVELS: BlockchainLevel[] = [
-  "Beginner",
-  "Intermediate",
-  "Expert",
-];
-
 export const DEMO_FEES = {
-  student: 2999,
-  validator: 2999,
-  normal: 6999,
-  nonValidator: 8999,
+  student: 14999,
+  validator: 9999,
+  normal: 19999,
+  courseOnly: 2999,
 } as const;
 
 function loadUsers(): AuthUser[] {
@@ -161,17 +138,32 @@ export function registerStudent(input: RegisterStudentInput) {
   return registerUser({
     ...input,
     role: "student",
-    college:
-      input.college === "Other" ? input.collegeOther || "Other" : input.college,
+    packageType: input.packageType ?? "full",
   });
 }
 
 export function registerValidator(input: RegisterValidatorInput) {
-  return registerUser({ ...input, role: "validator" });
+  return registerUser({
+    ...input,
+    role: "validator",
+    packageType: "full",
+  });
 }
 
 export function registerNonValidator(input: RegisterNonValidatorInput) {
-  return registerUser({ ...input, role: "non-validator" });
+  return registerUser({
+    ...input,
+    role: "non-validator",
+    packageType: input.packageType ?? "full",
+  });
+}
+
+export function registerCourseOnly(input: RegisterNonValidatorInput) {
+  return registerUser({
+    ...input,
+    role: "non-validator",
+    packageType: "course-only",
+  });
 }
 
 function registerUser(
@@ -181,9 +173,7 @@ function registerUser(
     password: string;
     phone?: string;
     role: UserRole;
-    college?: string;
-    blockchainLevel?: BlockchainLevel;
-    idCardFileName?: string;
+    packageType?: "full" | "course-only";
   }
 ): { ok: true; user: AuthUser } | { ok: false; error: string } {
   if (input.password.length < 6) {
@@ -208,8 +198,7 @@ function registerUser(
     fullName: input.fullName.trim(),
     role: input.role,
     phone: input.phone?.trim(),
-    college: input.college,
-    blockchainLevel: input.blockchainLevel,
+    packageType: input.packageType ?? "full",
     registeredAt: new Date().toISOString(),
   };
 

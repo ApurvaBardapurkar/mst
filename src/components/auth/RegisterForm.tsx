@@ -4,10 +4,11 @@ import { useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import {
-  COLLEGES,
   DEMO_FEES,
   registerStudent,
   registerValidator,
+  registerNonValidator,
+  registerCourseOnly,
   dashboardPath,
 } from "@/lib/auth";
 import { useAuth } from "@/components/AuthProvider";
@@ -16,20 +17,41 @@ import {
   DemoFee,
   DemoFeeNote,
   FieldLabel,
-  HighlightBox,
-  SelectInput,
   SubmitButton,
   TextInput,
 } from "./AuthShell";
 
-type UserType = "student" | "validator" | "normal";
-
-const VALIDATOR_ID_PLACEHOLDER_URL = "https://example.com/validator-id-card.pdf";
+type UserType = "student" | "validator" | "normal" | "course-only";
 
 const USER_TYPES: { id: UserType; label: string; emoji: string; desc: string; price: number }[] = [
-  { id: "student", label: "Student", emoji: "🎓", desc: "Enroll in courses & earn certifications", price: DEMO_FEES.student },
-  { id: "validator", label: "Validator", emoji: "🔐", desc: "Validate transactions & earn rewards", price: DEMO_FEES.validator },
-  { id: "normal", label: "Normal User", emoji: "👤", desc: "Access all courses & content", price: DEMO_FEES.normal },
+  {
+    id: "student",
+    label: "Student Plan",
+    emoji: "🎓",
+    desc: "Full course + paid internship + MSTC reward fraction",
+    price: DEMO_FEES.student,
+  },
+  {
+    id: "validator",
+    label: "Validator Plan",
+    emoji: "🔐",
+    desc: "Lifetime access + validator reward fraction",
+    price: DEMO_FEES.validator,
+  },
+  {
+    id: "normal",
+    label: "General Plan",
+    emoji: "👤",
+    desc: "Lifetime access + internship + MSTC reward fraction",
+    price: DEMO_FEES.normal,
+  },
+  {
+    id: "course-only",
+    label: "Course Pass",
+    emoji: "📘",
+    desc: "Course-only access without internship or MSTC reward",
+    price: DEMO_FEES.courseOnly,
+  },
 ];
 
 export function RegisterForm() {
@@ -42,14 +64,41 @@ export function RegisterForm() {
   const [fullName, setFullName] = useState("");
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
-  const [college, setCollege] = useState<string>(COLLEGES[0]);
-  const [collegeOther, setCollegeOther] = useState("");
-  const [studentIdFile, setStudentIdFile] = useState<File | null>(null);
-  const [validatorIdFile, setValidatorIdFile] = useState<File | null>(null);
+  const [otpSent, setOtpSent] = useState(false);
+  const [otpValue, setOtpValue] = useState("");
+  const [sentOtp, setSentOtp] = useState<string | null>(null);
+  const [otpVerified, setOtpVerified] = useState(false);
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
 
   const selectedType = USER_TYPES.find((t) => t.id === userType)!;
+
+  function generateOtp() {
+    return String(Math.floor(1000 + Math.random() * 9000));
+  }
+
+  function handleSendOtp() {
+    setError("");
+    const digits = phone.replace(/\D/g, "");
+    if (digits.length < 10) {
+      setError("Enter a valid 10-digit mobile number before sending OTP.");
+      return;
+    }
+    const otp = generateOtp();
+    setSentOtp(otp);
+    setOtpSent(true);
+    setOtpVerified(false);
+    setOtpValue("");
+  }
+
+  function handlePhoneChange(value: string) {
+    setPhone(value);
+    setOtpSent(false);
+    setOtpVerified(false);
+    setOtpValue("");
+    setSentOtp(null);
+    setError("");
+  }
 
   function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
@@ -62,42 +111,55 @@ export function RegisterForm() {
       return;
     }
 
+    if (!otpSent) {
+      setLoading(false);
+      setError("Send OTP to verify your mobile number.");
+      return;
+    }
+
+    if (!otpVerified) {
+      if (!sentOtp || otpValue !== sentOtp) {
+        setLoading(false);
+        setError("Invalid OTP. Please enter the code sent to your phone.");
+        return;
+      }
+      setOtpVerified(true);
+    }
+
     let result:
       | { ok: true; user: { role: string } }
       | { ok: false; error: string };
 
     if (userType === "validator") {
-      if (!validatorIdFile) {
-        setLoading(false);
-        setError("Validator ID card upload is required.");
-        return;
-      }
       result = registerValidator({
         fullName,
         email,
         phone,
         password,
-        idCardFileName: validatorIdFile.name,
       });
-    } else {
-      if (userType === "student" && !studentIdFile) {
-        setLoading(false);
-        setError("Student ID card upload is required.");
-        return;
-      }
-      if (userType === "student" && college === "Other" && !collegeOther.trim()) {
-        setLoading(false);
-        setError("Please enter your college name.");
-        return;
-      }
+    } else if (userType === "student") {
       result = registerStudent({
         fullName,
         email,
         phone,
         password,
-        college: userType === "student" ? college : "N/A",
-        collegeOther: userType === "student" && college === "Other" ? collegeOther : undefined,
-        idCardFileName: userType === "student" ? studentIdFile!.name : "normal-user",
+        packageType: "full",
+      });
+    } else if (userType === "course-only") {
+      result = registerCourseOnly({
+        fullName,
+        email,
+        phone,
+        password,
+        packageType: "course-only",
+      });
+    } else {
+      result = registerNonValidator({
+        fullName,
+        email,
+        phone,
+        password,
+        packageType: "full",
       });
     }
 
@@ -108,7 +170,7 @@ export function RegisterForm() {
     }
     refresh();
     router.push(
-      dashboardPath(result.user.role as "student" | "validator")
+      dashboardPath(result.user.role as "student" | "validator" | "non-validator")
     );
   }
 
@@ -122,41 +184,6 @@ export function RegisterForm() {
       </div>
 
       <form onSubmit={handleSubmit} className="space-y-4">
-        {/* Role selection */}
-        <div>
-          <FieldLabel required>I am registering as</FieldLabel>
-          <div className="mt-2 grid grid-cols-3 gap-2">
-            {USER_TYPES.map((t) => (
-              <button
-                key={t.id}
-                type="button"
-                onClick={() => { setUserType(t.id); setError(""); }}
-                className={`relative flex flex-col items-center gap-1 rounded-xl border-2 px-2 py-3 text-center transition-all ${
-                  userType === t.id
-                    ? "border-mst-red bg-mst-red/5 shadow-md shadow-mst-red/10"
-                    : "border-[var(--border)] bg-[var(--bg)] hover:border-[var(--text-muted)]/40"
-                }`}
-              >
-                <span className="text-xl">{t.emoji}</span>
-                <span className={`text-xs font-bold ${
-                  userType === t.id ? "text-mst-red" : "text-[var(--text)]"
-                }`}>
-                  {t.label}
-                </span>
-                <span className="text-[10px] leading-tight text-[var(--text-muted)]">
-                  Rs {t.price.toLocaleString("en-IN")}
-                </span>
-                {userType === t.id && (
-                  <span className="absolute -right-1 -top-1 flex h-4 w-4 items-center justify-center rounded-full bg-mst-red text-[8px] text-white">
-                    ✓
-                  </span>
-                )}
-              </button>
-            ))}
-          </div>
-        </div>
-
-        {/* Common fields */}
         <div>
           <FieldLabel htmlFor="fullName" required>Full Name</FieldLabel>
           <TextInput id="fullName" required value={fullName} onChange={(e) => setFullName(e.target.value)} placeholder="Your full name" />
@@ -166,63 +193,91 @@ export function RegisterForm() {
           <TextInput id="email" type="email" required value={email} onChange={(e) => setEmail(e.target.value)} placeholder="you@example.com" />
         </div>
         <div>
-          <FieldLabel htmlFor="phone" required>Phone Number</FieldLabel>
-          <TextInput id="phone" type="tel" required value={phone} onChange={(e) => setPhone(e.target.value)} placeholder="+91 XXXXX XXXXX" />
+          <FieldLabel htmlFor="phone" required>Mobile Number</FieldLabel>
+          <TextInput
+            id="phone"
+            type="tel"
+            required
+            value={phone}
+            onChange={(e) => handlePhoneChange(e.target.value)}
+            placeholder="98765 43210"
+          />
+          <div className="mt-3 flex flex-wrap items-center gap-3">
+            <button
+              type="button"
+              onClick={handleSendOtp}
+              className="rounded-xl bg-gradient-to-r from-mst-red to-red-600 px-4 py-2 text-sm font-bold text-white shadow-lg shadow-mst-red/20 transition hover:brightness-110"
+            >
+              {otpSent ? "Resend OTP" : "Send OTP"}
+            </button>
+            {otpSent && (
+              <p className="text-sm text-[var(--text-muted)]">
+                Enter the 4-digit code sent to your phone to continue.
+              </p>
+            )}
+          </div>
         </div>
 
-        {/* Student-specific fields */}
-        {userType === "student" && (
-          <>
-            <div>
-              <FieldLabel htmlFor="college" required>College</FieldLabel>
-              <SelectInput id="college" value={college} onChange={(e) => setCollege(e.target.value)}>
-                {COLLEGES.map((c) => (
-                  <option key={c} value={c}>{c}</option>
-                ))}
-              </SelectInput>
-            </div>
-            {college === "Other" && (
-              <div>
-                <FieldLabel htmlFor="collegeOther" required>Enter College Name</FieldLabel>
-                <TextInput id="collegeOther" required value={collegeOther} onChange={(e) => setCollegeOther(e.target.value)} placeholder="Your college name" />
-              </div>
+        {otpSent && (
+          <div>
+            <FieldLabel htmlFor="otp" required>OTP Code</FieldLabel>
+            <TextInput
+              id="otp"
+              type="text"
+              inputMode="numeric"
+              pattern="[0-9]*"
+              required
+              value={otpValue}
+              onChange={(e) => setOtpValue(e.target.value)}
+              placeholder="Enter OTP"
+            />
+            {sentOtp && (
+              <p className="mt-2 rounded-xl border border-mst-red/20 bg-mst-red/5 px-3 py-2 text-sm text-mst-red">
+                Demo OTP: {sentOtp}
+              </p>
             )}
-            <div>
-              <FieldLabel htmlFor="studentId" required>Student ID Card Upload</FieldLabel>
-              <TextInput id="studentId" type="file" accept="image/*,.pdf" required onChange={(e) => setStudentIdFile(e.target.files?.[0] ?? null)} />
-              {studentIdFile && (
-                <p className="mt-1 text-xs text-[var(--text-muted)]">Selected: {studentIdFile.name}</p>
-              )}
-            </div>
-            <HighlightBox>
-              Internship Opportunity available for eligible students who meet the required assessment criteria.
-            </HighlightBox>
-          </>
+          </div>
         )}
 
-        {/* Validator-specific fields */}
-        {userType === "validator" && (
-          <>
-            <div>
-              <FieldLabel htmlFor="validatorId" required>Validator ID Card Upload</FieldLabel>
-              <TextInput id="validatorId" type="file" accept="image/*,.pdf" required onChange={(e) => setValidatorIdFile(e.target.files?.[0] ?? null)} />
-              {validatorIdFile && (
-                <p className="mt-1 text-xs text-[var(--text-muted)]">Selected: {validatorIdFile.name}</p>
-              )}
-            </div>
-            <p className="text-sm text-[var(--text-muted)]">
-              Don&apos;t have a Validator ID Card?{" "}
-              <a href={VALIDATOR_ID_PLACEHOLDER_URL} target="_blank" rel="noopener noreferrer" className="font-semibold text-mst-red hover:underline">
-                Download Validator ID Card
-              </a>
-            </p>
-          </>
-        )}
+        <div>
+          <FieldLabel required>Choose your plan</FieldLabel>
+          <div className="mt-2 grid grid-cols-2 gap-2 sm:grid-cols-4">
+            {USER_TYPES.map((t) => (
+              <button
+                key={t.id}
+                type="button"
+                onClick={() => {
+                  setUserType(t.id);
+                  setError("");
+                }}
+                className={`relative flex flex-col items-start justify-between rounded-3xl border-2 p-4 text-left transition-all duration-300 ${
+                  userType === t.id
+                    ? "border-mst-red bg-mst-red/5 shadow-[0_12px_40px_rgba(227,30,36,0.18)]"
+                    : "border-[var(--border)] bg-[var(--surface)] hover:border-mst-red/30"
+                }`}
+              >
+                <div>
+                  <div className="mb-3 text-2xl">{t.emoji}</div>
+                  <p className="text-sm font-bold text-[var(--text)]">{t.label}</p>
+                  <p className="mt-2 text-xs leading-snug text-[var(--text-muted)]">
+                    {t.desc}
+                  </p>
+                </div>
+                <div className="mt-4 text-sm font-black text-mst-red">
+                  ₹{t.price.toLocaleString("en-IN")}
+                </div>
+                {userType === t.id && (
+                  <span className="absolute right-3 top-3 inline-flex h-6 w-6 items-center justify-center rounded-full bg-mst-red text-[10px] text-white">
+                    ✓
+                  </span>
+                )}
+              </button>
+            ))}
+          </div>
+        </div>
 
-        {/* Fee display */}
         <DemoFee amount={selectedType.price} />
 
-        {/* Password */}
         <div>
           <FieldLabel htmlFor="password" required>Password</FieldLabel>
           <TextInput id="password" type="password" required minLength={6} autoComplete="new-password" value={password} onChange={(e) => setPassword(e.target.value)} />

@@ -69,6 +69,13 @@ export function Navbar() {
             <BookOpen size={16} />
             Learning Tree
           </Link>
+          <Link
+            href="/leaderboard"
+            className="flex items-center gap-2 rounded-lg px-3 py-2 text-sm font-medium text-[var(--nav-text)]/70 transition hover:bg-white/10 hover:text-[var(--nav-text)]"
+          >
+            <Shield size={16} />
+            Leaderboard
+          </Link>
           {ready && user && (
             <Link
               href={dashboardHref}
@@ -178,6 +185,14 @@ export function Navbar() {
             >
               <BookOpen size={18} />
               Learning Tree
+            </Link>
+            <Link
+              href="/leaderboard"
+              onClick={() => setMobileOpen(false)}
+              className="flex items-center gap-3 rounded-xl px-4 py-3 text-sm font-medium text-[var(--nav-text)] transition hover:bg-white/10"
+            >
+              <Shield size={18} />
+              Leaderboard
             </Link>
             {ready && user && (
               <Link

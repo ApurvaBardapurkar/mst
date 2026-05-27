@@ -25,13 +25,10 @@ import type { Curriculum, ModuleMeta, SubmoduleMeta } from "@/lib/types";
 import {
   getPhaseTreeLayout,
   getPhaseEdges,
-  getSubmoduleLayout,
 } from "@/lib/phase-layout";
 import {
   getModuleStatus,
   getModuleProgressPercent,
-  getSubmoduleProgress,
-  isSubmoduleLocked,
   type ModuleStatus,
 } from "@/lib/progress";
 import { useTheme } from "@/components/ThemeProvider";
@@ -243,9 +240,7 @@ export interface PhaseLearningTreeProps {
   allModuleIds: number[];
   moduleSlugMap: Record<number, string[]>;
   selectedModuleId: number | null;
-  selectedSubmoduleSlug: string | null;
   onModuleSelect: (moduleId: number) => void;
-  onSubmoduleSelect: (moduleId: number, slug: string) => void;
 }
 
 export function PhaseLearningTree({
@@ -255,9 +250,7 @@ export function PhaseLearningTree({
   allModuleIds,
   moduleSlugMap,
   selectedModuleId,
-  selectedSubmoduleSlug,
   onModuleSelect,
-  onSubmoduleSelect,
 }: PhaseLearningTreeProps) {
   const { theme } = useTheme();
   const isLight = theme === "light";
@@ -322,76 +315,6 @@ export function PhaseLearningTree({
       data: { kind: "module" },
       className: `web3-edge ${selectedModuleId ? "web3-edge--muted" : "web3-edge--idle"}`,
     }));
-
-    if (selectedModule && selectedModuleId) {
-      const modPos = posMap[`mod-${selectedModuleId}`];
-      if (modPos) {
-        const subPositions = getSubmoduleLayout(
-          { x: modPos.x, y: modPos.y },
-          selectedModule.submodules.length
-        );
-
-        selectedModule.submodules.forEach((sub, subIdx) => {
-          const sp = getSubmoduleProgress(selectedModuleId, sub.slug);
-          const modSlugs = selectedModule.submodules.map((s) => s.slug);
-          const modStatus = getModuleStatus(
-            selectedModuleId,
-            allModuleIds,
-            modSlugs,
-            getSlugs
-          );
-          const locked = isSubmoduleLocked(
-            modStatus === "locked",
-            subIdx,
-            selectedModuleId,
-            selectedModule.submodules
-          );
-          const done = sp.lessonComplete && sp.assessmentComplete;
-          const subPos = subPositions[subIdx];
-
-          flowNodes.push({
-            id: `sub-${selectedModuleId}-${sub.slug}`,
-            type: "submoduleCard",
-            position: { x: subPos.x, y: subPos.y },
-            data: {
-              submodule: sub,
-              moduleId: selectedModuleId,
-              index: subIdx,
-              locked,
-              done,
-              selected: selectedSubmoduleSlug === sub.slug,
-              isLight,
-              onSelect: () => onSubmoduleSelect(selectedModuleId, sub.slug),
-            },
-            draggable: false,
-            zIndex: 20,
-          });
-
-          flowEdges.push({
-            id: `e-mod-sub-${sub.slug}`,
-            source: `mod-${selectedModuleId}`,
-            target: `sub-${selectedModuleId}-${sub.slug}`,
-            type: "smoothstep",
-            animated: true,
-            data: { kind: "active" },
-            className: "web3-edge web3-edge--active",
-          });
-
-          if (subIdx > 0) {
-            const prev = selectedModule.submodules[subIdx - 1];
-            flowEdges.push({
-              id: `e-sub-chain-${sub.slug}`,
-              source: `sub-${selectedModuleId}-${prev.slug}`,
-              target: `sub-${selectedModuleId}-${sub.slug}`,
-              type: "smoothstep",
-              animated: true,
-              data: { kind: "path" },
-              className: "web3-edge web3-edge--path",
-            });
-          }
-        });
-      }
-    }
 
     return { nodes: flowNodes, edges: flowEdges };
   }, [

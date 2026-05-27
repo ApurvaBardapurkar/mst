@@ -143,12 +143,15 @@ export function LandingPage({
             </h1>
 
             <p className="animate-slide-up stagger-2 mx-auto mt-8 max-w-2xl text-xl leading-relaxed text-[var(--text-muted)] sm:text-2xl sm:leading-relaxed">
-              A structured, college-integrated programme — interactive lessons,
-              live code, rigorous assessments, and a path from cryptography to
-              funded founder.
+              A structured, industry-aligned Web3 programme — interactive lessons,
+              live code, rigorous assessments, and a funnel built for fellowship,
+              PPO, and lifetime MSTC rewards.
+            </p>
+            <p className="animate-slide-up stagger-3 mx-auto mt-4 max-w-2xl text-sm font-semibold uppercase tracking-[0.25em] text-mst-red">
+              Lifetime access • 19-year MSTC reward stream • internship & hiring support
             </p>
 
-            <div className="animate-slide-up stagger-3 mt-12 flex flex-wrap items-center justify-center gap-4">
+            <div className="animate-slide-up stagger-4 mt-12 flex flex-wrap items-center justify-center gap-4">
               <Link
                 href="/learn"
                 className="group relative inline-flex items-center gap-2 overflow-hidden rounded-full bg-gradient-to-r from-mst-red via-red-600 to-mst-red bg-[length:200%_100%] px-10 py-4 text-lg font-bold text-white shadow-xl shadow-mst-red/30 transition hover:shadow-2xl hover:shadow-mst-red/40 animate-gradient"
@@ -309,6 +312,79 @@ export function LandingPage({
         </div>
       </section>
 
+      {/* Leaderboard */}
+      <section id="leaderboard" className="border-t border-[var(--border)] bg-[var(--bg-elevated)] py-24 sm:py-32">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6">
+          <RevealSection className="mx-auto max-w-3xl text-center">
+            <p className="text-sm font-bold uppercase tracking-[0.2em] text-mst-red">
+              Leaderboard
+            </p>
+            <h2 className="mt-4 text-4xl font-black tracking-tight text-[var(--text)] sm:text-5xl">
+              Top performers earning MSTC, streak rewards, and real placement momentum
+            </h2>
+            <p className="mt-5 text-lg text-[var(--text-muted)]">
+              See the cohort champions, daily streaks, and the students leading the Web3 movement.
+            </p>
+          </RevealSection>
+
+          <div className="mt-16 grid gap-6 lg:grid-cols-3">
+            {[
+              {
+                name: "Aarya S.",
+                score: "98.2",
+                coins: "12 MSTC",
+                streak: "18 days",
+                rank: "1",
+              },
+              {
+                name: "Kiran P.",
+                score: "94.5",
+                coins: "9 MSTC",
+                streak: "16 days",
+                rank: "2",
+              },
+              {
+                name: "Meera T.",
+                score: "91.7",
+                coins: "8 MSTC",
+                streak: "14 days",
+                rank: "3",
+              },
+            ].map((item) => (
+              <RevealSection key={item.name} delay={80}>
+                <div className="rounded-3xl border border-[var(--border)] bg-[var(--surface)] p-8 text-left shadow-xl shadow-black/5">
+                  <div className="flex items-center justify-between gap-4">
+                    <div>
+                      <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[var(--text-muted)]">
+                        Rank {item.rank}
+                      </p>
+                      <p className="mt-3 text-2xl font-black text-[var(--text)]">{item.name}</p>
+                    </div>
+                    <div className="flex h-12 w-12 items-center justify-center rounded-3xl bg-mst-red/10 text-mst-red">
+                      {item.rank}
+                    </div>
+                  </div>
+                  <div className="mt-8 space-y-3 text-sm text-[var(--text-muted)]">
+                    <div className="flex items-center justify-between rounded-2xl bg-[var(--bg)] px-4 py-3">
+                      <span>Score</span>
+                      <span className="font-semibold text-[var(--text)]">{item.score}%</span>
+                    </div>
+                    <div className="flex items-center justify-between rounded-2xl bg-[var(--bg)] px-4 py-3">
+                      <span>Coin reward</span>
+                      <span className="font-semibold text-[var(--text)]">{item.coins}</span>
+                    </div>
+                    <div className="flex items-center justify-between rounded-2xl bg-[var(--bg)] px-4 py-3">
+                      <span>Streak</span>
+                      <span className="font-semibold text-[var(--text)]">{item.streak}</span>
+                    </div>
+                  </div>
+                </div>
+              </RevealSection>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* Curriculum */}
       <section
         id="curriculum"
@@ -385,6 +461,82 @@ export function LandingPage({
               <ArrowRight className="h-5 w-5 transition-transform group-hover:translate-x-1" />
             </Link>
           </RevealSection>
+        </div>
+      </section>
+
+      {/* Pricing */}
+      <section id="pricing" className="border-t border-[var(--border)] bg-[var(--bg-elevated)] py-24 sm:py-32">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6">
+          <RevealSection className="mx-auto max-w-3xl text-center">
+            <p className="text-sm font-bold uppercase tracking-[0.2em] text-mst-red">
+              Pricing Plans
+            </p>
+            <h2 className="mt-4 text-4xl font-black tracking-tight text-[var(--text)] sm:text-5xl">
+              Choose the path that fits your Web3 ambition
+            </h2>
+            <p className="mt-5 text-lg text-[var(--text-muted)]">
+              Lifetime course access, MSTC reward fraction, career-ready internships, and a dedicated leaderboard for top performers.
+            </p>
+          </RevealSection>
+
+          <div className="mt-16 grid gap-6 lg:grid-cols-4">
+            {[
+              {
+                title: "Student Plan",
+                price: "₹14,999",
+                description: "Full course with 2-month paid internship and 1 MSTC reward fraction.",
+                badge: "Best for learners",
+              },
+              {
+                title: "Validator Plan",
+                price: "₹9,999",
+                description: "Lifetime access plus validator reward fraction and early node readiness.",
+                badge: "Best for builders",
+              },
+              {
+                title: "General Plan",
+                price: "₹19,999",
+                description: "Full access, internship support, and MSTC reward fraction for serious professionals.",
+                badge: "Full ecosystem",
+              },
+              {
+                title: "Course Pass",
+                price: "₹2,999",
+                description: "Course-only access without internship or MSTC reward fraction.",
+                badge: "Self-paced learners",
+              },
+            ].map((plan) => (
+              <RevealSection key={plan.title} delay={80}>
+                <div className="group rounded-3xl border border-[var(--border)] bg-[var(--surface)] p-8 transition hover:-translate-y-1 hover:shadow-2xl">
+                  <div className="flex items-center justify-between gap-4">
+                    <div>
+                      <p className="text-sm font-semibold uppercase tracking-[0.2em] text-[var(--text-muted)]">
+                        {plan.badge}
+                      </p>
+                      <h3 className="mt-4 text-2xl font-black text-[var(--text)]">
+                        {plan.title}
+                      </h3>
+                    </div>
+                    <span className="rounded-2xl bg-mst-red/10 px-4 py-2 text-sm font-semibold text-mst-red">
+                      {plan.price}
+                    </span>
+                  </div>
+                  <p className="mt-6 text-sm leading-relaxed text-[var(--text-muted)]">
+                    {plan.description}
+                  </p>
+                  <div className="mt-8">
+                    <Link
+                      href="/register"
+                      className="inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-mst-red to-red-600 px-5 py-3 text-sm font-bold text-white transition hover:brightness-110"
+                    >
+                      Enroll now
+                      <ArrowRight size={16} />
+                    </Link>
+                  </div>
+                </div>
+              </RevealSection>
+            ))}
+          </div>
         </div>
       </section>
 
